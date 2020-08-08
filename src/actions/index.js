@@ -220,6 +220,13 @@ export const pageLoading = (spinner) => {
 	};
 };
 
+export const getSubCategoryListings = (data) => {
+	return {
+		type: 'New_Listings',
+		data
+	}
+}
+
 export const reloadProfile = () => {
 	return {
 		type: 'RELOAD_PROFILE',
