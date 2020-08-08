@@ -16,6 +16,10 @@
 		text-align: center;
 		margin: auto;
 	}
+
+	.edit-profile-entity-title {
+		margin: 3em auto 2em;
+	}
 	
 	.edit-profile-entity-info {
 		//border: 1px solid orange;
@@ -88,6 +92,10 @@
 	}
 	
 	/// Business Info
+
+	.edit-profile-business-title {
+		margin: 3em auto 1em;
+	}
 	
 	.edit-profile-form-business-info {
 		//border: 1px solid orange;
@@ -160,6 +168,10 @@
 		text-align: center;
 		margin: auto;
 	}
+
+	.edit-profile-entity-title {
+		margin: 3em auto 1em;
+	}
 	
 	.edit-profile-entity-info {
 		//border: 1px solid orange;
@@ -170,11 +182,15 @@
 		display: grid;
 		grid-template-areas:
 			'firstName firstName lastName lastName'
-			'entityPhone entityPhone entityPhoneType entityPhoneType'
-			'displayEntityPhone displayEntityPhone . .'
-			'entityEmail entityEmail entityEmailType displayEntityEmail'
-			'entityStreet entityStreet entityCity entityCity'
-			'entityState entityState entityZip entityZip';
+			'entityPhone entityPhone entityPhone entityPhone'
+			'entityPhoneType entityPhoneType entityPhoneType .'
+			'displayEntityPhone displayEntityPhone displayEntityPhone .'
+			'entityEmail entityEmail entityEmail .'
+			'entityEmailType entityEmailType entityEmailType .'
+			'displayEntityEmail displayEntityEmail displayEntityEmail .'
+			'entityStreet entityStreet entityStreet .'
+			'entityCity entityCity entityCity .'
+			'entityState entityZip entityZip entityZip';
 	}
 	.edit-profile-entity-info input {
 		margin-bottom: 10px;
@@ -192,46 +208,61 @@
 		grid-area: lastName;
 	}
 	.edit-profile-form-entityEmail {
-		margin: 0 auto 1em;
+		margin: 8px auto 8px 5px;
+		text-align: left;
 		grid-area: entityEmail;
 	}
 	.edit-profile-form-entity-phone-number {
-		margin: auto;
+		margin: 8px auto 8px 5px;
+		text-align: left;
 		grid-area: entityPhone;
 	}
 	.edit-profile-form-entity-phone-type {
+		margin: 8px auto 8px 40px;
+		text-align: left;
 		grid-area: entityPhoneType;
 	}
 	.edit-profile-form-display-entity-phone {
-		margin: 0 auto 1em;
+		margin: 8px auto 8px 40px;
+		text-align: left;
 		grid-area: displayEntityPhone;
 	}
 	.edit-profile-form-display-entity-email {
-		margin: 0 auto 1em;
+		margin: 8px auto 8px 40px;
+		text-align: left;
 		grid-area: displayEntityEmail;
 	}
 	.edit-profile-form-entity-email-type {
-		margin: 0 auto 1em;
+		margin: 8px auto 8px 40px;
+		text-align: left;
 		grid-area: entityEmailType;
 	}
 	.edit-profile-form-entity-street {
-		margin: auto;
+		margin: 8px auto 8px 5px;
+		text-align: left;
 		grid-area: entityStreet;
 	}
 	.edit-profile-form-entity-city {
-		margin: auto;
+		margin: 8px auto 8px 5px;
+		text-align: left;
 		grid-area: entityCity;
 	}
 	.edit-profile-form-entity-state {
-		margin: auto;
+		margin: 8px auto 8px 5px;
+		text-align: left;
 		grid-area: entityState;
 	}
 	.edit-profile-form-entity-zip {
-		margin: auto;
+		margin: 8px auto 8px 20px;
+		text-align: left;
 		grid-area: entityZip;
 	}
 	
 	/// Business Info
+
+	.edit-profile-business-title {
+		margin: 3em auto 1em;
+	}
 	
 	.edit-profile-form-business-info {
 		//border: 1px solid orange;

@@ -125,10 +125,10 @@ class EditProfile extends React.Component {
 		//this.props.newProfilePic(get(newFile, '0.name'));
 	};
 
-	state_selector = () => {
+	state_selector = (fieldName, state) => {
 		return (
-			<select name="state" onChange={this.onChangeHandler}>
-				<option>{this.props.state}</option>
+			<select name={fieldName} onChange={this.onChangeHandler}>
+				<option>{state}</option>
 				{this.props.states.map((state) => (
 					<option value={state}>{state}</option>
 				))}
@@ -156,6 +156,8 @@ class EditProfile extends React.Component {
 
 	businessProfile = (user) => {
 		return (
+			<React.Fragment>
+				<div className='edit-profile-business-title'><h3>Edit Business Information</h3></div>
 			<div className="edit-profile-form-business-info">
 				<div className="edit-profile-form-businessName">
 					<label>Business Name</label>
@@ -212,7 +214,7 @@ class EditProfile extends React.Component {
 				</div>
 				<div className="edit-profile-form-businessState">
 					<label>State: </label>
-					{this.state_selector()}
+					{this.state_selector('businessState', user.businessState)}
 				</div>
 				<div className="edit-profile-form-businessZip">
 					<label>Zip Code: </label>
@@ -239,6 +241,7 @@ class EditProfile extends React.Component {
 					/>
 				</div>
 			</div>
+			</React.Fragment>
 		);
 	};
 
@@ -314,9 +317,17 @@ class EditProfile extends React.Component {
 						))}
 					</div>
 				)}
-				<div className="profile-image-edit-layer">Edit your photo</div>
-				<br />
+				{/* <div className="profile-image-edit-layer">Edit your photo</div> */}
 				<form onSubmit={this.submitHandler} className="profile-edit-form">
+
+					{/*
+						Form section for entity information.
+
+					*/}
+
+					<div className='edit-profile-entity-title'>
+						<h3>Edit Entity Information</h3>
+					</div>
 					<div className="edit-profile-entity-info">
 						<div className="edit-profile-form-name-first">
 							<label>First Name: </label>
@@ -353,7 +364,7 @@ class EditProfile extends React.Component {
 							/>
 						</div>
 						<div className="edit-profile-form-display-entity-email">
-							<label>Display Email Address: </label>
+							<label>Display Email: </label>
 							{display_entity_email()}
 						</div>
 						<div className="edit-profile-form-entity-email-type">
@@ -371,7 +382,7 @@ class EditProfile extends React.Component {
 							/>
 						</div>
 						<div className="edit-profile-form-display-entity-phone">
-							<label>Display Phone Number: </label>
+							<label>Display Phone: </label>
 							<select>
 								<option>No</option>
 								<option>Yes</option>
@@ -414,13 +425,15 @@ class EditProfile extends React.Component {
 						</div>
 						<div className="edit-profile-form-entity-state">
 							<label>State: </label>
-							<input
+							{this.state_selector('entityState', user.entityState)}
+							{/* {this.entityStateSelector(user.entityState)} */}
+							{/* <input
 								type="text"
 								value={user.entityState}
 								name="entityState"
 								className="textinput textInput form-control"
 								onChange={this.onChangeHandler}
-							/>
+							/> */}
 						</div>
 						<div className="edit-profile-form-entity-zip">
 							<label>Zipcode: </label>

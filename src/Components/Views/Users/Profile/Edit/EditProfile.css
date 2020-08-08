@@ -16,6 +16,9 @@
     text-align: center;
     margin: auto;
   }
+  .edit-profile-entity-title {
+    margin: 3em auto 2em;
+  }
   .edit-profile-entity-info {
     width: 100%;
     margin: 1em auto 2em;
@@ -112,6 +115,9 @@
     -ms-grid-column: 3;
     -ms-grid-column-span: 2;
     grid-area: entityZip;
+  }
+  .edit-profile-business-title {
+    margin: 3em auto 1em;
   }
   .edit-profile-form-business-info {
     width: 100%;
@@ -194,6 +200,9 @@
     text-align: center;
     margin: auto;
   }
+  .edit-profile-entity-title {
+    margin: 3em auto 1em;
+  }
   .edit-profile-entity-info {
     width: 100%;
     margin: 1em auto 2em;
@@ -201,7 +210,7 @@
     text-align: left;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'firstName firstName lastName lastName' 'entityPhone entityPhone entityPhoneType entityPhoneType' 'displayEntityPhone displayEntityPhone . .' 'entityEmail entityEmail entityEmailType displayEntityEmail' 'entityStreet entityStreet entityCity entityCity' 'entityState entityState entityZip entityZip';
+        grid-template-areas: 'firstName firstName lastName lastName' 'entityPhone entityPhone entityPhone entityPhone' 'entityPhoneType entityPhoneType entityPhoneType .' 'displayEntityPhone displayEntityPhone displayEntityPhone .' 'entityEmail entityEmail entityEmail .' 'entityEmailType entityEmailType entityEmailType .' 'displayEntityEmail displayEntityEmail displayEntityEmail .' 'entityStreet entityStreet entityStreet .' 'entityCity entityCity entityCity .' 'entityState entityZip entityZip entityZip';
   }
   .edit-profile-entity-info input {
     margin-bottom: 10px;
@@ -225,71 +234,86 @@
     grid-area: lastName;
   }
   .edit-profile-form-entityEmail {
-    margin: 0 auto 1em;
-    -ms-grid-row: 4;
+    margin: 8px auto 8px 5px;
+    text-align: left;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
+    -ms-grid-column-span: 3;
     grid-area: entityEmail;
   }
   .edit-profile-form-entity-phone-number {
-    margin: auto;
+    margin: 8px auto 8px 5px;
+    text-align: left;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
+    -ms-grid-column-span: 4;
     grid-area: entityPhone;
   }
   .edit-profile-form-entity-phone-type {
-    -ms-grid-row: 2;
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 2;
+    margin: 8px auto 8px 40px;
+    text-align: left;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-area: entityPhoneType;
   }
   .edit-profile-form-display-entity-phone {
-    margin: 0 auto 1em;
-    -ms-grid-row: 3;
+    margin: 8px auto 8px 40px;
+    text-align: left;
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
+    -ms-grid-column-span: 3;
     grid-area: displayEntityPhone;
   }
   .edit-profile-form-display-entity-email {
-    margin: 0 auto 1em;
-    -ms-grid-row: 4;
-    -ms-grid-column: 4;
+    margin: 8px auto 8px 40px;
+    text-align: left;
+    -ms-grid-row: 7;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-area: displayEntityEmail;
   }
   .edit-profile-form-entity-email-type {
-    margin: 0 auto 1em;
-    -ms-grid-row: 4;
-    -ms-grid-column: 3;
+    margin: 8px auto 8px 40px;
+    text-align: left;
+    -ms-grid-row: 6;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-area: entityEmailType;
   }
   .edit-profile-form-entity-street {
-    margin: auto;
-    -ms-grid-row: 5;
+    margin: 8px auto 8px 5px;
+    text-align: left;
+    -ms-grid-row: 8;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
+    -ms-grid-column-span: 3;
     grid-area: entityStreet;
   }
   .edit-profile-form-entity-city {
-    margin: auto;
-    -ms-grid-row: 5;
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 2;
+    margin: 8px auto 8px 5px;
+    text-align: left;
+    -ms-grid-row: 9;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-area: entityCity;
   }
   .edit-profile-form-entity-state {
-    margin: auto;
-    -ms-grid-row: 6;
+    margin: 8px auto 8px 5px;
+    text-align: left;
+    -ms-grid-row: 10;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
     grid-area: entityState;
   }
   .edit-profile-form-entity-zip {
-    margin: auto;
-    -ms-grid-row: 6;
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 2;
+    margin: 8px auto 8px 20px;
+    text-align: left;
+    -ms-grid-row: 10;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
     grid-area: entityZip;
+  }
+  .edit-profile-business-title {
+    margin: 3em auto 1em;
   }
   .edit-profile-form-business-info {
     width: 100%;
