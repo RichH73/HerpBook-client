@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HerpBook
+This is the overall readme file for this project.
+
+## `Current Release`
+
+Release 3.0.1 is the current release for this application.
+
 
 ## Available Scripts
 
