@@ -187,7 +187,7 @@ class EditProfile extends React.Component {
 					<input type="url" name="website" value={user.website} maxLength="200" className="urlinput form-control" onChange={this.onChangeHandler} />
 				</div>
 				<div className="edit-profile-form-displayBusinessAddress">
-					<label>Display Address?</label>
+					<label>Display Address? </label>
 					{this.display_address()}
 				</div>
 				<div className="edit-profile-form-businessStreet">
