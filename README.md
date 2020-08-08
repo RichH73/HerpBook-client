@@ -1,7 +1,7 @@
 # HerpBook
 This is the overall readme file for this project.
 
-## `Current Release`
+### `Current Release`
 
 Release 3.0.1 is the current release for this application.
 
