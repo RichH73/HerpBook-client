@@ -6,20 +6,20 @@ This is the front end client for HerpBook.com.
 Release 3.0.1 is the current release for this application.
 
 
-## 'Modules'
+## `Modules`
 
 There are several different modules to this application. The following give a breakdown of each.
 
 
-### 'Users'
+### `Users`
 
 This serves as the overall starting point for the application.
 
 
-### 'Classifieds'
+### `Classifieds`
 
 The driving force behind HerpBook. Set up to allow registered logged in users to list items for sale.
 
-### 'Vendors'
+### `Vendors`
 
 This section is a listing for vendors and/or animal breeders to list their business for all herpbook visitors to see.
