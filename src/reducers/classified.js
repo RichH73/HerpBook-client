@@ -21,6 +21,10 @@ const initialState = {
 	},
 };
 
+const subCategoryListingsInitialState = {
+	listings: []
+}
+
 const classified = (state = initialState, listData) => {
 	switch (listData.type) {
 		case 'CLASSIFIED':
@@ -34,5 +38,17 @@ const classified = (state = initialState, listData) => {
 			return state;
 	}
 };
+
+export const subCategoryListings = (state = subCategoryListingsInitialState, data) => {
+	switch (data.type) {
+		case 'New_Listings':
+			console.log('some data', data)
+			return {
+				listings: data.data
+			}
+		default:
+			return state
+	}
+}
 
 export default classified;

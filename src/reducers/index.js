@@ -15,24 +15,26 @@ import messages from './messages';
 import messageReply from './messageReply';
 import richText from './richText';
 import { spinner } from './tools';
+import { subCategoryListings } from './classified';
 
 const allReducers = combineReducers({
-	states,
-	Vendors,
 	categories,
-	config,
-	pageId,
-	user,
-	imageHandler,
-	user_profile,
-	pictures,
 	classified,
-	user_posts,
+	config,
+	imageHandler,
 	listing,
-	messages,
 	messageReply,
+	messages,
+	pageId,
+	pictures,
 	richText,
 	spinner,
+	states,
+	subCategoryListings,
+	user_posts,
+	user_profile,
+	user,
+	Vendors,
 });
 
 export default allReducers;
