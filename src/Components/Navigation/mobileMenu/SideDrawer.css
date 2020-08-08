@@ -1,0 +1,34 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+.sideDrawer-nav-link {
+  padding-top: 5px;
+}
+
+.sideDrawer-left-main-navigation-outter-panel {
+  border: 1px solid orange;
+  border-radius: 10px;
+  width: 96%;
+  position: relative;
+  margin: 1em auto;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  background-color: #cce2f8;
+}
+
+.sideDrawer-left-main-nav {
+  text-align: left;
+  padding: 1em 0 1em 0.5em;
+}
+
+.sideDrawer-left-navigation-panel-header {
+  background-color: orange;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.sideDrawer-left-navigation-panel-header h3 {
+  margin: 0 auto;
+}
+/*# sourceMappingURL=SideDrawer.css.map */

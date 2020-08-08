@@ -1,0 +1,60 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (max-width: 899px) {
+  .body-main-panel {
+    width: 98%;
+    margin: auto;
+    border-radius: 10px;
+  }
+  .main-body-view {
+    margin: 0 auto 3em;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .body-main-header {
+    background-color: orange;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .main-body-view {
+    width: 1000px;
+    margin: 0 auto 3em;
+    border: 2px solid orange;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .body-left-panel {
+    width: 200px;
+  }
+  .body-main-panel {
+    width: 720px;
+    border: 1px solid orange;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
+  .body-main-header {
+    background-color: orange;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .body-main-header h3 {
+    margin: 0 auto;
+  }
+}
+/*# sourceMappingURL=Body.css.map */

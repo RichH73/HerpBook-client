@@ -1,0 +1,151 @@
+@media screen and (max-width: 899px) {
+  .public-profile-user-pictures {
+    margin-top: 1em;
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+  }
+  .public-profile-user-pictures img {
+    width: 120px;
+  }
+  .public-profile-user-picture-display-gray-back {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 300;
+    width: 100vw;
+    height: 100vh;
+  }
+  .loader {
+    z-index: 200;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+  }
+  .public-profile-album-body {
+    margin: auto;
+  }
+  .public-profile-user-albums {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    text-align: center;
+  }
+  .public-profile-album-link {
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    font-size: 1.4rem;
+  }
+  .public-profile-user-picture-display {
+    z-index: 400;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 10%;
+    left: 1px;
+  }
+  .public-profile-user-picture-display img {
+    width: 100%;
+  }
+  .public-profile-album-link:hover {
+    color: limegreen;
+  }
+  .public-profile-album-description {
+    display: none;
+    font-weight: 500;
+    font-size: 0.8em;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .public-profile-user-pictures {
+    text-align: center;
+    margin-bottom: 1em;
+    max-width: 20px;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+  }
+  .public-profile-user-pictures img {
+    margin-bottom: 1em;
+    max-width: 100px;
+  }
+  .public-profile-user-picture-display {
+    z-index: 400;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 150px;
+    left: 250px;
+  }
+  .public-profile-user-picture-display-gray-back {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 300;
+    width: 100vw;
+    height: 100vh;
+  }
+  .public-profile-user-picture-display img {
+    max-height: 600px;
+    border-radius: 3px;
+  }
+  .loader {
+    z-index: 200;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+  }
+  .public-profile-album-body {
+    margin: auto;
+  }
+  .public-profile-user-albums {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto auto;
+    grid-column-gap: .5em;
+    grid-row-gap: 1em;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    font-weight: bold;
+    margin-bottom: 2em;
+  }
+  .public-profile-album-box {
+    padding: 0.3em;
+    cursor: pointer;
+  }
+  .public-profile-album-link {
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+  }
+  .public-profile-album-link:hover {
+    color: limegreen;
+  }
+  .public-profile-album-description {
+    font-weight: 500;
+    font-size: 0.8em;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+  }
+}
+/*# sourceMappingURL=Images.css.map */

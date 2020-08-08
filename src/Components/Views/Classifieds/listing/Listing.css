@@ -1,0 +1,236 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (min-width: 900px) {
+  .list-box {
+    color: black;
+    margin: 1em auto;
+  }
+  .list-box a {
+    color: black;
+  }
+  .list-box a:hover {
+    color: red;
+    font-weight: bold;
+  }
+  .list-title {
+    font-weight: bold;
+    text-align: center;
+    background-color: orange;
+    color: black;
+    padding: 0.4em 0;
+  }
+  .list-description {
+    margin: 1em auto;
+    padding: 5px;
+  }
+  .list-description-businessFooter {
+    margin: 1em auto 4em;
+    padding: 5px;
+  }
+  .list-images {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+    text-align: center;
+    margin: auto;
+    padding: 0.4em 0;
+  }
+  .list-images a {
+    text-align: center;
+  }
+  .list-images img {
+    width: 150px;
+    text-align: center;
+  }
+  .list-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .list-price-gender {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 80%;
+    margin: 1em auto;
+  }
+  .list-price {
+    text-align: left;
+  }
+  .list-price label {
+    font-weight: bold;
+  }
+  .list-gender {
+    text-align: right;
+  }
+  .list-gender label {
+    font-weight: bold;
+  }
+  .classified-listing-picture-display-gray-back {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 300;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.829);
+  }
+  .classified-listing-picture-display {
+    z-index: 400;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 150px;
+    left: 250px;
+  }
+  .classified-listing-picture-display img {
+    max-height: 600px;
+    border-radius: 3px;
+  }
+  button {
+    border: 1px solid #cce2f8;
+    background-color: orange;
+    width: 300px;
+    height: 30px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .list-box {
+    width: 98%;
+    color: black;
+    border: solid 1px orange;
+    margin: 1em auto;
+  }
+  .list-info {
+    -ms-grid-columns: auto auto auto auto;
+        grid-template-columns: auto auto auto auto;
+    -ms-grid-rows: auto auto auto;
+        grid-template-rows: auto auto auto;
+  }
+  .list-box a {
+    color: black;
+  }
+  .list-box a:hover {
+    color: red;
+    font-weight: bold;
+  }
+  .list-title {
+    font-weight: bold;
+    text-align: center;
+    background-color: orange;
+    color: black;
+    padding: 0.4em 0;
+    grid-column: 1 / -1;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  .list-description {
+    width: 98%;
+    margin: 1em auto;
+    grid-column: 1/-1;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2/3;
+  }
+  .list-description-businessFooter {
+    margin: 1em auto 4em;
+    padding: 5px;
+  }
+  .list-images {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    margin-top: 1em;
+  }
+  .list-images a {
+    text-align: center;
+  }
+  .list-images img {
+    width: 100px;
+    text-align: center;
+  }
+  .list-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .list-price-gender {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    text-align: right;
+    margin: 1em auto;
+    grid-column: 1/-1;
+  }
+  .list-price {
+    text-align: left;
+    margin-left: 1em;
+  }
+  .list-price label {
+    font-weight: bold;
+  }
+  .list-gender {
+    text-align: right;
+    margin-right: 1em;
+  }
+  .list-gender label {
+    font-weight: bold;
+  }
+  .classified-listing-picture-display-gray-back {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 300;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.829);
+  }
+  .classified-listing-picture-display {
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .classified-listing-picture-display img {
+    margin-top: 30%;
+    text-align: center;
+    width: 100%;
+  }
+  button {
+    border: 1px solid #cce2f8;
+    background-color: orange;
+    width: 300px;
+    height: 30px;
+    font-weight: bold;
+  }
+}
+/*# sourceMappingURL=Listing.css.map */

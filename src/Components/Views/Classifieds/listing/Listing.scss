@@ -1,0 +1,279 @@
+@import '../../../../index';
+
+@media screen and ($minWidth) {
+	.list-box {
+		//width: 95%;
+		color: black;
+		//border: solid 1px $borderColor;
+		//background-color: $panelBodyColor;
+		margin: 1em auto;
+		// display: grid;
+		// grid-template-columns: auto auto auto auto;
+		// grid-template-rows: auto auto auto auto;
+	}
+
+	.list-box a {
+		color: black;
+	}
+
+	.list-box a:hover {
+		color: red;
+		font-weight: bold;
+	}
+
+	.list-title {
+		font-weight: bold;
+		text-align: center;
+		background-color: $borderColor;
+		color: black;
+		padding: 0.4em 0;
+		// grid-column: 1 / -1;
+		// grid-row: 1 / 2;
+	}
+	.list-description {
+		//width: 98%;
+		// white-space: pre-line;
+		margin: 1em auto;
+		padding: 5px;
+	}
+
+	.list-description-businessFooter {
+		margin: 1em auto 4em;
+		padding: 5px;
+	}
+
+	.list-images {
+		display: grid;
+		//justify-content: space-evenly;
+		grid-template-columns: auto auto auto;
+		text-align: center;
+		// grid-template-rows: 1fr 1fr;
+		margin: auto;
+		// display: flex;
+		// flex-direction: row;
+		// justify-content: space-evenly;
+		padding: 0.4em 0;
+		// grid-column: 1 / -1;
+		// grid-row: 2 / 3;
+	}
+
+	.list-images a {
+		text-align: center;
+	}
+
+	.list-images img {
+		width: 150px;
+		text-align: center;
+	}
+
+	.list-footer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		// grid-row: 4 / 5;
+	}
+
+	.list-price-gender {
+		display: flex;
+		justify-content: space-between;
+		width: 80%;
+		margin: 1em auto;
+	}
+
+	.list-price {
+		text-align: left;
+	}
+
+	.list-price label {
+		font-weight: bold;
+	}
+
+	.list-gender {
+		// font-weight: bold;
+		text-align: right;
+	}
+
+	.list-gender label {
+		font-weight: bold;
+	}
+
+	.classified-listing-picture-display-gray-back {
+		top: 0;
+		left: 0;
+		position: absolute;
+		z-index: 300;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.829);
+	}
+
+	.classified-listing-picture-display {
+		z-index: 400;
+		width: 100vw;
+		height: 100vh;
+		position: absolute;
+		top: 150px;
+		left: 250px;
+	}
+
+	.classified-listing-picture-display img {
+		max-height: 600px;
+		border-radius: 3px;
+	}
+
+	button {
+		border: 1px solid $panelBodyColor;
+		background-color: $borderColor;
+		width: 300px;
+		height: 30px;
+		font-weight: bold;
+	}
+}
+@media screen and ($maxWidth) {
+	.list-box {
+		width: 98%;
+		color: black;
+		border: solid 1px $borderColor;
+		//background-color: $panelBodyColor;
+		margin: 1em auto;
+		// display: grid;
+		// grid-template-columns: auto auto auto auto;
+		// grid-template-rows: auto auto auto auto;
+	}
+
+	.list-info {
+		//display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-template-rows: auto auto auto;
+	}
+
+	.list-box a {
+		color: black;
+	}
+
+	.list-box a:hover {
+		color: red;
+		font-weight: bold;
+	}
+
+	.list-title {
+		font-weight: bold;
+		text-align: center;
+		background-color: $borderColor;
+		color: black;
+		padding: 0.4em 0;
+		grid-column: 1 / -1;
+		grid-row: 1 / 2;
+	}
+
+	.list-description {
+		width: 98%;
+		margin: 1em auto;
+		grid-column: 1/-1;
+		grid-row: 2/3;
+	}
+
+	.list-description-businessFooter {
+		margin: 1em auto 4em;
+		padding: 5px;
+	}
+
+	// .list-description p {
+	// 	// white-space: pre-line;
+	// 	width: 90%;
+	// 	margin: auto;
+	// 	border: 0.5px solid $borderColor;
+	// }
+
+	.list-images {
+		display: grid;
+		grid-template-columns: auto auto;
+		justify-content: space-evenly;
+		margin-top: 1em;
+		// justify-content: space-evenly;
+		// margin: auto;
+		// padding: .4em 0;
+		// grid-template-columns: auto;
+		// grid-row-gap: 5px;
+		// grid-column: 1 / -1;
+		// grid-row: 2 / 3;
+	}
+
+	.list-images a {
+		text-align: center;
+	}
+
+	.list-images img {
+		width: 100px;
+		text-align: center;
+	}
+
+	.list-footer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		// grid-row: 4 / 5;
+	}
+
+	.list-price-gender {
+		display: flex;
+		justify-content: space-between;
+		// width: 80%;
+		text-align: right;
+		margin: 1em auto;
+		grid-column: 1/-1;
+	}
+
+	.list-price {
+		text-align: left;
+		margin-left: 1em;
+	}
+
+	.list-price label {
+		font-weight: bold;
+	}
+
+	.list-gender {
+		// font-weight: bold;
+		text-align: right;
+		margin-right: 1em;
+	}
+
+	.list-gender label {
+		font-weight: bold;
+	}
+
+	.classified-listing-picture-display-gray-back {
+		top: 0;
+		left: 0;
+		position: absolute;
+		z-index: 300;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.829);
+	}
+
+	.classified-listing-picture-display {
+		z-index: 400;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		//top: 150px;
+		//left: 250px;
+	}
+
+	.classified-listing-picture-display img {
+		margin-top: 30%;
+		text-align: center;
+		width: 100%;
+		// border-radius: 3px;
+	}
+
+	button {
+		border: 1px solid $panelBodyColor;
+		background-color: $borderColor;
+		width: 300px;
+		height: 30px;
+		font-weight: bold;
+	}
+}

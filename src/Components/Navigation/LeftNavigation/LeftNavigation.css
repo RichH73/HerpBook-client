@@ -1,0 +1,41 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+a {
+  color: #0d82f7;
+}
+
+h3 {
+  text-align: center;
+}
+
+@media screen and (max-width: 899px) {
+  .left-main-navigation-outter-panel {
+    display: none;
+  }
+}
+
+.left-main-navigation-outter-panel {
+  border: 1px solid orange;
+  border-radius: 10px;
+  width: 200px;
+  margin: 20px 0;
+  background-color: #cce2f8;
+}
+
+.left-main-nav {
+  text-align: left;
+  width: 190px;
+  padding: 1em 0 1em 0.5em;
+}
+
+.left-navigation-panel-header {
+  background-color: orange;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.left-navigation-panel-header h3 {
+  margin: 0 auto;
+}
+/*# sourceMappingURL=LeftNavigation.css.map */

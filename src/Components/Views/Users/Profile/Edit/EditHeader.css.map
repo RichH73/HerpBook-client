@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACZ,KAAK,EAAE,IAAI;CACX;;AAED,AAAA,SAAS,CAAC;EACT,gBAAgB,EAAE,KAAK;EACvB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;EAC7B,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,GAAG;CACf;;AAED,AAAA,kBAAkB,CAAC;EAClB,MAAM,EAAE,OAAO;CACf;;AAED,AAAA,kBAAkB,AAAA,MAAM,CAAC;EACxB,gBAAgB,EAAE,SAAS;CAC3B",
+    "sources": [
+        "EditHeader.scss"
+    ],
+    "names": [],
+    "file": "EditHeader.css"
+}

@@ -1,0 +1,63 @@
+/*
+  Grid Templates
+        // display: grid;
+        // grid-template-columns: .1fr 1fr .1fr;
+        // grid-template-rows: 1fr 0.11fr 4fr 0.25fr;
+        // grid-template-areas:
+        // "head head head"
+        // "toolbar toolbar toolbar"
+        // "body body body"
+        // "footer footer footer";
+        // grid-area: public-profile-navbar;
+*/
+
+@media screen and ($maxWidth) {
+	.public-profile-body {
+		padding-top: 0.75em;
+		width: 100%;
+	}
+
+	.public-profile-header img {
+		border-radius: 50%;
+		width: 150px;
+	}
+
+	.public-profile-navbar {
+		margin-top: 1.5em;
+		display: flex;
+		background-color: green;
+		color: white;
+		justify-content: space-evenly;
+	}
+
+	.public-profile-link {
+		cursor: pointer;
+	}
+}
+@media screen and ($minWidth) {
+	.public-profile-body {
+		padding-top: 0.75em;
+		width: 100%;
+	}
+
+	.public-profile-header img {
+		border-radius: 50%;
+		width: 150px;
+	}
+
+	.public-profile-navbar {
+		margin-top: 1.5em;
+		display: flex;
+		background-color: green;
+		color: white;
+		justify-content: space-evenly;
+	}
+
+	.public-profile-link {
+		cursor: pointer;
+	}
+
+	.public-profile-link:hover {
+		background-color: limegreen;
+	}
+}

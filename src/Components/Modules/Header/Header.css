@@ -1,0 +1,20 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (max-width: 899px) {
+  .main-navigation-header {
+    display: none;
+  }
+}
+
+.main-navigation-header {
+  width: 1000px;
+  margin: 100px auto 50px;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+
+.main-navigation-header h2 {
+  text-align: center;
+}
+/*# sourceMappingURL=Header.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACf,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,MAAM;CAGlB",
+    "sources": [
+        "MyCollections.scss"
+    ],
+    "names": [],
+    "file": "MyCollections.css"
+}

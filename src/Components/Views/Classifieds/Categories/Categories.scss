@@ -1,0 +1,99 @@
+@import '../../../../index';
+
+@media screen and ($minWidth) {
+	.categories {
+		font-size: 18px;
+	}
+	.categories p {
+		margin: 2px;
+		margin-left: 10%;
+	}
+	.categories a {
+		color: $categoryLinkColor;
+	}
+	.categories a:visited {
+		color: $categoryLinkColor-visited;
+	}
+	.categories a:hover {
+		color: $categoryLinkColor-hover;
+	}
+	.category-container {
+		max-width: 100%;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-column-gap: 10px;
+	}
+
+	.thecats {
+		display: grid;
+		grid-template-columns: auto;
+	}
+
+	.category-header {
+		background-color: $headerPanelColor;
+		color: black;
+		text-align: center;
+		//border-bottom: 1px solid lightgreen;
+	}
+	.list-containers {
+		margin: 10px 10px;
+		max-width: 100%;
+		border: 1px solid $borderColor;
+		background-color: $categoryPanelBackgroundColor;
+	}
+
+	.list-sub-categories {
+		padding: 5px;
+		//font-size: .8em;
+	}
+}
+
+@media screen and ($maxWidth) {
+	.categories {
+		font-size: 18px;
+	}
+	.categories p {
+		margin: 2px;
+		margin-left: 10%;
+	}
+	.categories a {
+		color: $categoryLinkColor;
+	}
+	.categories a:visited {
+		color: $categoryLinkColor-visited;
+	}
+	.categories a:hover {
+		color: $categoryLinkColor-hover;
+	}
+	.category-container {
+		max-width: 98%;
+	}
+
+	.thecats {
+		display: grid;
+		grid-template-columns: auto;
+	}
+
+	.category-header {
+		background-color: $headerPanelColor;
+		color: black;
+		text-align: center;
+		//border-bottom: 1px solid lightgreen;
+	}
+	.list-containers {
+		margin: 10px 10px;
+		max-width: 100%;
+		border: 1px solid $borderColor;
+		background-color: $categoryPanelBackgroundColor;
+	}
+
+	.list-sub-categories {
+		padding: 5px;
+		//font-size: .8em;
+	}
+
+	.list-sub-category-link {
+		margin: 10px auto;
+		//font-size: .8em;
+	}
+}

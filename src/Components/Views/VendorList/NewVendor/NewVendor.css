@@ -1,0 +1,23 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+.new-vendor-add-form {
+  width: 100%;
+}
+
+.new-vendor-add-form button {
+  width: 70px;
+}
+
+.new-vendor-add-form select {
+  width: 140px;
+}
+
+.new-vendor-specialties-paragraph {
+  border: 1px solid orange;
+}
+
+.new-vendor-recaptcha {
+  margin-top: 5em;
+}
+/*# sourceMappingURL=NewVendor.css.map */

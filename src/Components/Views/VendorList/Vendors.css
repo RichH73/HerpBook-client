@@ -1,0 +1,38 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (max-width: 899px) {
+  #about {
+    width: 98%;
+  }
+}
+
+.breeder {
+  background-color: #cce2f8;
+  margin: 1em 0;
+  padding: 0.5em;
+}
+
+.breeder a {
+  color: #0d82f7;
+}
+
+.breeders-list h5 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.breeders-list a {
+  color: #0d82f7;
+}
+
+.breeders-list {
+  padding: 0.5em;
+}
+
+#about p {
+  white-space: pre-line;
+  padding-left: 0.5em;
+  width: 660px;
+}
+/*# sourceMappingURL=Vendors.css.map */

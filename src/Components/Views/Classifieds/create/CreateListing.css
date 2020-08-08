@@ -1,0 +1,105 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+#image-preview {
+  padding: 1em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#image-preview img {
+  width: 100px;
+}
+
+.img-preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.posting-form {
+  width: 98%;
+  margin: 0 auto 1em;
+  text-align: center;
+}
+
+.posting-title {
+  background-color: green;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.create-classified-dropbox {
+  width: 60%;
+  padding: 3px;
+  border-radius: 10px;
+  border: 2px solid orange;
+  background-color: #cce2f8;
+  margin: auto;
+}
+
+.create-listing-title {
+  margin: 2em auto 0.5em;
+}
+
+.image-drop {
+  width: 100%;
+}
+
+.posting-form h3 {
+  text-align: center;
+  margin: 1em auto 1em auto;
+}
+
+.posting-form h5 {
+  text-align: center;
+  margin: 1em auto 1em auto;
+}
+
+.posting-form p {
+  margin: 1em auto 0.5em auto;
+}
+
+.posting-form select {
+  width: 160px;
+  margin-left: 2em;
+}
+
+.posting-form button {
+  width: 6em;
+  text-align: center;
+  margin: 1em auto 1em auto;
+}
+
+#button {
+  width: 6em;
+  margin: auto;
+}
+
+.create-classified-listing-modal {
+  background-color: rgba(255, 255, 255, 0.918);
+  border: 0.3em double red;
+  height: 150px;
+  border-radius: 25px;
+  z-index: 300;
+  width: 600px;
+  position: absolute;
+  top: 15%;
+  left: 17%;
+  padding: 1em 0.5em;
+}
+
+.create-classified-listing-modal-button {
+  width: 50px;
+  margin: auto;
+  margin-top: 0.8em;
+  text-align: center;
+}
+/*# sourceMappingURL=CreateListing.css.map */

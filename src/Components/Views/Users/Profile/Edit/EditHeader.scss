@@ -1,0 +1,19 @@
+.edit-header {
+	width: 100%;
+}
+
+.edit-nav {
+	background-color: green;
+	display: flex;
+	justify-content: space-evenly;
+	color: white;
+	margin-top: 1em;
+}
+
+.edit-profile-link {
+	cursor: pointer;
+}
+
+.edit-profile-link:hover {
+	background-color: limegreen;
+}

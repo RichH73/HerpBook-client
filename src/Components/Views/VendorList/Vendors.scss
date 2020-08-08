@@ -1,0 +1,49 @@
+@import '../../../index';
+
+@media screen and ($maxWidth) {
+	#about {
+		width: 98%;
+	}
+}
+.breeder {
+	background-color: $panelBodyColor;
+	//margin-top: 2em;
+	margin: 1em 0;
+	//border: .5px solid rgb(242, 242, 245);
+	padding: 0.5em;
+	// box-shadow: 5px 6px 10px -1px rgba(139,245,155,1);
+}
+.breeder a {
+	color: $linkColor;
+}
+
+.breeders-list h5 {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.breeders-list a {
+	color: $linkColor;
+}
+
+.breeders-list {
+	// border: $borders;
+	//margin: .5em;
+	// border-top-right-radius: 15px;
+	// border-bottom-right-radius: 15px;
+	padding: 0.5em;
+}
+
+// #about {
+//     //margin-top: .8em;
+//     white-space: pre-line;
+//     padding-left: .5em;
+//     width: 660px;
+// }
+
+#about p {
+	//margin-top: .8em;
+	white-space: pre-line;
+	padding-left: 0.5em;
+	width: 660px;
+}

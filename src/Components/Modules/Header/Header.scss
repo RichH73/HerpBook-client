@@ -1,0 +1,18 @@
+@import '../../../index';
+
+@media screen and ($maxWidth) {
+	.main-navigation-header {
+		display: none;
+	}
+}
+.main-navigation-header {
+	width: 1000px;
+	margin: 100px auto 50px;
+	border: 2px solid $headerBorderColor;
+	border-radius: 10px;
+	//padding: 1em;
+}
+
+.main-navigation-header h2 {
+	text-align: center;
+}

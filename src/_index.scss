@@ -1,0 +1,43 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+
+$orange: orange;
+$mediumBlue: #0d82f7;
+$lightBlue: #cce2f8;
+$colorLightBlue: #cce2f8;
+$colorBlue: #0d82f7;
+
+$minWidth: 'min-width: 900px';
+$maxWidth: 'max-width: 899px';
+
+$minMaxWidth: 'min-width: 1300px';
+$maxMinWidth: 'max-width: 1350px';
+
+$buttonColor: $orange;
+//Category
+$categoryLinkColor: black;
+$categoryLinkColor-hover: black;
+$categoryLinkColor-visited: black;
+$categoryPanelBackgroundColor: rgb(236, 236, 236); //$lightBlue;
+
+$borders: 1px solid $orange;
+$borderColor: orange;
+
+$headerBorderColor: $orange;
+$navigationBorderColor: $orange;
+$navigationHeaderColor: $orange;
+
+$headerPanelColor: orange;
+$bodyPanelColor: $lightBlue;
+$bodyPanelHeaderColor: $orange; //Colors the head inside of body.
+$bodyBorderColor: $orange; //Colors the main border surrounding body.
+$navigationPanelColor: $lightBlue;
+$linkColor: $mediumBlue;
+$linkVisitedColor: $mediumBlue;
+$linkActiveColor: $mediumBlue;
+$linkHoverColor: $mediumBlue;
+$baseFontSize: 1em;
+$linkFont: '';
+
+$panelBodyColor: $colorLightBlue;

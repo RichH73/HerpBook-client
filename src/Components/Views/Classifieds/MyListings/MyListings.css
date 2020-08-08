@@ -1,0 +1,218 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (max-width: 899px) {
+  a,
+  a :visited,
+  :active,
+  :hover {
+    color: black;
+  }
+  .my-listings-body {
+    width: 98%;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+  }
+  .my-listings-box {
+    background-color: #cce2f8;
+    border: 1px solid orange;
+    margin: 0.5em auto;
+    width: 100%;
+    padding: 3px;
+    color: black;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    -ms-grid-rows: 1fr 0.2fr 0.3fr 0.2fr;
+        grid-template-rows: 1fr 0.2fr 0.3fr 0.2fr;
+  }
+  .my-listings-title {
+    font-weight: bold;
+    padding: 0.5em 0 0.5em 0;
+    text-align: center;
+    font-size: 1em;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / 3;
+  }
+  .my-listings-gender {
+    padding: 0.5em 0 0.5em 0;
+    margin-right: 2px;
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: right;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / 3;
+  }
+  .my-listings-price {
+    padding: 0.5em 0 0.5em 0;
+    font-weight: bold;
+    margin-left: 2px;
+    font-size: 0.7em;
+    text-align: left;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+  }
+  .my-listings-img {
+    width: 100px;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+    text-align: center;
+  }
+  .my-listings-description {
+    padding: 0.5em 0 0.5em 0;
+    font-size: 0.8em;
+    text-align: center;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  .my-listings-img img {
+    max-width: 90%;
+  }
+  .my-listings-info {
+    width: 75%;
+    height: 100px;
+    position: absolute;
+    text-align: center;
+  }
+  .my-listings-date {
+    text-align: center;
+    font-size: 0.5em;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+  }
+  .my-listings-delete {
+    background-color: red;
+    text-align: center;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+    cursor: pointer;
+  }
+  .gird-item {
+    background-color: #cce2f8;
+    border: 1px lightgreen solid;
+    margin: 5px;
+    width: 275px;
+    padding: 3px;
+    height: 412px;
+    color: black;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    /* Firefox */
+  }
+  .my-listings-box-grid {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  a,
+  a :visited,
+  :active,
+  :hover {
+    color: black;
+  }
+  .my-listings-box {
+    border: 1px solid orange;
+    margin: 5px auto;
+    width: 95%;
+    color: black;
+  }
+  .my-listings-title {
+    font-weight: bold;
+    text-align: left;
+    font-size: 1em;
+  }
+  .my-listings-gender {
+    font-weight: bold;
+    font-size: 0.7em;
+  }
+  .my-listings-price {
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: left;
+  }
+  .my-listings-img {
+    width: 100%;
+  }
+  .my-listings-description {
+    padding: 0.5em 0 0.5em 0;
+    font-size: 0.8em;
+    text-align: center;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+  }
+  .my-listings-img img {
+    max-width: 75px;
+  }
+  .my-listings-info {
+    width: 75%;
+    height: 100px;
+    position: absolute;
+    text-align: center;
+  }
+  .my-listings-date {
+    text-align: center;
+    font-size: 0.5em;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+  }
+  .my-listings-delete {
+    background-color: red;
+    text-align: center;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+    cursor: pointer;
+  }
+  .gird-item {
+    background-color: #cce2f8;
+    border: 1px lightgreen solid;
+    margin: 5px;
+    width: 275px;
+    padding: 3px;
+    height: 412px;
+    color: black;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    /* Firefox */
+  }
+  .my-listings-box-grid {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+/*# sourceMappingURL=MyListings.css.map */

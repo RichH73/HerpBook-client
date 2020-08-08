@@ -1,0 +1,102 @@
+const initialState = {
+	categories: [
+		{ _id: '5dcb64e488547d8cf129dd39', id: 2, name: 'Boas' },
+		{ _id: '5dcb64e488547d8cf129dd3f', id: 8, name: 'Chameleons' },
+		{ _id: '5dcb64e488547d8cf129dd3a', id: 3, name: 'Colubrids' },
+		{ _id: '5dcb64e488547d8cf129dd3c', id: 5, name: 'Feeders' },
+		{ _id: '5dcb64e488547d8cf129dd40', id: 9, name: 'Frogs' },
+		{ _id: '5dcb64e488547d8cf129dd3b', id: 4, name: 'Geckos' },
+		{ _id: '5dcb64e488547d8cf129dd41', id: 10, name: 'Invertebrates' },
+		{ _id: '5dcb64e488547d8cf129dd3d', id: 6, name: 'Lizards / Skinks' },
+		{ _id: '5dcb64e488547d8cf129dd3e', id: 7, name: 'Monitors' },
+		{ _id: '5e5a8d6db91d9e3de8602be4', id: 14, name: 'Poison Arrow Frogs' },
+		{ _id: '5dcb64e488547d8cf129dd38', id: 1, name: 'Pythons' },
+		{ _id: '5dcb64e488547d8cf129dd42', id: 11, name: 'Supplies' },
+		{ _id: '5dcb64e488547d8cf129dd44', id: 13, name: 'Tortoise' },
+		{ _id: '5dcb64e488547d8cf129dd43', id: 12, name: 'Turtles' },
+	],
+	subCategories: [
+		{ _id: '5dcb73a1abc03e4a0960f2bf', id: 28, name: 'African Fat Tailed Gecko', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2c0', id: 29, name: 'Argus Monitor', category_id: 7 },
+		{ _id: '5dcb73a1abc03e4a0960f2a4', id: 1, name: 'Ball Python', category_id: 1 },
+		{ _id: '5dcb73a1abc03e4a0960f2c5', id: 34, name: 'Bamboo Rat Snake', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2af', id: 12, name: 'Bearded Dragons', category_id: 6 },
+		{ _id: '5dcb73a1abc03e4a0960f2a5', id: 2, name: 'Blood Pythons', category_id: 1 },
+		{ _id: '5e5a8dabb91d9e3de8602be5', id: 65, name: 'Blue Azureus', category_id: 14 },
+		{ _id: '5dcb73a1abc03e4a0960f2b3', id: 16, name: 'Blue Tongue Skinks', category_id: 6 },
+		{ _id: '5dcb73a1abc03e4a0960f2c6', id: 35, name: 'Bullsnake', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2c7', id: 36, name: 'Burmese Python', category_id: 1 },
+		{ _id: '5dcb73a1abc03e4a0960f2bb', id: 24, name: 'Cages', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2cd', id: 43, name: 'California Kingsnake', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2b0', id: 13, name: 'Carpet Pythons', category_id: 1 },
+		{ _id: '5dcb73a1abc03e4a0960f2c1', id: 30, name: 'Collared Lizard', category_id: 6 },
+		{ _id: '5dcb73a1abc03e4a0960f2a8', id: 5, name: 'Corn Snakes', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2ae', id: 11, name: 'Crested Geckos', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2c9', id: 39, name: 'Crickets', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2d5', id: 52, name: 'Day Geckos', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2bc', id: 25, name: 'Decor', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2d4', id: 51, name: 'Emerald Tree Boa', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2cc', id: 42, name: 'Florida Kingsnake', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2c2', id: 31, name: 'Frilled Lizard', category_id: 6 },
+		{ _id: '5dcb73a1abc03e4a0960f2b1', id: 14, name: 'Gargoyle Geckos', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2c3', id: 32, name: 'Gold Tegu', category_id: 7 },
+		{ _id: '5dcb73a1abc03e4a0960f2d9', id: 56, name: 'Gopher Snakes', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2ce', id: 44, name: 'Green Anaconda', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2d7', id: 54, name: 'Grey Banded Kingsnakes', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2dc', id: 59, name: 'Heating', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2ab', id: 8, name: 'Hog Island', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2ac', id: 9, name: 'Hognose', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2d2', id: 49, name: 'Hornworms', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2cb', id: 41, name: 'Husbandry', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2df', id: 62, name: 'Incubation', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2b6', id: 19, name: 'Jacksons', category_id: 8 },
+		{ _id: '5dcb73a1abc03e4a0960f2a9', id: 6, name: 'Leopard Geckos', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2dd', id: 60, name: 'Lighting', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2c8', id: 38, name: 'Mealworms', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2ad', id: 10, name: 'Mice', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2d1', id: 48, name: "Nelson's Milk Snake", category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2b7', id: 20, name: 'Pacman Frogs', category_id: 9 },
+		{ _id: '5dcb73a1abc03e4a0960f2db', id: 58, name: 'Panther', category_id: 8 },
+		{ _id: '5dcb73a1abc03e4a0960f2d8', id: 55, name: 'Pine Snakes', category_id: 3 },
+		{ _id: '5dcb73a1abc03e4a0960f2b8', id: 21, name: 'Poison Arrow Frogs', category_id: 9 },
+		{ _id: '5dcb73a1abc03e4a0960f2de', id: 61, name: 'Racks', category_id: 11 },
+		{ _id: '5dcb73a1abc03e4a0960f2aa', id: 7, name: 'Rainbow Boa', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2bd', id: 26, name: 'Rats', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2e1', id: 64, name: 'Redear Slider', category_id: 12 },
+		{ _id: '5dcb73a1abc03e4a0960f2a6', id: 3, name: 'Redtail', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2d0', id: 47, name: 'Reticulated Python', category_id: 1 },
+		{ _id: '5dcb73a1abc03e4a0960f2be', id: 27, name: 'Roaches', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2c4', id: 33, name: 'Rock Python', category_id: 1 },
+		{ _id: '5dcb73a1abc03e4a0960f2a7', id: 4, name: 'Rosy', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2d6', id: 53, name: 'Sand Boa', category_id: 2 },
+		{ _id: '5dcb73a1abc03e4a0960f2b9', id: 22, name: 'Scorpions', category_id: 10 },
+		{ _id: '5dcb73a1abc03e4a0960f2da', id: 57, name: 'Softshell turtles', category_id: 12 },
+		{ _id: '5dcb73a1abc03e4a0960f2d3', id: 50, name: 'Sulcata', category_id: 13 },
+		{ _id: '5dcb73a1abc03e4a0960f2ca', id: 40, name: 'Super Worms', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2ba', id: 23, name: 'Tarantulas', category_id: 10 },
+		{ _id: '5dcb73a1abc03e4a0960f2b4', id: 17, name: 'Tegus', category_id: 7 },
+		{ _id: '5dcb73a1abc03e4a0960f2b2', id: 15, name: 'Tokay Geckos', category_id: 4 },
+		{ _id: '5dcb73a1abc03e4a0960f2b5', id: 18, name: 'Water Monitors', category_id: 7 },
+		{ _id: '5dcb73a1abc03e4a0960f2e0', id: 63, name: 'Wax worms', category_id: 5 },
+		{ _id: '5dcb73a1abc03e4a0960f2cf', id: 46, name: 'Yellow Anaconda', category_id: 2 },
+	],
+};
+
+const categories = (state = initialState, data) => {
+	switch (data.type) {
+		case 'categories':
+			return {
+				...state,
+				...data.categories,
+			};
+		case 'sub_categories':
+			return {
+				...state,
+				...data.sub_categories,
+			};
+		default:
+			return state;
+	}
+};
+
+export default categories;

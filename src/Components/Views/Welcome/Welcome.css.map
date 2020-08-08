@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA;;EAEE;ADAF,AAAA,kBAAkB,CAAC;EAClB,OAAO,EAAE,GAAG;CACZ",
+    "sources": [
+        "Welcome.scss",
+        "../../../_index.scss"
+    ],
+    "names": [],
+    "file": "Welcome.css"
+}

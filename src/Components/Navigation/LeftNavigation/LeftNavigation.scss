@@ -1,0 +1,51 @@
+@import '../../../index';
+
+a {
+	color: $linkColor;
+}
+
+h3 {
+	text-align: center;
+}
+
+@media screen and ($maxWidth) {
+	.left-main-navigation-outter-panel {
+		display: none;
+	}
+}
+
+.left-main-navigation-outter-panel {
+	border: 1px solid $navigationBorderColor;
+	border-radius: 10px;
+	width: 200px;
+	margin: 20px 0;
+	background-color: $navigationPanelColor;
+	//margin: .5em;
+}
+
+.left-main-nav {
+	//font-size: .8em;
+	// border: 1px solid lightgray;
+	text-align: left;
+	width: 190px;
+	padding: 1em 0 1em 0.5em;
+}
+
+.left-navigation-panel-header {
+	background-color: $navigationHeaderColor;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.left-navigation-panel-header h3 {
+	margin: 0 auto;
+}
+
+// .left-secondary-nav {
+//     border-radius: 10px;
+//     font-size: .8em;
+//     // border: 1px solid lightgray;
+//     text-align: left;
+//     width: 190px;
+//     padding: 1em 0 1em .5em;
+// }

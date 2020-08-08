@@ -1,0 +1,95 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (min-width: 900px) {
+  .categories {
+    font-size: 18px;
+  }
+  .categories p {
+    margin: 2px;
+    margin-left: 10%;
+  }
+  .categories a {
+    color: black;
+  }
+  .categories a:visited {
+    color: black;
+  }
+  .categories a:hover {
+    color: black;
+  }
+  .category-container {
+    max-width: 100%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+  }
+  .thecats {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+  }
+  .category-header {
+    background-color: orange;
+    color: black;
+    text-align: center;
+  }
+  .list-containers {
+    margin: 10px 10px;
+    max-width: 100%;
+    border: 1px solid orange;
+    background-color: #ececec;
+  }
+  .list-sub-categories {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .categories {
+    font-size: 18px;
+  }
+  .categories p {
+    margin: 2px;
+    margin-left: 10%;
+  }
+  .categories a {
+    color: black;
+  }
+  .categories a:visited {
+    color: black;
+  }
+  .categories a:hover {
+    color: black;
+  }
+  .category-container {
+    max-width: 98%;
+  }
+  .thecats {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+  }
+  .category-header {
+    background-color: orange;
+    color: black;
+    text-align: center;
+  }
+  .list-containers {
+    margin: 10px 10px;
+    max-width: 100%;
+    border: 1px solid orange;
+    background-color: #ececec;
+  }
+  .list-sub-categories {
+    padding: 5px;
+  }
+  .list-sub-category-link {
+    margin: 10px auto;
+  }
+}
+/*# sourceMappingURL=Categories.css.map */
