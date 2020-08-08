@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import './EditProfile.css';
 import 'react-quill/dist/quill.snow.css';
-import Dropzone from 'react-dropzone';
-import { get, forEach, first, flatten, cloneDeep } from 'lodash';
+//import Dropzone from 'react-dropzone';
+import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
 
 class EditProfile extends React.Component {
@@ -27,8 +27,6 @@ class EditProfile extends React.Component {
 		}
 	};
 
-	checkBox = (check) => {};
-
 	onChangeHandler = (event) => {
 		this.props.userInfoUpdate(event.target.name, event.target.value);
 	};
@@ -45,31 +43,9 @@ class EditProfile extends React.Component {
 	};
 
 	submitHandler = (event) => {
-		//const { uid, firstName, lastName, username, email, displayPhoneNumber, is_this_a_business, display_address, phoneNumber, phoneType } = this.props;
-
 		event.preventDefault();
 		let fileData = new FormData();
 		const newUser = this.props.userObject;
-		// const user = {
-		// 	uid: uid,
-		// 	firstName: firstName,
-		// 	lastName: lastName,
-		// 	username: username,
-		// 	email: email,
-		// 	phoneNumber: phoneNumber,
-		// 	displayPhoneNumber: displayPhoneNumber,
-		// 	phoneType: phoneType,
-		// 	business_name: this.props.business_name,
-		// 	website: this.props.website,
-		// 	is_this_a_business: is_this_a_business,
-		// 	display_address: display_address,
-		// 	street: this.props.street,
-		// 	profile_pic: this.props.profile_pic,
-		// 	city: this.props.city,
-		// 	state: this.props.state,
-		// 	zip_code: this.props.zip_code,
-		// 	userObject: newUser
-		// };
 		fileData.append('user', JSON.stringify(this.props.userObject));
 
 		let imgFiles = this.props.sendFiles;
@@ -160,6 +136,112 @@ class EditProfile extends React.Component {
 		);
 	};
 
+	display_address = () => {
+		const display_address_true = (
+			<select name="display_address" onChange={this.onChangeHandler}>
+				<option value={true}>Yes</option>
+				<option value={false}>No</option>
+			</select>
+		);
+
+		const display_address_false = (
+			<select name="display_address" onChange={this.onChangeHandler}>
+				<option value={false}>No</option>
+				<option value={true}>Yes</option>
+			</select>
+		);
+
+		return this.props.display_address === true ? display_address_true : display_address_false;
+	};
+
+	businessProfile = (user) => {
+		return (
+			<div className="edit-profile-form-business-info">
+				<div className="edit-profile-form-businessName">
+					<label>Business Name</label>
+					<input
+						type="text"
+						name="businessName"
+						value={user.businessName}
+						maxLength="60"
+						className="textinput textInput form-control"
+						id="id_business_name"
+						onChange={this.onChangeHandler}
+					/>
+				</div>
+				<div className="edit-profile-form-businessPhone">
+					<label>Business Phone: </label>
+					<input
+						type="text"
+						name="businessPhone"
+						value={user.businessPhone}
+						maxLength="60"
+						className="textinput textInput form-control"
+						onChange={this.onChangeHandler}
+					/>
+				</div>
+				<div className="edit-profile-form-businessWebsite">
+					<label>Website: </label>
+					<input type="url" name="website" value={user.website} maxLength="200" className="urlinput form-control" onChange={this.onChangeHandler} />
+				</div>
+				<div className="edit-profile-form-displayBusinessAddress">
+					<label>Display Address?</label>
+					{this.display_address()}
+				</div>
+				<div className="edit-profile-form-businessStreet">
+					<label>Street</label>
+					<input
+						type="text"
+						name="businessStreet"
+						value={user.businessStreet}
+						maxLength="60"
+						className="textinput textInput form-control"
+						onChange={this.onChangeHandler}
+					/>
+				</div>
+				<div className="edit-profile-form-businessCity">
+					<label>City</label>
+					<input
+						type="text"
+						name="businessCity"
+						value={user.businessCity}
+						maxLength="20"
+						className="textinput textInput form-control"
+						onChange={this.onChangeHandler}
+					/>
+				</div>
+				<div className="edit-profile-form-businessState">
+					<label>State: </label>
+					{this.state_selector()}
+				</div>
+				<div className="edit-profile-form-businessZip">
+					<label>Zip Code: </label>
+					<input
+						type="text"
+						name="businessZip"
+						value={user.businessZip}
+						maxLength="10"
+						className="textinput textInput form-control"
+						onChange={this.onChangeHandler}
+					/>
+				</div>
+				<div className="edit-profile-form-businessFooter">
+					<label>Add a footer to your classified ads.</label>
+					<ReactQuill
+						style={{ backgroundColor: 'white', color: 'black' }}
+						name="businessFooter"
+						value={user.businessFooter}
+						onChange={this.footerChangeHandler}
+						modules={this.props.mods.modules}
+						formats={this.props.mods.formats}
+						readOnly={false}
+						theme="snow"
+					/>
+				</div>
+			</div>
+		);
+	};
+
 	render() {
 		const { user } = this.props;
 
@@ -211,25 +293,8 @@ class EditProfile extends React.Component {
 			return entityEmailHome; //user.entityEmailType === 'HOME' ? entityEmailHome : entityEmailWork;
 		};
 
-		const display_address = () => {
-			const display_address_true = (
-				<select name="display_address" onChange={this.onChangeHandler}>
-					<option value={true}>Yes</option>
-					<option value={false}>No</option>
-				</select>
-			);
-
-			const display_address_false = (
-				<select name="display_address" onChange={this.onChangeHandler}>
-					<option value={false}>No</option>
-					<option value={true}>Yes</option>
-				</select>
-			);
-
-			return this.props.display_address === true ? display_address_true : display_address_false;
-		};
 		return (
-			<div className="profile-form">
+			<div className="edit-profile-form">
 				{/* <img src={`${this.props.USERSURL}/${user.username}/profile/${user.profile_pic}`} alt={this.props.profile_pic} /> */}
 				{/* <Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={1242880}>
 					{({ getRootProps, getInputProps }) => (
@@ -368,105 +433,10 @@ class EditProfile extends React.Component {
 							/>
 						</div>
 					</div>
-
-					{/* <div className="edit-profile-form-is-business">
-						<label>Is this a business?</label>
-						{isBusiness()}
-						</div> */}
-					<div className="edit-profile-form-business-info">
-						<div className="edit-profile-form-businessName">
-							<label>Business Name</label>
-							<input
-								type="text"
-								name="businessName"
-								value={user.businessName}
-								maxLength="60"
-								className="textinput textInput form-control"
-								id="id_business_name"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-businessPhone">
-							<label>Business Phone: </label>
-							<input
-								type="text"
-								name="businessPhone"
-								value={user.businessPhone}
-								maxLength="60"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-businessWebsite">
-							<label>Website: </label>
-							<input
-								type="url"
-								name="website"
-								value={user.website}
-								maxLength="200"
-								className="urlinput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-displayBusinessAddress">
-							<label>Display Address?</label>
-							{display_address()}
-						</div>
-						<div className="edit-profile-form-businessStreet">
-							<label>Street</label>
-							<input
-								type="text"
-								name="businessStreet"
-								value={user.businessStreet}
-								maxLength="60"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-businessCity">
-							<label>City</label>
-							<input
-								type="text"
-								name="businessCity"
-								value={user.businessCity}
-								maxLength="20"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-businessState">
-							<label>State: </label>
-							{this.state_selector()}
-						</div>
-						<div className="edit-profile-form-businessZip">
-							<label>Zip Code: </label>
-							<input
-								type="text"
-								name="businessZip"
-								value={user.businessZip}
-								maxLength="10"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-						<div className="edit-profile-form-businessFooter">
-							<label>Add a footer to your classified ads.</label>
-							<ReactQuill
-								style={{ backgroundColor: 'white', color: 'black' }}
-								name="businessFooter"
-								value={user.businessFooter}
-								onChange={this.footerChangeHandler}
-								modules={this.props.mods.modules}
-								formats={this.props.mods.formats}
-								readOnly={false}
-								theme="snow"
-							/>
-						</div>
-					</div>
-
-					<div id="button">
+					{!!user.is_this_a_business ? this.businessProfile(user) : ''}
+					<div className="edit-profile-form-button">
 						<button type="submit" className="btn btn-success">
-							Save
+							Save Profile
 						</button>
 					</div>
 				</form>
