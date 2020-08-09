@@ -169,6 +169,20 @@ export const editText = (data) => {
 	};
 };
 
+export const shameText = (data) => {
+	return {
+		type: 'INCIDENT_DESCRIPTION',
+		data,
+	};
+};
+
+export const newShames = (data) => {
+	return {
+	  type: 'SHAMES',
+	  shames: data
+	}
+  }
+
 export const clearClassifiedData = () => {
 	return {
 		type: 'CLEAR_CLASSIFIED',
@@ -270,3 +284,11 @@ export const newProfilePic = (imageName) => {
 		imageName,
 	};
 };
+
+export const fileNewReport = (key, value) => {
+	return {
+	  type: "FILE_REPORT",
+	  key,
+	  value
+	};
+  };
