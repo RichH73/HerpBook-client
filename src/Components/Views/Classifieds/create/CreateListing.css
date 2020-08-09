@@ -161,10 +161,9 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'weight . listId' 'price . .' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
-    text-align: center;
     margin: 1em auto;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -173,12 +172,14 @@
   }
   .create-classified-weight {
     margin: 1em auto;
-    -ms-grid-row: 2;
+    -ms-grid-row: 3;
     -ms-grid-column: 1;
     grid-area: weight;
   }
   .create-classified-gender {
     margin: 1em auto;
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
     grid-area: gender;
   }
   .create-classified-list-id {
@@ -189,7 +190,7 @@
   }
   .create-classified-price {
     margin: 1em auto;
-    -ms-grid-row: 3;
+    -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: price;
   }
@@ -280,10 +281,9 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'weight . listId' 'price . .' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
-    text-align: center;
     margin: 1em auto;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -292,12 +292,14 @@
   }
   .create-classified-weight {
     margin: 1em auto;
-    -ms-grid-row: 2;
+    -ms-grid-row: 3;
     -ms-grid-column: 1;
     grid-area: weight;
   }
   .create-classified-gender {
     margin: 1em auto;
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
     grid-area: gender;
   }
   .create-classified-list-id {
@@ -308,7 +310,7 @@
   }
   .create-classified-price {
     margin: 1em auto;
-    -ms-grid-row: 3;
+    -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: price;
   }

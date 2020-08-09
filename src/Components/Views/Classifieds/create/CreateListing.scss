@@ -151,8 +151,8 @@
 		display: grid;
 		grid-template-areas:
 			'title title title'
-			'weight . listId'
-			'price . .'
+			'price . listId'
+			'weight . gender'
 			'category subCategory .'
 			'shipping shipping shipping '
 			'description description description'
@@ -160,7 +160,7 @@
 	}
 
 	.create-classified-title {
-		text-align: center;
+		//text-align: center;
 		margin: 1em auto;
 		grid-area: title;
 	}
@@ -268,17 +268,17 @@
 	.create-classified-form-inputs {
 		display: grid;
 		grid-template-areas:
-			'title title title'
-			'weight . listId'
-			'price . .'
-			'category subCategory .'
-			'shipping shipping shipping '
-			'description description description'
-			'. . submit ';
+		'title title title'
+		'price . listId'
+		'weight . gender'
+		'category subCategory .'
+		'shipping shipping shipping '
+		'description description description'
+		'. . submit ';
 	}
 
 	.create-classified-title {
-		text-align: center;
+		// text-align: center;
 		margin: 1em auto;
 		grid-area: title;
 	}
