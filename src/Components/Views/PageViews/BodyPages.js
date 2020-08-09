@@ -18,6 +18,9 @@ import Success from '../../_functions/Success';
 import Contact from '../contact/Contact';
 import SellersOtherListings from '../Classifieds/SellersListings/SellersListings';
 import NewVendor from '../VendorList/NewVendor/NewVendor';
+import Shame from '../Shame/Shame'
+import FIleShame from '../Shame/FileReport'
+import ShameReport from '../Shame/ViewShame/ViewShame'
 
 const Pages = () => {
 	return (
@@ -40,6 +43,9 @@ const Pages = () => {
 			<Route path="/sub_category/:id/" component={SubCategories} />
 			<Route path="/success/:refer" component={Success} />
 			<Route path="/vendors" component={Vendors} />
+			<Route path="/shames" component={Shame} />
+			<Route path="/file_report" component={FIleShame} />
+			<Route path="/view_shame" component={ShameReport} />
 		</React.Fragment>
 	);
 };

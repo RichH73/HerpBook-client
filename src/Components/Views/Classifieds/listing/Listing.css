@@ -5,7 +5,7 @@
   .list-info {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
+        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
   }
   .list-box {
     color: black;
@@ -158,7 +158,7 @@
   .list-info {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
+        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
   }
   .list-box a {
     color: black;

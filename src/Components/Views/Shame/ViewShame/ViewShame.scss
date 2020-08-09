@@ -1,0 +1,158 @@
+@import '../../../../index';
+//@media screen and (min-width: 900px) {
+    .wall-of-shame-header {
+        width: 100%;
+        //background-color: green;
+        color: white;
+    }
+
+    .wall-of-shame-user-reports {
+        //display: grid;
+        //background-color: #B2D7B9;
+        margin-top: 1em;
+        //padding: 0 1em 1em 1em;
+    }
+
+    .wall-of-shame-user-report {
+        display: grid;
+        grid-template-areas: 
+        'businessName businessName'
+        'webSiteName businessOwnerName'
+        'businessPhoneNumber businessEmail'
+        'incidentDescription incidentDescription'
+        'reportImages reportImages'
+        'reportComments reportComments'
+        'leaveComment leaveComment';
+    }
+
+    .wall-of-shame-user-report label {
+        font-weight: bold;
+    }
+
+    .wall-of-shame-user-reports-business-name {
+        grid-area: businessName;
+    }
+
+    .wall-of-shame-user-reports-business-owner-name {
+        grid-area: businessOwnerName;
+        text-align: center;
+    }
+
+    .wall-of-shame-user-reports-website {
+        grid-area: webSiteName;
+        text-align: center;
+    }
+
+    .wall-of-shame-user-reports-email {
+        grid-area: businessEmail;
+        text-align: center;
+    }
+
+    .wall-of-shame-user-reports-business-phone-number {
+        grid-area: businessPhoneNumber;
+        text-align: center;
+    }
+
+    .wall-of-shame-user-reports-incident-desription {
+        grid-area: incidentDescription;
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+
+    .wall-of-shame-user-report-images {
+        grid-area: reportImages;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .wall-of-shame-user-report-comments {
+        grid-area: reportComments;
+        width: 100%;
+        margin: 2em auto;
+        
+        background-color: $categoryPanelBackgroundColor;
+        // text-align: left;
+    }
+    .wall-of-shame-user-report-comments img {
+        max-width: 98%;
+    }
+
+    .wall-of-shame-user-report-comment {
+        width: 90%;
+        margin: 1em auto;
+        // text-align: left;
+        border-bottom: .5px solid lightgray;
+    }
+
+    .wall-of-shame-user-report-leave-comment {
+        margin: auto;
+        grid-area: leaveComment;
+        width: 90%;
+    }
+
+    .wall-of-shame-user-report-leave-comment input {
+        margin: auto;
+        width: 90%;
+    }
+
+    .wall-of-shame-header h3 {
+        margin-bottom: 0;
+    }
+
+
+    .wall-of-shame-attribute {
+        // margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    .wall-of-shame-user-reports-label {
+        margin: 1em auto;
+    }
+
+    .wall-of-shame-user-reports-incident-description {
+        width: 95%;
+        margin: auto;
+    }
+
+    .wall-of-shame-user-reports-incident-description p {
+        //white-space: pre-line;
+    }
+
+    .wall-of-shame-images img{
+        width: 200px;
+    }
+
+    .shame-file-report-input {
+        width: 50%;
+    }
+
+    .shame-file-report-textarea {
+        width: 98%;
+    }
+
+    .shame-file-report-label {
+        margin:1em auto;
+    }
+
+    .shame-file-reort-dropbox {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 40%;
+        padding: 3px;
+        border-radius: 10px;
+        border: 2px solid limegreen;
+        //background-color: rgba(104, 168, 104, 0.253);
+    }
+
+    .shame-file-report-preview {
+        margin-bottom: 1em;
+    }
+
+    .shame-file-report-preview img {
+        width: 100px;
+    }
+
+    .wall-of-shame-user-report-imgFl img {
+        text-align: center;
+    }
+//}

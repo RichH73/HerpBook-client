@@ -1,0 +1,190 @@
+.wall-of-shame-header {
+  width: 100%;
+  color: white;
+}
+
+.wall-of-shame-user-reports {
+  margin-top: 1em;
+  padding: 0 1em 1em 1em;
+}
+
+.wall-of-shame-user-report {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'businessName businessName' 'webSiteName businessOwnerName' 'businessPhoneNumber businessEmail' 'incidentDescription incidentDescription' 'reportImages reportImages' 'reportComments reportComments' 'leaveComment leaveComment';
+}
+
+.wall-of-shame-user-report label {
+  font-weight: bold;
+}
+
+.wall-of-shame-user-reports-business-name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: businessName;
+}
+
+.wall-of-shame-user-reports-business-owner-name {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: businessOwnerName;
+  text-align: center;
+}
+
+.wall-of-shame-user-reports-website {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: webSiteName;
+  text-align: center;
+}
+
+.wall-of-shame-user-reports-email {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: businessEmail;
+  text-align: center;
+}
+
+.wall-of-shame-user-reports-business-phone-number {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: businessPhoneNumber;
+  text-align: center;
+}
+
+.wall-of-shame-user-reports-incident-desription {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: incidentDescription;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.wall-of-shame-user-report-images {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: reportImages;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.shame-file-report {
+  width: 98%;
+  margin: 1em auto;
+}
+
+.shame-report-form-input {
+  margin-bottom: 1em;
+}
+
+.wall-of-shame-user-report-leave-comment {
+  margin: auto;
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: leaveComment;
+  width: 90%;
+}
+
+.wall-of-shame-user-report-leave-comment input {
+  margin: auto;
+  width: 90%;
+}
+
+.wall-of-shame-header h3 {
+  margin-bottom: 0;
+}
+
+.wall-of-shame-disclaimer {
+  color: black;
+  width: 100%;
+}
+
+.wall-of-shame-disclaimer p {
+  width: 95%;
+  margin: 1em auto;
+  text-align: left;
+}
+
+.wall-of-shame-file-report {
+  margin: 1em auto;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.wall-of-shame-file-report a {
+  color: blue;
+  text-decoration: none;
+}
+
+.wall-of-shame-attribute {
+  font-size: 1rem;
+}
+
+.wall-of-shame-user-reports-label {
+  margin: 1em 0 0 0;
+}
+
+.wall-of-shame-user-reports-incident-description {
+  width: 90%;
+  margin: auto;
+}
+
+.wall-of-shame-user-reports-incident-description p {
+  white-space: pre-line;
+}
+
+.wall-of-shame-images img {
+  width: 200px;
+}
+
+.shame-file-report-input {
+  width: 50%;
+}
+
+.shame-file-report-textarea {
+  width: 98%;
+}
+
+.shame-file-report-label {
+  margin-top: 1em;
+  margin-bottom: .1em;
+}
+
+.shame-file-reort-dropbox {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 40%;
+  padding: 3px;
+  border-radius: 10px;
+  border: 2px solid limegreen;
+}
+
+.shame-file-report button {
+  width: 70px;
+}
+
+.shame-file-report-preview {
+  margin-bottom: 1em;
+}
+
+.wall-of-shame-file-submit {
+  width: 20%;
+  margin: 1em 10px 1em auto;
+}
+
+.shame-file-report-preview img {
+  width: 100px;
+}
+
+.wall-of-shame-user-report-imgFl img {
+  text-align: center;
+}
+/*# sourceMappingURL=Shame.css.map */

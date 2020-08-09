@@ -71,6 +71,9 @@ class SideDrawer extends React.Component {
 							<a href="/classifieds">Classifieds</a>
 						</div>
 						<div className="sideDrawer-nav-link">
+							<a href="/shames">Wall of Shame</a>
+						</div>
+						<div className="sideDrawer-nav-link">
 							<a href="/contact">Contact Us</a>
 						</div>
 						<div className="sideDrawer-nav-link">

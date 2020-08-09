@@ -16,6 +16,7 @@ import messageReply from './messageReply';
 import richText from './richText';
 import { spinner } from './tools';
 import { subCategoryListings } from './classified';
+import wallOfShame from './wallOfShame'
 
 const allReducers = combineReducers({
 	categories,
@@ -35,6 +36,7 @@ const allReducers = combineReducers({
 	user_profile,
 	user,
 	Vendors,
+	wallOfShame
 });
 
 export default allReducers;
