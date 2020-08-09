@@ -75,6 +75,12 @@
   .list-gender {
     text-align: right;
   }
+  .list-user-list-id label {
+    font-weight: bold;
+  }
+  .list-user-list-id {
+    text-align: center;
+  }
   .list-gender label {
     font-weight: bold;
   }
@@ -200,6 +206,13 @@
   }
   .list-gender {
     text-align: right;
+    margin-right: 1em;
+  }
+  .list-user-list-id label {
+    font-weight: bold;
+  }
+  .list-user-list-id {
+    text-align: center;
     margin-right: 1em;
   }
   .list-gender label {

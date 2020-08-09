@@ -93,6 +93,14 @@
 		text-align: right;
 	}
 
+	.list-user-list-id label {
+		font-weight: bold;
+	}
+	.list-user-list-id {
+		text-align: center;
+		//font-weight: bold;
+	}
+
 	.list-gender label {
 		font-weight: bold;
 	}
@@ -237,6 +245,15 @@
 		// font-weight: bold;
 		text-align: right;
 		margin-right: 1em;
+	}
+
+	.list-user-list-id label {
+		font-weight: bold;
+	}
+	.list-user-list-id {
+		text-align: center;
+		margin-right: 1em;
+		//font-weight: bold;
 	}
 
 	.list-gender label {
