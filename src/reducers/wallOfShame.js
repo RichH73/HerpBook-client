@@ -29,6 +29,11 @@ const wallOfShame = (state = initialState, data) => {
             ...state,
             incident_description: data.data
         }
+        case 'SHAME_COMMENT':
+        return {
+            ...state,
+            newComment: data.data
+        }
         case 'REPORT_IMAGES':            
         return {
             ...state,
@@ -38,7 +43,7 @@ const wallOfShame = (state = initialState, data) => {
         case 'pushComment':
             const newReports = state.newReports.map(report => {
                 if (report._id === data.data.reportId) {
-                  report.shameComments.push(data.data);
+                  report.shameComments.unshift(data.data);
                 }
                 return report
             })

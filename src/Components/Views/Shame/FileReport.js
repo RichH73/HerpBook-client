@@ -47,7 +47,7 @@ class Shame extends Component {
 
 
   componentDidMount() {
-    //ReactGA.pageview("/welcome");
+    ReactGA.pageview("/file_shame");
   }
 
   onChangeHandler = (event) => {
@@ -146,6 +146,8 @@ class Shame extends Component {
   render() {
     return (
     <React.Fragment>
+      <div className='shame-file-report'>
+
         <div className='shame-file-report-opening-paragraph'>
             <p>
             Please use the following form to submit a report on a person or business. Please make every attempt to resolve any issues prior to filing a report. All reports filed will be
@@ -154,33 +156,33 @@ class Shame extends Component {
             If you have had a report filed against you and feel this is incorrect please <Link to={'contact'}>contact us</Link>.
             </p>
         </div>
-        <label className='shame-file-report-label'>Business Name:</label>
-        <div className='shame-file-report-business-name'>
+        <div className='shame-file-report-business-name shame-report-form-input'>
+        <label className='shame-file-report-label'>Business Name: </label>
           <input className='shame-file-report-input' type='text' name='business_name' onChange={this.onChangeHandler} />
         </div>
 
-        <label className='shame-file-report-label'>Business Owner or Individual</label>
-        <div className='shame-file-report-business-owner'>
+        <div className='shame-file-report-business-owner shame-report-form-input'>
+        <label className='shame-file-report-label'>Owner Name: </label>
           <input className='shame-file-report-input' type='text' name='business_owner' onChange={this.onChangeHandler} />
         </div>
 
-        <label className='shame-file-report-label'>Business Website Address:</label>
-        <div className='shame-file-report-business-website'>
+        <div className='shame-file-report-business-website shame-report-form-input'>
+        <label className='shame-file-report-label'>Website Address: </label>
           <input className='shame-file-report-input' type='url' name='business_website' onChange={this.onChangeHandler} />
         </div>
 
-        <label className='shame-file-report-label'>Business Email</label>
-        <div className='shame-file-report-business-email'>
+        <div className='shame-file-report-business-email shame-report-form-input'>
+        <label className='shame-file-report-label'>Business Email: </label>
           <input className='shame-file-report-input' type='email' name='business_email' onChange={this.onChangeHandler} />
         </div>
 
-        <label className='shame-file-report-label'>Business Phone Number:</label>
-        <div className='shame-file-report-business-phone'>
+        <div className='shame-file-report-business-phone shame-report-form-input'>
+        <label className='shame-file-report-label'>Business Phone: </label>
           <input className='shame-file-report-input' type='text' name='business_phone' onChange={this.onChangeHandler} />
         </div>
 
-        <label className='shame-file-report-label'>Incident Description:</label>
         <div className='shame-file-report-textarea'>
+        <label className='shame-file-report-label'>Incident Description: </label>
         <ReactQuill
 									style={{ backgroundColor: 'white', color: 'black' }}
 									name="description"
@@ -226,9 +228,10 @@ class Shame extends Component {
               </div>
             )} */}
         </div>
-        <div>
-          <input type='submit' onClick={this.submitHandler}/>
+        <div className='wall-of-shame-file-submit'>
+          <button onClick={this.submitHandler}>Save</button>
         </div>
+      </div>
     </React.Fragment>
     );
   }

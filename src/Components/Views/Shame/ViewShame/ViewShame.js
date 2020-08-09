@@ -6,11 +6,12 @@ import * as actionCreators from "../../../../actions/index";
 import React, { Component, useRef } from "react";
 import { get, cloneDeep } from 'lodash';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
 import { Link } from 'react-router-dom';
 import ReactGA from "react-ga";
 import ReactHtmlParser from 'react-html-parser';
 import HtmlParser from 'react-html-parser';
+import ReactQuill from 'react-quill';
+import QuillEmoji from 'quill-emoji'
 class ViewShame extends Component {
   state = {
     styles: {
@@ -30,47 +31,29 @@ class ViewShame extends Component {
     
   }
 
-editorProps = {
-  modules: {
+  modules = {
     toolbar: [
       [{ 'header': [1, 2, false] }],
       ['bold', 'italic', 'underline','strike', 'blockquote'],
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image', 'video'],
       ['emoji'], ['clean']
     ],
     "emoji-toolbar": true,
     "emoji-textarea": false,
     "emoji-shortname": true,
-  },
-  formats: [
+  }    
+  formats = [
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent', 'emoji'
-  ],
-  readOnly: false,
-  type: 'write'
-}
+    'list', 'bullet', 'indent', 'emoji',
+    'link', 'image', 'video', 'clean'
+  ]
 
   componentDidMount() {
     //ReactGA.pageview("/welcome");
   }
 
-  imgFloatingDiv = (image) => {
-    const imgAddress = `https://www.herpbook.com/wall_of_shame/${image}`
-    this.props.newFloatingImage(imgAddress)
-  }
-
-  hideFloatingImage = () => {
-    this.props.hideFloatingImage()
-  }
-
-  displayImages = (imgs) => {
-    return(
-      imgs.map(image => (
-        <div className='wall-of-shame-images'><img src={`https://www.herpbook.com/wall_of_shame/${image}`} onClick={()=> this.imgFloatingDiv(image)} alt={image}/></div>
-      ))
-    )
-  }
 
   submitHandler = (data) => {
     const { uid, username, first_name, last_name} = this.props.user
@@ -87,7 +70,7 @@ editorProps = {
         
     axios({
       method: 'post',
-      url: `${this.props.server_address}/shame/new_report_comment`,
+      url: `${this.props.API}/shame/new_report_comment`,
       headers: {
         Authorization: `bearer ${localStorage.token}`
       },
@@ -111,13 +94,7 @@ commentMapper = (comments) => {
   return comments.map(comment => (
     <React.Fragment>
       <div className='wall-of-shame-user-report-comment'>Comment by: {comment.username}<br/><small>{date.format(new Date(comment.date), 'dddd MMMM DD h:mmA')}</small><br/>
-      {/* <ReactQuill className='right-column-news-body'
-                value={comment.comment}
-                readOnly={true}
-                style={{fontSize: '.9em', backgroundColor: 'transparent'}}
-                theme='bubble'>
-                <div className="my-editing-area" style={{fontSize: '1em'}} />
-              </ReactQuill> */}
+      {HtmlParser(comment.comment)}
       </div>
     </React.Fragment>
   ))
@@ -128,6 +105,10 @@ onChangeHandler = (event, report) => {
   this.props.fileNewReport([event.target.name], event.target.value);
   this.props.fileNewReport('testing', report)
 }
+
+newCommentHandler = (value) => {
+  this.props.newShameComment(value);
+};
 
   render() {
     const pattern = date.compile('MMM D YYYY h:m:s A');
@@ -143,7 +124,7 @@ onChangeHandler = (event, report) => {
       <div className='wall-of-shame-user-reports'>
         <div className='wall-of-shame-user-report'>
 
-      <div className='wall-of-shame-user-reports-business-name'><h3>{report.business_name}</h3>{<div style={{float: 'right', cursor: 'pointer'}}>{console.log(report)}...</div>}</div>
+      <div className='wall-of-shame-user-reports-business-name'><h3>{report.business_name}</h3></div>
 
       <div className='wall-of-shame-user-reports-business-owner-name'>
             <label className='wall-of-shame-user-reports-label'>Business Owners Name:</label>
@@ -172,11 +153,23 @@ onChangeHandler = (event, report) => {
               </div>
       </div>
 
-    {report.images ? <div className='wall-of-shame-user-report-images'>{this.displayImages(report.images)}</div> : ''}
 
     {report.shameComments ? <div className='wall-of-shame-user-report-comments'>{this.commentMapper(report.shameComments)}</div> : ''}
       <div className='wall-of-shame-user-report-leave-comment'>
           <label>Leave a comment:</label>
+          <div>
+          <ReactQuill
+									style={{ backgroundColor: 'white', color: 'black' }}
+									name="description"
+									value={this.props.shameData.newComment}
+									onChange={this.newCommentHandler}
+									modules={this.modules}
+									// modules={this.props.mods.modules}
+									formats={this.formats}
+									readOnly={false}
+									theme="snow"
+								/>
+          </div>
           <div>
             <button onClick={()=> this.submitHandler(report)}>Submit</button>
           </div>
@@ -201,11 +194,13 @@ const mapStateToProps = state => ({
   //displayFloatingImage: state.floatingImage,
   //floatImage: state.floatingImage.displayFloatingImage,
   //imgAddress: state.floatingImage.image,
-  server_address: state.config.server_address,
+  API: state.config.server.serverAPI,
   shames: state.wallOfShame.newReports,
   registeredUser: state.userLoggedIn,
   user: state.user,
-  comment: state.richText.text
+  comment: state.wallOfShame.newComment,
+  // comment: state.richText.text,
+  shameData: state.wallOfShame,
 });
 
 const mapDispatchToProps = dispatch => {

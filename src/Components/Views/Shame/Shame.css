@@ -75,24 +75,13 @@
           justify-content: space-evenly;
 }
 
-.wall-of-shame-user-report-comments {
-  -ms-grid-row: 6;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: reportComments;
-  width: 90%;
-  margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  text-align: left;
+.shame-file-report {
+  width: 98%;
+  margin: 1em auto;
 }
 
-.wall-of-shame-user-report-comment {
-  width: 90%;
-  margin: auto;
-  margin-top: 1em;
+.shame-report-form-input {
   margin-bottom: 1em;
-  text-align: left;
 }
 
 .wall-of-shame-user-report-leave-comment {
@@ -116,12 +105,23 @@
 .wall-of-shame-disclaimer {
   color: black;
   width: 100%;
-  padding: 1em;
 }
 
 .wall-of-shame-disclaimer p {
-  width: 80%;
-  margin: auto;
+  width: 95%;
+  margin: 1em auto;
+  text-align: left;
+}
+
+.wall-of-shame-file-report {
+  margin: 1em auto;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.wall-of-shame-file-report a {
+  color: blue;
+  text-decoration: none;
 }
 
 .wall-of-shame-attribute {
@@ -167,8 +167,17 @@
   border: 2px solid limegreen;
 }
 
+.shame-file-report button {
+  width: 70px;
+}
+
 .shame-file-report-preview {
   margin-bottom: 1em;
+}
+
+.wall-of-shame-file-submit {
+  width: 20%;
+  margin: 1em 10px 1em auto;
 }
 
 .shame-file-report-preview img {

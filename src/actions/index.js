@@ -175,6 +175,19 @@ export const shameText = (data) => {
 		data,
 	};
 };
+export const newShameComment = (data) => {
+	return {
+		type: 'SHAME_COMMENT',
+		data,
+	};
+};
+
+export const shameReportComment = (data) => {
+	return {
+	  type: 'pushComment',
+	 data
+	}
+  }
 
 export const newShames = (data) => {
 	return {

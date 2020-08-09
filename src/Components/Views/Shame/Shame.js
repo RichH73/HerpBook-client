@@ -106,8 +106,9 @@ class Shame extends Component {
     return this.props.shames.map(report => (
       <div className='wall-of-shame-user-reports'>
         <div className='wall-of-shame-user-report'>
-
+      
       <div className='wall-of-shame-user-reports-business-name'><h3>{report.business_name}</h3></div>
+      <div className='wall-of-shame-user-reports-business-name'><h3><Link to={{pathname: '/view_shame', reportId: report._id}}>{report.business_name}</Link></h3></div>
 
       <div className='wall-of-shame-user-reports-business-owner-name'>
             <label className='wall-of-shame-user-reports-label'>Business Owners Name:</label>
@@ -130,7 +131,7 @@ class Shame extends Component {
       </div>
 
 
-        <div><Link to={{pathname: '/view_shame', reportId: report._id}}>See full report</Link></div>
+        {/* <div><Link to={{pathname: '/view_shame', reportId: report._id}}>See full report</Link></div> */}
       </div>
     </div>
     ))
@@ -156,8 +157,13 @@ onChangeHandler = (event, report) => {
       <div style={this.state.styles} onClick={this.hideFloatingImage}>Hello world</div>
           <div>
             <div className='wall-of-shame-header'><h3>Wall of Shame</h3></div>
-            <div className='wall-of-shame-disclaimer'><p>The following reports are posted by individual users of HerpBook.com. Any views and opinions represented belong solely to the user and are not the views or opinions of HerpBook. HerpBook reserves the right to remove any report for any reason at any time. Reported business owners have the right to dispute the report with documentation and or personal resolution with the reporting user.</p></div>
-          <Link to='/file_report'>File a report</Link>
+            <div className='wall-of-shame-disclaimer'>
+              <p>The following reports are posted by individual users of HerpBook.com. Any views and opinions represented belong solely to the user and are not the views or opinions of HerpBook. HerpBook reserves the right to remove any report for any reason at any time. Reported business owners have the right to dispute the report with documentation and or personal resolution with the reporting user.</p>
+              <p>Profanity, pornography, threats, hateful speech and racist comments will not be tolerated. Posting any such content will result in the post of comment to be removed and the user account may be deleted from HerpBook as well. We reserve the right to remove any report or comment for any reason.</p>
+            </div>
+            <div className='wall-of-shame-file-report'>
+            <Link to='/file_report'>File a report by click here.</Link>
+            </div>
           </div>
             <this.user_reports/>
     </React.Fragment>

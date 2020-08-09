@@ -1,3 +1,4 @@
+@import '../../../../index';
 //@media screen and (min-width: 900px) {
     .wall-of-shame-header {
         width: 100%;
@@ -9,7 +10,7 @@
         //display: grid;
         //background-color: #B2D7B9;
         margin-top: 1em;
-        padding: 0 1em 1em 1em;
+        //padding: 0 1em 1em 1em;
     }
 
     .wall-of-shame-user-report {
@@ -66,19 +67,21 @@
 
     .wall-of-shame-user-report-comments {
         grid-area: reportComments;
-        width: 90%;
-        margin: auto;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        text-align: left;
+        width: 100%;
+        margin: 2em auto;
+        
+        background-color: $categoryPanelBackgroundColor;
+        // text-align: left;
+    }
+    .wall-of-shame-user-report-comments img {
+        max-width: 98%;
     }
 
     .wall-of-shame-user-report-comment {
         width: 90%;
-        margin: auto;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        text-align: left;
+        margin: 1em auto;
+        // text-align: left;
+        border-bottom: .5px solid lightgray;
     }
 
     .wall-of-shame-user-report-leave-comment {
@@ -96,17 +99,6 @@
         margin-bottom: 0;
     }
 
-    .wall-of-shame-disclaimer {
-        color: black;
-        width: 100%;
-        //background-color: #B2D7B9;
-        padding: 1em;
-    }
-
-    .wall-of-shame-disclaimer p {
-        width: 80%;
-        margin: auto;
-    }
 
     .wall-of-shame-attribute {
         // margin-top: 10px;
@@ -114,16 +106,16 @@
     }
 
     .wall-of-shame-user-reports-label {
-        margin: 1em 0 0 0;
+        margin: 1em auto;
     }
 
     .wall-of-shame-user-reports-incident-description {
-        width: 90%;
+        width: 95%;
         margin: auto;
     }
 
     .wall-of-shame-user-reports-incident-description p {
-        white-space: pre-line;
+        //white-space: pre-line;
     }
 
     .wall-of-shame-images img{
@@ -139,8 +131,7 @@
     }
 
     .shame-file-report-label {
-        margin-top: 1em;
-        margin-bottom: .1em;
+        margin:1em auto;
     }
 
     .shame-file-reort-dropbox {

@@ -71,6 +71,9 @@ class LeftNav extends Component {
 							<Link to="/classifieds">Classifieds</Link>
 						</div>
 						<div className="left-nav-link">
+							<Link to="/shames">Wall of Shame</Link>
+						</div>
+						<div className="left-nav-link">
 							<Link to="/contact">Contact Us</Link>
 						</div>
 						<div className="left-nav-link">
