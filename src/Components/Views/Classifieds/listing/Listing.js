@@ -124,13 +124,13 @@ class Listing extends React.Component {
 						<div className="list-description">{ReactHtmlParser(list.description)}</div>
 						<div className="list-description-businessFooter">{ReactHtmlParser(get(list, 'businessFooter', ''))}</div>
 						<div className="list-footer">
-							{localStorage.token ? (
+							{/* {localStorage.token ? (
 								<div>
 									Seller: <Link to={`/profile`}>{list.username}</Link>
 								</div>
 							) : (
 								<Link to="/login">Login to see profile</Link>
-							)}
+							)} */}
 							{/* <div onLoad={this.props.get_user({ uid: list.username })}> */}
 							<div>
 								<Link to={`/sellers-listings/${list.creatorId}`}>See all listing by seller</Link>

@@ -15,10 +15,10 @@ class LeftNav extends Component {
 						<h3>User Navigation</h3>
 					</div>
 					<div className="left-main-nav">
-						<div>
+						<div className="left-nav-link">
 							<Link to="/my_profile">My Profile</Link>
 						</div>
-						<div>
+						<div className="left-nav-link">
 							{!!displayMessageCount ? (
 								<Link to="/messages">
 									My Messages: <small style={{ color: 'red' }}>{displayMessageCount}</small>
@@ -34,11 +34,11 @@ class LeftNav extends Component {
 						<h3>My Classifieds</h3>
 					</div>
 					<div className="left-main-nav">
-						<div>
+						<div className="left-nav-link">
 							<Link to="/my_classifieds">My Classifieds</Link>
 						</div>
 
-						<div>
+						<div className="left-nav-link">
 							<Link to="/create_classified">Create Classified</Link>
 						</div>
 					</div>
@@ -61,19 +61,19 @@ class LeftNav extends Component {
 						<h3>Navigation</h3>
 					</div>
 					<div className="left-main-nav">
-						<div>
+						<div className="left-nav-link">
 							<Link to="/">Home</Link>
 						</div>
-						<div>
+						<div className="left-nav-link">
 							<Link to="/vendors">Breeders / Vendors</Link>
 						</div>
-						<div>
+						<div className="left-nav-link">
 							<Link to="/classifieds">Classifieds</Link>
 						</div>
-						<div>
+						<div className="left-nav-link">
 							<Link to="/contact">Contact Us</Link>
 						</div>
-						<div>
+						<div className="left-nav-link">
 							{!!userCheck ? (
 								<Link to="/" onClick={this.logOut}>
 									Logout

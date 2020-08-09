@@ -23,6 +23,10 @@ h3 {
   background-color: #cce2f8;
 }
 
+.left-nav-link {
+  margin-bottom: 5px;
+}
+
 .left-main-nav {
   text-align: left;
   width: 190px;

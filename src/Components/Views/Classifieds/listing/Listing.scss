@@ -1,6 +1,17 @@
 @import '../../../../index';
 
 @media screen and ($minWidth) {
+
+	.list-info {
+		display: grid;
+		grid-template-areas:
+			'price listId'
+			'gender listWeight'
+			'footer footer'
+			'description description'
+			'businessFooter businessFooter';
+	}
+
 	.list-box {
 		color: black;
 		margin: 1em auto;
@@ -23,14 +34,17 @@
 		color: black;
 		padding: 0.4em 0;
 	}
+
 	.list-description {
-		margin: 1em auto;
-		padding: 5px;
+		width: 96%;
+		margin: 2em auto .10px;
+		grid-area: description;
 	}
 
 	.list-description-businessFooter {
 		margin: 1em auto 4em;
-		padding: 5px;
+		width: 96%;
+		grid-area: businessFooter;
 	}
 
 	.list-images {
@@ -51,20 +65,24 @@
 	}
 
 	.list-footer {
+		margin: 10px 0 1em;
+		font-weight: bold;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
+		grid-area: footer;
 	}
 
 	.list-price-gender {
-		display: flex;
-		justify-content: space-between;
-		width: 80%;
-		margin: 1em auto;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: gender;
 	}
 
 	.list-price {
-		text-align: left;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: price;
 	}
 
 	.list-price label {
@@ -72,12 +90,18 @@
 	}
 
 	.list-gender {
-		// font-weight: bold;
-		text-align: right;
+		margin: .5em auto;
+		text-align: center;
 	}
 
 	.list-weight {
-		text-align: right;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: listWeight;
+	}
+
+	.list-weight label {
+		font-weight: bold;
 	}
 
 	.list-user-list-id label {
@@ -85,6 +109,7 @@
 	}
 	.list-user-list-id {
 		text-align: center;
+		grid-area: listId;
 	}
 
 	.list-gender label {
@@ -136,9 +161,9 @@
 		grid-template-areas:
 			'price listId'
 			'gender listWeight'
+			'footer footer'
 			'description description'
-			'businessFooter businessFooter'
-			'footer footer';
+			'businessFooter businessFooter';
 	}
 
 	.list-box a {
@@ -161,14 +186,14 @@
 	}
 
 	.list-description {
-		width: 98%;
+		width: 96%;
 		margin: 2em auto .10px;
 		grid-area: description;
 	}
 
 	.list-description-businessFooter {
 		margin: 1em auto 4em;
-		padding: 5px;
+		width: 96%;
 		grid-area: businessFooter;
 	}
 
@@ -189,6 +214,8 @@
 	}
 
 	.list-footer {
+		margin: 10px 0 1em;
+		font-weight: bold;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
@@ -209,7 +236,6 @@
 	.list-price {
 		margin: .5em auto;
 		text-align: center;
-		margin-left: 1em;
 		grid-area: price;
 	}
 
@@ -220,7 +246,6 @@
 	.list-gender {
 		margin: .5em auto;
 		text-align: center;
-		margin-right: 1em;
 		grid-area: gender;
 	}
 
