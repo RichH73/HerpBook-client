@@ -1,7 +1,6 @@
 import axios from 'axios';
-import _ from 'lodash';
 import config from '../reducers/config';
-import { Base64 } from 'js-base64';
+//import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
 export const setPageTitle = (pageTitle) => {
@@ -223,9 +222,9 @@ export const pageLoading = (spinner) => {
 export const getSubCategoryListings = (data) => {
 	return {
 		type: 'New_Listings',
-		data
-	}
-}
+		data,
+	};
+};
 
 export const reloadProfile = () => {
 	return {
@@ -233,37 +232,37 @@ export const reloadProfile = () => {
 	};
 };
 
-const newUserData = (user) => {
-	return {
-		type: 'NEW_USER_DATA',
-		user,
-	};
-};
+// const newUserData = (user) => {
+// 	return {
+// 		type: 'NEW_USER_DATA',
+// 		user,
+// 	};
+// };
 
-export const liveProfileUpdate = (user, history) => {
-	return function (dispatch) {
-		axios({
-			method: 'post',
-			url: `${API}/users/update_profile`,
-			headers: {
-				Authorization: `Bearer ${localStorage.token}`,
-				//uid: localStorage.uid,
-				//username: this.props.username,
-				//enctype: "mylipart/form-data"
-			},
-			data: user,
-		}).then((userResponse) => {
-			// dispatch(vendorList(userResponse.data));
-			dispatch(imagesUploaded());
-			const user = JSON.parse(Base64.decode(userResponse.data.token.split('.')[1]));
-			localStorage.setItem('token', _.get(userResponse, 'data.token'));
-			dispatch(reloadProfile());
-			dispatch(newUserData(userResponse.data.user));
-			dispatch(user_login(userResponse.data.user));
-			return history.push('/success/profileUpdate');
-		});
-	};
-};
+// export const liveProfileUpdate = (user, history) => {
+// 	return function (dispatch) {
+// 		axios({
+// 			method: 'post',
+// 			url: `${API}/users/update_profile`,
+// 			headers: {
+// 				Authorization: `Bearer ${localStorage.token}`,
+// 				//uid: localStorage.uid,
+// 				//username: this.props.username,
+// 				//enctype: "mylipart/form-data"
+// 			},
+// 			data: user,
+// 		}).then((userResponse) => {
+// 			// dispatch(vendorList(userResponse.data));
+// 			dispatch(imagesUploaded());
+// 			const user = JSON.parse(Base64.decode(userResponse.data.token.split('.')[1]));
+// 			localStorage.setItem('token', _.get(userResponse, 'data.token'));
+// 			dispatch(reloadProfile());
+// 			dispatch(newUserData(userResponse.data.user));
+// 			dispatch(user_login(userResponse.data.user));
+// 			return history.push('/success/profileUpdate');
+// 		});
+// 	};
+// };
 
 export const newProfilePic = (imageName) => {
 	return {

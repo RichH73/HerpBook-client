@@ -1,15 +1,21 @@
 @import '../../../../index';
 
 @media screen and ($minWidth) {
+
+	.list-info {
+		display: grid;
+		grid-template-areas:
+			'price listId'
+			'gender listWeight'
+			'footer footer'
+			'description description'
+			'businessFooter businessFooter';
+	}
+
 	.list-box {
-		//width: 95%;
 		color: black;
-		//border: solid 1px $borderColor;
-		//background-color: $panelBodyColor;
 		margin: 1em auto;
-		// display: grid;
-		// grid-template-columns: auto auto auto auto;
-		// grid-template-rows: auto auto auto auto;
+
 	}
 
 	.list-box a {
@@ -27,34 +33,26 @@
 		background-color: $borderColor;
 		color: black;
 		padding: 0.4em 0;
-		// grid-column: 1 / -1;
-		// grid-row: 1 / 2;
 	}
+
 	.list-description {
-		//width: 98%;
-		// white-space: pre-line;
-		margin: 1em auto;
-		padding: 5px;
+		width: 96%;
+		margin: 2em auto .10px;
+		grid-area: description;
 	}
 
 	.list-description-businessFooter {
 		margin: 1em auto 4em;
-		padding: 5px;
+		width: 96%;
+		grid-area: businessFooter;
 	}
 
 	.list-images {
 		display: grid;
-		//justify-content: space-evenly;
 		grid-template-columns: auto auto auto;
 		text-align: center;
-		// grid-template-rows: 1fr 1fr;
 		margin: auto;
-		// display: flex;
-		// flex-direction: row;
-		// justify-content: space-evenly;
 		padding: 0.4em 0;
-		// grid-column: 1 / -1;
-		// grid-row: 2 / 3;
 	}
 
 	.list-images a {
@@ -67,21 +65,24 @@
 	}
 
 	.list-footer {
+		margin: 10px 0 1em;
+		font-weight: bold;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
-		// grid-row: 4 / 5;
+		grid-area: footer;
 	}
 
 	.list-price-gender {
-		display: flex;
-		justify-content: space-between;
-		width: 80%;
-		margin: 1em auto;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: gender;
 	}
 
 	.list-price {
-		text-align: left;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: price;
 	}
 
 	.list-price label {
@@ -89,8 +90,26 @@
 	}
 
 	.list-gender {
-		// font-weight: bold;
-		text-align: right;
+		margin: .5em auto;
+		text-align: center;
+	}
+
+	.list-weight {
+		margin: .5em auto;
+		text-align: center;
+		grid-area: listWeight;
+	}
+
+	.list-weight label {
+		font-weight: bold;
+	}
+
+	.list-user-list-id label {
+		font-weight: bold;
+	}
+	.list-user-list-id {
+		text-align: center;
+		grid-area: listId;
 	}
 
 	.list-gender label {
@@ -134,17 +153,17 @@
 		width: 98%;
 		color: black;
 		border: solid 1px $borderColor;
-		//background-color: $panelBodyColor;
 		margin: 1em auto;
-		// display: grid;
-		// grid-template-columns: auto auto auto auto;
-		// grid-template-rows: auto auto auto auto;
 	}
 
 	.list-info {
-		//display: grid;
-		grid-template-columns: auto auto auto auto;
-		grid-template-rows: auto auto auto;
+		display: grid;
+		grid-template-areas:
+			'price listId'
+			'gender listWeight'
+			'footer footer'
+			'description description'
+			'businessFooter businessFooter';
 	}
 
 	.list-box a {
@@ -167,36 +186,22 @@
 	}
 
 	.list-description {
-		width: 98%;
-		margin: 1em auto;
-		grid-column: 1/-1;
-		grid-row: 2/3;
+		width: 96%;
+		margin: 2em auto .10px;
+		grid-area: description;
 	}
 
 	.list-description-businessFooter {
 		margin: 1em auto 4em;
-		padding: 5px;
+		width: 96%;
+		grid-area: businessFooter;
 	}
-
-	// .list-description p {
-	// 	// white-space: pre-line;
-	// 	width: 90%;
-	// 	margin: auto;
-	// 	border: 0.5px solid $borderColor;
-	// }
 
 	.list-images {
 		display: grid;
 		grid-template-columns: auto auto;
 		justify-content: space-evenly;
 		margin-top: 1em;
-		// justify-content: space-evenly;
-		// margin: auto;
-		// padding: .4em 0;
-		// grid-template-columns: auto;
-		// grid-row-gap: 5px;
-		// grid-column: 1 / -1;
-		// grid-row: 2 / 3;
 	}
 
 	.list-images a {
@@ -209,24 +214,29 @@
 	}
 
 	.list-footer {
+		margin: 10px 0 1em;
+		font-weight: bold;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
-		// grid-row: 4 / 5;
+		grid-area: footer;
 	}
 
-	.list-price-gender {
-		display: flex;
-		justify-content: space-between;
-		// width: 80%;
-		text-align: right;
-		margin: 1em auto;
-		grid-column: 1/-1;
+	.list-weight {
+		margin: .5em auto;
+		text-align: center;
+		grid-area: listWeight;
 	}
+
+	.list-weight label {
+		font-weight: bold;
+	}
+
 
 	.list-price {
-		text-align: left;
-		margin-left: 1em;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: price;
 	}
 
 	.list-price label {
@@ -234,9 +244,18 @@
 	}
 
 	.list-gender {
-		// font-weight: bold;
-		text-align: right;
-		margin-right: 1em;
+		margin: .5em auto;
+		text-align: center;
+		grid-area: gender;
+	}
+
+	.list-user-list-id label {
+		font-weight: bold;
+	}
+	.list-user-list-id {
+		margin: .5em auto;
+		text-align: center;
+		grid-area: listId;
 	}
 
 	.list-gender label {
@@ -258,15 +277,12 @@
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		//top: 150px;
-		//left: 250px;
 	}
 
 	.classified-listing-picture-display img {
 		margin-top: 30%;
 		text-align: center;
 		width: 100%;
-		// border-radius: 3px;
 	}
 
 	button {

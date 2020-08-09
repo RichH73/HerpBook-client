@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
-import Editor from '../../../../_functions/Editor';
 import ReactQuill from 'react-quill';
 class SellerContactForm extends React.Component {
 	modules = {

@@ -2,6 +2,11 @@
     Color section to define the colors used in the entire app.
 */
 @media screen and (min-width: 900px) {
+  .list-info {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
+  }
   .list-box {
     color: black;
     margin: 1em auto;
@@ -21,12 +26,20 @@
     padding: 0.4em 0;
   }
   .list-description {
-    margin: 1em auto;
-    padding: 5px;
+    width: 96%;
+    margin: 2em auto .10px;
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: description;
   }
   .list-description-businessFooter {
     margin: 1em auto 4em;
-    padding: 5px;
+    width: 96%;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: businessFooter;
   }
   .list-images {
     display: -ms-grid;
@@ -45,6 +58,8 @@
     text-align: center;
   }
   .list-footer {
+    margin: 10px 0 1em;
+    font-weight: bold;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -55,25 +70,50 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: footer;
   }
   .list-price-gender {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    width: 80%;
-    margin: 1em auto;
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: gender;
   }
   .list-price {
-    text-align: left;
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: price;
   }
   .list-price label {
     font-weight: bold;
   }
   .list-gender {
-    text-align: right;
+    margin: .5em auto;
+    text-align: center;
+  }
+  .list-weight {
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: listWeight;
+  }
+  .list-weight label {
+    font-weight: bold;
+  }
+  .list-user-list-id label {
+    font-weight: bold;
+  }
+  .list-user-list-id {
+    text-align: center;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: listId;
   }
   .list-gender label {
     font-weight: bold;
@@ -116,10 +156,9 @@
     margin: 1em auto;
   }
   .list-info {
-    -ms-grid-columns: auto auto auto auto;
-        grid-template-columns: auto auto auto auto;
-    -ms-grid-rows: auto auto auto;
-        grid-template-rows: auto auto auto;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
   }
   .list-box a {
     color: black;
@@ -140,16 +179,20 @@
     grid-row: 1 / 2;
   }
   .list-description {
-    width: 98%;
-    margin: 1em auto;
-    grid-column: 1/-1;
-    -ms-grid-row: 2;
-    -ms-grid-row-span: 1;
-    grid-row: 2/3;
+    width: 96%;
+    margin: 2em auto .10px;
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: description;
   }
   .list-description-businessFooter {
     margin: 1em auto 4em;
-    padding: 5px;
+    width: 96%;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: businessFooter;
   }
   .list-images {
     display: -ms-grid;
@@ -169,6 +212,8 @@
     text-align: center;
   }
   .list-footer {
+    margin: 10px 0 1em;
+    font-weight: bold;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -179,28 +224,47 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: footer;
   }
-  .list-price-gender {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    text-align: right;
-    margin: 1em auto;
-    grid-column: 1/-1;
+  .list-weight {
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: listWeight;
+  }
+  .list-weight label {
+    font-weight: bold;
   }
   .list-price {
-    text-align: left;
-    margin-left: 1em;
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: price;
   }
   .list-price label {
     font-weight: bold;
   }
   .list-gender {
-    text-align: right;
-    margin-right: 1em;
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: gender;
+  }
+  .list-user-list-id label {
+    font-weight: bold;
+  }
+  .list-user-list-id {
+    margin: .5em auto;
+    text-align: center;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: listId;
   }
   .list-gender label {
     font-weight: bold;

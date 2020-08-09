@@ -4,7 +4,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import Editor from '../../_functions/Editor';
 import _ from 'lodash';
 import ReactQuill from 'react-quill';
 
@@ -83,6 +82,7 @@ class SellerContactForm extends React.Component {
 	};
 
 	render() {
+		// eslint-disable-next-line
 		const { sellerData } = _.get(this, 'props.location', {}); //this.props.location.sellerData || '
 		return (
 			<div id="contact_form">

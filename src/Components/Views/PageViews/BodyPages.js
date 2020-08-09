@@ -23,23 +23,23 @@ const Pages = () => {
 	return (
 		<React.Fragment>
 			<Route exact path="/" component={Welcome} />
+			<Route path="/add_vendor" component={NewVendor} />
 			<Route path="/classifieds" component={Categories} />
-			<Route path="/vendors" component={Vendors} />
-			<Route path="/sub_category/:id/" component={SubCategories} />
-			<Route path="/login" component={Login} />
-			<Route path="/register" component={Register} />
-			<Route path="/my_profile" component={EditProfile} />
-			<Route path="/listing/:id" component={Listing} />
-			<Route path="/my_classifieds" component={MyListings} />
+			<Route path="/contact" component={Contact} />
 			<Route path="/create_classified" component={CreateListing} />
-			<Route path="/messages" component={Messages} />
+			<Route path="/listing/:id" component={Listing} />
+			<Route path="/login" component={Login} />
 			<Route path="/message-display" component={MessageDisplay} />
 			<Route path="/message-reply" component={MessageReply} />
 			<Route path="/message-seller" component={SellerContactForm} />
-			<Route path="/success/:refer" component={Success} />
-			<Route path="/contact" component={Contact} />
+			<Route path="/messages" component={Messages} />
+			<Route path="/my_classifieds" component={MyListings} />
+			<Route path="/my_profile" component={EditProfile} />
+			<Route path="/register" component={Register} />
 			<Route path="/sellers-listings/:id" component={SellersOtherListings} />
-			<Route path="/add_vendor" component={NewVendor} />
+			<Route path="/sub_category/:id/" component={SubCategories} />
+			<Route path="/success/:refer" component={Success} />
+			<Route path="/vendors" component={Vendors} />
 		</React.Fragment>
 	);
 };

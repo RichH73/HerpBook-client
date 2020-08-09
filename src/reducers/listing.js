@@ -1,37 +1,21 @@
-const initialState = {
-	type: 'listing',
-	categories: [],
-	sub_categories: [],
-	images: [],
-	payload: {
-		title: '',
-		description: '',
-		gender: '',
-		price: '',
-		shipping: false,
-		category: '',
-		sub_category: '',
-		categories: [],
-		sub_categories: [],
-	},
-};
+const initialState = {};
 
-const listing = (state = initialState, payload) => {
-	switch (payload.type) {
+const listing = (state = initialState, listing) => {
+	switch (listing.type) {
 		case 'NEW_LISTING':
 			return {
 				...state,
-				[payload.key]: payload.value,
+				[listing.key]: listing.value,
 			};
 		case 'CATEGORIES':
 			return {
 				...state,
-				categories: payload,
+				categories: listing,
 			};
 		case 'SUB_CATEGORIES':
 			return {
 				...state,
-				sub_categories: payload,
+				sub_categories: listing,
 			};
 		case 'CLEAR_LISTING_DATA':
 			return initialState;

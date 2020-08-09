@@ -92,25 +92,45 @@ class Listing extends React.Component {
 					</div>
 					<hr />
 					<div className="list-info">
-						<div className="list-price-gender">
-							<div className="list-price">
-								<label>Price: </label>${list.price}
+						<div className="list-price">
+							<label>Price: </label>${list.price}
+						</div>
+						{!!list.userListId ? (
+							<div className="list-user-list-id">
+								<label>ID: </label>
+								{list.userListId}
 							</div>
+						) : (
+							''
+						)}
+
+						{!!list.gender ? (
 							<div className="list-gender">
 								<label>Gender: </label>
 								{list.gender}
 							</div>
-						</div>
+						) : (
+							''
+						)}
+						{!!list.weight ? (
+							<div className="list-weight">
+								<label>Weight: </label>
+								{list.weight}
+								<span>{list.weightUnit}</span>
+							</div>
+						) : (
+							''
+						)}
 						<div className="list-description">{ReactHtmlParser(list.description)}</div>
 						<div className="list-description-businessFooter">{ReactHtmlParser(get(list, 'businessFooter', ''))}</div>
 						<div className="list-footer">
-							{localStorage.token ? (
+							{/* {localStorage.token ? (
 								<div>
 									Seller: <Link to={`/profile`}>{list.username}</Link>
 								</div>
 							) : (
 								<Link to="/login">Login to see profile</Link>
-							)}
+							)} */}
 							{/* <div onLoad={this.props.get_user({ uid: list.username })}> */}
 							<div>
 								<Link to={`/sellers-listings/${list.creatorId}`}>See all listing by seller</Link>

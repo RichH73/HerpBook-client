@@ -10,7 +10,7 @@ class Body extends Component {
 		return (
 			<div className="main-body-view">
 				<div className="body-left-panel">
-					<LeftNav />
+					<LeftNav history={this.props.history} />
 				</div>
 				<div className="body-main-panel">
 					<div className="body-main-outter-panel">

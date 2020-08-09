@@ -105,7 +105,7 @@ class App extends Component {
 				{sideDrawer}
 				{backdrop}
 				<div id="nav-button" onClick={this.drawerToggleClickHandler}>
-					<img src="images/hamburger_button.png" alt="nav" />
+					<img src="/images/hamburger_button.png" alt="nav" />
 				</div>
 				<this.spinner />
 				<Header />
