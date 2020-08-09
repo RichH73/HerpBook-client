@@ -7,7 +7,6 @@ import * as actionCreators from '../../../../actions/index';
 import Dropzone from 'react-dropzone';
 //import ReactGA from 'react-ga';
 import _ from 'lodash';
-import Editor from '../../../_functions/Editor';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
