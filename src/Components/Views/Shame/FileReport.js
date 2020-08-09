@@ -144,7 +144,7 @@ class Shame extends Component {
   };
 
   render() {
-    return (
+    return !!this.props.uid.length ?  (
     <React.Fragment>
       <div className='shame-file-report'>
 
@@ -233,7 +233,7 @@ class Shame extends Component {
         </div>
       </div>
     </React.Fragment>
-    );
+    ) : <div className='shame-file-report'>You must be <Link to='/login'>logged in</Link> to file a report.</div>;
   }
 }
 
