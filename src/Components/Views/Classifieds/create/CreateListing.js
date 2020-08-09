@@ -187,7 +187,7 @@ class CreateListing extends React.Component {
 		return (
 			<select name="weightUnit" onChange={this.onChangeHandler}>
 				<option>Uint</option>
-				<option value="gr">gm</option>
+				<option value="gm">gm</option>
 				<option value="kg">kg</option>
 				<option value="oz">oz</option>
 				<option value="lb">lb</option>
@@ -266,6 +266,10 @@ class CreateListing extends React.Component {
 						<div className="create-classified-list-id">
 							<label>ID: </label>
 							<input type="text" name="userListId" onChange={this.onChangeHandler} />
+						</div>
+						<div className="create-classified-price">
+							<label>*Price: </label>
+							<input type="text" name="price" onChange={this.onChangeHandler} />
 						</div>
 						<div className="create-classified-category">
 							<label>Category</label>

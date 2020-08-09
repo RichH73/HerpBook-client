@@ -1,6 +1,6 @@
 @import '../../../../index';
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 679px) {
 	.create-classified-form {
 		width: 98%;
 		margin: 1em auto;
@@ -34,6 +34,7 @@
 			'title title title'
 			'weight weight weight'
 			'listId listId .'
+			'price price .'
 			'gender gender .'
 			'category category .'
 			'subCategory subCategory .'
@@ -61,6 +62,11 @@
 	.create-classified-list-id {
 		margin: 1em auto;
 		grid-area: listId;
+	}
+
+	.create-classified-price {
+		margin: 1em auto;
+		grid-area: price
 	}
 
 	.create-classified-category {
@@ -113,6 +119,123 @@
 	}
 }
 
+@media screen and (min-width: 680px) and (max-width: 899px) {
+	.create-classified-form {
+		width: 98%;
+		margin: 1em auto;
+	}
+
+	.create-classified-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+	#image-preview {
+		padding: 1em;
+		justify-content: space-evenly;
+	}
+
+	#image-preview img {
+		width: 100px;
+	}
+
+	.img-preview {
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	.create-classified-form-inputs {
+		display: grid;
+		grid-template-areas:
+			'title title title'
+			'weight . listId'
+			'price . .'
+			'category subCategory .'
+			'shipping shipping shipping '
+			'description description description'
+			'. . submit ';
+	}
+
+	.create-classified-title {
+		text-align: center;
+		margin: 1em auto;
+		grid-area: title;
+	}
+
+	.create-classified-weight {
+		margin: 1em auto;
+		grid-area: weight;
+	}
+
+	.create-classified-gender {
+		margin: 1em auto;
+		grid-area: gender;
+	}
+
+	.create-classified-list-id {
+		margin: 1em auto;
+		grid-area: listId;
+	}
+
+	.create-classified-price {
+		margin: 1em auto;
+		grid-area: price
+	}
+
+
+	.create-classified-category {
+		margin: 1em auto;
+		grid-area: category;
+	}
+
+	.create-classified-sub-category {
+		margin: 1em auto;
+		grid-area: subCategory;
+	}
+
+	.create-classified-shipping {
+		margin: 1em auto;
+		grid-area: shipping;
+	}
+
+	.create-classified-shipping-price {
+		margin: 1em auto;
+		width: 98%;
+		margin: auto;
+	}
+
+	.create-classified-description {
+		grid-area: description;
+		width: 100%;
+	}
+
+	.create-classified-description-label {
+		margin: 1em auto;
+		text-align: center;
+	}
+
+	.create-classified-description-editor {
+		width: 100%;
+	}
+
+	.create-classified-submit-button {
+		grid-area: submit;
+		width: 130px;
+		margin: 1em 10px 1em auto;
+		background-color: lime;
+		width: 130px;
+	}
+
+	.create-classified-submit-button button {
+		width: 140px;
+		border-radius: 5px;
+		text-align: center;
+	}
+
+}
 
 @media screen and ($minWidth) {
 	.create-classified-form {
@@ -146,7 +269,8 @@
 		display: grid;
 		grid-template-areas:
 			'title title title'
-			'weight listId gender'
+			'weight . listId'
+			'price . .'
 			'category subCategory .'
 			'shipping shipping shipping '
 			'description description description'
@@ -173,6 +297,12 @@
 		margin: 1em auto;
 		grid-area: listId;
 	}
+
+	.create-classified-price {
+		margin: 1em auto;
+		grid-area: price
+	}
+
 
 	.create-classified-category {
 		margin: 1em auto;
