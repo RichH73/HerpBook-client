@@ -54,7 +54,7 @@ class CreateListing extends React.Component {
 
 	componentDidMount() {
 		this.props.setPageTitle('Create Classified');
-		//ReactGA.pageview('/create-listing');
+		//ReactGA.pageview('/create-classified');
 	}
 
 	componentWillUnmount() {
@@ -70,10 +70,6 @@ class CreateListing extends React.Component {
 	submitHandler = (event) => {
 		event.preventDefault();
 		this.props.pageLoading(true);
-		// if(this.props.sendFiles < 1){
-		//   alert('You must add at least one image.')
-		// }
-		// if(this.props.sendFiles > 0) {
 		let images = [];
 		let fileData = new FormData();
 		let imgFiles = this.props.sendFiles;
@@ -92,13 +88,6 @@ class CreateListing extends React.Component {
 			images: images,
 			businessFooter: !!this.props.userInfo.businessFooter ? this.props.userInfo.businessFooter : null,
 			...this.props.newLisingData,
-			// title: this.props.title,
-			// weight: this.props.weight,
-			// sub_category: this.props.sub_category,
-			// category: this.props.category,
-			// shipping: this.props.shipping,
-			// price: this.props.price,
-			// gender: this.props.gender,
 		};
 		fileData.append('listingInfo', JSON.stringify(listingInfo));
 		axios({
@@ -118,24 +107,12 @@ class CreateListing extends React.Component {
 				});
 			}
 		});
-		// }
 	};
 
 	handleChange = (value) => {
 		this.props.editText({
 			text: value,
 		});
-	};
-
-	Modal = () => {
-		return (
-			<div className="create-classified-listing-modal" style={{ display: this.state.modal }}>
-				<div>One or more of the files you are attempting to upload is too large. Please only upload files 3mb or less.</div>
-				<div className="create-classified-listing-modal-button">
-					<button onClick={this.closeModal}>Ok</button>
-				</div>
-			</div>
-		);
 	};
 
 	closeModal = () => {
@@ -158,17 +135,6 @@ class CreateListing extends React.Component {
 				});
 			}
 		});
-		// if(this.props.images.length > 5) {
-		//   alert('Only 6 images are allowed per listing.')
-		//   this.props.imagesUploaded();
-		//   return
-		// }
-
-		// if(files.length > 5) {
-		//   alert('Only 6 images are allowed per listing.')
-		//   this.props.imagesUploaded();
-		//   return
-		// }
 
 		const saveFiles = files.map((file) => file);
 		const newFile = files.map((file) => ({
@@ -230,7 +196,7 @@ class CreateListing extends React.Component {
 	};
 
 	shippingPrice = (
-		<div className="create-listing-shipping-price">
+		<div className="create-classified-shipping-price">
 			<p>Do you offer a flat rate for shipping? If shipping charges vary leave this box blank.</p>
 			<label>Flat Rate Shipping Cost: </label>
 			<input type="number" name="shippingPrice" className="numberinput form-control" onChange={this.onChangeHandler} />
@@ -239,70 +205,57 @@ class CreateListing extends React.Component {
 
 	render() {
 		return (
-			<div>
-				{/* <div className="posting-title">Create a classified listing</div> */}
-				{/* <this.Modal /> */}
-				<div className="posting-form">
-					<div className="image-drop">
-						<label>* Denotes required entires</label>
-						<label>*Images (at least one image required)</label>
-						<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
-							{({ getRootProps, getInputProps }) => (
-								<section>
-									<div className="create-classified-dropbox" {...getRootProps()}>
-										<span>Please drag and drop your images into this box, or click the box to and them.</span>
-										<input {...getInputProps()} />
-									</div>
-								</section>
-							)}
-						</Dropzone>
-						{this.props.images.length > 0 && (
-							<div id="image-preview">
-								<h5>Image Preview</h5>
-								<label>Click on an image to remove it.</label>
-								<br />
-								<div className="img-preview">
-									{this.props.images.map((file) => (
-										<div>
-											<br />
-											<img alt="Preview" key={file.preview} src={file.preview} onClick={() => this.clickHandler(file.path)} />
-										</div>
-									))}
+			<div className="create-classified-form">
+				<div className="image-drop">
+					<label>* Denotes required entires</label>
+					<label>*Images (at least one image required)</label>
+					<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
+						{({ getRootProps, getInputProps }) => (
+							<section>
+								<div className="create-classified-dropbox" {...getRootProps()}>
+									<span>Please drag and drop your images into this box, or click the box to and them.</span>
+									<input {...getInputProps()} />
 								</div>
-							</div>
+							</section>
 						)}
-					</div>
+					</Dropzone>
+					{this.props.images.length > 0 && (
+						<div id="image-preview">
+							<h5>Image Preview</h5>
+							<label>Click on an image to remove it.</label>
+							<br />
+							<div className="img-preview">
+								{this.props.images.map((file) => (
+									<div>
+										<br />
+										<img alt="Preview" key={file.preview} src={file.preview} onClick={() => this.clickHandler(file.path)} />
+									</div>
+								))}
+							</div>
+						</div>
+					)}
+				</div>
 
-					<form onSubmit={this.submitHandler}>
-						<label>* Title</label>
-						<input
-							type="text"
-							name="title"
-							maxLength="80"
-							className="textinput textInput form-control create-listing-title"
-							required
-							onChange={this.onChangeHandler}
-						/>
-
-						<label>*Description (Please do not include url's in the description.)</label>
-						{/* <Editor settings={{ ...this.editorProps.modules, ...this.editorProps.formats }} /> */}
-						<ReactQuill
-							style={{ backgroundColor: 'white', color: 'black' }}
-							name="businessFooter"
-							value={this.props.listDescription}
-							onChange={this.handleChange}
-							modules={this.props.mods.modules}
-							formats={this.props.mods.formats}
-							readOnly={false}
-							theme="snow"
-						/>
-						<div className="create-listing-weight">
+				<form onSubmit={this.submitHandler}>
+					<div className="create-classified-form-inputs">
+						<div className="create-classified-title">
+							<label>* Title: </label>
+							<input
+								type="text"
+								name="title"
+								maxLength="80"
+								className="textinput textInput form-control create-classified-title"
+								required
+								onChange={this.onChangeHandler}
+							/>
+						</div>
+						<div className="create-classified-weight">
 							<label>Weight: </label>
 							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
 							{!!this.props.weight ? <this.weightSelect /> : ''}
 						</div>
-						<div className="create-listing-gender">
-							<label>Gender</label>
+						<div className="create-classified-gender">
+							<label>Gender: </label>
 							<select name="gender" onChange={this.onChangeHandler}>
 								<option value="">Choose a gender</option>
 								<option value="Male">Male</option>
@@ -310,7 +263,11 @@ class CreateListing extends React.Component {
 								<option value="Unknown">Unknown</option>
 							</select>
 						</div>
-						<div className="create-listing-category">
+						<div className="create-classified-list-id">
+							<label>ID: </label>
+							<input type="text" name="userListId" onChange={this.onChangeHandler} />
+						</div>
+						<div className="create-classified-category">
 							<label>Category</label>
 							<select id="category" required name="category" onChange={this.onChangeHandler}>
 								<option value="">Choose a category</option>
@@ -319,7 +276,7 @@ class CreateListing extends React.Component {
 						</div>
 
 						{!!this.props.category ? (
-							<div className="create-listing-sub-category">
+							<div className="create-classified-sub-category">
 								<label>Sub category</label>
 								<select id="sub-category" required name="sub_category" onChange={this.onChangeHandler}>
 									<option value="">Choose a category</option>
@@ -329,21 +286,38 @@ class CreateListing extends React.Component {
 						) : (
 							''
 						)}
-						<div className="create-listing-shipping">
+						<div className="create-classified-shipping">
 							<label>Do you offer shipping?</label>
 							<select required name="shipping" onChange={this.onChangeHandler}>
 								<option value="false">No shipping</option>
 								<option value="true">Sipping Available</option>
 							</select>
+							{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
 						</div>
-						{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
-						<div id="button">
+						<div className="create-classified-description">
+							<div className="create-classified-description-label">
+								<label>*Description.</label>
+							</div>
+							<div className="create-classified-description-editor">
+								<ReactQuill
+									style={{ backgroundColor: 'white', color: 'black' }}
+									name="businessFooter"
+									value={this.props.listDescription}
+									onChange={this.handleChange}
+									modules={this.props.mods.modules}
+									formats={this.props.mods.formats}
+									readOnly={false}
+									theme="snow"
+								/>
+							</div>
+						</div>
+						<div className="create-classified-submit-button">
 							<button type="submit" className="btn btn-success">
-								Create
+								Create Classified
 							</button>
 						</div>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
 		);
 	}

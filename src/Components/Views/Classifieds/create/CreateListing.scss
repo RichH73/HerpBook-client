@@ -1,109 +1,111 @@
 @import '../../../../index';
-// @media screen and (min-width: 900px) {
-#image-preview {
-	padding: 1em;
-	//display: flex;
-	justify-content: space-evenly;
-}
 
-#image-preview img {
-	width: 100px;
-}
+@media screen and ($minWidth) {
+	.create-classified-form {
+		width: 98%;
+		margin: 1em auto;
+	}
 
-.img-preview {
-	display: flex;
-	justify-content: space-evenly;
-}
+	.create-classified-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+	#image-preview {
+		padding: 1em;
+		justify-content: space-evenly;
+	}
 
-.posting-form {
-	width: 98%;
-	margin: 0 auto 1em;
-	text-align: center;
-	//border: 1px solid $borderColor;
-	//background-color: $panelBodyColor;
-}
+	#image-preview img {
+		width: 100px;
+	}
 
-.posting-title {
-	background-color: green;
-	width: 100%;
-	color: white;
-	text-align: center;
-	font-weight: bold;
-	font-size: 1.4em;
-}
+	.img-preview {
+		display: flex;
+		justify-content: space-evenly;
+	}
 
-.create-classified-dropbox {
-	width: 60%;
-	padding: 3px;
-	border-radius: 10px;
-	border: 2px solid $borderColor;
-	background-color: $panelBodyColor;
-	margin: auto;
-}
+	.create-classified-form-inputs {
+		display: grid;
+		grid-template-areas:
+			'title title title'
+			'weight listId gender'
+			'category subCategory .'
+			'shipping shipping shipping '
+			'description description description'
+			'. . submit ';
+	}
 
-.create-listing-title {
-	margin: 2em auto 0.5em;
-}
+	.create-classified-title {
+		text-align: center;
+		margin: 1em auto;
+		grid-area: title;
+	}
 
-.image-drop {
-	width: 100%;
-}
+	.create-classified-weight {
+		margin: 1em auto;
+		grid-area: weight;
+	}
 
-// .posting-form * {
-//     width: 80%;
-//     margin: auto;
-//     text-align: left;
-// }
+	.create-classified-gender {
+		margin: 1em auto;
+		grid-area: gender;
+	}
 
-.posting-form h3 {
-	text-align: center;
-	margin: 1em auto 1em auto;
-}
+	.create-classified-list-id {
+		margin: 1em auto;
+		grid-area: listId;
+	}
 
-.posting-form h5 {
-	text-align: center;
-	margin: 1em auto 1em auto;
-}
+	.create-classified-category {
+		margin: 1em auto;
+		grid-area: category;
+	}
 
-.posting-form p {
-	margin: 1em auto 0.5em auto;
-}
+	.create-classified-sub-category {
+		margin: 1em auto;
+		grid-area: subCategory;
+	}
 
-.posting-form select {
-	width: 160px;
-	margin-left: 2em;
-}
+	.create-classified-shipping {
+		margin: 1em auto;
+		grid-area: shipping;
+	}
 
-.posting-form button {
-	width: 6em;
-	text-align: center;
-	margin: 1em auto 1em auto;
-}
+	.create-classified-shipping-price {
+		margin: 1em auto;
+		width: 98%;
+		margin: auto;
+	}
 
-#button {
-	width: 6em;
-	margin: auto;
-}
+	.create-classified-description {
+		grid-area: description;
+		width: 100%;
+	}
 
-.create-classified-listing-modal {
-	background-color: rgba(255, 255, 255, 0.918);
-	border: 0.3em double red;
-	height: 150px;
-	border-radius: 25px;
-	z-index: 300;
-	width: 600px;
-	position: absolute;
-	top: 15%;
-	left: 17%;
-	padding: 1em 0.5em;
-}
-.create-classified-listing-modal-button {
-	width: 50px;
-	margin: auto;
-	margin-top: 0.8em;
-	text-align: center;
-}
-.create-classified-listing-modal-button button {
-}
+	.create-classified-description-label {
+		margin: 1em auto;
+		text-align: center;
+	}
 
-// }
+	.create-classified-description-editor {
+		width: 100%;
+	}
+
+	.create-classified-submit-button {
+		grid-area: submit;
+		width: 130px;
+		margin: 1em 10px 1em auto;
+		background-color: lime;
+		width: 130px;
+	}
+
+	.create-classified-submit-button button {
+		width: 140px;
+		border-radius: 5px;
+		text-align: center;
+	}
+}

@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
 import Modal from 'react-modal';
-import { Base64 } from 'js-base64';
+//import { Base64 } from 'js-base64';
 
 class EditProfile extends React.Component {
 	state = {
@@ -78,7 +78,7 @@ class EditProfile extends React.Component {
 						});
 					}, 2000);
 					//this.props.imagesUploaded();
-					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
+					//const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					//this.props.clear_profile();
 					this.props.user_login(response.data.user);

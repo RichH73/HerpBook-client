@@ -50,7 +50,6 @@ class LeftNav extends Component {
 	logOut = () => {
 		localStorage.removeItem('token');
 		this.props.userLogOut();
-		//this.props.history.push('/')
 	};
 
 	render() {
@@ -74,7 +73,15 @@ class LeftNav extends Component {
 						<div>
 							<Link to="/contact">Contact Us</Link>
 						</div>
-						<div>{!!userCheck ? <Link onClick={this.logOut}>Logout</Link> : <Link to="/login">Login</Link>}</div>
+						<div>
+							{!!userCheck ? (
+								<Link to="/" onClick={this.logOut}>
+									Logout
+								</Link>
+							) : (
+								<Link to="/login">Login</Link>
+							)}
+						</div>
 					</div>
 				</div>
 				{!!userCheck ? <this.userNavigation /> : ''}
