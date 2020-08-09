@@ -41,7 +41,10 @@ class SubCategory extends React.Component {
 			<h3>No Listings</h3>
 			<p>
 				Sorry, there were no listings in this category. If you have something that you would like to sell please feel free to create a free account.
-				Then create a classified listing here so the next person doens't see this message <span class="ap ap-sunglasses" role='img' aria-label="sun glasses">😎</span>
+				Then create a classified listing here so the next person doens't see this message{' '}
+				<span class="ap ap-sunglasses" role="img" aria-label="sun glasses">
+					😎
+				</span>
 			</p>
 			<p>Also help us spread the word to other reptile enthusiasts by letting them know about this site.</p>
 		</div>
@@ -62,9 +65,7 @@ class SubCategory extends React.Component {
 									<td>
 										<div className="listing-title">{list.title}</div>
 									</td>
-									<td>
-										{!!list.gender ? <div className="listing-gender">Gender: {list.gender}</div> : ''}
-									</td>
+									<td>{!!list.gender ? <div className="listing-gender">Gender: {list.gender}</div> : ''}</td>
 									<td>
 										<div className="listing-price">Price ${list.price}</div>
 									</td>

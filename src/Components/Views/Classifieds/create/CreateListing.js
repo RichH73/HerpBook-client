@@ -63,6 +63,7 @@ class CreateListing extends React.Component {
 	}
 
 	onChangeHandler = (event) => {
+		console.log(this.props.newLisingData);
 		this.props.newListing([event.target.name], event.target.value);
 	};
 
@@ -86,17 +87,18 @@ class CreateListing extends React.Component {
 		});
 		let listingInfo = {
 			creatorId: this.props.creatorId,
-			title: this.props.title,
 			description: this.props.listDescription,
-			price: this.props.price,
-			gender: this.props.gender,
-			shipping: this.props.shipping,
-			category: this.props.category,
-			sub_category: this.props.sub_category,
 			user: this.props.username,
-			weight: this.props.weight,
 			images: images,
 			businessFooter: !!this.props.userInfo.businessFooter ? this.props.userInfo.businessFooter : null,
+			...this.props.newLisingData,
+			// title: this.props.title,
+			// weight: this.props.weight,
+			// sub_category: this.props.sub_category,
+			// category: this.props.category,
+			// shipping: this.props.shipping,
+			// price: this.props.price,
+			// gender: this.props.gender,
 		};
 		fileData.append('listingInfo', JSON.stringify(listingInfo));
 		axios({
@@ -214,6 +216,27 @@ class CreateListing extends React.Component {
 		));
 	};
 
+	weightSelect = () => {
+		console.log('weight');
+		return (
+			<select name="weightUnit" onChange={this.onChangeHandler}>
+				<option>Uint</option>
+				<option value="gr">gm</option>
+				<option value="kg">kg</option>
+				<option value="oz">oz</option>
+				<option value="lb">lb</option>
+			</select>
+		);
+	};
+
+	shippingPrice = (
+		<div className="create-listing-shipping-price">
+			<p>Do you offer a flat rate for shipping? If shipping charges vary leave this box blank.</p>
+			<label>Flat Rate Shipping Cost: </label>
+			<input type="number" name="shippingPrice" className="numberinput form-control" onChange={this.onChangeHandler} />
+		</div>
+	);
+
 	render() {
 		return (
 			<div>
@@ -221,8 +244,8 @@ class CreateListing extends React.Component {
 				{/* <this.Modal /> */}
 				<div className="posting-form">
 					<div className="image-drop">
-						<p>* Denotes required entires</p>
-						<p>*Images (at least one image required)</p>
+						<label>* Denotes required entires</label>
+						<label>*Images (at least one image required)</label>
 						<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
 							{({ getRootProps, getInputProps }) => (
 								<section>
@@ -236,7 +259,7 @@ class CreateListing extends React.Component {
 						{this.props.images.length > 0 && (
 							<div id="image-preview">
 								<h5>Image Preview</h5>
-								<p>Click on an image to remove it.</p>
+								<label>Click on an image to remove it.</label>
 								<br />
 								<div className="img-preview">
 									{this.props.images.map((file) => (
@@ -261,7 +284,7 @@ class CreateListing extends React.Component {
 							onChange={this.onChangeHandler}
 						/>
 
-						<p>*Description (Please do not include url's in the description.)</p>
+						<label>*Description (Please do not include url's in the description.)</label>
 						{/* <Editor settings={{ ...this.editorProps.modules, ...this.editorProps.formats }} /> */}
 						<ReactQuill
 							style={{ backgroundColor: 'white', color: 'black' }}
@@ -273,25 +296,31 @@ class CreateListing extends React.Component {
 							readOnly={false}
 							theme="snow"
 						/>
-						<p>Weight (grams)</p>
-						<input type="number" name="weight" step="0.01" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
-						<p>Gender</p>
-						<select name="gender" onChange={this.onChangeHandler}>
-							<option value="">Choose a gender</option>
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-							<option value="Unknown">Unknown</option>
-						</select>
+						<div className="create-listing-weight">
+							<label>Weight: </label>
+							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
+							{!!this.props.weight ? <this.weightSelect /> : ''}
+						</div>
+						<div className="create-listing-gender">
+							<label>Gender</label>
+							<select name="gender" onChange={this.onChangeHandler}>
+								<option value="">Choose a gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Unknown">Unknown</option>
+							</select>
+						</div>
+						<div className="create-listing-category">
+							<label>Category</label>
+							<select id="category" required name="category" onChange={this.onChangeHandler}>
+								<option value="">Choose a category</option>
+								{this.category_menu()}
+							</select>
+						</div>
 
-						<p>Category</p>
-						<select id="category" required name="category" onChange={this.onChangeHandler}>
-							<option value="">Choose a category</option>
-							{this.category_menu()}
-						</select>
-
-						{this.props.category > 0 ? (
-							<div>
-								<p>Sub category</p>
+						{!!this.props.category ? (
+							<div className="create-listing-sub-category">
+								<label>Sub category</label>
 								<select id="sub-category" required name="sub_category" onChange={this.onChangeHandler}>
 									<option value="">Choose a category</option>
 									{this.sub_category_menu()}
@@ -300,16 +329,14 @@ class CreateListing extends React.Component {
 						) : (
 							''
 						)}
-
-						<p>* Price (If price includes shipping, please accounce that in the description.)</p>
-						<input type="number" name="price" className="numberinput form-control" required id="id_price" onChange={this.onChangeHandler} />
-
-						<p>Do you offer shipping?</p>
-						<select required name="shipping" onChange={this.onChangeHandler}>
-							<option value="false">No shipping</option>
-							<option value="true">Sipping Available</option>
-						</select>
-						<br />
+						<div className="create-listing-shipping">
+							<label>Do you offer shipping?</label>
+							<select required name="shipping" onChange={this.onChangeHandler}>
+								<option value="false">No shipping</option>
+								<option value="true">Sipping Available</option>
+							</select>
+						</div>
+						{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
 						<div id="button">
 							<button type="submit" className="btn btn-success">
 								Create
@@ -323,6 +350,7 @@ class CreateListing extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+	newLisingData: state.listing,
 	category: state.listing.category,
 	categoryItems: state.categories.categories,
 	creatorId: state.user.uid,

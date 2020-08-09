@@ -1,25 +1,25 @@
 @import '../../../../../index';
 
 .Modal {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    background-color: white;
-    text-align: center;
-    padding: 10px;
-  }
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	right: 3px;
+	bottom: 3px;
+	background-color: white;
+	text-align: center;
+	padding: 10px;
+}
 
-  .Overlay {
-    position: fixed;
-    top: 35%;
-    left: 30%;
-    right: 30%;
-    bottom: 60%;
-    background-color: lime;
-  }
-  
+.Overlay {
+	position: fixed;
+	top: 35%;
+	left: 30%;
+	right: 30%;
+	bottom: 60%;
+	background-color: lime;
+}
+
 @media screen and ($minWidth) {
 	.ql-container {
 		box-sizing: border-box;

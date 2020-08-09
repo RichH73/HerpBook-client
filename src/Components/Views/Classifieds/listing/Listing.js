@@ -96,8 +96,32 @@ class Listing extends React.Component {
 							<div className="list-price">
 								<label>Price: </label>${list.price}
 							</div>
-							{!!list.userListId ? <div className="list-user-list-id"><label>ID: </label>{list.userListId}</div> : ''}
-							{!!list.gender ? <div className="list-gender"><label>Gender: </label>{list.gender}</div> : ''}
+							{!!list.userListId ? (
+								<div className="list-user-list-id">
+									<label>ID: </label>
+									{list.userListId}
+								</div>
+							) : (
+								''
+							)}
+
+							{!!list.gender ? (
+								<div className="list-gender">
+									<label>Gender: </label>
+									{list.gender}
+								</div>
+							) : (
+								''
+							)}
+							{!!list.weight ? (
+								<div className="list-weight">
+									<label>Weight: </label>
+									{list.weight}
+									<span>{list.weightUnit}</span>
+								</div>
+							) : (
+								''
+							)}
 						</div>
 						<div className="list-description">{ReactHtmlParser(list.description)}</div>
 						<div className="list-description-businessFooter">{ReactHtmlParser(get(list, 'businessFooter', ''))}</div>

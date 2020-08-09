@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
 import Modal from 'react-modal';
-import { Base64 } from 'js-base64'
+import { Base64 } from 'js-base64';
 
 class EditProfile extends React.Component {
 	state = {
@@ -66,17 +66,17 @@ class EditProfile extends React.Component {
 				username: this.props.username,
 				//enctype: "mylipart/form-data"
 			},
-			data: fileData
+			data: fileData,
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					console.log('updated...')
-					this.setState({modalIsOpen: true})
+					console.log('updated...');
+					this.setState({ modalIsOpen: true });
 					setTimeout(() => {
 						this.setState({
-						  modalIsOpen: false
-						})
-						}, 2000)
+							modalIsOpen: false,
+						});
+					}, 2000);
 					//this.props.imagesUploaded();
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
@@ -137,17 +137,6 @@ class EditProfile extends React.Component {
 			</select>
 		);
 	};
-
-		showModal = () => {
-			this.setState({
-			  modalVisible: true
-			});
-			setTimeout(() => {
-			  this.setState({
-				modalIsOpen: false
-			  })
-			  }, 2000);
-		  }
 
 	display_address = () => {
 		const display_address_true = (
@@ -292,15 +281,17 @@ class EditProfile extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="edit-profile-form">
-				<Modal
-					isOpen={this.state.modalIsOpen}
-					className='Modal'
-					overlayClassName="Overlay"
-					//onAfterOpen={this.afterOpenModal}
-					//onRequestClose={closeModal}
-					//style={customStyles}
-					//contentLabel="Example Modal"
-				>Profile Updated</Modal>
+					<Modal
+						isOpen={this.state.modalIsOpen}
+						className="Modal"
+						overlayClassName="Overlay"
+						//onAfterOpen={this.afterOpenModal}
+						//onRequestClose={closeModal}
+						//style={customStyles}
+						//contentLabel="Example Modal"
+					>
+						Profile Updated
+					</Modal>
 					{/* <img src={`${this.props.USERSURL}/${user.username}/profile/${user.profile_pic}`} alt={this.props.profile_pic} /> */}
 					{/* <Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={1242880}>
 					{({ getRootProps, getInputProps }) => (

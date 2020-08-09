@@ -1,20 +1,20 @@
-const initialState = {
-	type: 'listing',
-	categories: [],
-	sub_categories: [],
-	images: [],
-	payload: {
-		title: '',
-		description: '',
-		gender: '',
-		price: '',
-		shipping: false,
-		category: '',
-		sub_category: '',
-		categories: [],
-		sub_categories: [],
-	},
-};
+const initialState = {};
+// type: 'listing',
+// categories: [],
+// sub_categories: [],
+// images: [],
+// payload: {
+// title: '',
+// 	description: '',
+// 	gender: '',
+// 	price: '',
+// 	shipping: false,
+// 	category: '',
+// 	sub_category: '',
+// 	categories: [],
+// 	sub_categories: [],
+// 	},
+// };
 
 const listing = (state = initialState, payload) => {
 	switch (payload.type) {
