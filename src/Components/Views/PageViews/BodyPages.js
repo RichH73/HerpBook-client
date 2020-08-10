@@ -18,9 +18,9 @@ import Success from '../../_functions/Success';
 import Contact from '../contact/Contact';
 import SellersOtherListings from '../Classifieds/SellersListings/SellersListings';
 import NewVendor from '../VendorList/NewVendor/NewVendor';
-import Shame from '../Shame/Shame'
-import FIleShame from '../Shame/FileReport'
-import ShameReport from '../Shame/ViewShame/ViewShame'
+import Shame from '../Shame/Shame';
+import FIleShame from '../Shame/FileReport';
+import ShameReport from '../Shame/ViewShame/ViewShame';
 
 const Pages = () => {
 	return (

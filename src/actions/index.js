@@ -184,17 +184,17 @@ export const newShameComment = (data) => {
 
 export const shameReportComment = (data) => {
 	return {
-	  type: 'pushComment',
-	 data
-	}
-  }
+		type: 'pushComment',
+		data,
+	};
+};
 
 export const newShames = (data) => {
 	return {
-	  type: 'SHAMES',
-	  shames: data
-	}
-  }
+		type: 'SHAMES',
+		shames: data,
+	};
+};
 
 export const clearClassifiedData = () => {
 	return {
@@ -300,8 +300,8 @@ export const newProfilePic = (imageName) => {
 
 export const fileNewReport = (key, value) => {
 	return {
-	  type: "FILE_REPORT",
-	  key,
-	  value
+		type: 'FILE_REPORT',
+		key,
+		value,
 	};
-  };
+};
