@@ -146,7 +146,7 @@
     width: 100%;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'businessName businessName businessPhone businessPhone' 'businessWebsite businessWebsite . .' 'displayBusinessAddress . . .' 'businessStreet businessStreet businessCity businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
+        grid-template-areas: 'businessName businessName businessPhone businessPhone' 'businessWebsite businessWebsite . .' 'displayBusinessAddress . . .' 'businessStreet businessStreet businessCity businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
   }
   .edit-profile-form-is-business {
     grid-area: isBusiness;
@@ -345,7 +345,7 @@
     width: 100%;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'businessName businessName businessPhone businessPhone' 'businessWebsite businessWebsite . .' 'displayBusinessAddress . . .' 'businessStreet businessStreet businessCity businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
+        grid-template-areas: 'businessName businessName businessPhone businessPhone' 'businessWebsite businessWebsite . .' 'displayBusinessAddress . . .' 'businessStreet businessStreet businessCity businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
   }
   .edit-profile-form-is-business {
     grid-area: isBusiness;
@@ -444,7 +444,7 @@
     text-align: left;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'firstName firstName lastName lastName' 'entityPhone entityPhone entityPhone entityPhone' 'entityPhoneType entityPhoneType entityPhoneType .' 'displayEntityPhone displayEntityPhone displayEntityPhone .' 'entityEmail entityEmail entityEmail .' 'entityEmailType entityEmailType entityEmailType .' 'displayEntityEmail displayEntityEmail displayEntityEmail .' 'entityStreet entityStreet entityStreet .' 'entityCity entityCity entityCity .' 'entityState entityZip entityZip entityZip';
+        grid-template-areas: 'firstName firstName lastName lastName' 'entityPhone entityPhone entityPhone entityPhone' 'entityPhoneType entityPhoneType entityPhoneType .' 'displayEntityPhone displayEntityPhone displayEntityPhone .' 'entityEmail entityEmail entityEmail .' 'entityEmailType entityEmailType entityEmailType .' 'displayEntityEmail displayEntityEmail displayEntityEmail .' 'entityStreet entityStreet entityStreet .' 'entityCity entityCity entityCity .' 'entityState entityZip entityZip entityZip';
   }
   .edit-profile-entity-info input {
     margin-bottom: 10px;
@@ -553,7 +553,7 @@
     width: 100%;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'businessName . . businessPhone' 'businessWebsite . . .' 'displayBusinessAddress displayBusinessAddress displayBusinessAddress displayBusinessAddress' 'businessStreet . . businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
+        grid-template-areas: 'businessName . . businessPhone' 'businessWebsite . . .' 'displayBusinessAddress displayBusinessAddress displayBusinessAddress displayBusinessAddress' 'businessStreet . . businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
   }
   .edit-profile-form-is-business {
     grid-area: isBusiness;
