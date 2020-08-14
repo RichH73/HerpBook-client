@@ -22,9 +22,9 @@ export const store = createStore(
 ReactDOM.render(
 	<Provider store={store}>
 		<FacebookProvider appId="891710347959626">
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</FacebookProvider>
 	</Provider>,
 	document.getElementById('root')
