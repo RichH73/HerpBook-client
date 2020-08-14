@@ -6,6 +6,7 @@ import * as actionCreators from '../../../actions/index';
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import { Like } from 'react-facebook';
 class Welcome extends Component {
 	state = {
 		news: '',
@@ -37,6 +38,9 @@ class Welcome extends Component {
 		return (
 			<React.Fragment>
 				<div className="welcome-page-main">{ReactHtmlParser(this.state.news)}</div>
+				<div style={{ width: '35%', margin: '1em auto' }}>
+					<Like href="https://www.facebook.com/HerpBookcom-2378686682182233" colorScheme="light" showFaces share />
+				</div>
 			</React.Fragment>
 		);
 	}

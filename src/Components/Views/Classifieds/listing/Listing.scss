@@ -1,7 +1,6 @@
 @import '../../../../index';
 
 @media screen and ($minWidth) {
-
 	.list-info {
 		display: grid;
 		grid-template-areas:
@@ -15,7 +14,6 @@
 	.list-box {
 		color: black;
 		margin: 1em auto;
-
 	}
 
 	.list-box a {
@@ -37,7 +35,7 @@
 
 	.list-description {
 		width: 96%;
-		margin: 2em auto .10px;
+		margin: 2em auto 0.1px;
 		grid-area: description;
 	}
 
@@ -74,13 +72,13 @@
 	}
 
 	.list-price-gender {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: gender;
 	}
 
 	.list-price {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: price;
 	}
@@ -90,12 +88,12 @@
 	}
 
 	.list-gender {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 	}
 
 	.list-weight {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: listWeight;
 	}
@@ -187,7 +185,7 @@
 
 	.list-description {
 		width: 96%;
-		margin: 2em auto .10px;
+		margin: 2em auto 0.1px;
 		grid-area: description;
 	}
 
@@ -223,7 +221,7 @@
 	}
 
 	.list-weight {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: listWeight;
 	}
@@ -232,9 +230,8 @@
 		font-weight: bold;
 	}
 
-
 	.list-price {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: price;
 	}
@@ -244,7 +241,7 @@
 	}
 
 	.list-gender {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: gender;
 	}
@@ -253,7 +250,7 @@
 		font-weight: bold;
 	}
 	.list-user-list-id {
-		margin: .5em auto;
+		margin: 0.5em auto;
 		text-align: center;
 		grid-area: listId;
 	}
