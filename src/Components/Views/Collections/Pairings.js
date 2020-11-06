@@ -50,7 +50,7 @@ class Pairings extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div>
+				<div className="collections-pairing-page">
 					<div>
 						<div>New Pairing</div>
 						<input type="text" />

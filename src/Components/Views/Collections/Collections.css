@@ -2,8 +2,9 @@
   border-color: orange;
 }
 
-.collections-tab-body {
-  padding: 10px;
+.collection-animal-common-info input {
+  width: 200px;
+  margin-bottom: 8px;
 }
 
 .react-tabs__tab--selected {
@@ -36,5 +37,13 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+.collections-animal-page {
+  padding: 10px;
+}
+
+.collections-animal-page {
+  padding: 10px;
 }
 /*# sourceMappingURL=Collections.css.map */

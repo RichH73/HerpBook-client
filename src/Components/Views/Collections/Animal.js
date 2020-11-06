@@ -25,7 +25,21 @@ class Animal extends Component {
 					</div>
 					<label>ID #: </label>
 					<div>
-						<input type="text" name="name" placeholder="4bkk34kadi9" />
+						<input type="text" name="name" placeholder="5e1fb48ee2dd8f353c06d765" />
+					</div>
+					<div>
+						<label>Sex:</label>
+						<div>
+							<select>
+								<option>Male</option>
+								<option>Female</option>
+								<option>Unknown</option>
+							</select>
+						</div>
+						<label>DOB: </label>
+						<div>
+							<input type="text" name="name" placeholder="5e1fb48ee2dd8f353c06d765" />
+						</div>
 					</div>
 				</div>
 			</div>

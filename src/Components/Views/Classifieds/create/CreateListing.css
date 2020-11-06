@@ -34,7 +34,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'weight weight weight' 'listId listId .' 'price price .' 'gender gender .' 'category category .' 'subCategory subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'weight weight weight' 'listId listId .' 'price price .' 'gender gender .' 'category category .' 'subCategory subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     text-align: center;
@@ -161,7 +161,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     margin: 1em auto;
@@ -281,7 +281,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     margin: 1em auto;

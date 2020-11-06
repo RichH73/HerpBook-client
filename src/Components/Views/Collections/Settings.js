@@ -3,50 +3,31 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import './Collections.css';
-import Pairings from './Pairings';
-import Feedings from './Feedings';
-import Animal from './Animal';
-import Settings from './Settings';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 
-class MyCollections extends Component {
+import BarcodeReader from 'react-barcode-reader';
+
+class Settings extends Component {
 	state = {};
 
-	componentDidMount() {
-		this.props.setPageTitle('Collections');
-	}
+	componentDidMount() {}
 
 	render() {
 		return (
-			<div className="collections-tab-header">
+			<React.Fragment>
 				<Tabs>
 					<TabList>
-						<Tab>Animal</Tab>
-						<Tab>Pairings</Tab>
-						<Tab>Feedings</Tab>
-						<Tab>Settings</Tab>
+						<Tab>Feeders</Tab>
+						<Tab>Supplies</Tab>
 					</TabList>
 					<div className="collections-tab-body">
-						<TabPanel>
-							<Animal />
-						</TabPanel>
-						<TabPanel>
-							<Pairings />
-						</TabPanel>
-						<TabPanel>
-							<Feedings />
-						</TabPanel>
-						<TabPanel>
-							<Settings />
-						</TabPanel>
+						<TabPanel></TabPanel>
 					</div>
 				</Tabs>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
@@ -63,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyCollections);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

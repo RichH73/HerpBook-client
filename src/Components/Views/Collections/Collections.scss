@@ -3,10 +3,15 @@
 }
 
 .collections-tab-body {
-    padding: 10px;
+    //padding: 10px;
 }
 
 .collections-tab-body img {
+}
+
+.collection-animal-common-info input {
+    width: 200px;
+    margin-bottom: 8px;
 }
 
 .react-tabs__tab--selected {
@@ -40,4 +45,12 @@ td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+  }
+
+  .collections-animal-page {
+      padding: 10px;
+  }
+  
+  .collections-animal-page {
+      padding: 10px;
   }
