@@ -7,13 +7,44 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 
+const tableData = [
+	{
+		// pairing: {
+		mate: '43gk4h4k26kh',
+		date: '01/13/20',
+
+		// }
+	},
+];
+
 class Pairings extends Component {
 	state = {};
 
 	componentDidMount() {}
 
+	pairMappings = (data) => {
+		return data.map((pair) => {
+			return (
+				<tr>
+					<td>{pair.mate}</td>
+					<td>{pair.date}</td>
+				</tr>
+			);
+		});
+	};
+
 	render() {
-		return <React.Fragment>Pairings</React.Fragment>;
+		return (
+			<React.Fragment>
+				<table>
+					<tr>
+						<th>Mate</th>
+						<th>Date</th>
+					</tr>
+					{this.pairMappings(tableData)}
+				</table>
+			</React.Fragment>
+		);
 	}
 }
 
