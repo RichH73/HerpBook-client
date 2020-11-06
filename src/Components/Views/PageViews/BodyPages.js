@@ -21,6 +21,7 @@ import NewVendor from '../VendorList/NewVendor/NewVendor';
 import Shame from '../Shame/Shame';
 import FIleShame from '../Shame/FileReport';
 import ShameReport from '../Shame/ViewShame/ViewShame';
+import MyCollections from '../Collections/MyCollections';
 
 const Pages = () => {
 	return (
@@ -46,6 +47,7 @@ const Pages = () => {
 			<Route path="/shames" component={Shame} />
 			<Route path="/file_report" component={FIleShame} />
 			<Route path="/view_shame" component={ShameReport} />
+			<Route path="/my_collections" component={MyCollections} />
 		</React.Fragment>
 	);
 };

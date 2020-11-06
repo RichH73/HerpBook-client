@@ -94,7 +94,7 @@
 .wall-of-shame-user-report-comment {
   width: 90%;
   margin: 1em auto;
-  border-bottom: .5px solid lightgray;
+  border-bottom: 0.5px solid lightgray;
 }
 
 .wall-of-shame-user-report-leave-comment {

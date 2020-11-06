@@ -43,6 +43,16 @@ class LeftNav extends Component {
 						</div>
 					</div>
 				</div>
+				<div className="left-main-navigation-outter-panel">
+					<div className="left-navigation-panel-header">
+						<h3>My Collections</h3>
+					</div>
+					<div className="left-main-nav">
+						<div className="left-nav-link">
+							<Link to="/my_collections">My Collections</Link>
+						</div>
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	};

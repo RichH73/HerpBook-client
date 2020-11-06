@@ -1,0 +1,20 @@
+.collections-tab-header {
+  border-color: orange;
+}
+
+.collections-tab-body {
+  padding: 10px;
+}
+
+.react-tabs__tab--selected {
+  border-color: orange;
+}
+
+.react-tabs__tab-list {
+  border-color: orange;
+}
+
+.collections-animal-page img {
+  width: 200px;
+}
+/*# sourceMappingURL=Collections.css.map */

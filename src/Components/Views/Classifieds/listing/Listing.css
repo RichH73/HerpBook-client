@@ -27,7 +27,7 @@
   }
   .list-description {
     width: 96%;
-    margin: 2em auto .10px;
+    margin: 2em auto 0.1px;
     -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
@@ -76,14 +76,14 @@
     grid-area: footer;
   }
   .list-price-gender {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: gender;
   }
   .list-price {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -93,11 +93,11 @@
     font-weight: bold;
   }
   .list-gender {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
   }
   .list-weight {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 2;
     -ms-grid-column: 2;
@@ -180,7 +180,7 @@
   }
   .list-description {
     width: 96%;
-    margin: 2em auto .10px;
+    margin: 2em auto 0.1px;
     -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
@@ -230,7 +230,7 @@
     grid-area: footer;
   }
   .list-weight {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 2;
     -ms-grid-column: 2;
@@ -240,7 +240,7 @@
     font-weight: bold;
   }
   .list-price {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -250,7 +250,7 @@
     font-weight: bold;
   }
   .list-gender {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
@@ -260,7 +260,7 @@
     font-weight: bold;
   }
   .list-user-list-id {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
     -ms-grid-row: 1;
     -ms-grid-column: 2;
