@@ -7,13 +7,32 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 
+import BarcodeReader from 'react-barcode-reader';
+
 class Feedings extends Component {
-	state = {};
+	state = {
+		data: 'Not Found',
+	};
 
 	componentDidMount() {}
 
+	handleScan(data) {
+		this.setState({
+			result: data,
+		});
+	}
+
+	handleError(err) {
+		console.error(err);
+	}
+
 	render() {
-		return <React.Fragment>Feedings</React.Fragment>;
+		return (
+			<React.Fragment>
+				<BarcodeReader onError={this.handleError} onScan={this.handleScan} />
+				<p>{this.state.result}</p>
+			</React.Fragment>
+		);
 	}
 }
 
