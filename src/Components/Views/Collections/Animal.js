@@ -29,6 +29,7 @@ class Animal extends Component {
 					<div className="collections-animal-quick-records-data">
 						<div>Last Feeding: {records.lastFed}</div>
 						<div>Last Shed: {records.lastShed}</div>
+						<div>Weight: {records.weight}</div>
 					</div>
 				</div>
 			);
@@ -54,7 +55,7 @@ class Animal extends Component {
 						<div className="collection-animal-id">
 							<label>ID #:</label>
 							<div>
-								<input type="text" name="animalID" placeholder={animal._id} />
+								<input type="text" name="animalID" value={animal._id} />
 							</div>
 						</div>
 

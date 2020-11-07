@@ -4,13 +4,14 @@ const initialState = {
 	dob: '02/20/20',
 	gender: 'male',
 	sire: '',
-	dam: '47ef87bec889en9',
+	dam: '47ef86bec891cn5',
 	quickRecords: {
 		lastShed: '10/23/20',
 		lastFed: '11/4/20',
 		foodType: 'Superworms',
+		weight: '64g',
 	},
-	comments: 'Some different comments to list in a box that should list some comments',
+	comments: 'He has paradox markings in front of both shoulders.',
 };
 
 const animal = (state = initialState, data) => {
