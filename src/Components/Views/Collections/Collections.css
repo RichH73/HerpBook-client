@@ -6,6 +6,7 @@
   display: -ms-grid;
   display: grid;
       grid-template-areas: 'img info';
+  margin-bottom: 1em;
 }
 
 .collection-animal-common-info {
@@ -58,6 +59,14 @@
   grid-area: sire;
 }
 
+.collection-animal-sire span {
+  width: 2em;
+  text-align: right;
+  font-size: .7rem;
+  color: blue;
+  cursor: pointer;
+}
+
 .collection-animal-sire input {
   width: 200px;
 }
@@ -67,6 +76,14 @@
   -ms-grid-row: 3;
   -ms-grid-column: 2;
   grid-area: dam;
+}
+
+.collection-animal-dam span {
+  width: 2em;
+  text-align: right;
+  font-size: .7rem;
+  color: blue;
+  cursor: pointer;
 }
 
 .collection-animal-dam input {
@@ -83,7 +100,14 @@
 
 .collection-animal-body {
   width: 100%;
-  background-color: lightblue;
+}
+
+.collections-animal-quick-records {
+  margin-bottom: 1em;
+}
+
+.collections-animal-quick-records-data {
+  padding-left: 1em;
 }
 
 .collections-tab-header {

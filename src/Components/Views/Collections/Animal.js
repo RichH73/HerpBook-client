@@ -6,20 +6,37 @@ import _ from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import 'react-quill/dist/quill.snow.css';
+import 'quill-emoji/dist/quill-emoji.css';
+import ReactQuill from 'react-quill';
 
 class Animal extends Component {
 	state = {};
 
 	componentDidMount() {}
 
+	handleChange = (value) => {
+		this.props.editText({
+			text: value,
+		});
+	};
+
 	displayRecords = (records) => {
-		records = '';
-		if (!!records.length) {
-			return <div className="collections-animal-quick-records">Quick Records</div>;
+		if (!!records) {
+			return (
+				<div className="collections-animal-quick-records">
+					<b>Quick Records</b>
+					<div className="collections-animal-quick-records-data">
+						<div>Last Feeding: {records.lastFed}</div>
+						<div>Last Shed: {records.lastShed}</div>
+					</div>
+				</div>
+			);
 		}
 	};
 
 	render() {
+		const animal = this.props.currentAnimal;
 		return (
 			<div className="collections-animal-page">
 				<div className="collection-animal-img-info">
@@ -30,35 +47,41 @@ class Animal extends Component {
 						<div className="collection-animal-name">
 							<label>Name:</label>
 							<div>
-								<input type="text" name="animalName" placeholder="" />
+								<input type="text" name="animalName" placeholder={animal.name} />
 							</div>
 						</div>
 
 						<div className="collection-animal-id">
 							<label>ID #:</label>
 							<div>
-								<input type="text" name="animalID" placeholder="" />
+								<input type="text" name="animalID" placeholder={animal._id} />
 							</div>
 						</div>
 
 						<div className="collection-animal-dob">
 							<label>DOB:</label>
 							<div>
-								<input type="text" name="animalDOB" placeholder="" />
+								<input type="text" name="animalDOB" placeholder={animal.dob} />
 							</div>
 						</div>
 
 						<div className="collection-animal-sire">
-							<label>Sire:</label>
+							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+								<label>Sire:</label>
+								{!!animal.sire.length ? <span name="viewLink">view</span> : ''}
+							</div>
 							<div>
-								<input type="text" name="animalSire" placeholder="" />
+								<input type="text" name="animalSire" placeholder={animal.sire} />
 							</div>
 						</div>
 
 						<div className="collection-animal-dam">
-							<label>Dam:</label>
+							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+								<label>Dam:</label>
+								{animal.dam.length ? <span name="viewLink">view</span> : ''}
+							</div>
 							<div>
-								<input type="text" name="animalDam" placeholder="" />
+								<input type="text" name="animalDam" placeholder={animal.dam} />
 							</div>
 						</div>
 						<div className="collection-animal-gender">
@@ -74,11 +97,20 @@ class Animal extends Component {
 					</div>
 				</div>
 				<div className="collection-animal-body">
-					{this.displayRecords()}
+					{this.displayRecords(animal.quickRecords)}
 					<div className="collection-animal-comments">
 						<label>Comments:</label>
 						<div>
-							<textarea type="text" name="animalComment" placeholder="" />
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="businessFooter"
+								value={this.props.currentAnimal.comments}
+								onChange={this.handleChange}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={false}
+								theme="snow"
+							/>
 						</div>
 					</div>
 				</div>
@@ -93,6 +125,8 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	mods: state.richText.modules,
+	currentAnimal: state.animal,
 });
 
 const mapDispatchToProps = (dispatch) => {
