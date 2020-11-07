@@ -1,10 +1,93 @@
-.collections-tab-header {
-  border-color: orange;
+.collections-animal-page {
+  padding: 10px;
 }
 
-.collection-animal-common-info input {
-  width: 200px;
+.collection-animal-img-info {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'img info';
+}
+
+.collection-animal-common-info {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'name sex' 'id dob' 'sire dam';
   margin-bottom: 8px;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: info;
+}
+
+.collection-animal-name {
+  width: 200px;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: name;
+}
+
+.collection-animal-name input {
+  width: 200px;
+}
+
+.collection-animal-id {
+  width: 200px;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: id;
+}
+
+.collection-animal-id input {
+  width: 200px;
+}
+
+.collection-animal-dob {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: dob;
+  width: 200px;
+}
+
+.collection-animal-dob input {
+  width: 100px;
+}
+
+.collection-animal-sire {
+  width: 200px;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: sire;
+}
+
+.collection-animal-sire input {
+  width: 200px;
+}
+
+.collection-animal-dam {
+  width: 200px;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: dam;
+}
+
+.collection-animal-dam input {
+  width: 200px;
+}
+
+.collection-animal-gender {
+  width: 200px;
+}
+
+.collection-animal-comment {
+  width: 200px;
+}
+
+.collection-animal-body {
+  width: 100%;
+  background-color: lightblue;
+}
+
+.collections-tab-header {
+  border-color: orange;
 }
 
 .react-tabs__tab--selected {
@@ -13,15 +96,6 @@
 
 .react-tabs__tab-list {
   border-color: orange;
-}
-
-.collections-animal-page {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
 .collections-animal-page img {
@@ -37,13 +111,5 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-}
-
-.collections-animal-page {
-  padding: 10px;
-}
-
-.collections-animal-page {
-  padding: 10px;
 }
 /*# sourceMappingURL=Collections.css.map */

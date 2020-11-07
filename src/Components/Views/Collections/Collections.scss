@@ -1,3 +1,86 @@
+
+
+// Start Animal
+.collections-animal-page {
+    padding: 10px;
+}
+
+.collection-animal-img-info {
+    display: grid;
+    grid-template-areas:
+    'img info';
+    
+}
+
+.collection-animal-common-info {
+    display: grid;
+    grid-template-areas:
+    'name sex'
+    'id dob'
+    'sire dam';
+    //width: 200px;
+    margin-bottom: 8px;
+    grid-area: info;
+}
+
+.collection-animal-name {
+    width: 200px;
+    grid-area: name;
+}
+.collection-animal-name input {
+    width: 200px;
+}
+
+.collection-animal-id {
+    width: 200px;
+    grid-area: id;
+}
+.collection-animal-id input {
+    width: 200px;
+}
+
+.collection-animal-dob {
+    grid-area: dob;
+    width: 200px;
+}
+.collection-animal-dob input{
+    width: 100px;
+}
+
+.collection-animal-sire {
+    width: 200px;
+    grid-area: sire;
+}
+.collection-animal-sire input {
+    width: 200px;
+}
+
+.collection-animal-dam {
+    width: 200px;
+    grid-area: dam;
+}
+
+.collection-animal-dam input {
+    width: 200px;
+}
+
+.collection-animal-gender {
+    width: 200px;
+}
+.collection-animal-comment {
+    width: 200px;
+}
+
+.collection-animal-body {
+    width: 100%;
+    background-color: lightblue;
+}
+
+
+// End Animal
+
+
+
 .collections-tab-header {
     border-color: orange;
 }
@@ -6,13 +89,7 @@
     //padding: 10px;
 }
 
-.collections-tab-body img {
-}
 
-.collection-animal-common-info input {
-    width: 200px;
-    margin-bottom: 8px;
-}
 
 .react-tabs__tab--selected {
     border-color: orange;
@@ -22,10 +99,7 @@
     border-color: orange;
 }
 
-.collections-animal-page {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .collections-animal-page img {
     width: 200px;
@@ -47,10 +121,4 @@ td, th {
     padding: 8px;
   }
 
-  .collections-animal-page {
-      padding: 10px;
-  }
   
-  .collections-animal-page {
-      padding: 10px;
-  }
