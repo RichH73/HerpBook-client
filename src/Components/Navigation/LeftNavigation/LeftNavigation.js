@@ -6,6 +6,22 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 
 class LeftNav extends Component {
+	collectionSelect = () => {
+		return (
+			<select onChange={this.selectAnimal} name="animal_select">
+				<option></option>
+				{this.props.collectionsIds.map((collection) => {
+					return <option value={collection._id}>{collection.name}</option>;
+				})}
+			</select>
+		);
+	};
+
+	selectAnimal = (event) => {
+		console.log(event.target.value);
+		this.props.setCurrentAnimal(event.target.value);
+	};
+
 	userNavigation = () => {
 		const { displayMessageCount } = this.props;
 		return (
@@ -49,7 +65,13 @@ class LeftNav extends Component {
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">
-							<Link to="/my_collections">My Collections</Link>
+							<div>
+								<Link to="/my_collections">My Collections</Link>
+							</div>
+							<label>Quick Lookup</label>
+							<div>
+								<this.collectionSelect />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -109,6 +131,7 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userCheck: state.user.uid,
 	displayMessageCount: state.messages.messageCount,
+	collectionsIds: state.wholeCollection,
 });
 
 const mapDispatchToProps = (dispatch) => {

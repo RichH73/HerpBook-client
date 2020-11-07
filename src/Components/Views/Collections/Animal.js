@@ -37,7 +37,16 @@ class Animal extends Component {
 	};
 
 	render() {
+		console.log(
+			this.props.collectionsIds.filter((collection) => {
+				return collection._id === this.props.selectedAnimalId;
+			})[0]
+		);
 		const animal = this.props.currentAnimal;
+		// const animal = this.props.collectionsIds.filter((collection) => {
+		// 	return collection._id === '5ef87bec889en9'
+		// })
+		// this.props.currentAnimal
 		return (
 			<div className="collections-animal-page">
 				<div className="collection-animal-img-info">
@@ -127,7 +136,9 @@ const mapStateToProps = (state) => ({
 	userInfo: state.user,
 	React: state.config.analytics,
 	mods: state.richText.modules,
-	currentAnimal: state.animal,
+	currentAnimal: state.viewAnimal,
+	selectedAnimalId: state.viewAnimal.selectedAnimal.id,
+	collectionsIds: state.wholeCollection,
 });
 
 const mapDispatchToProps = (dispatch) => {

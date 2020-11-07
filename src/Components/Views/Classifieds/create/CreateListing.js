@@ -63,7 +63,7 @@ class CreateListing extends React.Component {
 	}
 
 	onChangeHandler = (event) => {
-		console.log(this.props.newLisingData);
+		//console.log(this.props.newLisingData);
 		this.props.newListing([event.target.name], event.target.value);
 	};
 
@@ -183,7 +183,6 @@ class CreateListing extends React.Component {
 	};
 
 	weightSelect = () => {
-		console.log('weight');
 		return (
 			<select name="weightUnit" onChange={this.onChangeHandler}>
 				<option>Uint</option>

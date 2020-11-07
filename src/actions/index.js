@@ -10,6 +10,17 @@ export const setPageTitle = (pageTitle) => {
 	};
 };
 
+// Collections
+
+export const setCurrentAnimal = (id) => {
+	return {
+		type: 'new_selected_animal',
+		id,
+	};
+};
+
+// End Collections
+
 // Vedors listings
 export const vendorList = (data) => {
 	return {
