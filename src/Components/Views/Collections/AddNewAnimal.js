@@ -14,7 +14,9 @@ class AddNewAnimal extends Component {
 		data: 'Not Found',
 	};
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.props.getMyCollections({ uid: this.props.userInfo.uid });
+	}
 
 	handleScan(data) {
 		this.setState({
@@ -61,6 +63,9 @@ class AddNewAnimal extends Component {
 						<div>
 							<input type="text" name="dob" onChange={this.formChangeHandler} />
 						</div>
+					</div>
+					<div>
+						<button>Save</button>
 					</div>
 				</div>
 			</div>

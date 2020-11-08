@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _ from 'lodash';
+import _, { last } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
@@ -21,23 +21,61 @@ class Animal extends Component {
 		});
 	};
 
-	displayRecords = (records) => {
-		if (!!records) {
-			return (
-				<div className="collections-animal-quick-records">
-					<b>Quick Records</b>
-					<div className="collections-animal-quick-records-data">
-						<div>Last Feeding: {records.lastFed}</div>
-						<div>Last Shed: {records.lastShed}</div>
-						<div>Weight: {records.weight}</div>
-					</div>
-				</div>
-			);
-		}
+	quickRecords = (animal) => {
+		let feedings = animal.feedings;
+		let myInnerStuff = feedings.data.map((feed) => feed);
+		_.forEach(myInnerStuff.pop(), (attr) => {
+			console.log(attr);
+		});
+		console.log(
+			_.forEach(myInnerStuff.pop(), (attr) => {
+				return attr;
+			})
+		);
+		//   return (
+		// 	<tr>
+		// 	<td>{feeding.label}</td>
+		// 	<td>Date: {feeding.date}</td>
+		// 	<td>Feeder Type: {feeding.foodType}</td>
+		// 	<td>Feeder Weight: {feeding.foodWeight}</td>
+		//   </tr>
+		//   )
+
+		//   if (!!animal) {
+		// 	let lastPairing = animal.pairings.pop();
+		//   return (
+		//     <div className="collections-animal-quick-records">
+		//       <b>Quick Records</b>
+		//       <div className="collections-animal-quick-records-data">
+		//         <table>
+		// 		  {myTest}
+		//           <tr>
+		//             <td>Last Feeding</td>
+		//             <td>Date: {lastFeeding.date}</td>
+		//             <td>Feeder Type: {lastFeeding.foodType}</td>
+		//             <td>Feeder Weight: {lastFeeding.foodWeight}</td>
+		//           </tr>
+		//           <tr>
+		//             <td>Last Pairing</td>
+		//             <td>Date: {lastPairing.date}</td>
+		//             <td>Mate: {lastPairing.mate}</td>
+		//             <td>Whitnessed: {lastPairing.whitnessed}</td>
+		//           </tr>
+		//         </table>
+		//       </div>
+		//       <div>Last Shed: {animal.lastShed}</div>
+		//       <div>Weight: {animal.weight}</div>
+		//     </div>
+		//   );
+		// }
+	};
+
+	viewRecord = (id) => {
+		this.props.setCurrentAnimal(id);
 	};
 
 	render() {
-		const animal = this.props.collectionsIds.filter((collection) => {
+		const animal = this.props.collectionsData.filter((collection) => {
 			return collection._id === this.props.selectedAnimalId;
 		})[0];
 
@@ -72,7 +110,13 @@ class Animal extends Component {
 						<div className="collection-animal-sire">
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<label>Sire:</label>
-								{!!animal.sire.length ? <span name="viewLink">view</span> : ''}
+								{!!animal.sire.length ? (
+									<span name="viewLink" onClick={() => this.viewRecord(animal.sire)}>
+										view
+									</span>
+								) : (
+									''
+								)}
 							</div>
 							<div>
 								<input type="text" name="animalSire" placeholder={animal.sire} />
@@ -101,7 +145,7 @@ class Animal extends Component {
 					</div>
 				</div>
 				<div className="collection-animal-body">
-					{this.displayRecords(animal.quickRecords)}
+					{this.quickRecords(animal)}
 					<div className="collection-animal-comments">
 						<label>Comments:</label>
 						<div>
@@ -133,6 +177,7 @@ const mapStateToProps = (state) => ({
 	currentAnimal: state.viewAnimal,
 	selectedAnimalId: state.selectedAnimal.id,
 	collectionsIds: state.wholeCollection,
+	collectionsData: state.wholeCollection.collections,
 });
 
 const mapDispatchToProps = (dispatch) => {

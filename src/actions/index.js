@@ -26,6 +26,31 @@ export const createAnimalData = (data) => {
 	};
 };
 
+const loadMyCollections = (data) => {
+	return {
+		type: 'my_collections_data',
+		data,
+	};
+};
+
+export const getMyCollections = (data) => {
+	console.log('this is some data', data);
+	return function (dispatch) {
+		axios({
+			method: 'post',
+			url: `${API}/collections/my_collections`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				userId: data.uid,
+			},
+		}).then((response) => {
+			dispatch(loadMyCollections(response.data));
+		});
+	};
+};
+
 // End Collections
 
 // Vedors listings

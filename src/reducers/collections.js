@@ -16,7 +16,9 @@ const initialState = {
 	comments: '',
 };
 
-const wholeCollectionInitialData = [{}];
+const wholeCollectionInitialData = {
+	collections: [],
+};
 const initialSelectedAnimal = {
 	id: '',
 };
@@ -34,7 +36,15 @@ export const viewAnimal = (state = initialState, data) => {
 };
 
 export const wholeCollection = (state = wholeCollectionInitialData, data) => {
-	return state;
+	switch (data.type) {
+		case 'my_collections_data':
+			return {
+				...state,
+				collections: data.data,
+			};
+		default:
+			return state;
+	}
 };
 
 export const selectedAnimal = (state = initialSelectedAnimal, data) => {

@@ -10,7 +10,7 @@ class LeftNav extends Component {
 		return (
 			<select onChange={this.selectAnimal} name="animal_select">
 				<option></option>
-				{this.props.collectionsIds.map((collection) => {
+				{this.props.collectionsData.map((collection) => {
 					return <option value={collection._id}>{collection.name}</option>;
 				})}
 			</select>
@@ -18,7 +18,6 @@ class LeftNav extends Component {
 	};
 
 	selectAnimal = (event) => {
-		console.log(event.target.value);
 		this.props.setCurrentAnimal(event.target.value);
 	};
 
@@ -132,6 +131,7 @@ const mapStateToProps = (state) => ({
 	userCheck: state.user.uid,
 	displayMessageCount: state.messages.messageCount,
 	collectionsIds: state.wholeCollection,
+	collectionsData: state.wholeCollection.collections,
 });
 
 const mapDispatchToProps = (dispatch) => {
