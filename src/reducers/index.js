@@ -16,7 +16,7 @@ import messageReply from './messageReply';
 import richText from './richText';
 import { spinner } from './tools';
 import { subCategoryListings } from './classified';
-import { viewAnimal, wholeCollection, selectedAnimal } from './collections';
+import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
 
 const allReducers = combineReducers({
@@ -41,6 +41,7 @@ const allReducers = combineReducers({
 	viewAnimal,
 	wholeCollection,
 	selectedAnimal,
+	createNewAnimal,
 });
 
 export default allReducers;

@@ -22,12 +22,49 @@ class AddNewAnimal extends Component {
 		});
 	}
 
+	formChangeHandler = (event) => {
+		console.log(event);
+		this.props.createAnimalData({
+			[event.target.name]: event.target.value,
+		});
+	};
+
 	handleError(err) {
 		console.error(err);
 	}
 
 	render() {
-		return <React.Fragment>Add a new Critter here...</React.Fragment>;
+		return (
+			<div className="collections-create-new-animal">
+				<div className="collections-create-new-animal-images"></div>
+				<div className="collections-create-new-animal-form">
+					<div>
+						<label>Name:</label>
+						<div>
+							<input type="text" name="name" onChange={this.formChangeHandler} />
+						</div>
+					</div>
+					<div>
+						<label>Sire:</label>
+						<div>
+							<input type="text" name="sire" onChange={this.formChangeHandler} />
+						</div>
+					</div>
+					<div>
+						<label>Dam:</label>
+						<div>
+							<input type="text" name="dam" onChange={this.formChangeHandler} />
+						</div>
+					</div>
+					<div>
+						<label>DOB:</label>
+						<div>
+							<input type="text" name="dob" onChange={this.formChangeHandler} />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 	}
 }
 

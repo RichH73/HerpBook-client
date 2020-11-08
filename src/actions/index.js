@@ -19,6 +19,13 @@ export const setCurrentAnimal = (id) => {
 	};
 };
 
+export const createAnimalData = (data) => {
+	return {
+		type: 'create_new_animal_data',
+		data,
+	};
+};
+
 // End Collections
 
 // Vedors listings
