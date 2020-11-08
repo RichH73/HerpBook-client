@@ -37,16 +37,10 @@ class Animal extends Component {
 	};
 
 	render() {
-		console.log(
-			this.props.collectionsIds.filter((collection) => {
-				return collection._id === this.props.selectedAnimalId;
-			})[0]
-		);
-		const animal = this.props.currentAnimal;
-		// const animal = this.props.collectionsIds.filter((collection) => {
-		// 	return collection._id === '5ef87bec889en9'
-		// })
-		// this.props.currentAnimal
+		const animal = this.props.collectionsIds.filter((collection) => {
+			return collection._id === this.props.selectedAnimalId;
+		})[0];
+
 		return (
 			<div className="collections-animal-page">
 				<div className="collection-animal-img-info">
@@ -114,7 +108,7 @@ class Animal extends Component {
 							<ReactQuill
 								style={{ backgroundColor: 'white', color: 'black' }}
 								name="businessFooter"
-								value={this.props.currentAnimal.comments}
+								value={animal.comments}
 								onChange={this.handleChange}
 								modules={this.props.mods.modules}
 								formats={this.props.mods.formats}
@@ -137,7 +131,7 @@ const mapStateToProps = (state) => ({
 	React: state.config.analytics,
 	mods: state.richText.modules,
 	currentAnimal: state.viewAnimal,
-	selectedAnimalId: state.viewAnimal.selectedAnimal.id,
+	selectedAnimalId: state.selectedAnimal.id,
 	collectionsIds: state.wholeCollection,
 });
 

@@ -9,6 +9,8 @@ import Pairings from './Pairings';
 import Feedings from './Feedings';
 import Animal from './Animal';
 import Settings from './Settings';
+import Activity from './Activity';
+import AddNewAnimal from './AddNewAnimal';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -21,7 +23,7 @@ class MyCollections extends Component {
 		this.props.setPageTitle('Collections');
 	}
 
-	render() {
+	tabs = () => {
 		return (
 			<div className="collections-tab-header">
 				<Tabs>
@@ -29,6 +31,7 @@ class MyCollections extends Component {
 						<Tab>Animal</Tab>
 						<Tab>Pairings</Tab>
 						<Tab>Feedings</Tab>
+						<Tab>Activity</Tab>
 						<Tab>Settings</Tab>
 					</TabList>
 					<div className="collections-tab-body">
@@ -42,12 +45,19 @@ class MyCollections extends Component {
 							<Feedings />
 						</TabPanel>
 						<TabPanel>
+							<Activity />
+						</TabPanel>
+						<TabPanel>
 							<Settings />
 						</TabPanel>
 					</div>
 				</Tabs>
 			</div>
 		);
+	};
+
+	render() {
+		return !!this.props.selectedAnimalId.length ? this.tabs() : <AddNewAnimal />;
 	}
 }
 
@@ -57,6 +67,9 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	currentAnimal: state.viewAnimal,
+	selectedAnimalId: state.selectedAnimal.id,
+	collectionsIds: state.wholeCollection,
 });
 
 const mapDispatchToProps = (dispatch) => {

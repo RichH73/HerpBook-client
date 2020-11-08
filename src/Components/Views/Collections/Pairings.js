@@ -49,7 +49,7 @@ class Pairings extends Component {
 
 	render() {
 		return (
-			<React.Fragment>
+			<div style={{ padding: '10px' }}>
 				<div className="collections-pairing-page">
 					<div>
 						<div>New Pairing</div>
@@ -66,7 +66,7 @@ class Pairings extends Component {
 						{this.pairMappings(tableData)}
 					</table>
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
