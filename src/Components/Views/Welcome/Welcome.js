@@ -38,8 +38,8 @@ class Welcome extends Component {
 		return (
 			<React.Fragment>
 				<div className="welcome-page-main">{ReactHtmlParser(this.state.news)}</div>
-				<div style={{ width: '35%', margin: '1em auto' }}>
-					<Like href="https://www.facebook.com/HerpBookcom-2378686682182233" colorScheme="light" showFaces share />
+				<div className="welcome-page-fb-like">
+					<Like href="https://www.facebook.com/HerpBookcom-2378686682182233" colorScheme="light" share />
 				</div>
 			</React.Fragment>
 		);

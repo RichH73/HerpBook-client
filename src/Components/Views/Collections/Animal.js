@@ -45,34 +45,6 @@ class Animal extends Component {
 				</div>
 			</div>
 		);
-
-		//   if (!!animal) {
-		// 	let lastPairing = animal.pairings.pop();
-		//   return (
-		//     <div className="collections-animal-quick-records">
-		//       <b>Quick Records</b>
-		//       <div className="collections-animal-quick-records-data">
-		//         <table>
-		// 		  {myTest}
-		//           <tr>
-		//             <td>Last Feeding</td>
-		//             <td>Date: {lastFeeding.date}</td>
-		//             <td>Feeder Type: {lastFeeding.foodType}</td>
-		//             <td>Feeder Weight: {lastFeeding.foodWeight}</td>
-		//           </tr>
-		//           <tr>
-		//             <td>Last Pairing</td>
-		//             <td>Date: {lastPairing.date}</td>
-		//             <td>Mate: {lastPairing.mate}</td>
-		//             <td>Whitnessed: {lastPairing.whitnessed}</td>
-		//           </tr>
-		//         </table>
-		//       </div>
-		//       <div>Last Shed: {animal.lastShed}</div>
-		//       <div>Weight: {animal.weight}</div>
-		//     </div>
-		//   );
-		// }
 	};
 
 	viewRecord = (id) => {
@@ -138,8 +110,8 @@ class Animal extends Component {
 							</div>
 						</div>
 						<div className="collection-animal-gender">
-							<label>Sex:</label>
-							<div className="collection-animal-sex">
+							<label>Gender:</label>
+							<div className="collection-animal-gender">
 								<select>
 									<option>Male</option>
 									<option>Female</option>

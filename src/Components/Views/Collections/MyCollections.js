@@ -12,6 +12,8 @@ import Settings from './Settings';
 import Activity from './Activity';
 import AddNewAnimal from './AddNewAnimal';
 
+import queryString from 'query-string';
+
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
@@ -57,6 +59,7 @@ class MyCollections extends Component {
 	};
 
 	render() {
+		console.log('my opening props...', queryString.parse(this.props.location.search));
 		return !!this.props.selectedAnimalId.length ? this.tabs() : <AddNewAnimal />;
 	}
 }

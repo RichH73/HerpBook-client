@@ -1,4 +1,4 @@
-
+@import '../../../index';
 
 // Start Animal
 .collections-animal-page {
@@ -13,10 +13,14 @@
     
 }
 
+.collection-animal-image {
+    grid-area: img;
+}
+
 .collection-animal-common-info {
     display: grid;
     grid-template-areas:
-    'name sex'
+    'name gender'
     'id dob'
     'sire dam';
     //width: 200px;
@@ -81,6 +85,7 @@
 }
 
 .collection-animal-gender {
+    grid-area: gender;
     width: 200px;
 }
 .collection-animal-comment {
@@ -103,6 +108,74 @@
 
 
 // End Animal
+
+// Create Animal
+
+.collections-create-new-animal {
+    display: grid;
+    grid-template-areas:
+    'new-animal-form'
+    'new-animal-images';
+}
+
+.collections-create-new-animal-images {
+    grid-area: new-animal-images;
+}
+
+.collections-create-new-animal-form {
+    width: 90%;
+    margin: auto;
+    grid-area: new-animal-form;
+    display: grid;
+    grid-template-areas:
+    'create-name create-dob'
+    'create-sire create-dam'
+    '.. create-button';
+}
+
+.collections-create-new-animal-form input {
+    margin: 5px 0;
+}
+
+.collections-create-new-animal-name {
+    grid-area: create-name;
+    width: 200px;
+}
+
+.collections-create-new-animal-dob {
+    grid-area: create-dob;
+}
+
+.collections-create-new-animal-sire {
+    grid-area: create-sire;
+}
+
+.collections-create-new-animal-dam {
+    grid-area: create-dam;
+}
+
+.collections-create-new-animal-button {
+    grid-area: create-button;
+    padding: 8px;
+}
+
+.collections-create-new-animal-button button {
+    width: 80px;
+}
+
+.collections-create-new-animal-img-drop {
+
+}
+
+.collections-create-new-animal-img-drop-dropbox {
+    width: 60%;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid $borderColor;
+    background-color: $panelBodyColor;
+    margin: auto;
+}
+// End Create Animal
 
 
 
