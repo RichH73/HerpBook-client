@@ -22,24 +22,29 @@ class Animal extends Component {
 	};
 
 	quickRecords = (animal) => {
-		let feedings = animal.feedings;
-		let myInnerStuff = feedings.data.map((feed) => feed);
-		_.forEach(myInnerStuff.pop(), (attr) => {
-			console.log(attr);
-		});
-		console.log(
-			_.forEach(myInnerStuff.pop(), (attr) => {
-				return attr;
-			})
+		let feedings = animal.feedings.pop();
+		let lastPairing = animal.pairings.pop();
+		return (
+			<div className="collections-animal-quick-records">
+				Quick Records
+				<div className="collections-animal-quick-records-data">
+					<table>
+						<tr>
+							<td>Last Feeding</td>
+							<td>Date: {feedings.date}</td>
+							<td>Feeder Type: {feedings.feederType}</td>
+							<td>Feeder Weight: {feedings.feederWeight}</td>
+						</tr>
+						<tr>
+							<td>Last Pairing</td>
+							<td>Date: {lastPairing.date}</td>
+							<td>Mate: {lastPairing.mate}</td>
+							<td>Whitnessed: {lastPairing.whitnessed}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		);
-		//   return (
-		// 	<tr>
-		// 	<td>{feeding.label}</td>
-		// 	<td>Date: {feeding.date}</td>
-		// 	<td>Feeder Type: {feeding.foodType}</td>
-		// 	<td>Feeder Weight: {feeding.foodWeight}</td>
-		//   </tr>
-		//   )
 
 		//   if (!!animal) {
 		// 	let lastPairing = animal.pairings.pop();

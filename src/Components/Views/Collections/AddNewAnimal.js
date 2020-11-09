@@ -8,10 +8,12 @@ import axios from 'axios';
 import ReactGA from 'react-ga';
 
 import BarcodeReader from 'react-barcode-reader';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class AddNewAnimal extends Component {
 	state = {
-		data: 'Not Found',
+		startDate: '',
 	};
 
 	componentDidMount() {
@@ -23,6 +25,12 @@ class AddNewAnimal extends Component {
 			result: data,
 		});
 	}
+
+	handleDate = (date) => {
+		this.props.createAnimalData({
+			dob: date,
+		});
+	};
 
 	formChangeHandler = (event) => {
 		console.log(event);
@@ -61,7 +69,7 @@ class AddNewAnimal extends Component {
 					<div>
 						<label>DOB:</label>
 						<div>
-							<input type="text" name="dob" onChange={this.formChangeHandler} />
+							<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
 						</div>
 					</div>
 					<div>
@@ -79,6 +87,7 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	createAnimal: state.createNewAnimal,
 });
 
 const mapDispatchToProps = (dispatch) => {
