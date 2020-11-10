@@ -55,7 +55,6 @@ class AddNewAnimal extends Component {
 			url: `${this.props.API}/collections/new_collection`,
 			headers: {
 				Authorization: `Bearer ${localStorage.token}`,
-				enctype: 'mylipart/form-data',
 			},
 			data: fileData,
 		}).then((response) => {
@@ -148,6 +147,7 @@ const mapStateToProps = (state) => ({
 	createAnimal: state.createNewAnimal,
 	sendFiles: state.imageHandler.sendFiles,
 	creatorId: state.user.uid,
+	username: state.user.username,
 });
 
 const mapDispatchToProps = (dispatch) => {

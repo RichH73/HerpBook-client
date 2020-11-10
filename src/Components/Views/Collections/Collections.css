@@ -209,6 +209,10 @@
   margin: auto;
 }
 
+.img-preview img {
+  width: 100px;
+}
+
 .collections-tab-header {
   border-color: orange;
 }
