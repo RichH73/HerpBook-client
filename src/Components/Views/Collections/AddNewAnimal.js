@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _ from 'lodash';
+import _, { includes } from 'lodash';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -26,7 +26,7 @@ class AddNewAnimal extends Component {
 	onSubmitHandler = (event) => {
 		event.preventDefault();
 
-		//this.props.pageLoading(true);
+		this.props.pageLoading(true);
 		let images = [];
 		let fileData = new FormData();
 		let imgFiles = this.props.sendFiles;
@@ -44,12 +44,9 @@ class AddNewAnimal extends Component {
 			images: images,
 			...this.props.createAnimal,
 		};
+
 		fileData.append('newCollectionInfo', JSON.stringify(newCollectionInfo));
 
-		console.log(fileData);
-
-		// let newCollectionInfo = this.props.createAnimal
-		// Object.assign(newCollectionInfo, {owner: this.props.userInfo.uid})
 		axios({
 			method: 'post',
 			url: `${this.props.API}/collections/new_collection`,
@@ -57,9 +54,36 @@ class AddNewAnimal extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: fileData,
-		}).then((response) => {
-			console.log(response.data);
-		});
+		})
+			.then((response) => {
+				this.props.pageLoading(false);
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	category_menu = () => {
+		const filteredItems = [5, 11];
+		if (this.props.categoryItems.length > 0) {
+			let filterCategories = this.props.categoryItems.filter((cat) => {
+				return !includes(filteredItems, cat.id);
+			});
+			return filterCategories.map((category) => (
+				<option key={category.name} value={category.id}>
+					{category.name}
+				</option>
+			));
+		}
+	};
+
+	sub_category_menu = () => {
+		return _.filter(this.props.sub_categoryItems, ['category_id', _.toNumber(this.props.category)]).map((sub) => (
+			<option key={sub.name} value={sub.id}>
+				{sub.name}
+			</option>
+		));
 	};
 
 	handleScan(data) {
@@ -78,6 +102,13 @@ class AddNewAnimal extends Component {
 		console.log(event);
 		this.props.createAnimalData({
 			[event.target.name]: event.target.value,
+		});
+	};
+
+	categoryChangeHandler = (event) => {
+		console.log(event);
+		this.props.createAnimalData({
+			[event.target.name]: _.toNumber(event.target.value),
 		});
 	};
 
@@ -127,6 +158,25 @@ class AddNewAnimal extends Component {
 							</select>
 						</div>
 					</div>
+					<div className="collections-create-new-animal-category">
+						<label>Category: </label>
+						<select id="category" required name="category" onChange={this.categoryChangeHandler}>
+							<option value="">Choose a category</option>
+							{this.category_menu()}
+						</select>
+					</div>
+
+					{!!this.props.createAnimal.category ? (
+						<div className="collections-create-new-animal-sub-category">
+							<label>Sub category: </label>
+							<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
+								<option value="">Choose a category</option>
+								{this.sub_category_menu()}
+							</select>
+						</div>
+					) : (
+						''
+					)}
 				</div>
 				<div className="collections-create-new-animal-footer">
 					<div className="collections-create-new-animal-button">
@@ -141,12 +191,15 @@ class AddNewAnimal extends Component {
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	USERSURL: state.config.server.usersURL,
+	category: state.createNewAnimal.category,
+	categoryItems: state.categories.categories,
+	createAnimal: state.createNewAnimal,
+	creatorId: state.user.uid,
+	React: state.config.analytics,
+	sendFiles: state.imageHandler.sendFiles,
+	sub_categoryItems: state.categories.subCategories,
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
-	React: state.config.analytics,
-	createAnimal: state.createNewAnimal,
-	sendFiles: state.imageHandler.sendFiles,
-	creatorId: state.user.uid,
 	username: state.user.username,
 });
 

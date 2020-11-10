@@ -26,8 +26,24 @@ class Activity extends Component {
 		console.error(err);
 	}
 
+	thisShow = () => {
+		this.props.displayLargeImage({
+			display: 'block',
+			img: 'https://users.herpbook.com/rich/collections/perry/large_gecko_corner.jpg',
+			name: 'some image',
+		});
+	};
+	thisHide = () => {
+		this.props.hideLargeImage();
+	};
+
 	render() {
-		return <div style={{ padding: '10px' }}>Some activity?</div>;
+		return (
+			<React.Fragment>
+				<div style={{ padding: '10px' }}>Some activity?</div>;<button onClick={this.thisShow}>On</button>
+				<button onClick={this.thisHide}>Off</button>
+			</React.Fragment>
+		);
 	}
 }
 

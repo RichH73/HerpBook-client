@@ -144,7 +144,7 @@
   grid-area: new-animal-form;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender';
+      grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
 }
 
 .collections-create-new-animal-footer {
@@ -211,6 +211,19 @@
 
 .img-preview img {
   width: 100px;
+}
+
+.collections-create-new-animal-category {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: category;
+  margin-bottom: 8px;
+}
+
+.collections-create-new-animal-sub-category {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: sub-category;
 }
 
 .collections-tab-header {

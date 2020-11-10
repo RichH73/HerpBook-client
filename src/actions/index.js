@@ -10,6 +10,25 @@ export const setPageTitle = (pageTitle) => {
 	};
 };
 
+// Large Image Display
+export const displayLargeImage = (data) => {
+	return {
+		type: 'floating_image',
+		display: data.display,
+		img: data.img,
+		name: data.name,
+	};
+};
+export const hideLargeImage = () => {
+	return {
+		type: 'floating_image',
+		display: 'none',
+		img: '',
+		name: '',
+	};
+};
+// Large Image END
+
 // Collections
 
 export const setCurrentAnimal = (id) => {
@@ -33,8 +52,14 @@ const loadMyCollections = (data) => {
 	};
 };
 
+export const currentAnimalDisplay = (data) => {
+	return {
+		type: 'display_animal',
+		data,
+	};
+};
+
 export const getMyCollections = (data) => {
-	console.log('this is some data', data);
 	return function (dispatch) {
 		axios({
 			method: 'post',

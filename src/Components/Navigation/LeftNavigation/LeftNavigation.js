@@ -19,6 +19,11 @@ class LeftNav extends Component {
 
 	selectAnimal = (event) => {
 		this.props.setCurrentAnimal(event.target.value);
+		const animal = this.props.collectionsData.filter((collection) => {
+			return collection._id === this.props.selectedAnimalId;
+		})[0];
+		this.props.currentAnimalDisplay(animal);
+		// this.props.currentAnimalDisplay(animal)
 	};
 
 	userNavigation = () => {

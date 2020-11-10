@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _, { last } from 'lodash';
+import _ from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
+import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
 
 class Animal extends Component {
 	state = {};
 
-	componentDidMount() {}
+	componentDidMount() {
+		const animal = this.props.collectionsData.filter((collection) => {
+			return collection._id === this.props.selectedAnimalId;
+		})[0];
+		this.props.currentAnimalDisplay(animal);
+	}
+
+	componentWillUnmount() {
+		this.props.hideLargeImage();
+	}
+
+	searchId = (id) => {};
 
 	handleChange = (value) => {
 		this.props.editText({
@@ -48,19 +60,36 @@ class Animal extends Component {
 	};
 
 	viewRecord = (id) => {
-		this.props.setCurrentAnimal(id);
+		// this.props.setCurrentAnimal(id);
+		console.log(id);
+	};
+
+	largImage = (img) => {
+		console.log('i clicky the thing', img);
+		this.props.displayLargeImage({
+			display: 'block',
+			img: `${img.URL}/${img.large}`,
+			name: img.large,
+		});
+	};
+
+	showImage = (images) => {
+		const firstImg = _.first(images);
+		console.log('url', _.get(firstImg, 'URL'));
+		return (
+			<img src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} onClick={() => this.largImage(firstImg)} />
+		);
 	};
 
 	render() {
-		const animal = this.props.collectionsData.filter((collection) => {
-			return collection._id === this.props.selectedAnimalId;
-		})[0];
+		const animal = this.props.currentAnimal;
 
 		return (
 			<div className="collections-animal-page">
 				<div className="collection-animal-img-info">
 					<div className="collection-animal-image">
-						<img src="images/perry.jpg" />
+						{this.showImage(animal.images)}
+						{/* <img src="images/perry.jpg" /> */}
 					</div>
 					<div className="collection-animal-common-info">
 						<div className="collection-animal-name">
@@ -122,7 +151,7 @@ class Animal extends Component {
 					</div>
 				</div>
 				<div className="collection-animal-body">
-					{this.quickRecords(animal)}
+					{/* {this.quickRecords(animal)} */}
 					<div className="collection-animal-comments">
 						<label>Comments:</label>
 						<div>

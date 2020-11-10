@@ -5,22 +5,27 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import LeftNav from '../../Navigation/LeftNavigation/LeftNavigation';
 import Pages from '../../Views/PageViews/BodyPages';
+import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
+
 class Body extends Component {
 	render() {
 		return (
-			<div className="main-body-view">
-				<div className="body-left-panel">
-					<LeftNav history={this.props.history} />
-				</div>
-				<div className="body-main-panel">
-					<div className="body-main-outter-panel">
-						<div className="body-main-header">
-							<h3>{this.props.navPageId}</h3>
+			<React.Fragment>
+				<div className="main-body-view">
+					<LargeImage />
+					<div className="body-left-panel">
+						<LeftNav history={this.props.history} />
+					</div>
+					<div className="body-main-panel">
+						<div className="body-main-outter-panel">
+							<div className="body-main-header">
+								<h3>{this.props.navPageId}</h3>
+							</div>
+							<Pages />
 						</div>
-						<Pages />
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

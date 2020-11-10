@@ -26,9 +26,10 @@ const initialSelectedAnimal = {
 export const viewAnimal = (state = initialState, data) => {
 	switch (data.type) {
 		case 'display_animal':
-			console.log('this animal is', data.selectedAnimal);
+			console.log('this animal is', data);
 			return {
 				...state,
+				...data.data,
 			};
 		default:
 			return state;

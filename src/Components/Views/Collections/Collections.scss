@@ -132,7 +132,9 @@
     grid-template-areas:
     'create-name create-dob'
     'create-sire create-dam'
-    '... create-gender';
+    '... create-gender'
+    'category ...'
+    'sub-category ...';
 }
 
 .collections-create-new-animal-footer {
@@ -192,6 +194,17 @@
 .img-preview img {
     width: 100px;
 }
+
+.collections-create-new-animal-category {
+    grid-area: category;
+    margin-bottom: 8px;
+}
+
+.collections-create-new-animal-sub-category {
+    grid-area: sub-category;
+}
+
+
 // End Create Animal
 
 

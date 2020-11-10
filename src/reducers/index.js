@@ -18,6 +18,7 @@ import { spinner } from './tools';
 import { subCategoryListings } from './classified';
 import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
+import showFloatingImage from './floatingImage';
 
 const allReducers = combineReducers({
 	categories,
@@ -42,6 +43,7 @@ const allReducers = combineReducers({
 	wholeCollection,
 	selectedAnimal,
 	createNewAnimal,
+	showFloatingImage,
 });
 
 export default allReducers;

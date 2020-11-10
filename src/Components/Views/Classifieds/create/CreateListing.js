@@ -185,7 +185,7 @@ class CreateListing extends React.Component {
 	weightSelect = () => {
 		return (
 			<select name="weightUnit" onChange={this.onChangeHandler}>
-				<option>Uint</option>
+				<option>Unit</option>
 				<option value="gm">gm</option>
 				<option value="kg">kg</option>
 				<option value="oz">oz</option>
