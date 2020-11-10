@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
+import _ from 'lodash';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -21,6 +22,46 @@ class AddNewAnimal extends Component {
 	componentDidMount() {
 		this.props.getMyCollections({ uid: this.props.userInfo.uid });
 	}
+
+	onSubmitHandler = (event) => {
+		event.preventDefault();
+
+		//this.props.pageLoading(true);
+		let images = [];
+		let fileData = new FormData();
+		let imgFiles = this.props.sendFiles;
+		_.forEach(imgFiles, function (file) {
+			fileData.append('file', file);
+			images.push(file.name);
+		});
+		let files = this.props.sendFiles;
+		files.forEach((file) => {
+			fileData.append('files', file);
+		});
+		let newCollectionInfo = {
+			owner: this.props.creatorId,
+			user: this.props.username,
+			images: images,
+			...this.props.createAnimal,
+		};
+		fileData.append('newCollectionInfo', JSON.stringify(newCollectionInfo));
+
+		console.log(fileData);
+
+		// let newCollectionInfo = this.props.createAnimal
+		// Object.assign(newCollectionInfo, {owner: this.props.userInfo.uid})
+		axios({
+			method: 'post',
+			url: `${this.props.API}/collections/new_collection`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+				enctype: 'mylipart/form-data',
+			},
+			data: fileData,
+		}).then((response) => {
+			console.log(response.data);
+		});
+	};
 
 	handleScan(data) {
 		this.setState({
@@ -76,8 +117,21 @@ class AddNewAnimal extends Component {
 							<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
 						</div>
 					</div>
+					<div className="collections-create-new-animal-gender">
+						<label>Gender:</label>
+						<div>
+							<select name="gender" onChange={this.formChangeHandler}>
+								<option>Choose</option>
+								<option value="MALE">Male</option>
+								<option value="FEMALE">Female</option>
+								<option value="UNKNOWN">Unknown</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div className="collections-create-new-animal-footer">
 					<div className="collections-create-new-animal-button">
-						<button>Save</button>
+						<button onClick={this.onSubmitHandler}>Save</button>
 					</div>
 				</div>
 			</div>
@@ -92,6 +146,8 @@ const mapStateToProps = (state) => ({
 	userInfo: state.user,
 	React: state.config.analytics,
 	createAnimal: state.createNewAnimal,
+	sendFiles: state.imageHandler.sendFiles,
+	creatorId: state.user.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {
