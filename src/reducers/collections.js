@@ -1,18 +1,13 @@
 const initialState = {
-	selectedAnimal: '',
 	name: '',
 	_id: '',
 	dob: '',
 	gender: '',
 	sire: '',
 	dam: '',
-	baseImage: '',
-	quickRecords: {
-		lastShed: '',
-		lastFed: '',
-		foodType: '',
-		weight: '',
-	},
+	feedings: [],
+	sheddings: [],
+	pairings: [],
 	comments: '',
 };
 
@@ -26,7 +21,6 @@ const initialSelectedAnimal = {
 export const viewAnimal = (state = initialState, data) => {
 	switch (data.type) {
 		case 'display_animal':
-			console.log('this animal is', data);
 			return {
 				...state,
 				...data.data,
@@ -40,7 +34,6 @@ export const wholeCollection = (state = wholeCollectionInitialData, data) => {
 	switch (data.type) {
 		case 'my_collections_data':
 			return {
-				...state,
 				collections: data.data,
 			};
 		default:

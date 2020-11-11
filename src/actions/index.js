@@ -76,6 +76,12 @@ export const getMyCollections = (data) => {
 	};
 };
 
+export const quickCollection = (id) => {
+	return function (dispatch) {
+		dispatch(loadMyCollections(id));
+	};
+};
+
 // End Collections
 
 // Vedors listings

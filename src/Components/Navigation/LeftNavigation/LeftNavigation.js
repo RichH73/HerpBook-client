@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
+import _ from 'lodash';
 
 class LeftNav extends Component {
 	collectionSelect = () => {
@@ -18,12 +19,10 @@ class LeftNav extends Component {
 	};
 
 	selectAnimal = (event) => {
-		this.props.setCurrentAnimal(event.target.value);
-		const animal = this.props.collectionsData.filter((collection) => {
-			return collection._id === this.props.selectedAnimalId;
-		})[0];
-		this.props.currentAnimalDisplay(animal);
-		// this.props.currentAnimalDisplay(animal)
+		const newId = this.props.collectionsData.filter((collection) => {
+			return collection._id === event.target.value;
+		});
+		this.props.currentAnimalDisplay(_.first(newId));
 	};
 
 	userNavigation = () => {

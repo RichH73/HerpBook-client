@@ -59,8 +59,7 @@ class MyCollections extends Component {
 	};
 
 	render() {
-		console.log('my opening props...', queryString.parse(this.props.location.search));
-		return !!this.props.selectedAnimalId.length ? this.tabs() : <AddNewAnimal />;
+		return !!this.props.currentAnimal._id.length ? this.tabs() : <AddNewAnimal />;
 	}
 }
 

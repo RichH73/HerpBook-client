@@ -36,7 +36,7 @@ class Pairings extends Component {
 	componentDidMount() {}
 
 	pairMappings = (data) => {
-		return data.map((pair) => {
+		return this.props.currentAnimal.pairings.map((pair) => {
 			return (
 				<tr>
 					<td>{pair.mate}</td>
@@ -77,6 +77,7 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	currentAnimal: state.viewAnimal,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -15,10 +15,10 @@ class Animal extends Component {
 	state = {};
 
 	componentDidMount() {
-		const animal = this.props.collectionsData.filter((collection) => {
-			return collection._id === this.props.selectedAnimalId;
-		})[0];
-		this.props.currentAnimalDisplay(animal);
+		// const animal = this.props.collectionsData.filter((collection) => {
+		// 	return collection._id === this.props.selectedAnimalId;
+		// })[0];
+		// this.props.currentAnimalDisplay(animal);
 	}
 
 	componentWillUnmount() {
@@ -33,9 +33,7 @@ class Animal extends Component {
 		});
 	};
 
-	quickRecords = (animal) => {
-		let feedings = animal.feedings.pop();
-		let lastPairing = animal.pairings.pop();
+	quickRecords = (records) => {
 		return (
 			<div className="collections-animal-quick-records">
 				Quick Records
@@ -43,15 +41,15 @@ class Animal extends Component {
 					<table>
 						<tr>
 							<td>Last Feeding</td>
-							<td>Date: {feedings.date}</td>
-							<td>Feeder Type: {feedings.feederType}</td>
-							<td>Feeder Weight: {feedings.feederWeight}</td>
+							{!!_.get(records, 'feeding.date').length ? <td>Date: {_.get(records, 'feeding.date')}</td> : ''}
+							{!!_.get(records, 'feeding.feederType').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
+							{!!_.get(records, 'feeding.feederWeight').length ? <td>Feeder Weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
 						</tr>
 						<tr>
 							<td>Last Pairing</td>
-							<td>Date: {lastPairing.date}</td>
-							<td>Mate: {lastPairing.mate}</td>
-							<td>Whitnessed: {lastPairing.whitnessed}</td>
+							{!!_.get(records, 'pairing.date').length ? <td>Date: {_.get(records, 'pairing.date')}</td> : ''}
+							{!!_.get(records, 'pairing.mate').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
+							{!!_.get(records, 'pairing.whitnessed').length ? <td>Whitnessed: {_.get(records, 'pairing.whitnessed')}</td> : ''}
 						</tr>
 					</table>
 				</div>
@@ -61,7 +59,7 @@ class Animal extends Component {
 
 	viewRecord = (id) => {
 		// this.props.setCurrentAnimal(id);
-		console.log(id);
+		//console.log(id);
 	};
 
 	largImage = (img) => {
@@ -75,7 +73,6 @@ class Animal extends Component {
 
 	showImage = (images) => {
 		const firstImg = _.first(images);
-		console.log('url', _.get(firstImg, 'URL'));
 		return (
 			<img src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} onClick={() => this.largImage(firstImg)} />
 		);
@@ -87,10 +84,7 @@ class Animal extends Component {
 		return (
 			<div className="collections-animal-page">
 				<div className="collection-animal-img-info">
-					<div className="collection-animal-image">
-						{this.showImage(animal.images)}
-						{/* <img src="images/perry.jpg" /> */}
-					</div>
+					<div className="collection-animal-image">{this.showImage(animal.images)}</div>
 					<div className="collection-animal-common-info">
 						<div className="collection-animal-name">
 							<label>Name:</label>
@@ -151,7 +145,7 @@ class Animal extends Component {
 					</div>
 				</div>
 				<div className="collection-animal-body">
-					{/* {this.quickRecords(animal)} */}
+					{this.quickRecords(animal.quickRecords)}
 					<div className="collection-animal-comments">
 						<label>Comments:</label>
 						<div>
