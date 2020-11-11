@@ -8,7 +8,7 @@ import './Collections.css';
 import Pairings from './Pairings';
 import Feedings from './Feedings';
 import Animal from './Animal';
-import Settings from './Settings';
+import Photos from './Photos';
 import Activity from './Activity';
 import AddNewAnimal from './AddNewAnimal';
 
@@ -34,7 +34,7 @@ class MyCollections extends Component {
 						<Tab>Pairings</Tab>
 						<Tab>Feedings</Tab>
 						<Tab>Activity</Tab>
-						<Tab>Settings</Tab>
+						<Tab>Photos</Tab>
 					</TabList>
 					<div className="collections-tab-body">
 						<TabPanel>
@@ -50,7 +50,7 @@ class MyCollections extends Component {
 							<Activity />
 						</TabPanel>
 						<TabPanel>
-							<Settings />
+							<Photos />
 						</TabPanel>
 					</div>
 				</Tabs>

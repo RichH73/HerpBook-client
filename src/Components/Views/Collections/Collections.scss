@@ -241,6 +241,7 @@
 table {
     border-collapse: collapse;
   width: 100%;
+  font-size: .7rem;
 }
 
 td, th {
@@ -248,5 +249,22 @@ td, th {
     text-align: left;
     padding: 8px;
   }
+
+  .collections-animal-more-images {
+      padding: 10px;
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: auto auto auto auto;
+  }
+
+  .collections-animal-more-images img {
+      width: 100px;
+  }
+
+  // Feeding Records
+//   .collections-animal-records-feedings {
+//       font-size: .8rem;
+//   }
+  // End feeding records
 
   

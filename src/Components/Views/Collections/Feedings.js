@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-
-import ReactHtmlParser from 'react-html-parser';
-import axios from 'axios';
-import ReactGA from 'react-ga';
-
-import BarcodeReader from 'react-barcode-reader';
+import date from 'date-and-time';
 
 class Feedings extends Component {
-	state = {
-		data: 'Not Found',
-	};
+	state = {};
 
 	componentDidMount() {}
 
@@ -26,13 +19,30 @@ class Feedings extends Component {
 		console.error(err);
 	}
 
+	feedingRecords = () => {
+		const records = this.props.feedingRecords.map((record) => {
+			return (
+				<div className="collections-animal-records-feedings">
+					<table>
+						<tbody>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Feeder Type</th>
+							<tr onClick={() => console.log(record)}>
+								<td>{record.date}</td>
+								<td>{record.feederType}</td>
+								<td>{record.feederWeight}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			);
+		});
+		return records;
+	};
+
 	render() {
-		return (
-			<React.Fragment>
-				<BarcodeReader onError={this.handleError} onScan={this.handleScan} />
-				<p>{this.state.result}</p>
-			</React.Fragment>
-		);
+		return <React.Fragment>{this.feedingRecords()}</React.Fragment>;
 	}
 }
 
@@ -42,6 +52,7 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	feedingRecords: state.viewAnimal.feedings,
 });
 
 const mapDispatchToProps = (dispatch) => {

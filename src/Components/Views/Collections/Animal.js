@@ -9,7 +9,6 @@ import ReactGA from 'react-ga';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
-import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
 
 class Animal extends Component {
 	state = {};
@@ -34,27 +33,32 @@ class Animal extends Component {
 	};
 
 	quickRecords = (records) => {
-		return (
-			<div className="collections-animal-quick-records">
-				Quick Records
-				<div className="collections-animal-quick-records-data">
-					<table>
-						<tr>
-							<td>Last Feeding</td>
-							{!!_.get(records, 'feeding.date').length ? <td>Date: {_.get(records, 'feeding.date')}</td> : ''}
-							{!!_.get(records, 'feeding.feederType').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
-							{!!_.get(records, 'feeding.feederWeight').length ? <td>Feeder Weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
-						</tr>
-						<tr>
-							<td>Last Pairing</td>
-							{!!_.get(records, 'pairing.date').length ? <td>Date: {_.get(records, 'pairing.date')}</td> : ''}
-							{!!_.get(records, 'pairing.mate').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
-							{!!_.get(records, 'pairing.whitnessed').length ? <td>Whitnessed: {_.get(records, 'pairing.whitnessed')}</td> : ''}
-						</tr>
-					</table>
+		if (!!_.get(records, 'feeding.date').length || !!_.get(records, 'pairing.date').length) {
+			return (
+				<div className="collections-animal-quick-records">
+					Quick Records
+					<div className="collections-animal-quick-records-data">
+						<table>
+							<tbody>
+								<tr>
+									<td>Last Feeding</td>
+									{!!_.get(records, 'feeding.date').length ? <td>Date: {_.get(records, 'feeding.date')}</td> : ''}
+									{!!_.get(records, 'feeding.feederType').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
+									{!!_.get(records, 'feeding.feederWeight').length ? <td>Feeder Weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
+								</tr>
+								<tr>
+									<td>Last Pairing</td>
+									{!!_.get(records, 'pairing.date').length ? <td>Date: {_.get(records, 'pairing.date')}</td> : ''}
+									{!!_.get(records, 'pairing.mate').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
+									{!!_.get(records, 'pairing.whitnessed').length ? <td>Whitnessed: {_.get(records, 'pairing.whitnessed')}</td> : ''}
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-		);
+			);
+		}
+		return <React.Fragment></React.Fragment>;
 	};
 
 	viewRecord = (id) => {
@@ -63,7 +67,6 @@ class Animal extends Component {
 	};
 
 	largImage = (img) => {
-		console.log('i clicky the thing', img);
 		this.props.displayLargeImage({
 			display: 'block',
 			img: `${img.URL}/${img.large}`,

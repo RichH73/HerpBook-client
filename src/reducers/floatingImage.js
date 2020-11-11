@@ -7,7 +7,6 @@ const initialState = {
 const showFloatingImage = (state = initialState, data) => {
 	switch (data.type) {
 		case 'floating_image':
-			console.log(data);
 			return {
 				...state,
 				display: data.display,

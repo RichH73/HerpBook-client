@@ -8,6 +8,7 @@ const initialState = {
 	feedings: [],
 	sheddings: [],
 	pairings: [],
+	images: [],
 	comments: '',
 };
 

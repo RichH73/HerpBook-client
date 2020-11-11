@@ -15,7 +15,6 @@ class LargeImage extends Component {
 	};
 
 	render() {
-		console.log('its here now', _.get(this.props, 'imgData,img'));
 		return (
 			<React.Fragment>
 				<div className="display-larg-image" style={{ display: this.props.imgDisplay.display }} onClick={this.thisHide}>

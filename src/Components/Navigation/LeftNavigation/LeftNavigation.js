@@ -12,7 +12,11 @@ class LeftNav extends Component {
 			<select onChange={this.selectAnimal} name="animal_select">
 				<option></option>
 				{this.props.collectionsData.map((collection) => {
-					return <option value={collection._id}>{collection.name}</option>;
+					return (
+						<option key={collection._id} readOnly onChange={() => {}} value={collection._id}>
+							{collection.name}
+						</option>
+					);
 				})}
 			</select>
 		);
