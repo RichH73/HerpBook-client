@@ -42,7 +42,6 @@ const classified = (state = initialState, listData) => {
 export const subCategoryListings = (state = subCategoryListingsInitialState, data) => {
 	switch (data.type) {
 		case 'New_Listings':
-			console.log('some data', data);
 			return {
 				listings: data.data,
 			};

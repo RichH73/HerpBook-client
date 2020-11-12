@@ -57,7 +57,6 @@ class AddNewAnimal extends Component {
 		})
 			.then((response) => {
 				this.props.pageLoading(false);
-				console.log(response.data);
 			})
 			.catch((error) => {
 				console.log(error);
