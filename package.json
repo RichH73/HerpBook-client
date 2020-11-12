@@ -5,11 +5,13 @@
   "dependencies": {
     "axios": "^0.19.2",
     "date-and-time": "^0.13.1",
+    "dayjs": "^1.9.6",
     "express": "^4.17.1",
     "husky": "^4.2.5",
     "js-base64": "^3.4.4",
     "lint-staged": "^10.2.11",
     "lodash": "^4.17.19",
+    "moment": "^2.29.1",
     "prettier": "^2.0.5",
     "qrcode": "^1.4.4",
     "qs": "^6.9.4",

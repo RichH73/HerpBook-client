@@ -23,10 +23,17 @@ class AddNewAnimal extends Component {
 		this.props.getMyCollections({ uid: this.props.userInfo.uid });
 	}
 
+	componentWillUnmount() {
+		this.props.imagesUploaded();
+	}
+
 	onSubmitHandler = (event) => {
 		event.preventDefault();
 
 		this.props.pageLoading(true);
+		setTimeout(() => {
+			this.props.pageLoading(false);
+		}, 15000);
 		let images = [];
 		let fileData = new FormData();
 		let imgFiles = this.props.sendFiles;
@@ -57,6 +64,9 @@ class AddNewAnimal extends Component {
 		})
 			.then((response) => {
 				this.props.pageLoading(false);
+				if (response.status === 200) {
+					this.props.history.push('/my_collections');
+				}
 			})
 			.catch((error) => {
 				console.log(error);

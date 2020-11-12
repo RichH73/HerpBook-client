@@ -121,6 +121,11 @@
 .collections-animal-quick-records-data {
   padding-left: 1em;
   font-size: .8rem;
+  margin-top: .2em;
+}
+
+.collection-animal-comments-box {
+  margin-top: .2em;
 }
 
 .collections-create-new-animal {
@@ -272,7 +277,15 @@ td, th {
   cursor: pointer;
 }
 
+.collections-my-collections-list {
+  padding: 10px;
+}
+
 .collections-my-collections-list tr:hover {
   background-color: #cce2f8;
+}
+
+.collections-create-new-activity {
+  padding: 10px;
 }
 /*# sourceMappingURL=Collections.css.map */

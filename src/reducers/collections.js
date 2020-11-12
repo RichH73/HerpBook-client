@@ -28,17 +28,21 @@ const initialSelectedAnimal = {
 	id: '',
 };
 
-export const viewAnimal = (state = initialState, data) => {
-	switch (data.type) {
+export const viewAnimal = (state = initialState, payload) => {
+	console.log('this type', payload.type);
+	switch (payload.type) {
 		case 'display_animal':
 			return {
 				...state,
-				...data.data,
+				...payload.data,
 			};
-		case 'clear_current_animal':
+		case 'update_animal':
 			return {
 				...state,
+				...payload.data,
 			};
+		case 'clear_current_animal':
+			return initialState;
 		default:
 			return state;
 	}

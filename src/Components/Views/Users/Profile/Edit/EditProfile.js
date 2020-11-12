@@ -70,7 +70,6 @@ class EditProfile extends React.Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					console.log('updated...');
 					this.setState({ modalIsOpen: true });
 					setTimeout(() => {
 						this.setState({

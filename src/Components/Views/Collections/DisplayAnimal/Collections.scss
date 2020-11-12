@@ -104,6 +104,11 @@
 .collections-animal-quick-records-data {
     padding-left: 1em;
     font-size: .8rem;
+    margin-top: .2em;
+}
+
+.collection-animal-comments-box {
+    margin-top: .2em;
 }
 
 
@@ -272,6 +277,17 @@ td, th {
      cursor: pointer;
  }
 
+ .collections-my-collections-list {
+     padding: 10px;
+ }
+
  .collections-my-collections-list tr:hover {
     background-color: $lightBlue;
 }
+
+// Activity
+.collections-create-new-activity {
+    padding: 10px;
+}
+
+// Activity End

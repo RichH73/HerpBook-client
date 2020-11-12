@@ -3,10 +3,25 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const modalSetState = (state) => {
+	return {
+		type: 'modal_state',
+		state,
+	};
+};
+
 export const setPageTitle = (pageTitle) => {
 	return {
 		type: 'PageTitle',
 		pageTitle,
+	};
+};
+
+// Collections animal change
+export const animalUpdate = (data) => {
+	return {
+		type: 'update_animal',
+		data,
 	};
 };
 
@@ -59,26 +74,34 @@ export const currentAnimalDisplay = (data) => {
 	};
 };
 
-export const clearCurrentAnimalDisplay = () => {
+export const clearCurrentAnimalDisplay = (data) => {
 	return {
 		type: 'clear_current_animal',
+		data,
 	};
 };
 
 export const getMyCollections = (data) => {
 	return function (dispatch) {
+		dispatch(pageLoading(true));
+		setTimeout(() => {
+			dispatch(pageLoading(false));
+		}, 8000);
 		axios({
 			method: 'post',
 			url: `${API}/collections/my_collections`,
 			headers: {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
-			data: {
-				userId: data.uid,
-			},
-		}).then((response) => {
-			dispatch(loadMyCollections(response.data));
-		});
+			data: {},
+		})
+			.then((response) => {
+				dispatch(pageLoading(false));
+				dispatch(loadMyCollections(response.data));
+			})
+			.catch((error) => {
+				if (error) console.log(error);
+			});
 	};
 };
 
@@ -319,6 +342,7 @@ export const sendMessage = (key, value) => {
 	};
 };
 
+// Spinner location tools.js
 export const pageLoading = (spinner) => {
 	return {
 		type: 'SPINNER_STATE',

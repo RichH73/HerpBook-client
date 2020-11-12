@@ -16,7 +16,12 @@ class Main extends Component {
 	state = {};
 
 	componentDidMount() {
-		this.props.setPageTitle('Collections');
+		this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+	}
+
+	componentWillUnmount() {
+		this.props.hideLargeImage();
+		this.props.clearCurrentAnimalDisplay();
 	}
 
 	tabs = () => {

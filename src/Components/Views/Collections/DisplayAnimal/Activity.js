@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -16,29 +18,42 @@ class Activity extends Component {
 
 	componentDidMount() {}
 
-	handleScan(data) {
-		this.setState({
-			result: data,
-		});
-	}
-
-	handleError(err) {
-		console.error(err);
-	}
-
-	thisShow = () => {
-		this.props.displayLargeImage({
-			display: 'block',
-			img: 'https://users.herpbook.com/rich/collections/perry/large_gecko_corner.jpg',
-			name: 'some image',
-		});
-	};
-	thisHide = () => {
-		this.props.hideLargeImage();
+	handleDate = (date) => {
+		console.log(date);
 	};
 
 	render() {
-		return <React.Fragment>Add New Activity</React.Fragment>;
+		return (
+			<div className="collections-create-new-activity">
+				<div className="collections-create-new-activity-type">
+					<label>Activity Type:</label>
+					<div>
+						<select>
+							<option>Shedding</option>
+							<option>Feeding</option>
+							<option>Pairing</option>
+							<option>Cage Cleaning</option>
+						</select>
+					</div>
+				</div>
+				<div className="collections-create-new-activity-date">
+					<DatePicker
+						allowSameDay={true}
+						dateFormat="dd/MM/yyyy"
+						showTimeSelect={false}
+						title="Activity Date"
+						closeOnScroll={false}
+						locale="en-US"
+						dateFormat="yyy/MM/dd"
+						placeholderText="Click to select date"
+						//   isClearable
+						//   placeholderText="I have been cleared!"
+						showPopperArrow={false}
+						onChange={this.handleDate}
+					/>
+				</div>
+			</div>
+		);
 	}
 }
 

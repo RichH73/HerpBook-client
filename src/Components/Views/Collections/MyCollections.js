@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
+import dayjs from 'dayjs';
 import Main from './DisplayAnimal/Main';
 
 import queryString from 'query-string';
@@ -14,13 +15,11 @@ class MyCollections extends Component {
 	state = {};
 
 	componentDidMount() {
-		this.props.getMyCollections({ uid: this.props.userInfo.uid });
+		this.props.getMyCollections();
 		this.props.setPageTitle('Collections');
 	}
 
-	componentWillUnmount() {
-		this.props.clearCurrentAnimalDisplay();
-	}
+	componentWillUnmount() {}
 
 	loadAnimal = (id) => {
 		const newId = this.props.collectionsIds.collections.filter((collection) => {
@@ -32,12 +31,13 @@ class MyCollections extends Component {
 
 	categoryList = (id) => {
 		const selectCategories = this.props.categories.filter((category) => category.id === id);
-
 		const collections = this.props.collectionsIds.collections.map((collection) => {
+			const dob = dayjs(_.get(collection, 'dob'));
 			return (
 				<tr onClick={() => this.loadAnimal(collection._id)}>
 					<td>{collection._id}</td>
 					<td>{collection.name}</td>
+					{!!_.get(collection, 'dob') ? <td>{`${dob.$M}/${dob.$D}/${dob.$y}`}</td> : <td></td>}
 					<td>{collection.gender}</td>
 				</tr>
 			);
@@ -53,6 +53,7 @@ class MyCollections extends Component {
 					<tbody>
 						<th>ID</th>
 						<th>Name</th>
+						<th>DOB</th>
 						<th>Gender</th>
 						{this.categoryList()}
 					</tbody>
