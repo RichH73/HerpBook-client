@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 
-import ReactHtmlParser from 'react-html-parser';
-import axios from 'axios';
-import ReactGA from 'react-ga';
-
 const tableData = [
 	{
 		mate: '43gk4h4k26kh',
@@ -59,12 +55,7 @@ class Pairings extends Component {
 	render() {
 		return (
 			<div style={{ padding: '10px' }}>
-				<div className="collections-pairing-page">
-					<div>
-						<div>New Pairing</div>
-						<input type="text" />
-					</div>
-				</div>
+				<div className="collections-pairing-page"></div>
 				<div className="collections-pairing-table">{this.pairMappings(tableData)}</div>
 			</div>
 		);

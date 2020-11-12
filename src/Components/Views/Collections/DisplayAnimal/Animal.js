@@ -266,7 +266,7 @@ class Animal extends Component {
 								theme="snow"
 							/>
 						</div>
-						<div>
+						<div className="collection-animal-update-button">
 							<button onClick={this.onSubmitHandler}>Update</button>
 						</div>
 					</div>
