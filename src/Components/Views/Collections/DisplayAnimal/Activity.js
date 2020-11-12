@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -38,12 +38,7 @@ class Activity extends Component {
 	};
 
 	render() {
-		return (
-			<React.Fragment>
-				<div style={{ padding: '10px' }}>Some activity?</div>;<button onClick={this.thisShow}>On</button>
-				<button onClick={this.thisHide}>Off</button>
-			</React.Fragment>
-		);
+		return <React.Fragment>Add New Activity</React.Fragment>;
 	}
 }
 

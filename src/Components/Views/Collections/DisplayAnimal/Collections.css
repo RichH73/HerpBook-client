@@ -265,5 +265,14 @@ td, th {
 
 .collections-animal-more-images img {
   width: 100px;
+  cursor: pointer;
+}
+
+.collections-my-collections-list td:hover {
+  cursor: pointer;
+}
+
+.collections-my-collections-list tr:hover {
+  background-color: #cce2f8;
 }
 /*# sourceMappingURL=Collections.css.map */

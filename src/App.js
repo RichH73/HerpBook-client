@@ -20,6 +20,8 @@ class App extends Component {
 		sideDrawerOpen: false,
 	};
 	componentDidMount() {
+		console.log('this id', this.props.userUID);
+		this.props.getMyCollections({ uid: this.props.userUID });
 		this.props.getVendors();
 		if (localStorage.token) {
 			axios({
@@ -121,6 +123,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	spinnerState: state.spinner,
+	userUID: state.user.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {

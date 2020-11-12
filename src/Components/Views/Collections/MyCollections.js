@@ -4,62 +4,61 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import './Collections.css';
-import Pairings from './Pairings';
-import Feedings from './Feedings';
-import Animal from './Animal';
-import Photos from './Photos';
-import Activity from './Activity';
-import AddNewAnimal from './AddNewAnimal';
+import _ from 'lodash';
+import './DisplayAnimal/Collections.css';
+import Main from './DisplayAnimal/Main';
 
 import queryString from 'query-string';
-
-import ReactHtmlParser from 'react-html-parser';
-import axios from 'axios';
-import ReactGA from 'react-ga';
 
 class MyCollections extends Component {
 	state = {};
 
 	componentDidMount() {
+		this.props.getMyCollections({ uid: this.props.userInfo.uid });
 		this.props.setPageTitle('Collections');
 	}
 
-	tabs = () => {
-		return (
-			<div className="collections-tab-header">
-				<Tabs>
-					<TabList>
-						<Tab>Animal</Tab>
-						<Tab>Pairings</Tab>
-						<Tab>Feedings</Tab>
-						<Tab>Activity</Tab>
-						<Tab>Photos</Tab>
-					</TabList>
-					<div className="collections-tab-body">
-						<TabPanel>
-							<Animal />
-						</TabPanel>
-						<TabPanel>
-							<Pairings />
-						</TabPanel>
-						<TabPanel>
-							<Feedings />
-						</TabPanel>
-						<TabPanel>
-							<Activity />
-						</TabPanel>
-						<TabPanel>
-							<Photos />
-						</TabPanel>
-					</div>
-				</Tabs>
-			</div>
-		);
+	componentWillUnmount() {
+		this.props.clearCurrentAnimalDisplay();
+	}
+
+	loadAnimal = (id) => {
+		const newId = this.props.collectionsIds.collections.filter((collection) => {
+			return collection._id === id;
+		});
+		this.props.currentAnimalDisplay(_.first(newId));
+		this.props.history.push('/vew_animal');
+	};
+
+	categoryList = (id) => {
+		const selectCategories = this.props.categories.filter((category) => category.id === id);
+
+		const collections = this.props.collectionsIds.collections.map((collection) => {
+			return (
+				<tr onClick={() => this.loadAnimal(collection._id)}>
+					<td>{collection._id}</td>
+					<td>{collection.name}</td>
+					<td>{collection.gender}</td>
+				</tr>
+			);
+		});
+
+		return collections;
 	};
 
 	render() {
-		return !!this.props.currentAnimal._id.length ? this.tabs() : <AddNewAnimal />;
+		return (
+			<div className="collections-my-collections-list">
+				<table>
+					<tbody>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Gender</th>
+						{this.categoryList()}
+					</tbody>
+				</table>
+			</div>
+		);
 	}
 }
 
@@ -72,6 +71,9 @@ const mapStateToProps = (state) => ({
 	currentAnimal: state.viewAnimal,
 	selectedAnimalId: state.selectedAnimal.id,
 	collectionsIds: state.wholeCollection,
+	catIds: state.categories.categories,
+	categories: state.categories.categories,
+	subCategories: state.categories.sub_categories,
 });
 
 const mapDispatchToProps = (dispatch) => {

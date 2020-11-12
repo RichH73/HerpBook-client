@@ -7,27 +7,31 @@ import * as actionCreators from '../../../actions/index';
 import _ from 'lodash';
 
 class LeftNav extends Component {
-	collectionSelect = () => {
-		return (
-			<select onChange={this.selectAnimal} name="animal_select">
-				<option></option>
-				{this.props.collectionsData.map((collection) => {
-					return (
-						<option key={collection._id} readOnly onChange={() => {}} value={collection._id}>
-							{collection.name}
-						</option>
-					);
-				})}
-			</select>
-		);
-	};
+	// collectionSelect = () => {
+	// 	return (
+	// 		<select onChange={this.selectAnimal} name="animal_select">
+	// 			<option></option>
+	// 			{this.props.collectionsData.map((collection) => {
+	// 				return (
+	// 					<option key={collection._id} readOnly onChange={() => {}} value={collection._id}>
+	// 						{collection.name}
+	// 					</option>
+	// 				);
+	// 			})}
+	// 		</select>
+	// 	);
+	// };
 
-	selectAnimal = (event) => {
-		const newId = this.props.collectionsData.filter((collection) => {
-			return collection._id === event.target.value;
-		});
-		this.props.currentAnimalDisplay(_.first(newId));
-	};
+	// selectAnimal = (event) => {
+	// 	console.log('this event', !!event.target.value)
+	// 	const newId = this.props.collectionsData.filter((collection) => {
+	// 		return collection._id === event.target.value;
+	// 	});
+	// 	if(!!event.target.value) {
+	// 		this.props.currentAnimalDisplay(_.first(newId));
+	// 	}
+	// 	this.props.clearCurrentAnimalDisplay()
+	// };
 
 	userNavigation = () => {
 		const { displayMessageCount } = this.props;
@@ -72,12 +76,11 @@ class LeftNav extends Component {
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">
-							<div>
+							<div className="left-nav-link">
 								<Link to="/my_collections">My Collections</Link>
 							</div>
-							<label>Quick Lookup</label>
-							<div>
-								<this.collectionSelect />
+							<div className="left-nav-link">
+								<Link to="/new_collection">Add new animal</Link>
 							</div>
 						</div>
 					</div>

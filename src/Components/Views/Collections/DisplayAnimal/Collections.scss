@@ -1,4 +1,4 @@
-@import '../../../index';
+@import '../../../../index';
 
 // Start Animal
 .collections-animal-page {
@@ -259,6 +259,7 @@ td, th {
 
   .collections-animal-more-images img {
       width: 100px;
+      cursor: pointer;
   }
 
   // Feeding Records
@@ -267,4 +268,10 @@ td, th {
 //   }
   // End feeding records
 
-  
+ .collections-my-collections-list td:hover {
+     cursor: pointer;
+ }
+
+ .collections-my-collections-list tr:hover {
+    background-color: $lightBlue;
+}

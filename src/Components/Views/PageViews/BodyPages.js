@@ -22,6 +22,8 @@ import Shame from '../Shame/Shame';
 import FIleShame from '../Shame/FileReport';
 import ShameReport from '../Shame/ViewShame/ViewShame';
 import MyCollections from '../Collections/MyCollections';
+import Main from '../Collections/DisplayAnimal/Main';
+import AddNewAnimal from '../Collections/AddNewAnimal';
 
 const Pages = () => {
 	return (
@@ -48,6 +50,8 @@ const Pages = () => {
 			<Route path="/file_report" component={FIleShame} />
 			<Route path="/view_shame" component={ShameReport} />
 			<Route path="/my_collections" component={MyCollections} />
+			<Route path="/vew_animal" component={Main} />
+			<Route path="/new_collection" component={AddNewAnimal} />
 		</React.Fragment>
 	);
 };

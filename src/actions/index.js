@@ -59,6 +59,12 @@ export const currentAnimalDisplay = (data) => {
 	};
 };
 
+export const clearCurrentAnimalDisplay = () => {
+	return {
+		type: 'clear_current_animal',
+	};
+};
+
 export const getMyCollections = (data) => {
 	return function (dispatch) {
 		axios({

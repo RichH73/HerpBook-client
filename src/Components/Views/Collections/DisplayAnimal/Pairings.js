@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -38,11 +38,20 @@ class Pairings extends Component {
 	pairMappings = (data) => {
 		return this.props.currentAnimal.pairings.map((pair) => {
 			return (
-				<tr>
-					<td>{pair.mate}</td>
-					<td>{pair.date}</td>
-					<td>{pair.whitnessed}</td>
-				</tr>
+				<div className="collections-animal-records-feedings">
+					<table>
+						<tbody>
+							<th>Date</th>
+							<th>Mate</th>
+							<th>Whitnessed</th>
+							<tr onClick={() => console.log(pair)}>
+								<td>{pair.date}</td>
+								<td>{pair.mate}</td>
+								<td>{pair.whitnessed}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			);
 		});
 	};
@@ -56,16 +65,7 @@ class Pairings extends Component {
 						<input type="text" />
 					</div>
 				</div>
-				<div className="collections-pairing-table">
-					<table>
-						<tr>
-							<th>Mate</th>
-							<th>Date</th>
-							<th>Whitnessed</th>
-						</tr>
-						{this.pairMappings(tableData)}
-					</table>
-				</div>
+				<div className="collections-pairing-table">{this.pairMappings(tableData)}</div>
 			</div>
 		);
 	}

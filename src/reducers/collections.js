@@ -9,6 +9,15 @@ const initialState = {
 	sheddings: [],
 	pairings: [],
 	images: [],
+	quickRecords: {
+		feeding: {
+			date: '',
+			feedType: '',
+		},
+		pairing: {
+			date: '',
+		},
+	},
 	comments: '',
 };
 
@@ -25,6 +34,10 @@ export const viewAnimal = (state = initialState, data) => {
 			return {
 				...state,
 				...data.data,
+			};
+		case 'clear_current_animal':
+			return {
+				...state,
 			};
 		default:
 			return state;

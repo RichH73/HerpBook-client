@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 import date from 'date-and-time';
 
 class Feedings extends Component {

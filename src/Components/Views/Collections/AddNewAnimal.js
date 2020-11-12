@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _, { includes } from 'lodash';
+import _ from 'lodash';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -68,7 +68,7 @@ class AddNewAnimal extends Component {
 		const filteredItems = [5, 11];
 		if (this.props.categoryItems.length > 0) {
 			let filterCategories = this.props.categoryItems.filter((cat) => {
-				return !includes(filteredItems, cat.id);
+				return !_.includes(filteredItems, cat.id);
 			});
 			return filterCategories.map((category) => (
 				<option key={category.name} value={category.id}>

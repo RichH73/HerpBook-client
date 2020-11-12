@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 import _ from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -13,12 +13,7 @@ import ReactQuill from 'react-quill';
 class Animal extends Component {
 	state = {};
 
-	componentDidMount() {
-		// const animal = this.props.collectionsData.filter((collection) => {
-		// 	return collection._id === this.props.selectedAnimalId;
-		// })[0];
-		// this.props.currentAnimalDisplay(animal);
-	}
+	componentDidMount() {}
 
 	componentWillUnmount() {
 		this.props.hideLargeImage();
@@ -32,7 +27,8 @@ class Animal extends Component {
 		});
 	};
 
-	quickRecords = (records) => {
+	quickRecords = () => {
+		const records = this.props.currentAnimal.quickRecords;
 		if (!!_.get(records, 'feeding.date').length || !!_.get(records, 'pairing.date').length) {
 			return (
 				<div className="collections-animal-quick-records">
