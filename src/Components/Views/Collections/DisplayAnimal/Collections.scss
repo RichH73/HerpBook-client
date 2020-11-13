@@ -97,12 +97,10 @@
 }
 
 .collections-animal-quick-records {
-    //margin: 1em 0;
     margin-bottom: 1em;
 }
 
 .collections-animal-quick-records-data {
-    padding-left: 1em;
     font-size: .8rem;
     margin-top: .2em;
 }
@@ -116,10 +114,10 @@
     text-align: right;
 }
 
-.collection-animal-update-button button {
-    width: 150px;
-    border-radius: 7px;
-}
+// .collection-animal-update-button button {
+//     width: 80px;
+//     border-radius: 7px;
+// }
 
 .collections-pairings-records-detail-view {
     z-index: 250;
@@ -135,8 +133,23 @@
     justify-content: space-evenly;
 }
 
-.collections-pairings-new-pairing button {
-    width: 80px;
+// .collections-pairings-new-pairing button {
+//     width: 80px;
+// }
+
+.collections-feedings-new-feeding {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+// .collections-feedings-new-feeding button {
+//     width: 80px;
+// }
+
+.collections-feedings-list-button {
+    margin: .5em auto;
+    padding-right: 40px;
+    text-align: right;
 }
 
 .collections-pairings-list {
@@ -149,10 +162,10 @@
     text-align: right;
 }
 
-.collections-pairings-list button {
-    width: 80px;
-    border-radius: 7px;
-}
+// .collections-pairings-list button {
+//     width: 80px;
+//     border-radius: 7px;
+// }
 
 
 // End Animal
@@ -302,7 +315,8 @@ td, th {
       padding: 10px;
       display: grid;
       grid-gap: 20px;
-      grid-template-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto;
+      justify-content: space-evenly;
   }
 
   .collections-animal-more-images img {
@@ -334,3 +348,50 @@ td, th {
 }
 
 // Activity End
+
+
+// Images/Photos
+
+.collections-images-image-box {
+    width: 200px;
+    //height: 220px;
+    background-color: $lightBlue;
+    border-radius: 7px;
+    padding-bottom: 10px;
+}
+
+.collections-images-image-header {
+    text-align: center;
+    height: 25px;
+    background-color: orange;
+    padding: 4px 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin: 0 auto 1em;
+}
+.collections-images-imgage-body {
+    text-align: center;
+}
+
+.collections-images-image-body img {
+    text-align: center;
+   }
+
+   .collections-images-imgage-body-info p {
+    font-size: .8rem;
+    margin: 10px;
+}
+
+.collections-images-image {
+
+    text-align: center;
+    width: 100%;
+    height: 50%;
+}
+
+.collections-images-imgage-footer {
+    //padding: 10px;
+    text-align: center;
+}
+
+// End Images

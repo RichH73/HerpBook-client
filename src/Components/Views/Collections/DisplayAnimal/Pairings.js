@@ -1,4 +1,3 @@
-import { isThisHour } from 'date-fns';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,6 +5,8 @@ import * as actionCreators from '../../../../actions/index';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import _ from 'lodash';
+import dayjs from 'dayjs';
 
 class Pairings extends Component {
 	state = {
@@ -57,9 +58,10 @@ class Pairings extends Component {
 
 	pairMappings = () => {
 		return this.props.currentAnimal.pairings.map((pair) => {
+			let pd = dayjs(_.get(pair, 'date'));
 			return (
-				<tr onClick={() => console.log(pair)}>
-					<td>{pair.date}</td>
+				<tr>
+					<td>{`${pd.$M}/${pd.$D}/${pd.$y}`}</td>
 					<td>{pair.mate}</td>
 					<td>{!!pair.whitnessed ? 'Yes' : 'No'}</td>
 				</tr>
@@ -95,7 +97,9 @@ class Pairings extends Component {
 					</div>
 				</div>
 				<div className="collections-pairings-list-button">
-					<button onClick={this.onSubmitHandler}>Save</button>
+					<button className="button" onClick={this.onSubmitHandler}>
+						Save
+					</button>
 				</div>
 				<div className="collections-pairing-page"></div>
 				<div className="collections-animal-records-pairings">

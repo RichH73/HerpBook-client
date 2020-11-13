@@ -31,7 +31,7 @@ class Main extends Component {
 						<Tab>Animal</Tab>
 						<Tab>Pairings</Tab>
 						<Tab>Feedings</Tab>
-						<Tab>Activity</Tab>
+						{/* <Tab>Activity</Tab> */}
 						<Tab>Photos</Tab>
 					</TabList>
 					<div className="collections-tab-body">
@@ -44,9 +44,9 @@ class Main extends Component {
 						<TabPanel>
 							<Feedings />
 						</TabPanel>
-						<TabPanel>
+						{/* <TabPanel>
 							<Activity />
-						</TabPanel>
+						</TabPanel> */}
 						<TabPanel>
 							<Photos />
 						</TabPanel>

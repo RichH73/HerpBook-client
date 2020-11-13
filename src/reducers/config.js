@@ -3,12 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const server_state = true;
+const server_state = false;
 //const redux = false;
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
 export const server_status = () => {
-	if (server_state === false) {
+	if (server_state === true) {
 		return {
 			serverAPI: 'http://localhost:8550',
 			serverURL: 'htts://www.herpbook.com',

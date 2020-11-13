@@ -29,7 +29,6 @@ const initialSelectedAnimal = {
 };
 
 export const viewAnimal = (state = initialState, payload) => {
-	console.log('this type', payload.type);
 	switch (payload.type) {
 		case 'display_animal':
 			return {

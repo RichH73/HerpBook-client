@@ -2,11 +2,95 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
-
+import dayjs from 'dayjs';
+import _ from 'lodash';
+import axios from 'axios';
+import ImageDrop from '../../../_services/ImageDrop';
 class Photos extends Component {
 	state = {};
 
 	componentDidMount() {}
+
+	addImages = () => {
+		this.props.pageLoading(true);
+		setTimeout(() => {
+			if (this.props.spinnerState === 'block') {
+				this.props.pageLoading(false);
+			}
+		}, 10000);
+
+		let images = [];
+		let fileData = new FormData();
+		let imgFiles = this.props.sendFiles;
+		_.forEach(imgFiles, function (file) {
+			fileData.append('file', file);
+			images.push(file.name);
+		});
+		let files = this.props.sendFiles;
+		files.forEach((file) => {
+			fileData.append('files', file);
+		});
+		let collectionInfo = {
+			owner: this.props.creatorId,
+			collectionId: this.props.currentAnimal._id,
+			images: images,
+			...this.props.createAnimal,
+		};
+
+		fileData.append('collectionInfo', JSON.stringify(collectionInfo));
+
+		axios({
+			method: 'post',
+			url: `${this.props.API}/collections/add_images`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: fileData,
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					console.log(response);
+					//this.props.clearCurrentAnimalDisplay();
+					//this.props.currentAnimalDisplay(response.data);
+					this.props.pageLoading(false);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	deleteImage = (image) => {
+		this.props.pageLoading(true);
+		setTimeout(() => {
+			if (this.props.spinnerState === 'block') {
+				this.props.pageLoading(false);
+			}
+		}, 10000);
+		axios({
+			method: 'post',
+			url: `${this.props.API}/collections/remove_image`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				image: {
+					collectionId: this.props.currentAnimal._id,
+					_id: image._id,
+				},
+			},
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					this.props.clearCurrentAnimalDisplay();
+					this.props.currentAnimalDisplay(response.data);
+					this.props.pageLoading(false);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	largImage = (img) => {
 		this.props.displayLargeImage({
@@ -18,17 +102,39 @@ class Photos extends Component {
 
 	imageMap = () => {
 		return this.props.moreImages.map((image) => {
+			let id = dayjs(_.get(image, 'date'));
 			return (
-				<div className={`collections-animal-image-${image.thumbnail}`}>
-					<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
-					<label>{image.large}</label>
+				<div className="collections-images-image-box">
+					<div className="collections-images-image-header">{image.thumbnail}</div>
+					<div className="collections-images-imgage-body">
+						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
+					</div>
+					<div className="collections-images-imgage-body-info">
+						<p>Name: {image.large}</p>
+						<p>Uploaded: {`${id.$M}/${id.$D}/${id.$y}`}</p>
+					</div>
+					<div className="collections-images-imgage-footer">
+						<button className="button" onClick={() => this.deleteImage(image)}>
+							Delete
+						</button>
+					</div>
 				</div>
 			);
 		});
 	};
 
 	render() {
-		return <div className="collections-animal-more-images">{this.imageMap()}</div>;
+		return (
+			<div className="collections-animal-more-images">
+				<div>
+					<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
+					<button className="button" onClick={this.addImages}>
+						Save
+					</button>
+				</div>
+				{this.imageMap()}
+			</div>
+		);
 	}
 }
 
@@ -39,6 +145,10 @@ const mapStateToProps = (state) => ({
 	userInfo: state.user,
 	React: state.config.analytics,
 	moreImages: state.viewAnimal.images,
+	currentAnimal: state.viewAnimal,
+	creatorId: state.user.uid,
+	sendFiles: state.imageHandler.sendFiles,
+	spinnerState: state.spinner.display,
 });
 
 const mapDispatchToProps = (dispatch) => {

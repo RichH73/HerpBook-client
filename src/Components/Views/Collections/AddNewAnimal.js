@@ -65,7 +65,7 @@ class AddNewAnimal extends Component {
 			.then((response) => {
 				this.props.pageLoading(false);
 				if (response.status === 200) {
-					this.props.history.push('/my_collections');
+					//this.props.history.push('/my_collections');
 				}
 			})
 			.catch((error) => {
@@ -204,8 +204,8 @@ const mapStateToProps = (state) => ({
 	categoryItems: state.categories.categories,
 	createAnimal: state.createNewAnimal,
 	creatorId: state.user.uid,
-	React: state.config.analytics,
 	sendFiles: state.imageHandler.sendFiles,
+	React: state.config.analytics,
 	sub_categoryItems: state.categories.subCategories,
 	URL: state.config.server.serverURL,
 	userInfo: state.user,

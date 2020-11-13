@@ -1,5 +1,19 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
 .application-body {
   text-align: left;
+}
+
+.button {
+  border-radius: 7px;
+  width: 80px;
+  background: orange;
+  text-align: center;
+}
+
+.button:hover {
+  border: solid darkorange 1px;
 }
 
 @media screen and (min-width: 900px) {

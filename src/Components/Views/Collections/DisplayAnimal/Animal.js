@@ -59,18 +59,26 @@ class Animal extends Component {
 					<div className="collections-animal-quick-records-data">
 						<table>
 							<tbody>
-								<tr>
-									<td>Last Feeding</td>
-									{!!_.get(records, 'feeding.date', '').length ? <td>Date: {`${fd.$M}/${fd.$D}/${fd.$y}`}</td> : ''}
-									{!!_.get(records, 'feeding.feederType', '').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
-									{!!_.get(records, 'feeding.feederWeight', '').length ? <td>Feeder Weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
-								</tr>
-								<tr>
-									<td>Last Pairing</td>
-									{!!_.get(records, 'pairing.date', '').length ? <td>Date: {`${pd.$M}/${pd.$D}/${pd.$y}`}</td> : ''}
-									{!!_.get(records, 'pairing.mate', '').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
-									{!!_.get(records, 'pairing.whitnessed', '').length ? <td>Whitnessed: {_.get(records, 'pairing.whitnessed')}</td> : ''}
-								</tr>
+								{!_.isEmpty(_.get(records, 'feeding')) ? (
+									<tr>
+										<td>Last Feeding</td>
+										{!!_.get(records, 'feeding.date', '').length ? <td>Date: {`${fd.$M}/${fd.$D}/${fd.$y}`}</td> : ''}
+										{!!_.get(records, 'feeding.feederType', '').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
+										{!!_.get(records, 'feeding.feederWeight', '').length ? <td>Amout or weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
+									</tr>
+								) : (
+									''
+								)}
+								{!_.isEmpty(_.get(records, 'pairing')) ? (
+									<tr>
+										<td>Last Pairing</td>
+										{!!_.get(records, 'pairing.date', '').length ? <td>Date: {`${pd.$M}/${pd.$D}/${pd.$y}`}</td> : ''}
+										{!!_.get(records, 'pairing.mate', '').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
+										<td>Whitnessed: {!!_.get(records, 'pairing.whitnessed') ? 'Yes' : 'No'}</td>
+									</tr>
+								) : (
+									''
+								)}
 							</tbody>
 						</table>
 					</div>
@@ -124,32 +132,29 @@ class Animal extends Component {
 			case 'MALE':
 				return (
 					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option></option>
 						<option selected value="MALE">
 							Male
 						</option>
 						<option value="FEMALE">Female</option>
-						<option value="">Unknown</option>
+						<option value="UNKNOWN">Unknown</option>
 					</select>
 				);
 			case 'FEMALE':
 				return (
 					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option></option>
 						<option value="MALE">Male</option>
 						<option selected value="FEMALE">
 							Female
 						</option>
-						<option value="">Unknown</option>
+						<option value="UNKNOWN">Unknown</option>
 					</select>
 				);
-			case '':
+			case 'UNKNOWN':
 				return (
 					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option></option>
 						<option value="MALE">Male</option>
 						<option value="FEMALE">Female</option>
-						<option selected value="">
+						<option selected value="UNKNOWN">
 							Unknown
 						</option>
 					</select>
@@ -177,7 +182,6 @@ class Animal extends Component {
 					this.props.currentAnimalDisplay(response.data);
 					this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 				}
-				console.log('my response', response.data);
 			})
 			.catch((error) => {
 				if (error) {
