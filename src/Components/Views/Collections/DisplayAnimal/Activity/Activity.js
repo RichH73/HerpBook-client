@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
+import * as actionCreators from '../../../../../actions/index';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -24,6 +26,37 @@ class Activity extends Component {
 
 	render() {
 		return (
+			<Tabs>
+				<TabList>
+					<Tab>Feeding</Tab>
+					<Tab>Pairing</Tab>
+					<Tab>Shed</Tab>
+					<Tab>Cleaning</Tab>
+				</TabList>
+				<TabPanel>Feeding</TabPanel>
+				<TabPanel>Pairing</TabPanel>
+				<TabPanel>Shed</TabPanel>
+				<TabPanel>Cleaning</TabPanel>
+			</Tabs>
+		);
+	}
+}
+
+const mapStateToProps = (state) => ({
+	API: state.config.server.serverAPI,
+	USERSURL: state.config.server.usersURL,
+	URL: state.config.server.serverURL,
+	userInfo: state.user,
+	React: state.config.analytics,
+});
+
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators(actionCreators, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Activity);
+
+/*
 			<div className="collections-create-new-activity">
 				<div className="collections-create-new-activity-type">
 					<label>Activity Type:</label>
@@ -53,20 +86,5 @@ class Activity extends Component {
 					/>
 				</div>
 			</div>
-		);
-	}
-}
 
-const mapStateToProps = (state) => ({
-	API: state.config.server.serverAPI,
-	USERSURL: state.config.server.usersURL,
-	URL: state.config.server.serverURL,
-	userInfo: state.user,
-	React: state.config.analytics,
-});
-
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators(actionCreators, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Activity);
+*/

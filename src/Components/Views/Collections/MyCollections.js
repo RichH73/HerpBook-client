@@ -26,7 +26,7 @@ class MyCollections extends Component {
 			return collection._id === id;
 		});
 		this.props.currentAnimalDisplay(_.first(newId));
-		this.props.history.push('/vew_animal');
+		this.props.history.push('/view_animal');
 	};
 
 	categoryList = (id) => {

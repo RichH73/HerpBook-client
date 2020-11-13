@@ -121,6 +121,39 @@
     border-radius: 7px;
 }
 
+.collections-pairings-records-detail-view {
+    z-index: 250;
+    background-color: lightblue;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.collections-pairings-new-pairing {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.collections-pairings-new-pairing button {
+    width: 80px;
+}
+
+.collections-pairings-list {
+
+}
+
+.collections-pairings-list-button {
+    margin: .5em auto;
+    padding-right: 40px;
+    text-align: right;
+}
+
+.collections-pairings-list button {
+    width: 80px;
+    border-radius: 7px;
+}
+
 
 // End Animal
 
