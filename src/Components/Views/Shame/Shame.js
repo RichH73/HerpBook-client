@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import React, { Component } from 'react';
-import { get, set } from 'lodash';
+import { get } from 'lodash';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
+//import ReactQuill from 'react-quill';
 import { Link } from 'react-router-dom';
 //import ReactGA from "react-ga";
 

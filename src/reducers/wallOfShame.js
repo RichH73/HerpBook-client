@@ -1,4 +1,3 @@
-const { get, isEqual } = require('lodash');
 const initialState = {
 	newReports: [],
 	business_name: '',

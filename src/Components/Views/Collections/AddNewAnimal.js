@@ -4,11 +4,10 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import _ from 'lodash';
 
-import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
-import BarcodeReader from 'react-barcode-reader';
+// import BarcodeReader from 'react-barcode-reader';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 

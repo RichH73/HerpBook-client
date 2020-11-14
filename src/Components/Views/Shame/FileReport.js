@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
+// eslint-disable-next-line
 import QuillEmoji from 'quill-emoji';
 //import Dropzone from "react-dropzone";
 //import Editor from '../../functions/Editor'
@@ -17,9 +18,6 @@ import QuillEmoji from 'quill-emoji';
 
 //Google analytics
 import ReactGA from 'react-ga';
-
-const incidentDescription =
-	'Please include as many details as possible. DO NOT use foul language in your description. Do not use hyperlinks or email addresses.';
 
 class Shame extends Component {
 	modules = {

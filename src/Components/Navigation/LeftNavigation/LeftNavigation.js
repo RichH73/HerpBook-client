@@ -4,35 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _ from 'lodash';
 
 class LeftNav extends Component {
-	// collectionSelect = () => {
-	// 	return (
-	// 		<select onChange={this.selectAnimal} name="animal_select">
-	// 			<option></option>
-	// 			{this.props.collectionsData.map((collection) => {
-	// 				return (
-	// 					<option key={collection._id} readOnly onChange={() => {}} value={collection._id}>
-	// 						{collection.name}
-	// 					</option>
-	// 				);
-	// 			})}
-	// 		</select>
-	// 	);
-	// };
-
-	// selectAnimal = (event) => {
-	// 	console.log('this event', !!event.target.value)
-	// 	const newId = this.props.collectionsData.filter((collection) => {
-	// 		return collection._id === event.target.value;
-	// 	});
-	// 	if(!!event.target.value) {
-	// 		this.props.currentAnimalDisplay(_.first(newId));
-	// 	}
-	// 	this.props.clearCurrentAnimalDisplay()
-	// };
-
 	userNavigation = () => {
 		const { displayMessageCount } = this.props;
 		return (

@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import _ from 'lodash';
-import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
-import ReactGA from 'react-ga';
+// import ReactGA from "react-ga";
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
@@ -13,7 +12,6 @@ import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
 import moment from 'moment';
 import AlertModal from '../../../_services/Modal/Modal';
-import queryString from 'query-string';
 
 class Animal extends Component {
 	state = {
@@ -159,6 +157,16 @@ class Animal extends Component {
 						</option>
 					</select>
 				);
+			default:
+				return (
+					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
+						<option value="MALE">Male</option>
+						<option value="FEMALE">Female</option>
+						<option selected value="UNKNOWN">
+							Unknown
+						</option>
+					</select>
+				);
 		}
 	};
 
@@ -228,7 +236,7 @@ class Animal extends Component {
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<label>Sire:</label>
 								{!!animal.sire.length ? (
-									<span name="viewLink" onClick={() => this.viewRecord(animal.sire)} onClick={() => this.searchId(animal.sire)}>
+									<span name="viewLink" onClick={() => this.searchId(animal.sire)}>
 										view
 									</span>
 								) : (
@@ -243,7 +251,13 @@ class Animal extends Component {
 						<div className="collection-animal-dam">
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<label>Dam:</label>
-								{animal.dam.length ? <span name="viewLink">view</span> : ''}
+								{animal.dam.length ? (
+									<span name="viewLink" onClick={() => this.searchId(animal.dam)}>
+										view
+									</span>
+								) : (
+									''
+								)}
 							</div>
 							<div>
 								<input type="text" name="dam" placeholder={animal.dam} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />

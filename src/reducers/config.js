@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const server_state = false;
+const server_state = true;
 //const redux = false;
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 

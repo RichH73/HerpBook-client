@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import './LargeImage.css';
-import _ from 'lodash';
 
 class LargeImage extends Component {
 	state = {};

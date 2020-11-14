@@ -3,15 +3,15 @@ import './ViewShame.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
-import React, { Component, useRef } from 'react';
-import { get, cloneDeep } from 'lodash';
+import React, { Component } from 'react';
+import { get } from 'lodash';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import ReactGA from 'react-ga';
-import ReactHtmlParser from 'react-html-parser';
+// import { Link } from 'react-router-dom';
+// import ReactGA from 'react-ga';
+// import ReactHtmlParser from 'react-html-parser';
 import HtmlParser from 'react-html-parser';
 import ReactQuill from 'react-quill';
-import QuillEmoji from 'quill-emoji';
+// import QuillEmoji from 'quill-emoji';
 class ViewShame extends Component {
 	state = {
 		styles: {
@@ -51,7 +51,7 @@ class ViewShame extends Component {
 
 	submitHandler = (data) => {
 		const { uid, username, first_name, last_name } = this.props.user;
-		const commentBox = this.refs.commentBox;
+		//const commentBox = this.refs.commentBox;
 		let commentData = {
 			reportId: get(data, '_id'),
 			uid: uid,
@@ -113,7 +113,7 @@ class ViewShame extends Component {
 		console.log('my date', myDate);
 		if (this.props.location.reportId === undefined) this.props.history.push('/user_reports');
 		const report = this.props.shames.filter((shame) => shame._id === this.props.location.reportId);
-		const { username } = this.props.user;
+		//const { username } = this.props.user;
 		return (
 			<React.Fragment>
 				{report.map((report) => (

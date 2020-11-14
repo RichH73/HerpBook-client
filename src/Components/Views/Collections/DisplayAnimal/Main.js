@@ -9,7 +9,6 @@ import Pairings from './Pairings';
 import Feedings from './Feedings';
 import Animal from './Animal';
 import Photos from './Photos';
-import Activity from './Activity/Activity';
 
 class Main extends Component {
 	state = {};

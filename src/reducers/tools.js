@@ -15,6 +15,7 @@ export const spinner = (state = initial_state, spinner) => {
 					display: 'none',
 				};
 			}
+			break;
 		default:
 			return state;
 	}
@@ -34,6 +35,7 @@ export const alertModal = (state = modalState, data) => {
 				return {
 					modalIsOpen: true,
 				};
+			break;
 		default:
 			return state;
 	}

@@ -27,6 +27,10 @@ class Pairings extends Component {
 
 	onSubmitHandler = (event) => {
 		event.preventDefault();
+		this.props.pageLoading(true);
+		setTimeout(() => {
+			this.props.pageLoading(false);
+		}, 10000);
 		axios({
 			method: 'post',
 			url: `${this.props.API}/collections/new_pairing`,
@@ -39,10 +43,9 @@ class Pairings extends Component {
 			},
 		})
 			.then((response) => {
-				this.props.pageLoading(false);
 				if (response.status === 201) {
-					// this.props.clearCurrentAnimalDisplay();
-					this.props.currentAnimalDisplay(response.data);
+					this.props.pageLoading(false);
+					this.props.currentAnimalDisplay(response.data[0]);
 				}
 			})
 			.catch((error) => {
@@ -61,7 +64,7 @@ class Pairings extends Component {
 			let pd = dayjs(_.get(pair, 'date'));
 			return (
 				<tr>
-					<td>{`${pd.$M}/${pd.$D}/${pd.$y}`}</td>
+					<td>{`${pd.$M + 1}/${pd.$D}/${pd.$y}`}</td>
 					<td>{pair.mate}</td>
 					<td>{!!pair.whitnessed ? 'Yes' : 'No'}</td>
 				</tr>

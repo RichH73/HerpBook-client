@@ -26,6 +26,10 @@ class Feedings extends Component {
 
 	onSubmitHandler = (event) => {
 		event.preventDefault();
+		this.props.pageLoading(true);
+		setTimeout(() => {
+			this.props.pageLoading(false);
+		}, 10000);
 		axios({
 			method: 'post',
 			url: `${this.props.API}/collections/new_feeding`,
@@ -38,10 +42,9 @@ class Feedings extends Component {
 			},
 		})
 			.then((response) => {
-				this.props.pageLoading(false);
 				if (response.status === 201) {
-					//this.props.clearCurrentAnimalDisplay();
-					this.props.currentAnimalDisplay(response.data);
+					this.props.pageLoading(false);
+					this.props.currentAnimalDisplay(response.data[0]);
 				}
 			})
 			.catch((error) => {

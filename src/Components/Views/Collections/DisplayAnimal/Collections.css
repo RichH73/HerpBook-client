@@ -1,395 +1,663 @@
 /*
     Color section to define the colors used in the entire app.
 */
-.collections-animal-page {
-  padding: 10px;
-}
-
-.collection-animal-img-info {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "img info";
-  margin-bottom: 1em;
-}
-
-.collection-animal-image {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: img;
-}
-
-.collection-animal-common-info {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "name gender" "id dob" "sire dam";
-  margin-bottom: 8px;
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: info;
-}
-
-.collection-animal-name {
-  width: 200px;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: name;
-}
-
-.collection-animal-name input {
-  width: 200px;
-}
-
-.collection-animal-id {
-  width: 200px;
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: id;
-}
-
-.collection-animal-id input {
-  width: 200px;
-}
-
-.collection-animal-dob {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: dob;
-  width: 200px;
-}
-
-.collection-animal-dob input {
-  width: 100px;
-}
-
-.collection-animal-sire {
-  width: 200px;
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  grid-area: sire;
-}
-
-.collection-animal-sire span {
-  width: 2em;
-  text-align: right;
-  font-size: 0.7rem;
-  color: blue;
-  cursor: pointer;
-}
-
-.collection-animal-sire input {
-  width: 200px;
-}
-
-.collection-animal-dam {
-  width: 200px;
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
-  grid-area: dam;
-}
-
-.collection-animal-dam span {
-  width: 2em;
-  text-align: right;
-  font-size: 0.7rem;
-  color: blue;
-  cursor: pointer;
-}
-
-.collection-animal-dam input {
-  width: 200px;
-}
-
-.collection-animal-gender {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: gender;
-  width: 200px;
-}
-
-.collection-animal-comment {
-  width: 200px;
-}
-
-.collection-animal-body {
-  width: 100%;
-}
-
-.collections-animal-quick-records {
-  margin-bottom: 1em;
-}
-
-.collections-animal-quick-records-data {
-  font-size: 0.8rem;
-  margin-top: 0.2em;
-}
-
-.collection-animal-comments-box {
-  margin-top: 0.2em;
-}
-
-.collection-animal-update-button {
-  margin: 1em auto;
-  text-align: right;
-}
-
-.collections-pairings-records-detail-view {
-  z-index: 250;
-  background-color: lightblue;
-  top: 0;
-  left: 0;
-  position: fixed;
-  width: 100%;
-}
-
-.collections-pairings-new-pairing {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.collections-feedings-new-feeding {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.collections-feedings-list-button {
-  margin: 0.5em auto;
-  padding-right: 40px;
-  text-align: right;
-}
-
-.collections-pairings-list-button {
-  margin: 0.5em auto;
-  padding-right: 40px;
-  text-align: right;
-}
-
-.collections-create-new-animal {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "new-animal-form" "new-animal-images" "footer";
-}
-
-.collections-create-new-animal-images {
-  margin: 3em auto;
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: new-animal-images;
-}
-
-.collections-create-new-animal-form {
-  width: 75%;
-  margin: auto;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: new-animal-form;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
-}
-
-.collections-create-new-animal-footer {
-  margin: auto 5em 0;
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  grid-area: footer;
-  text-align: right;
-  padding-right: 5em;
-}
-
-.collections-create-new-animal-form input {
-  margin: 5px 0;
-}
-
-.collections-create-new-animal-name {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: create-name;
-  width: 200px;
-}
-
-.collections-create-new-animal-dob {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: create-dob;
-}
-
-.collections-create-new-animal-sire {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: create-sire;
-}
-
-.collections-create-new-animal-dam {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: create-dam;
-}
-
-.collections-create-new-animal-gender {
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
-  grid-area: create-gender;
-}
-
-.collections-create-new-animal-button {
-  grid-area: create-button;
-  padding: 8px;
-}
-
-.collections-create-new-animal-button button {
-  width: 80px;
-}
-
-.collections-create-new-animal-img-drop-dropbox {
-  width: 60%;
-  padding: 3px;
-  border-radius: 10px;
-  border: 2px solid orange;
-  background-color: #cce2f8;
-  margin: auto;
-}
-
-.img-preview {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: auto auto auto auto auto auto;
-      grid-template-columns: auto auto auto auto auto auto;
-}
-
-.img-preview img {
-  width: 100px;
-}
-
-.collections-create-new-animal-category {
-  -ms-grid-row: 4;
-  -ms-grid-column: 1;
-  grid-area: category;
-  margin-bottom: 8px;
-}
-
-.collections-create-new-animal-sub-category {
-  -ms-grid-row: 5;
-  -ms-grid-column: 1;
-  grid-area: sub-category;
-}
-
-.collections-tab-header {
-  border-color: orange;
-}
-
-.react-tabs__tab--selected {
-  border-color: orange;
-}
-
-.react-tabs__tab-list {
-  border-color: orange;
-}
-
-.collections-animal-page img {
-  width: 200px;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.7rem;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-.collections-animal-more-images {
-  padding: 10px;
-}
-
-.collections-animal-more-images-display {
-  margin-top: 2em;
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 20px;
-  -ms-grid-columns: auto auto auto;
-      grid-template-columns: auto auto auto;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.collections-create-new-animal-img-drop-button {
-  text-align: right;
-  margin-top: 10px;
-  padding-right: 134px;
-}
-
-.collections-animal-more-images img {
-  width: 100px;
-  cursor: pointer;
-}
-
-.collections-my-collections-list td:hover {
-  cursor: pointer;
-}
-
-.collections-my-collections-list {
-  padding: 10px;
-}
-
-.collections-my-collections-list tr:hover {
-  background-color: #cce2f8;
-}
-
-.collections-create-new-activity {
-  padding: 10px;
-}
-
-.collections-images-image-box {
-  width: 200px;
-  background-color: #cce2f8;
-  border-radius: 7px;
-  padding-bottom: 10px;
-}
-
-.collections-images-image-header {
-  text-align: center;
-  height: 25px;
-  background-color: orange;
-  padding: 4px 0;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  margin: 0 auto 1em;
-}
-
-.collections-images-imgage-body {
-  text-align: center;
-}
-
-.collections-images-image-body img {
-  text-align: center;
-}
-
-.collections-images-imgage-body-info p {
-  font-size: 0.8rem;
-  margin: 10px;
-}
-
-.collections-images-image {
-  text-align: center;
-  width: 100%;
-  height: 50%;
-}
-
-.collections-images-imgage-footer {
-  text-align: center;
+@media screen and (min-width: 1010px) {
+  .collections-animal-page {
+    padding: 10px;
+  }
+  .collection-animal-img-info {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "img info";
+    margin-bottom: 1em;
+  }
+  .collection-animal-image {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: img;
+  }
+  .collection-animal-common-info {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "name gender" "id dob" "sire dam";
+    height: 180px;
+    margin-bottom: 8px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: info;
+  }
+  .collection-animal-name {
+    width: 200px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: name;
+  }
+  .collection-animal-name input {
+    width: 200px;
+  }
+  .collection-animal-id {
+    width: 200px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: id;
+  }
+  .collection-animal-id input {
+    width: 200px;
+  }
+  .collection-animal-dob {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: dob;
+    width: 200px;
+  }
+  .collection-animal-dob input {
+    width: 100px;
+  }
+  .collection-animal-sire {
+    width: 200px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: sire;
+  }
+  .collection-animal-sire span {
+    width: 2em;
+    text-align: right;
+    font-size: 0.7rem;
+    color: blue;
+    cursor: pointer;
+  }
+  .collection-animal-sire input {
+    width: 200px;
+  }
+  .collection-animal-dam {
+    width: 200px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: dam;
+  }
+  .collection-animal-dam span {
+    width: 2em;
+    text-align: right;
+    font-size: 0.7rem;
+    color: blue;
+    cursor: pointer;
+  }
+  .collection-animal-dam input {
+    width: 200px;
+  }
+  .collection-animal-gender {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: gender;
+    width: 200px;
+  }
+  .collection-animal-comment {
+    width: 200px;
+  }
+  .collection-animal-body {
+    width: 100%;
+  }
+  .collections-animal-quick-records {
+    margin-bottom: 1em;
+  }
+  .collections-animal-quick-records-data {
+    font-size: 0.8rem;
+    margin-top: 0.2em;
+  }
+  .collection-animal-comments-box {
+    margin-top: 0.2em;
+  }
+  .collection-animal-update-button {
+    margin: 1em auto;
+    text-align: right;
+  }
+  .collections-pairings-records-detail-view {
+    z-index: 250;
+    background-color: lightblue;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+  }
+  .collections-pairings-new-pairing {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-feedings-new-feeding {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-feedings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .collections-pairings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .collections-create-new-animal {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+  }
+  .collections-create-new-animal-images {
+    margin: 3em auto;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: new-animal-images;
+  }
+  .collections-create-new-animal-form {
+    width: 75%;
+    margin: auto;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: new-animal-form;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+  }
+  .collections-create-new-animal-footer {
+    margin: auto 5em 0;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: footer;
+    text-align: right;
+    padding-right: 5em;
+  }
+  .collections-create-new-animal-form input {
+    margin: 5px 0;
+  }
+  .collections-create-new-animal-name {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: create-name;
+    width: 200px;
+  }
+  .collections-create-new-animal-dob {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: create-dob;
+  }
+  .collections-create-new-animal-sire {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: create-sire;
+  }
+  .collections-create-new-animal-dam {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: create-dam;
+  }
+  .collections-create-new-animal-gender {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: create-gender;
+  }
+  .collections-create-new-animal-button {
+    grid-area: create-button;
+    padding: 8px;
+  }
+  .collections-create-new-animal-button button {
+    width: 80px;
+  }
+  .collections-create-new-animal-img-drop-dropbox {
+    width: 60%;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid orange;
+    background-color: #cce2f8;
+    margin: auto;
+  }
+  .img-preview {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto auto auto;
+  }
+  .img-preview img {
+    width: 100px;
+  }
+  .collections-create-new-animal-category {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    grid-area: category;
+    margin-bottom: 8px;
+  }
+  .collections-create-new-animal-sub-category {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    grid-area: sub-category;
+  }
+  .collections-tab-header {
+    border-color: orange;
+  }
+  .react-tabs__tab--selected {
+    border-color: orange;
+  }
+  .react-tabs__tab-list {
+    border-color: orange;
+  }
+  .collections-animal-page img {
+    width: 200px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .collections-animal-more-images {
+    padding: 10px;
+  }
+  .collections-animal-more-images-display {
+    margin-top: 2em;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 20px;
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-create-new-animal-img-drop-button {
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 134px;
+  }
+  .collections-animal-more-images img {
+    width: 100px;
+    cursor: pointer;
+  }
+  .collections-my-collections-list td:hover {
+    cursor: pointer;
+  }
+  .collections-my-collections-list {
+    padding: 10px;
+  }
+  .collections-my-collections-list tr:hover {
+    background-color: #cce2f8;
+  }
+  .collections-create-new-activity {
+    padding: 10px;
+  }
+  .collections-images-image-box {
+    width: 200px;
+    background-color: #cce2f8;
+    border-radius: 7px;
+    padding-bottom: 10px;
+  }
+  .collections-images-image-header {
+    text-align: center;
+    height: 25px;
+    background-color: orange;
+    padding: 4px 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin: 0 auto 1em;
+  }
+  .collections-images-imgage-body {
+    text-align: center;
+  }
+  .collections-images-image-body img {
+    text-align: center;
+  }
+  .collections-images-imgage-body-info p {
+    font-size: 0.8rem;
+    margin: 10px;
+  }
+  .collections-images-image {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+  }
+  .collections-images-imgage-footer {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1009px) {
+  .collections-animal-page {
+    padding: 10px;
+  }
+  .collection-animal-img-info {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "img info";
+    margin-bottom: 1em;
+  }
+  .collection-animal-image {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: img;
+  }
+  .collection-animal-common-info {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "name gender" "id dob" "sire dam";
+    height: 180px;
+    margin-bottom: 8px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: info;
+  }
+  .collection-animal-name {
+    width: 200px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: name;
+  }
+  .collection-animal-name input {
+    width: 200px;
+  }
+  .collection-animal-id {
+    width: 200px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: id;
+  }
+  .collection-animal-id input {
+    width: 200px;
+  }
+  .collection-animal-dob {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: dob;
+    width: 200px;
+  }
+  .collection-animal-dob input {
+    width: 100px;
+  }
+  .collection-animal-sire {
+    width: 200px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: sire;
+  }
+  .collection-animal-sire span {
+    width: 2em;
+    text-align: right;
+    font-size: 0.7rem;
+    color: blue;
+    cursor: pointer;
+  }
+  .collection-animal-sire input {
+    width: 200px;
+  }
+  .collection-animal-dam {
+    width: 200px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: dam;
+  }
+  .collection-animal-dam span {
+    width: 2em;
+    text-align: right;
+    font-size: 0.7rem;
+    color: blue;
+    cursor: pointer;
+  }
+  .collection-animal-dam input {
+    width: 200px;
+  }
+  .collection-animal-gender {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: gender;
+    width: 200px;
+  }
+  .collection-animal-comment {
+    width: 200px;
+  }
+  .collection-animal-body {
+    width: 100%;
+  }
+  .collections-animal-quick-records {
+    margin-bottom: 1em;
+  }
+  .collections-animal-quick-records-data {
+    font-size: 0.8rem;
+    margin-top: 0.2em;
+  }
+  .collection-animal-comments-box {
+    margin-top: 0.2em;
+  }
+  .collection-animal-update-button {
+    margin: 1em auto;
+    text-align: right;
+  }
+  .collections-pairings-records-detail-view {
+    z-index: 250;
+    background-color: lightblue;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+  }
+  .collections-pairings-new-pairing {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-feedings-new-feeding {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-feedings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .collections-pairings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .collections-create-new-animal {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+  }
+  .collections-create-new-animal-images {
+    margin: 3em auto;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: new-animal-images;
+  }
+  .collections-create-new-animal-form {
+    width: 75%;
+    margin: auto;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: new-animal-form;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+  }
+  .collections-create-new-animal-footer {
+    margin: auto 5em 0;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: footer;
+    text-align: right;
+    padding-right: 5em;
+  }
+  .collections-create-new-animal-form input {
+    margin: 5px 0;
+  }
+  .collections-create-new-animal-name {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: create-name;
+    width: 200px;
+  }
+  .collections-create-new-animal-dob {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: create-dob;
+  }
+  .collections-create-new-animal-sire {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: create-sire;
+  }
+  .collections-create-new-animal-dam {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: create-dam;
+  }
+  .collections-create-new-animal-gender {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: create-gender;
+  }
+  .collections-create-new-animal-button {
+    grid-area: create-button;
+    padding: 8px;
+  }
+  .collections-create-new-animal-button button {
+    width: 80px;
+  }
+  .collections-create-new-animal-img-drop-dropbox {
+    width: 60%;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid orange;
+    background-color: #cce2f8;
+    margin: auto;
+  }
+  .img-preview {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto auto auto;
+  }
+  .img-preview img {
+    width: 100px;
+  }
+  .collections-create-new-animal-category {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    grid-area: category;
+    margin-bottom: 8px;
+  }
+  .collections-create-new-animal-sub-category {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    grid-area: sub-category;
+  }
+  .collections-tab-header {
+    border-color: orange;
+  }
+  .react-tabs__tab--selected {
+    border-color: orange;
+  }
+  .react-tabs__tab-list {
+    border-color: orange;
+  }
+  .collections-animal-page img {
+    width: 200px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .collections-animal-more-images {
+    padding: 10px;
+  }
+  .collections-animal-more-images-display {
+    margin-top: 2em;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 20px;
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .collections-create-new-animal-img-drop-button {
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 134px;
+  }
+  .collections-animal-more-images img {
+    width: 100px;
+    cursor: pointer;
+  }
+  .collections-my-collections-list td:hover {
+    cursor: pointer;
+  }
+  .collections-my-collections-list {
+    padding: 10px;
+  }
+  .collections-my-collections-list tr:hover {
+    background-color: #cce2f8;
+  }
+  .collections-create-new-activity {
+    padding: 10px;
+  }
+  .collections-images-image-box {
+    width: 200px;
+    background-color: #cce2f8;
+    border-radius: 7px;
+    padding-bottom: 10px;
+  }
+  .collections-images-image-header {
+    text-align: center;
+    height: 25px;
+    background-color: orange;
+    padding: 4px 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin: 0 auto 1em;
+  }
+  .collections-images-imgage-body {
+    text-align: center;
+  }
+  .collections-images-image-body img {
+    text-align: center;
+  }
+  .collections-images-imgage-body-info p {
+    font-size: 0.8rem;
+    margin: 10px;
+  }
+  .collections-images-image {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+  }
+  .collections-images-imgage-footer {
+    text-align: center;
+  }
 }
 /*# sourceMappingURL=Collections.css.map */

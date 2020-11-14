@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
 import dayjs from 'dayjs';
-import Main from './DisplayAnimal/Main';
-
-import queryString from 'query-string';
 
 class MyCollections extends Component {
 	state = {};
@@ -30,7 +26,7 @@ class MyCollections extends Component {
 	};
 
 	categoryList = (id) => {
-		const selectCategories = this.props.categories.filter((category) => category.id === id);
+		//const selectCategories = this.props.categories.filter((category) => category.id === id);
 		const collections = this.props.collectionsIds.collections.map((collection) => {
 			const dob = dayjs(_.get(collection, 'dob'));
 			return (
