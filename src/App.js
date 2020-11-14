@@ -21,9 +21,9 @@ class App extends Component {
 	};
 	componentDidMount() {
 		console.log('this id', this.props.userUID);
-		this.props.getMyCollections({ uid: this.props.userUID });
 		this.props.getVendors();
 		if (localStorage.token) {
+			this.props.getMyCollections({ uid: this.props.userUID });
 			axios({
 				method: 'get',
 				url: `${this.props.API}/messages/my_messages`,

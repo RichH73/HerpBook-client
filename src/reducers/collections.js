@@ -70,7 +70,10 @@ export const selectedAnimal = (state = initialSelectedAnimal, data) => {
 	}
 };
 
-const createNewAnimalInitial = {};
+const createNewAnimalInitial = {
+	category: '',
+	sub_category: '',
+};
 
 export const createNewAnimal = (state = createNewAnimalInitial, data) => {
 	switch (data.type) {

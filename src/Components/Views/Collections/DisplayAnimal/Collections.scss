@@ -1,6 +1,6 @@
 @import "../../../../index";
 
-@media screen and (min-width: 1010px) {
+@media screen and (min-width: 700px) {
 // Start Animal
 .collections-animal-page {
   padding: 10px;
@@ -403,7 +403,7 @@ th {
 
 }
 
-@media screen and (max-width: 1009px) {
+@media screen and (max-width: 699px) {
   // Start Animal
 .collections-animal-page {
   padding: 10px;
@@ -411,23 +411,28 @@ th {
 
 .collection-animal-img-info {
   display: grid;
-  grid-template-areas: "img info";
+  grid-template-areas: 'img' 'info';
   margin-bottom: 1em;
 }
 
 .collection-animal-image {
+  margin: auto;
+  text-align: center;
+  width: 90%;
   grid-area: img;
 }
 
 .collection-animal-common-info {
   display: grid;
   grid-template-areas:
-    "name gender"
-    "id dob"
-    "sire dam";
+  'id ...'
+  'name ...'
+  'gender dob'
+    'sire ...'
+    'dam ...';
   //width: 200px;
   height: 180px;
-  margin-bottom: 8px;
+  margin-bottom: 3em;
   grid-area: info;
 }
 
@@ -440,10 +445,12 @@ th {
 }
 
 .collection-animal-id {
+  margin: 1em auto .5em;
   width: 200px;
   grid-area: id;
 }
 .collection-animal-id input {
+  margin: 1em auto .5em;
   width: 200px;
 }
 
@@ -452,6 +459,7 @@ th {
   width: 200px;
 }
 .collection-animal-dob input {
+  margin: 1em auto .5em;
   width: 100px;
 }
 
@@ -471,6 +479,7 @@ th {
 }
 
 .collection-animal-dam {
+  margin: 1em auto .5em;
   width: 200px;
   grid-area: dam;
 }
@@ -484,10 +493,12 @@ th {
 }
 
 .collection-animal-dam input {
+  margin: 1em auto .5em;
   width: 200px;
 }
 
 .collection-animal-gender {
+  margin: .5em auto .5em;
   grid-area: gender;
   width: 200px;
 }
@@ -500,11 +511,11 @@ th {
 }
 
 .collections-animal-quick-records {
-  margin-bottom: 1em;
+  margin: 8em auto 3em;
 }
 
 .collections-animal-quick-records-data {
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-top: 0.2em;
 }
 
@@ -541,8 +552,14 @@ th {
 // }
 
 .collections-feedings-new-feeding {
-  display: flex;
-  justify-content: space-evenly;
+  width: 50%;
+  margin: auto;
+  //display: flex;
+  //justify-content: space-evenly;
+}
+
+.collections-feedings-new-feeding input {
+  margin: 3px auto;
 }
 
 // .collections-feedings-new-feeding button {
@@ -550,9 +567,9 @@ th {
 // }
 
 .collections-feedings-list-button {
-  margin: 0.5em auto;
+  margin: 1em auto 2em;
   padding-right: 40px;
-  text-align: right;
+  text-align: center;
 }
 
 .collections-pairings-list {
@@ -587,7 +604,7 @@ th {
 }
 
 .collections-create-new-animal-form {
-  width: 75%;
+  width: 90%;
   margin: auto;
   grid-area: new-animal-form;
   display: grid;
@@ -607,7 +624,7 @@ th {
 }
 
 .collections-create-new-animal-form input {
-  margin: 5px 0;
+  margin: 15px 0;
 }
 
 .collections-create-new-animal-name {
@@ -715,10 +732,12 @@ th {
 }
 
 .collections-animal-more-images-display {
-  margin-top: 2em;
-  display: grid;
+  //width: 100%;
+  margin: 2em auto;
+  //display: grid;
+  width: 80%;
   grid-gap: 20px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
   justify-content: space-evenly;
 }
 
@@ -730,7 +749,7 @@ th {
 }
 
 .collections-animal-more-images img {
-  width: 100px;
+  //width: 100px;
   cursor: pointer;
 }
 
@@ -762,7 +781,8 @@ th {
 // Images/Photos
 
 .collections-images-image-box {
-  width: 200px;
+  margin: 2em auto;
+  width: 100%;
   //height: 220px;
   background-color: $lightBlue;
   border-radius: 7px;
@@ -770,6 +790,7 @@ th {
 }
 
 .collections-images-image-header {
+  width: 100%;
   text-align: center;
   height: 25px;
   background-color: orange;
@@ -786,9 +807,15 @@ th {
   text-align: center;
 }
 
+.collections-images-imgage-body-info {
+  margin: 1em auto;
+  text-align: center;
+  //padding: 10px 0 10px 20%;
+}
+
 .collections-images-imgage-body-info p {
   font-size: 0.8rem;
-  margin: 10px;
+  margin: 0px;
 }
 
 .collections-images-image {
@@ -805,3 +832,4 @@ th {
 // End Images
 
 }
+

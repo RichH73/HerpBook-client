@@ -129,74 +129,86 @@ class AddNewAnimal extends Component {
 
 	render() {
 		return (
-			<div className="collections-create-new-animal">
-				<div className="collections-create-new-animal-images">
-					<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
+			<React.Fragment>
+				<div style={{ margin: '2em auto', width: '85%' }}>
+					<p>
+						Fill in the following boxes to add a new animal to your collections. The bare minimum requirements are Category, Sub-category, and at
+						least one image of the animal to get started.
+					</p>
 				</div>
-				<div className="collections-create-new-animal-form">
-					<div className="collections-create-new-animal-name">
-						<label>Name:</label>
-						<div>
-							<input type="text" name="name" onChange={this.formChangeHandler} />
+				<div className="collections-create-new-animal">
+					<div className="collections-create-new-animal-images">
+						<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
+					</div>
+					<div className="collections-create-new-animal-form">
+						<div className="collections-create-new-animal-name">
+							<label>Name:</label>
+							<div>
+								<input type="text" name="name" onChange={this.formChangeHandler} />
+							</div>
 						</div>
-					</div>
-					<div className="collections-create-new-animal-sire">
-						<label>Sire:</label>
-						<div>
-							<input type="text" name="sire" onChange={this.formChangeHandler} />
+						<div className="collections-create-new-animal-sire">
+							<label>Sire:</label>
+							<div>
+								<input type="text" name="sire" onChange={this.formChangeHandler} />
+							</div>
 						</div>
-					</div>
-					<div className="collections-create-new-animal-dam">
-						<label>Dam:</label>
-						<div>
-							<input type="text" name="dam" onChange={this.formChangeHandler} />
+						<div className="collections-create-new-animal-dam">
+							<label>Dam:</label>
+							<div>
+								<input type="text" name="dam" onChange={this.formChangeHandler} />
+							</div>
 						</div>
-					</div>
-					<div className="collections-create-new-animal-dob">
-						<label>DOB:</label>
-						<div>
-							<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
+						<div className="collections-create-new-animal-dob">
+							<label>DOB:</label>
+							<div>
+								<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
+							</div>
 						</div>
-					</div>
-					<div className="collections-create-new-animal-gender">
-						<label>Gender:</label>
-						<div>
-							<select name="gender" onChange={this.formChangeHandler}>
-								<option>Choose</option>
-								<option value="MALE">Male</option>
-								<option value="FEMALE">Female</option>
-								<option value="UNKNOWN">Unknown</option>
-							</select>
+						<div className="collections-create-new-animal-gender">
+							<label>Gender:</label>
+							<div>
+								<select name="gender" onChange={this.formChangeHandler}>
+									<option>Choose</option>
+									<option value="MALE">Male</option>
+									<option value="FEMALE">Female</option>
+									<option value="UNKNOWN">Unknown</option>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div className="collections-create-new-animal-category">
-						<label>Category: </label>
-						<select id="category" required name="category" onChange={this.categoryChangeHandler}>
-							<option value="">Choose a category</option>
-							{this.category_menu()}
-						</select>
-					</div>
-
-					{!!this.props.createAnimal.category ? (
-						<div className="collections-create-new-animal-sub-category">
-							<label>Sub category: </label>
-							<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
+						<div className="collections-create-new-animal-category">
+							<label>Category: </label>
+							<select id="category" required name="category" onChange={this.categoryChangeHandler}>
 								<option value="">Choose a category</option>
-								{this.sub_category_menu()}
+								{this.category_menu()}
 							</select>
 						</div>
-					) : (
-						''
-					)}
-				</div>
-				<div className="collections-create-new-animal-footer">
-					<div className="collections-create-new-animal-button">
-						<button className="button" disabled={!this.props.sendFiles.length} onClick={this.onSubmitHandler}>
-							Save
-						</button>
+
+						{!!this.props.createAnimal.category ? (
+							<div className="collections-create-new-animal-sub-category">
+								<label>Sub category: </label>
+								<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
+									<option value="">Choose a category</option>
+									{this.sub_category_menu()}
+								</select>
+							</div>
+						) : (
+							''
+						)}
+					</div>
+					<div className="collections-create-new-animal-footer">
+						<div className="collections-create-new-animal-button">
+							<button
+								className="button"
+								disabled={!this.props.sendFiles.length || !this.props.createAnimal.category || !this.props.createAnimal.sub_category}
+								onClick={this.onSubmitHandler}
+							>
+								Save
+							</button>
+						</div>
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

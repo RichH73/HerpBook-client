@@ -209,7 +209,7 @@ class Animal extends Component {
 						<div className="collection-animal-name">
 							<label>Name:</label>
 							<div>
-								<input type="text" name="name" placeholder={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								<input type="text" name="name" defaultValue={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
 							</div>
 						</div>
 
@@ -244,7 +244,7 @@ class Animal extends Component {
 								)}
 							</div>
 							<div>
-								<input type="text" name="sire" placeholder={animal.sire} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								<input type="text" name="sire" defaultValue={animal.sire} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
 							</div>
 						</div>
 
@@ -260,7 +260,7 @@ class Animal extends Component {
 								)}
 							</div>
 							<div>
-								<input type="text" name="dam" placeholder={animal.dam} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
 							</div>
 						</div>
 						<div className="collection-animal-gender">

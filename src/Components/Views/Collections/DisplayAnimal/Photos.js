@@ -126,6 +126,12 @@ class Photos extends Component {
 		return (
 			<div className="collections-animal-more-images">
 				<div>
+					<p>
+						You can add additional photos of your animal here. Either drag new images from a different folder and drop them into the drop box or click
+						the drop box to select new images.
+					</p>
+				</div>
+				<div>
 					<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
 				</div>
 				<div className="collections-create-new-animal-img-drop-button">
