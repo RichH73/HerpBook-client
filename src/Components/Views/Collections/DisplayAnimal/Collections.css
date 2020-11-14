@@ -8,7 +8,7 @@
 .collection-animal-img-info {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'img info';
+      grid-template-areas: "img info";
   margin-bottom: 1em;
 }
 
@@ -21,7 +21,7 @@
 .collection-animal-common-info {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'name gender' 'id dob' 'sire dam';
+      grid-template-areas: "name gender" "id dob" "sire dam";
   margin-bottom: 8px;
   -ms-grid-row: 1;
   -ms-grid-column: 2;
@@ -71,7 +71,7 @@
 .collection-animal-sire span {
   width: 2em;
   text-align: right;
-  font-size: .7rem;
+  font-size: 0.7rem;
   color: blue;
   cursor: pointer;
 }
@@ -90,7 +90,7 @@
 .collection-animal-dam span {
   width: 2em;
   text-align: right;
-  font-size: .7rem;
+  font-size: 0.7rem;
   color: blue;
   cursor: pointer;
 }
@@ -119,12 +119,12 @@
 }
 
 .collections-animal-quick-records-data {
-  font-size: .8rem;
-  margin-top: .2em;
+  font-size: 0.8rem;
+  margin-top: 0.2em;
 }
 
 .collection-animal-comments-box {
-  margin-top: .2em;
+  margin-top: 0.2em;
 }
 
 .collection-animal-update-button {
@@ -160,13 +160,13 @@
 }
 
 .collections-feedings-list-button {
-  margin: .5em auto;
+  margin: 0.5em auto;
   padding-right: 40px;
   text-align: right;
 }
 
 .collections-pairings-list-button {
-  margin: .5em auto;
+  margin: 0.5em auto;
   padding-right: 40px;
   text-align: right;
 }
@@ -174,7 +174,7 @@
 .collections-create-new-animal {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'new-animal-form' 'new-animal-images' 'footer';
+      grid-template-areas: "new-animal-form" "new-animal-images" "footer";
 }
 
 .collections-create-new-animal-images {
@@ -192,7 +192,7 @@
   grid-area: new-animal-form;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
+      grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
 }
 
 .collections-create-new-animal-footer {
@@ -257,6 +257,13 @@
   margin: auto;
 }
 
+.img-preview {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto auto;
+}
+
 .img-preview img {
   width: 100px;
 }
@@ -293,10 +300,11 @@
 table {
   border-collapse: collapse;
   width: 100%;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -304,6 +312,10 @@ td, th {
 
 .collections-animal-more-images {
   padding: 10px;
+}
+
+.collections-animal-more-images-display {
+  margin-top: 2em;
   display: -ms-grid;
   display: grid;
   grid-gap: 20px;
@@ -312,6 +324,12 @@ td, th {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+
+.collections-create-new-animal-img-drop-button {
+  text-align: right;
+  margin-top: 10px;
+  padding-right: 134px;
 }
 
 .collections-animal-more-images img {
@@ -361,7 +379,7 @@ td, th {
 }
 
 .collections-images-imgage-body-info p {
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin: 10px;
 }
 

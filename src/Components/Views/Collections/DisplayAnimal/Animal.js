@@ -62,7 +62,7 @@ class Animal extends Component {
 								{!_.isEmpty(_.get(records, 'feeding')) ? (
 									<tr>
 										<td>Last Feeding</td>
-										{!!_.get(records, 'feeding.date', '').length ? <td>Date: {`${fd.$M}/${fd.$D}/${fd.$y}`}</td> : ''}
+										{!!_.get(records, 'feeding.date', '').length ? <td>Date: {`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</td> : ''}
 										{!!_.get(records, 'feeding.feederType', '').length ? <td>Feeder Type: {_.get(records, 'feeding.feederType')}</td> : ''}
 										{!!_.get(records, 'feeding.feederWeight', '').length ? <td>Amout or weight: {_.get(records, 'feeding.feederWeight')}</td> : ''}
 									</tr>
@@ -72,7 +72,7 @@ class Animal extends Component {
 								{!_.isEmpty(_.get(records, 'pairing')) ? (
 									<tr>
 										<td>Last Pairing</td>
-										{!!_.get(records, 'pairing.date', '').length ? <td>Date: {`${pd.$M}/${pd.$D}/${pd.$y}`}</td> : ''}
+										{!!_.get(records, 'pairing.date', '').length ? <td>Date: {`${pd.$M + 1}/${pd.$D}/${pd.$y}`}</td> : ''}
 										{!!_.get(records, 'pairing.mate', '').length ? <td>Mate: {_.get(records, 'pairing.mate')}</td> : ''}
 										<td>Whitnessed: {!!_.get(records, 'pairing.whitnessed') ? 'Yes' : 'No'}</td>
 									</tr>
@@ -272,7 +272,9 @@ class Animal extends Component {
 							/>
 						</div>
 						<div className="collection-animal-update-button">
-							<button onClick={this.onSubmitHandler}>Update</button>
+							<button className="button" onClick={this.onSubmitHandler}>
+								Update
+							</button>
 						</div>
 					</div>
 				</div>

@@ -99,6 +99,7 @@ class ImageDrop extends React.Component {
 				</Dropzone>
 				{this.props.images.length > 0 && (
 					<div className={`${this.props.imgDrop.className}-preview`}>
+						{console.log('some class', `${this.props.imgDrop.className}-preview`)}
 						<h5>Image Preview</h5>
 						<label>Click on an image to remove it.</label>
 						<br />

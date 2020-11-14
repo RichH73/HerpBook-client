@@ -49,9 +49,8 @@ class Photos extends Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					console.log(response);
-					//this.props.clearCurrentAnimalDisplay();
-					//this.props.currentAnimalDisplay(response.data);
+					this.props.imagesUploaded();
+					this.props.currentAnimalDisplay(response.data);
 					this.props.pageLoading(false);
 				}
 			})
@@ -82,7 +81,7 @@ class Photos extends Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					this.props.clearCurrentAnimalDisplay();
+					//this.props.clearCurrentAnimalDisplay();
 					this.props.currentAnimalDisplay(response.data);
 					this.props.pageLoading(false);
 				}
@@ -111,7 +110,7 @@ class Photos extends Component {
 					</div>
 					<div className="collections-images-imgage-body-info">
 						<p>Name: {image.large}</p>
-						<p>Uploaded: {`${id.$M}/${id.$D}/${id.$y}`}</p>
+						<p>Uploaded: {`${id.$M + 1}/${id.$D}/${id.$y}`}</p>
 					</div>
 					<div className="collections-images-imgage-footer">
 						<button className="button" onClick={() => this.deleteImage(image)}>
@@ -128,11 +127,13 @@ class Photos extends Component {
 			<div className="collections-animal-more-images">
 				<div>
 					<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
-					<button className="button" onClick={this.addImages}>
+				</div>
+				<div className="collections-create-new-animal-img-drop-button">
+					<button className="button" disabled={!this.props.sendFiles.length} onClick={this.addImages}>
 						Save
 					</button>
 				</div>
-				{this.imageMap()}
+				<div className="collections-animal-more-images-display">{this.imageMap()}</div>
 			</div>
 		);
 	}

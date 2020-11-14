@@ -422,7 +422,7 @@ class EditProfile extends React.Component {
 						</div>
 						{!!user.is_this_a_business ? this.businessProfile(user) : ''}
 						<div className="edit-profile-form-button">
-							<button type="submit" className="btn btn-success">
+							<button type="submit" className="button">
 								Save Profile
 							</button>
 						</div>

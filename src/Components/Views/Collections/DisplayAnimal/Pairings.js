@@ -41,7 +41,7 @@ class Pairings extends Component {
 			.then((response) => {
 				this.props.pageLoading(false);
 				if (response.status === 201) {
-					this.props.clearCurrentAnimalDisplay();
+					// this.props.clearCurrentAnimalDisplay();
 					this.props.currentAnimalDisplay(response.data);
 				}
 			})

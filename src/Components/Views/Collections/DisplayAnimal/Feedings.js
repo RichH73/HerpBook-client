@@ -40,7 +40,7 @@ class Feedings extends Component {
 			.then((response) => {
 				this.props.pageLoading(false);
 				if (response.status === 201) {
-					this.props.clearCurrentAnimalDisplay();
+					//this.props.clearCurrentAnimalDisplay();
 					this.props.currentAnimalDisplay(response.data);
 				}
 			})
@@ -60,7 +60,7 @@ class Feedings extends Component {
 			let fd = dayjs(_.get(feed, 'date'));
 			return (
 				<tr>
-					<td>{`${fd.$M}/${fd.$D}/${fd.$y}`}</td>
+					<td>{`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</td>
 					<td>{feed.feederType}</td>
 					<td>{feed.feederWeight}</td>
 				</tr>

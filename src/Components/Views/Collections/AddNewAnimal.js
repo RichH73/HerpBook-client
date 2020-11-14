@@ -65,7 +65,10 @@ class AddNewAnimal extends Component {
 			.then((response) => {
 				this.props.pageLoading(false);
 				if (response.status === 200) {
-					//this.props.history.push('/my_collections');
+					this.props.imagesUploaded();
+					this.props.currentAnimalDisplay(response.data);
+					this.props.pageLoading(false);
+					this.props.history.push('/view_animal');
 				}
 			})
 			.catch((error) => {
@@ -189,7 +192,9 @@ class AddNewAnimal extends Component {
 				</div>
 				<div className="collections-create-new-animal-footer">
 					<div className="collections-create-new-animal-button">
-						<button onClick={this.onSubmitHandler}>Save</button>
+						<button className="button" disabled={!this.props.sendFiles.length} onClick={this.onSubmitHandler}>
+							Save
+						</button>
 					</div>
 				</div>
 			</div>
