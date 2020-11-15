@@ -6,6 +6,7 @@ import * as actionCreators from '../../../actions/index';
 import LeftNav from '../../Navigation/LeftNavigation/LeftNavigation';
 import Pages from '../../Views/PageViews/BodyPages';
 import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
+import MainView from '../../../Components/Views/Collections/DisplayAnimal/RecordOverlay/Master';
 
 class Body extends Component {
 	render() {
@@ -19,6 +20,7 @@ class Body extends Component {
 					<div className="body-main-panel">
 						<div className="body-main-outter-panel">
 							<div className="body-main-header">
+								<MainView />
 								<h3>{this.props.navPageId}</h3>
 							</div>
 							<Pages />

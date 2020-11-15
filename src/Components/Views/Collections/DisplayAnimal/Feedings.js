@@ -58,11 +58,20 @@ class Feedings extends Component {
 		});
 	};
 
+	editingRecord = (feedRecord) => {
+		this.props.recordsEitor({
+			_id: feedRecord._id,
+			recordType: 'feeding',
+			display: 'block',
+			record: feedRecord,
+		});
+	};
+
 	feedMappings = () => {
 		return this.props.currentAnimal.feedings.map((feed) => {
 			let fd = dayjs(_.get(feed, 'date'));
 			return (
-				<tr>
+				<tr onClick={() => this.editingRecord(feed)}>
 					<td>{`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</td>
 					<td>{feed.feederType}</td>
 					<td>{feed.feederWeight}</td>

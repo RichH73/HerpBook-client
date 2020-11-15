@@ -19,12 +19,14 @@ import { subCategoryListings } from './classified';
 import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
 import showFloatingImage from './floatingImage';
+import editRecord from './editRecords';
 
 const allReducers = combineReducers({
 	alertModal,
 	categories,
 	classified,
 	config,
+	editRecord,
 	imageHandler,
 	listing,
 	messageReply,

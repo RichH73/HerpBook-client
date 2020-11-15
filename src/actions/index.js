@@ -3,6 +3,13 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const recordsEitor = (data) => {
+	return {
+		type: 'new_record_edit',
+		data,
+	};
+};
+
 export const modalSetState = (state) => {
 	return {
 		type: 'modal_state',
