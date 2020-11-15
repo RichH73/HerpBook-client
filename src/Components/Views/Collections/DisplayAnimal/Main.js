@@ -20,6 +20,7 @@ class Main extends Component {
 	componentWillUnmount() {
 		this.props.hideLargeImage();
 		this.props.clearCurrentAnimalDisplay();
+		this.props.clearRecordsEditor();
 	}
 
 	tabs = () => {

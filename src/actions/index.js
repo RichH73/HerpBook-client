@@ -3,7 +3,20 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const clearRecordsEditor = () => {
+	return {
+		type: 'clear_record_edit',
+	};
+};
+
 export const recordsEitor = (data) => {
+	return {
+		type: 'record_edit_new_data',
+		data,
+	};
+};
+
+export const loadRecordsEitor = (data) => {
 	return {
 		type: 'new_record_edit',
 		data,

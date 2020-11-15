@@ -1,0 +1,85 @@
+@import '../../../../../index';
+
+@media screen and (min-width: 1010px){
+    .collection-edit-record-header {
+        background-color: $borderColor;
+    }
+    .collection-edit-record-header h4 {
+        margin: 0 auto;
+    }
+
+    .collection-edit-record-body {
+        padding: 10px;
+    }
+
+    .collection-edit-record-main-panel {
+        //padding: 10px;
+    }
+
+    .collections-feeding-records-editor-body {
+        display: grid;
+        grid-template-areas:
+        'date type weight'
+        'notes notes notes'
+        '... ... buttons';
+    }
+
+    .collections-feeding-records-editor-feeding-date {
+        padding: 0 10px;
+        grid-area: date;
+    }
+    .collections-feeding-records-editor-feeding-type {
+        padding: 0 10px;
+        grid-area: type;
+    }
+    .collections-feeding-records-editor-feeding-weight {
+        padding: 0 10px;
+        grid-area: weight;
+    }
+    .collections-feeding-records-editor-feeding-notes {
+        margin: 1em 0;
+        grid-area: notes;
+    }
+
+    .collections-feeding-records-editor-feeding-buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 170px;
+        grid-area: buttons;
+        margin: 1em 1em 1em auto;
+    }
+
+    .collections-pairing-records-editor-body {
+        display: grid;
+        grid-template-areas:
+        'date type weight'
+        'notes notes notes'
+        '... ... buttons';
+    }
+    
+    .collections-pairing-records-editor-pairing-date {
+        padding: 0 10px;
+        grid-area: date;
+    }
+    .collections-pairing-records-editor-pairing-type {
+        padding: 0 10px;
+        grid-area: type;
+    }
+    .collections-pairing-records-editor-pairing-weight {
+        padding: 0 10px;
+        grid-area: weight;
+    }
+    .collections-pairing-records-editor-pairing-notes {
+        margin: 1em 0;
+        grid-area: notes;
+    }
+    
+    .collections-pairing-records-editor-pairing-buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 170px;
+        grid-area: buttons;
+        margin: 1em 1em 1em auto;
+    }
+    
+}
