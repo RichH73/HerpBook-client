@@ -31,7 +31,8 @@ const analytics = () => {
 
 export const store_config = () => {
 	if (origins.includes(window.origin)) {
-		return composeWithDevTools(applyMiddleware(thunk));
+		return applyMiddleware(thunk);
+		// return composeWithDevTools(applyMiddleware(thunk));
 	}
 	return applyMiddleware(thunk);
 };

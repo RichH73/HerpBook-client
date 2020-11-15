@@ -50,7 +50,7 @@ class Photos extends Component {
 			.then((response) => {
 				if (response.status === 201) {
 					this.props.imagesUploaded();
-					this.props.currentAnimalDisplay(response.data);
+					this.props.currentAnimalDisplay(response.data[0]);
 					this.props.pageLoading(false);
 				}
 			})
@@ -82,7 +82,7 @@ class Photos extends Component {
 			.then((response) => {
 				if (response.status === 201) {
 					//this.props.clearCurrentAnimalDisplay();
-					this.props.currentAnimalDisplay(response.data);
+					this.props.currentAnimalDisplay(response.data[0]);
 					this.props.pageLoading(false);
 				}
 			})
