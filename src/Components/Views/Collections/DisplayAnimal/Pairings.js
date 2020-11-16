@@ -61,19 +61,9 @@ class Pairings extends Component {
 
 	editingRecord = (pairRecord) => {
 		this.props.loadrecordsEditor({
-			_id: pairRecord._id,
 			recordType: 'pairing',
 			display: 'block',
-			date: pairRecord.date,
-			notes: pairRecord.notes,
-			whitnessed: pairRecord.whitnessed,
-			mate: pairRecord.mate,
-			successful: pairRecord.successful,
-			clutch: pairRecord.clutch,
-			clutchSize: pairRecord.clutchSize,
-			clutchGood: pairRecord.clutchGood,
-			clutchBad: pairRecord.clutchBad,
-			clutchId: pairRecord.clutchId,
+			...pairRecord,
 		});
 	};
 

@@ -60,13 +60,9 @@ class Feedings extends Component {
 
 	editingRecord = (feedRecord) => {
 		this.props.loadrecordsEditor({
-			_id: feedRecord._id,
 			recordType: 'feeding',
 			display: 'block',
-			date: feedRecord.date,
-			notes: feedRecord.notes,
-			feederType: feedRecord.feederType,
-			feederWeight: feedRecord.feederWeight,
+			...feedRecord,
 		});
 	};
 

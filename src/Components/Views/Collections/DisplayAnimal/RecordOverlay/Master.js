@@ -6,6 +6,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import NumberFormat from 'react-number-format';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
@@ -207,17 +208,36 @@ class Master extends Component {
 							<div className="collections-pairing-records-editor-pairing-clutch-info">
 								<div className="collections-pairing-records-editor-pairing-clutch-size">
 									<label>Clutch Size: </label>
-									<input type="number" name="clutchSize" maxLength={2} onChange={this.onChangeHandler} />
+									<NumberFormat
+										thousandSeparator={false}
+										defaultValue={data.clutchSize}
+										allowNegative={false}
+										onChange={this.onChangeHandler}
+										name="clutchSize"
+									/>
 								</div>
 
 								<div className="collections-pairing-records-editor-pairing-clutch-infertile">
 									<label>Infertile Amount: </label>
-									<input type="number" name="infertile" defaultValue={data.infertile} maxLength={2} onChange={this.onChangeHandler} />
+									<NumberFormat
+										thousandSeparator={false}
+										defaultValue={data.infertile}
+										allowNegative={false}
+										onChange={this.onChangeHandler}
+										name="infertile"
+									/>
 								</div>
 
 								<div className="collections-pairing-records-editor-pairing-clutch-fertile">
 									<label>Fertile Amount: </label>
-									<input type="number" name="fertile" defaultValue={data.fertile} maxLength={2} onChange={this.onChangeHandler} />
+									<NumberFormat
+										thousandSeparator={false}
+										defaultValue={data.fertile}
+										allowNegative={false}
+										onChange={this.onChangeHandler}
+										name="fertile"
+									/>
+									{/* <input type="number" name="fertile" defaultValue={data.fertile} maxLength={2} onChange={this.onChangeHandler} /> */}
 								</div>
 							</div>
 

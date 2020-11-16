@@ -20,6 +20,31 @@ class Animal extends Component {
 	};
 
 	componentDidMount() {
+		console.log(this);
+		// if(!!this.props.match.params.id) {
+		//     axios({
+		//         method: 'post',
+		//         url: `${this.props.API}/collections/search`,
+		//         headers: {
+		//             Authorization: `Bearer ${localStorage.token}`,
+		//         },
+		//         data: {
+		//             id: this.props.match.params.id,
+		//         },
+		//     })
+		//         .then((response) => {
+		//             if (response.status === 201) {
+		//                 this.props.currentAnimalDisplay(response.data[0]);
+		//                 //this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		//                 //this.props.history.push('/view_animal')
+		//             }
+		//         })
+		//         .catch((error) => {
+		//             if (error) {
+		//                 console.log('An error has occured', error);
+		//             }
+		//         });
+		// };
 		if (this.props.uid === this.props.currentAnimal.owner) {
 			this.setState({ readOnly: false });
 		}
@@ -285,11 +310,15 @@ class Animal extends Component {
 								theme="snow"
 							/>
 						</div>
-						<div className="collection-animal-update-button">
-							<button className="button" onClick={this.onSubmitHandler}>
-								Update
-							</button>
-						</div>
+						{!!this.state.readOnly ? (
+							''
+						) : (
+							<div className="collection-animal-update-button">
+								<button className="button" onClick={this.onSubmitHandler}>
+									Update
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 				<AlertModal />

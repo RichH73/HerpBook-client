@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-//import './Collections.css';
-import Pairings from './Pairings';
-import Feedings from './Feedings';
-import Animal from './Animal';
-import Photos from './Photos';
-import Activity from './Activity/Activity';
 import axios from 'axios';
-import query from 'query-string';
 
-class Main extends Component {
+class SearchCollections extends Component {
 	state = {};
 
 	componentDidMount() {
-		if (!!this.props.location.search) {
+		//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		if (!!this.props.match.params.id) {
 			axios({
 				method: 'post',
 				url: `${this.props.API}/collections/search`,
@@ -25,7 +17,7 @@ class Main extends Component {
 					Authorization: `Bearer ${localStorage.token}`,
 				},
 				data: {
-					id: query.parse(this.props.location.search).id,
+					id: this.props.match.params.id,
 				},
 			})
 				.then((response) => {
@@ -41,8 +33,6 @@ class Main extends Component {
 					}
 				});
 		}
-
-		this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 	}
 
 	componentWillUnmount() {
@@ -51,44 +41,12 @@ class Main extends Component {
 		this.props.clearRecordsEditor();
 	}
 
-	tabs = () => {
-		return (
-			<div className="collections-tab-header">
-				<Tabs>
-					<TabList>
-						<Tab>Animal</Tab>
-						<Tab>Pairings</Tab>
-						<Tab>Feedings</Tab>
-						<Tab>Activity</Tab>
-						<Tab>Photos</Tab>
-					</TabList>
-					<div className="collections-tab-body">
-						<TabPanel>
-							<Animal />
-						</TabPanel>
-						<TabPanel>
-							<Pairings />
-						</TabPanel>
-						<TabPanel>
-							<Feedings />
-						</TabPanel>
-						<TabPanel>
-							<Activity />
-						</TabPanel>
-						<TabPanel>
-							<Photos />
-						</TabPanel>
-					</div>
-				</Tabs>
-			</div>
-		);
-	};
-
 	render() {
-		if (!this.props.currentAnimal._id.length) {
-			return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
-		}
-		return this.tabs();
+		console.log(this.props.match.params.id);
+		// if (!this.props.currentAnimal._id.length) {
+		// 	return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
+		// }
+		return <div></div>;
 	}
 }
 
@@ -107,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchCollections);
