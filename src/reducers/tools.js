@@ -40,3 +40,19 @@ export const alertModal = (state = modalState, data) => {
 			return state;
 	}
 };
+
+const barInitialSate = {
+	img: '123',
+};
+
+export const bar_img = (state = barInitialSate, data) => {
+	switch (data.type) {
+		case 'set_bar_img':
+			return {
+				...state,
+				img: data.data,
+			};
+		default:
+			return state;
+	}
+};

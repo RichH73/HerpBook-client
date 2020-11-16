@@ -59,11 +59,29 @@ class Pairings extends Component {
 		});
 	};
 
+	editingRecord = (pairRecord) => {
+		this.props.loadrecordsEditor({
+			_id: pairRecord._id,
+			recordType: 'pairing',
+			display: 'block',
+			date: pairRecord.date,
+			notes: pairRecord.notes,
+			whitnessed: pairRecord.whitnessed,
+			mate: pairRecord.mate,
+			successful: pairRecord.successful,
+			clutch: pairRecord.clutch,
+			clutchSize: pairRecord.clutchSize,
+			clutchGood: pairRecord.clutchGood,
+			clutchBad: pairRecord.clutchBad,
+			clutchId: pairRecord.clutchId,
+		});
+	};
+
 	pairMappings = () => {
 		return this.props.currentAnimal.pairings.map((pair) => {
 			let pd = dayjs(_.get(pair, 'date'));
 			return (
-				<tr>
+				<tr className="collections-feeding-table-tr" onClick={() => this.editingRecord(pair)}>
 					<td>{`${pd.$M + 1}/${pd.$D}/${pd.$y}`}</td>
 					<td>{pair.mate}</td>
 					<td>{!!pair.whitnessed ? 'Yes' : 'No'}</td>

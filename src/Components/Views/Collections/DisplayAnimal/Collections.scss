@@ -8,7 +8,7 @@
     //bottom: 20px;
     // display: none;
 
-    height: 400px;
+    //height: 400px;
     //width: 100%;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -320,7 +320,9 @@
   width: 200px;
 }
 
-.collections-pairing-table {
+.collections-feeding-table-tr:hover {
+  cursor: pointer;
+  background-color: lightblue;
 }
 
 table {

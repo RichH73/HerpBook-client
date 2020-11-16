@@ -6,6 +6,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'quill-emoji/dist/quill-emoji.css';
+
+import moment from 'moment';
+
+import QRCode from 'qrcode';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
@@ -18,7 +25,16 @@ class Activity extends Component {
 		data: 'Not Found',
 	};
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.qr();
+		//React.createElement('img', {id: 'image', src: ''} )
+	}
+
+	qr = () => {
+		QRCode.toDataURL('https://www.herpbook.com/listing/5f35a83776dc219948d7341e').then((url) => {
+			this.props.barTest(url);
+		});
+	};
 
 	handleDate = (date) => {
 		console.log(date);
@@ -36,7 +52,9 @@ class Activity extends Component {
 				<TabPanel>Feeding</TabPanel>
 				<TabPanel>Pairing</TabPanel>
 				<TabPanel>Shed</TabPanel>
-				<TabPanel>Cleaning</TabPanel>
+				<TabPanel>
+					<img src={this.qr()} />
+				</TabPanel>
 			</Tabs>
 		);
 	}
@@ -48,6 +66,13 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
 	React: state.config.analytics,
+	urlImg: state.bar_img.img,
+	currentAnimal: state.viewAnimal,
+	selectedAnimalId: state.selectedAnimal.id,
+	collectionsIds: state.wholeCollection,
+	recordOverlay: state.editRecord,
+	notesText: state.richText.text,
+	mods: state.richText,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -55,36 +80,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Activity);
-
-/*
-			<div className="collections-create-new-activity">
-				<div className="collections-create-new-activity-type">
-					<label>Activity Type:</label>
-					<div>
-						<select>
-							<option>Shedding</option>
-							<option>Feeding</option>
-							<option>Pairing</option>
-							<option>Cage Cleaning</option>
-						</select>
-					</div>
-				</div>
-				<div className="collections-create-new-activity-date">
-					<DatePicker
-						allowSameDay={true}
-						dateFormat="dd/MM/yyyy"
-						showTimeSelect={false}
-						title="Activity Date"
-						closeOnScroll={false}
-						locale="en-US"
-						dateFormat="yyy/MM/dd"
-						placeholderText="Click to select date"
-						//   isClearable
-						//   placeholderText="I have been cleared!"
-						showPopperArrow={false}
-						onChange={this.handleDate}
-					/>
-				</div>
-			</div>
-
-*/

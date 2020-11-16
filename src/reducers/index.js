@@ -14,7 +14,7 @@ import listing from './listing';
 import messages from './messages';
 import messageReply from './messageReply';
 import richText from './richText';
-import { spinner, alertModal } from './tools';
+import { spinner, alertModal, bar_img } from './tools';
 import { subCategoryListings } from './classified';
 import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
@@ -47,6 +47,7 @@ const allReducers = combineReducers({
 	selectedAnimal,
 	createNewAnimal,
 	showFloatingImage,
+	bar_img,
 });
 
 export default allReducers;

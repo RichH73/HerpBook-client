@@ -9,6 +9,7 @@ import Pairings from './Pairings';
 import Feedings from './Feedings';
 import Animal from './Animal';
 import Photos from './Photos';
+import Activity from './Activity/Activity';
 
 class Main extends Component {
 	state = {};
@@ -31,7 +32,7 @@ class Main extends Component {
 						<Tab>Animal</Tab>
 						<Tab>Pairings</Tab>
 						<Tab>Feedings</Tab>
-						{/* <Tab>Activity</Tab> */}
+						<Tab>Activity</Tab>
 						<Tab>Photos</Tab>
 					</TabList>
 					<div className="collections-tab-body">
@@ -44,9 +45,9 @@ class Main extends Component {
 						<TabPanel>
 							<Feedings />
 						</TabPanel>
-						{/* <TabPanel>
+						<TabPanel>
 							<Activity />
-						</TabPanel> */}
+						</TabPanel>
 						<TabPanel>
 							<Photos />
 						</TabPanel>

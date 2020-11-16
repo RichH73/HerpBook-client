@@ -5,6 +5,10 @@ import * as actionCreators from '../../../../../actions/index';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'quill-emoji/dist/quill-emoji.css';
 import './Forms.css';
 import Editor from '../../../../_functions/Editor';
 
@@ -16,14 +20,20 @@ class Master extends Component {
 	};
 
 	onChangeHandler = (event) => {
-		this.props.recordsEitor({
+		this.props.recordsEditor({
 			[event.target.name]: event.target.value,
 		});
 	};
 
 	handleDate = (date) => {
-		this.props.recordsEitor({
+		this.props.recordsEditor({
 			date: date,
+		});
+	};
+
+	noteHandler = (note) => {
+		this.props.recordsEditor({
+			notes: note,
 		});
 	};
 
@@ -52,7 +62,7 @@ class Master extends Component {
 				if (response.status === 201) {
 					this.props.pageLoading(false);
 					this.props.currentAnimalDisplay(response.data[0]);
-					this.props.recordsEitor({
+					this.props.recordsEditor({
 						_id: '',
 						recordType: '',
 						display: 'none',
@@ -90,20 +100,14 @@ class Master extends Component {
 				typeToUpdate: recordData.recordType,
 				recordToUpdate: recordData._id,
 				collectionId: collectionId,
-				update: {
-					date: recordData.date,
-					feederType: recordData.feederType,
-					feederWeight: recordData.feederWeight,
-					notes: this.props.notesText,
-				},
+				update: recordData,
 			},
 		})
 			.then((response) => {
-				console.log(response);
 				if (response.status === 201) {
 					this.props.pageLoading(false);
 					this.props.currentAnimalDisplay(response.data[0]);
-					this.props.cancelEdit();
+					this.cancelEdit();
 				}
 			})
 			.catch((error) => {
@@ -124,9 +128,7 @@ class Master extends Component {
 								<label>Date:</label>
 								{/* defaultValue={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} */}
 								<div>
-									{console.log(date)}
-									{console.log(fd)}
-									<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
+									<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-type">
@@ -144,7 +146,16 @@ class Master extends Component {
 							<div className="collections-feeding-records-editor-feeding-notes">
 								<label>Notes:</label>
 								<div>
-									<Editor />
+									<ReactQuill
+										style={{ backgroundColor: 'white', color: 'black' }}
+										name="comments"
+										value={this.props.recordOverlay.notes}
+										onChange={this.noteHandler}
+										modules={this.props.mods.modules}
+										formats={this.props.mods.formats}
+										readOnly={this.state.readOnly}
+										theme="snow"
+									/>
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-buttons">
@@ -166,34 +177,76 @@ class Master extends Component {
 					<React.Fragment>
 						<div className="collections-pairing-records-editor-body">
 							<div className="collections-pairing-records-editor-pairing-date">
-								<label>Date:</label>
-								<div>
-									<input type="text" defaultValue={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} />
+								<label>Date: </label>
+								<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
+							</div>
+
+							<div className="collections-pairing-records-editor-pairing-mate">
+								<label>Mate: </label>
+								<input type="text" name="mate" defaultValue={data.mate} onChange={this.onChangeHandler} />
+							</div>
+
+							<div className="collections-pairing-records-editor-pairing-whitnessed">
+								<label>Whitnessed: </label>
+								<select name="whitnessed" defaultValue={data.whitnessed} onChange={this.onChangeHandler}>
+									<option></option>
+									<option value={true}>Yes</option>
+									<option value={false}>No</option>
+								</select>
+							</div>
+
+							<div className="collections-pairing-records-editor-pairing-successful">
+								<label>Successful: </label>
+								<select name="successful" defaultValue={data.successful} onChange={this.onChangeHandler}>
+									<option></option>
+									<option value={true}>Yes</option>
+									<option value={false}>No</option>
+								</select>
+							</div>
+
+							<div className="collections-pairing-records-editor-pairing-clutch-info">
+								<div className="collections-pairing-records-editor-pairing-clutch-size">
+									<label>Clutch Size: </label>
+									<input type="number" name="clutchSize" maxLength={2} onChange={this.onChangeHandler} />
+								</div>
+
+								<div className="collections-pairing-records-editor-pairing-clutch-infertile">
+									<label>Infertile Amount: </label>
+									<input type="number" name="infertile" defaultValue={data.infertile} maxLength={2} onChange={this.onChangeHandler} />
+								</div>
+
+								<div className="collections-pairing-records-editor-pairing-clutch-fertile">
+									<label>Fertile Amount: </label>
+									<input type="number" name="fertile" defaultValue={data.fertile} maxLength={2} onChange={this.onChangeHandler} />
 								</div>
 							</div>
-							<div className="collections-pairing-records-editor-pairing-type">
-								<label>Type of feeder:</label>
-								<div>
-									<input type="text" name="feederType" defaultValue={data.feederType} />
-								</div>
+
+							<div className="collections-pairing-records-editor-pairing-clutch-id">
+								<label>Clutch ID: </label>
+								<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
 							</div>
-							<div className="collections-pairing-records-editor-pairing-weight">
-								<label>Weight or amount:</label>
-								<div>
-									<input type="text" name="feederWeight" defaultValue={data.feederWeight} />
-								</div>
-							</div>
+
 							<div className="collections-pairing-records-editor-pairing-notes">
-								<label>Notes:</label>
+								<label>Notes: </label>
 								<div>
-									<Editor />
+									<ReactQuill
+										style={{ backgroundColor: 'white', color: 'black' }}
+										name="comments"
+										value={this.props.recordOverlay.notes}
+										onChange={this.noteHandler}
+										modules={this.props.mods.modules}
+										formats={this.props.mods.formats}
+										readOnly={this.state.readOnly}
+										theme="snow"
+									/>
 								</div>
 							</div>
+
 							<div className="collections-pairing-records-editor-pairing-buttons">
 								<button className="button" onClick={this.deleteRecord}>
 									Delete
 								</button>
-								<button className="button" onClick={this.cancelEdit}>
+								<button className="button" onClick={this.updateRecord}>
 									Save
 								</button>
 								<button className="button" onClick={this.cancelEdit}>
@@ -237,6 +290,7 @@ const mapStateToProps = (state) => ({
 	collectionsIds: state.wholeCollection,
 	recordOverlay: state.editRecord,
 	notesText: state.richText.text,
+	mods: state.richText,
 });
 
 const mapDispatchToProps = (dispatch) => {
