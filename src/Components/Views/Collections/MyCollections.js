@@ -65,8 +65,11 @@ class MyCollections extends Component {
 		}
 		return (
 			<div className="collections-my-collections">
-				<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
-				<div className="collections-bar-code-search">{!!this.state.showScanner ? <ScanQr /> : ''}</div>
+				<div className="collections-qr-search">
+					<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
+					{!!this.state.showScanner ? <ScanQr /> : ''}
+				</div>
+
 				<div className="collections-my-collections-active-list">
 					<table>
 						<tbody>

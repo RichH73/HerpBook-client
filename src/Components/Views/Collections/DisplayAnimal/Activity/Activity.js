@@ -6,7 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './Activity.css';
 import ReactToPrint from 'react-to-print';
-import ToPrint from './PrintCards/ToPrint';
+import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
 
 import dayjs from 'dayjs';
 class Activity extends Component {
@@ -14,9 +14,7 @@ class Activity extends Component {
 		data: 'Not Found',
 	};
 
-	componentDidMount() {
-		console.log(this.props);
-	}
+	componentDidMount() {}
 
 	render() {
 		const fd = dayjs(this.props.currentAnimal.dob);

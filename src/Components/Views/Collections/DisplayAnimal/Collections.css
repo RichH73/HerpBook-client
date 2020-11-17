@@ -351,6 +351,9 @@
   .collections-images-imgage-footer {
     text-align: center;
   }
+  .collections-qr-search {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 699px) {
@@ -695,6 +698,14 @@
   }
   .collections-my-collections {
     position: relative;
+  }
+  .collections-qr-search {
+    text-align: right;
+    padding-right: 20px;
+    margin: auto;
+  }
+  .collections-qr-search img {
+    width: 40px;
   }
 }
 /*# sourceMappingURL=Collections.css.map */

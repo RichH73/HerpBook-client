@@ -11,13 +11,11 @@ import Animal from './Animal';
 import Photos from './Photos';
 import Activity from './Activity/Activity';
 import axios from 'axios';
-import query from 'query-string';
 
 class Main extends Component {
 	state = {};
 
 	componentDidMount() {
-		console.log('this props', this.props);
 		if (this.props.location.searchString) {
 			axios({
 				method: 'post',

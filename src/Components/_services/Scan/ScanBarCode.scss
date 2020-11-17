@@ -3,7 +3,12 @@
 }
 
 .collections-bar-code-search {
-    z-index: 1;
-    position: absolute;
+    // z-index: 1;
+    // position: absolute;
     //width: 200px;
+    //height: .1px;
+    position: relative;
+    margin: auto;
+    text-align: right;
   }
+

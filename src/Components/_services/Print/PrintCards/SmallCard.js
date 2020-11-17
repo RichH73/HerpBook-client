@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-tabs/style/react-tabs.css';
 import 'react-quill/dist/quill.snow.css';
@@ -24,10 +24,6 @@ class SmallCard extends Component {
 		QRCode.toDataURL(`https://www.herpbook.com/view_animal?id=${this.props.currentAnimal._id}`).then((url) => {
 			this.props.barTest(url);
 		});
-	};
-
-	handleDate = (date) => {
-		console.log(date);
 	};
 
 	render() {

@@ -3,7 +3,8 @@
 }
 
 .collections-bar-code-search {
-  z-index: 1;
-  position: absolute;
+  position: relative;
+  margin: auto;
+  text-align: right;
 }
 /*# sourceMappingURL=ScanBarCode.css.map */

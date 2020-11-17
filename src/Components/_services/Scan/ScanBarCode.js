@@ -27,7 +27,12 @@ class ScanQr extends Component {
 		let id = !!this.state.result ? query.parse(this.state.result).id : 'No Results';
 		return (
 			// <div className='collections-bar-code-scanner'>
-			<QrReader delay={300} onError={this.handleError} onScan={this.handleScan} style={{ width: '100%' }} />
+			<QrReader
+				delay={300}
+				onError={this.handleError}
+				onScan={this.handleScan}
+				style={{ width: '100%', margin: 'auto', position: 'absolute', zIndex: '1' }}
+			/>
 			// </div>
 		);
 	}
