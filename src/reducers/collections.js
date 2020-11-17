@@ -19,6 +19,7 @@ const initialState = {
 		},
 	},
 	comments: '',
+	readOnly: true,
 };
 
 const wholeCollectionInitialData = {

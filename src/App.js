@@ -20,7 +20,6 @@ class App extends Component {
 		sideDrawerOpen: false,
 	};
 	componentDidMount() {
-		console.log('this id', this.props.userUID);
 		this.props.getVendors();
 		if (localStorage.token) {
 			this.props.getMyCollections({ uid: this.props.userUID });
