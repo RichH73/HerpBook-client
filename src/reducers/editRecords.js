@@ -13,13 +13,6 @@ const editRecord = (state = initialState, data) => {
 			return {
 				...state,
 				...data.data,
-				// display: data.data.display,
-				// recordType: data.data.recordType,
-				// _id: data.data._id,
-				// date: data.data.date,
-				// feederType: data.data.feederType,
-				// feederWeight: data.data.feederWeight,
-				// notes: data.data.notes
 			};
 		case 'record_edit_new_data':
 			return {

@@ -14,7 +14,7 @@ import listing from './listing';
 import messages from './messages';
 import messageReply from './messageReply';
 import richText from './richText';
-import { spinner, alertModal, bar_img } from './tools';
+import { spinner, alertModal, bar_img, scanBarCode } from './tools';
 import { subCategoryListings } from './classified';
 import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
@@ -34,6 +34,7 @@ const allReducers = combineReducers({
 	pageId,
 	pictures,
 	richText,
+	scanBarCode,
 	spinner,
 	states,
 	subCategoryListings,

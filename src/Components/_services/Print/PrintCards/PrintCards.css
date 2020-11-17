@@ -1,0 +1,57 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+.card-body {
+  padding: 10px;
+}
+
+.card-body a {
+  color: blue;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.bar-code-body {
+  width: 450px;
+  height: 258px;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'mainImg info';
+}
+
+.bar-code-img {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: mainImg;
+  margin-left: 22px;
+  margin-top: 20px;
+}
+
+.bar-code {
+  text-align: center;
+}
+
+.bar-code img {
+  width: 7em;
+}
+
+.bar-code-name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: info;
+  margin-top: 20px;
+}
+
+.bar-code-name p {
+  font-size: .7em;
+}
+
+.bar-code-inner-name {
+  margin-left: 60px;
+}
+
+.bar-code-inner-name h3 {
+  margin-left: 0px;
+  text-align: left;
+}
+/*# sourceMappingURL=PrintCards.css.map */

@@ -1,0 +1,9 @@
+.collections-bar-code-scanner {
+  color: black;
+}
+
+.collections-bar-code-search {
+  z-index: 1;
+  position: absolute;
+}
+/*# sourceMappingURL=ScanBarCode.css.map */

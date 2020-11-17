@@ -368,15 +368,15 @@ th {
 //   }
 // End feeding records
 
-.collections-my-collections-list td:hover {
+.collections-my-collections-active-list td:hover {
   cursor: pointer;
 }
 
-.collections-my-collections-list {
+.collections-my-collections-active-list {
   padding: 10px;
 }
 
-.collections-my-collections-list tr:hover {
+.collections-my-collections-active-list tr:hover {
   background-color: $lightBlue;
 }
 
@@ -790,15 +790,15 @@ th {
 //   }
 // End feeding records
 
-.collections-my-collections-list td:hover {
+.collections-my-collections-active-list td:hover {
   cursor: pointer;
 }
 
-.collections-my-collections-list {
+.collections-my-collections-active-list {
   padding: 10px;
 }
 
-.collections-my-collections-list tr:hover {
+.collections-my-collections-active-list tr:hover {
   background-color: $lightBlue;
 }
 
@@ -861,6 +861,13 @@ th {
 }
 
 // End Images
+
+
+// My Collections
+  .collections-my-collections {
+    position: relative;
+  }
+
 
 }
 

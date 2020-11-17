@@ -3,6 +3,13 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const newBarCode = (data) => {
+	return {
+		type: 'new_scan',
+		data,
+	};
+};
+
 export const barTest = (data) => {
 	console.log('action bar test', data);
 	return {

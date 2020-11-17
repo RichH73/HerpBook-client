@@ -104,7 +104,7 @@ class Photos extends Component {
 			let id = dayjs(_.get(image, 'date'));
 			return (
 				<div className="collections-images-image-box">
-					<div className="collections-images-image-header">{image.thumbnail}</div>
+					<div className="collections-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
 					<div className="collections-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,6BAA6B,CAAC;EAC1B,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,4BAA4B,CAAC;EACzB,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,QAAQ;CAEnB",
+    "sources": [
+        "ScanBarCode.scss"
+    ],
+    "names": [],
+    "file": "ScanBarCode.css"
+}

@@ -18,9 +18,11 @@ class Animal extends Component {
 		readOnly: true,
 		modalIsOpen: true,
 	};
-
 	componentDidMount() {
-		console.log(this);
+		if (_.get(this.props, 'location.searchString')) {
+			this.searchId(this.props.location.searchString);
+		}
+		console.log('animal search props', this.props);
 		// if(!!this.props.match.params.id) {
 		//     axios({
 		//         method: 'post',
@@ -211,8 +213,8 @@ class Animal extends Component {
 			},
 		})
 			.then((response) => {
-				if (response.status === 200) {
-					this.props.currentAnimalDisplay(response.data);
+				if (response.status === 201) {
+					this.props.currentAnimalDisplay(response.data[0]);
 					this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 				}
 			})

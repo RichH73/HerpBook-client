@@ -6,9 +6,12 @@ import 'react-tabs/style/react-tabs.css';
 import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
 import dayjs from 'dayjs';
+import ScanQr from '../../_services/Scan/ScanBarCode';
 
 class MyCollections extends Component {
-	state = {};
+	state = {
+		showScanner: false,
+	};
 
 	componentDidMount() {
 		this.props.getMyCollections();
@@ -17,10 +20,24 @@ class MyCollections extends Component {
 
 	componentWillUnmount() {}
 
+	showHideScanner = () => {
+		if (!!this.state.showScanner) {
+			this.setState({
+				showScanner: false,
+			});
+		}
+		if (!this.state.showScanner) {
+			this.setState({
+				showScanner: true,
+			});
+		}
+	};
+
 	loadAnimal = (id) => {
 		const newId = this.props.collectionsIds.collections.filter((collection) => {
 			return collection._id === id;
 		});
+		this.props.newBarCode('');
 		this.props.currentAnimalDisplay(_.first(newId));
 		this.props.history.push('/view_animal');
 	};
@@ -43,17 +60,24 @@ class MyCollections extends Component {
 	};
 
 	render() {
+		if (!!this.props.codeSearched) {
+			this.loadAnimal(this.props.codeSearched);
+		}
 		return (
-			<div className="collections-my-collections-list">
-				<table>
-					<tbody>
-						<th>ID</th>
-						<th>Name</th>
-						<th>DOB</th>
-						<th>Gender</th>
-						{this.categoryList()}
-					</tbody>
-				</table>
+			<div className="collections-my-collections">
+				<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
+				<div className="collections-bar-code-search">{!!this.state.showScanner ? <ScanQr /> : ''}</div>
+				<div className="collections-my-collections-active-list">
+					<table>
+						<tbody>
+							<th>ID</th>
+							<th>Name</th>
+							<th>DOB</th>
+							<th>Gender</th>
+							{this.categoryList()}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		);
 	}
@@ -71,6 +95,7 @@ const mapStateToProps = (state) => ({
 	catIds: state.categories.categories,
 	categories: state.categories.categories,
 	subCategories: state.categories.sub_categories,
+	codeSearched: state.scanBarCode.id,
 });
 
 const mapDispatchToProps = (dispatch) => {

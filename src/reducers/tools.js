@@ -56,3 +56,18 @@ export const bar_img = (state = barInitialSate, data) => {
 			return state;
 	}
 };
+
+const barCodeInitial = {
+	id: '',
+};
+export const scanBarCode = (state = barCodeInitial, data) => {
+	switch (data.type) {
+		case 'new_scan':
+			return {
+				...state,
+				id: data.data,
+			};
+		default:
+			return state;
+	}
+};

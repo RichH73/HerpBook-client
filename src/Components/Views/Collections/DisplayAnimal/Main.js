@@ -17,7 +17,8 @@ class Main extends Component {
 	state = {};
 
 	componentDidMount() {
-		if (!!this.props.location.search) {
+		console.log('this props', this.props);
+		if (this.props.location.searchString) {
 			axios({
 				method: 'post',
 				url: `${this.props.API}/collections/search`,
@@ -25,7 +26,7 @@ class Main extends Component {
 					Authorization: `Bearer ${localStorage.token}`,
 				},
 				data: {
-					id: query.parse(this.props.location.search).id,
+					id: this.props.location.searchString, //query.parse(this.props.location.search).id,
 				},
 			})
 				.then((response) => {
@@ -64,7 +65,7 @@ class Main extends Component {
 					</TabList>
 					<div className="collections-tab-body">
 						<TabPanel>
-							<Animal />
+							<Animal searchString={''} />
 						</TabPanel>
 						<TabPanel>
 							<Pairings />
@@ -73,7 +74,7 @@ class Main extends Component {
 							<Feedings />
 						</TabPanel>
 						<TabPanel>
-							<Activity />
+							<Activity history={this.props.history} />
 						</TabPanel>
 						<TabPanel>
 							<Photos />

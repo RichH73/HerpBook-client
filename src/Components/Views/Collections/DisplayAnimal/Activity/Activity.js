@@ -2,58 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import 'quill-emoji/dist/quill-emoji.css';
+import './Activity.css';
+import ReactToPrint from 'react-to-print';
+import ToPrint from './PrintCards/ToPrint';
 
-import moment from 'moment';
-
-import QRCode from 'qrcode';
-
-import ReactHtmlParser from 'react-html-parser';
-import axios from 'axios';
-import ReactGA from 'react-ga';
-
-import BarcodeReader from 'react-barcode-reader';
-
+import dayjs from 'dayjs';
 class Activity extends Component {
 	state = {
 		data: 'Not Found',
 	};
 
 	componentDidMount() {
-		this.qr();
-		//React.createElement('img', {id: 'image', src: ''} )
+		console.log(this.props);
 	}
 
-	qr = () => {
-		QRCode.toDataURL('https://www.herpbook.com/listing/5f35a83776dc219948d7341e').then((url) => {
-			this.props.barTest(url);
-		});
-	};
-
-	handleDate = (date) => {
-		console.log(date);
-	};
-
 	render() {
+		const fd = dayjs(this.props.currentAnimal.dob);
 		return (
 			<Tabs>
 				<TabList>
-					<Tab>Feeding</Tab>
-					<Tab>Pairing</Tab>
-					<Tab>Shed</Tab>
-					<Tab>Cleaning</Tab>
+					<Tab>Classifed settings</Tab>
+					<Tab>ID Card</Tab>
 				</TabList>
-				<TabPanel>Feeding</TabPanel>
-				<TabPanel>Pairing</TabPanel>
-				<TabPanel>Shed</TabPanel>
 				<TabPanel>
-					<img src={this.qr()} />
+					<div style={{ padding: '10px' }}>
+						<h3>Coming Soon...</h3>
+					</div>
+				</TabPanel>
+				<TabPanel>
+					<div className="id-card-preview">
+						<ToPrint ref={(el) => (this.componentRef = el)} />
+					</div>
+					<ReactToPrint
+						trigger={() => {
+							return (
+								<a href="#">
+									<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+										Print ID Card
+									</button>
+								</a>
+							);
+						}}
+						content={() => this.componentRef}
+					/>
 				</TabPanel>
 			</Tabs>
 		);
@@ -73,6 +66,7 @@ const mapStateToProps = (state) => ({
 	recordOverlay: state.editRecord,
 	notesText: state.richText.text,
 	mods: state.richText,
+	imgSrc: state.bar_img.img,
 });
 
 const mapDispatchToProps = (dispatch) => {

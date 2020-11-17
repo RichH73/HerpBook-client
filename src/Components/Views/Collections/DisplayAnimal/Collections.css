@@ -306,13 +306,13 @@
     width: 100px;
     cursor: pointer;
   }
-  .collections-my-collections-list td:hover {
+  .collections-my-collections-active-list td:hover {
     cursor: pointer;
   }
-  .collections-my-collections-list {
+  .collections-my-collections-active-list {
     padding: 10px;
   }
-  .collections-my-collections-list tr:hover {
+  .collections-my-collections-active-list tr:hover {
     background-color: #cce2f8;
   }
   .collections-create-new-activity {
@@ -642,13 +642,13 @@
   .collections-animal-more-images img {
     cursor: pointer;
   }
-  .collections-my-collections-list td:hover {
+  .collections-my-collections-active-list td:hover {
     cursor: pointer;
   }
-  .collections-my-collections-list {
+  .collections-my-collections-active-list {
     padding: 10px;
   }
-  .collections-my-collections-list tr:hover {
+  .collections-my-collections-active-list tr:hover {
     background-color: #cce2f8;
   }
   .collections-create-new-activity {
@@ -692,6 +692,9 @@
   }
   .collections-images-imgage-footer {
     text-align: center;
+  }
+  .collections-my-collections {
+    position: relative;
   }
 }
 /*# sourceMappingURL=Collections.css.map */
