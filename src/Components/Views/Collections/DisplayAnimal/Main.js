@@ -56,8 +56,7 @@ class Main extends Component {
 				<Tabs>
 					<TabList>
 						<Tab>Animal</Tab>
-						<Tab>Pairings</Tab>
-						<Tab>Feedings</Tab>
+						<Tab>Records</Tab>
 						<Tab>Activity</Tab>
 						<Tab>Photos</Tab>
 					</TabList>
@@ -66,10 +65,20 @@ class Main extends Component {
 							<Animal searchString={''} />
 						</TabPanel>
 						<TabPanel>
-							<Pairings />
-						</TabPanel>
-						<TabPanel>
-							<Feedings />
+							<Tabs>
+								<TabList>
+									<Tab>Feedings</Tab>
+									<Tab>Pairings</Tab>
+									<Tab>Sheddings</Tab>
+								</TabList>
+								<TabPanel>
+									<Feedings />
+								</TabPanel>
+								<TabPanel>
+									<Pairings />
+								</TabPanel>
+								<TabPanel>Shed</TabPanel>
+							</Tabs>
 						</TabPanel>
 						<TabPanel>
 							<Activity history={this.props.history} />

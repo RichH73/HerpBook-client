@@ -7,7 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import './Activity.css';
 import ReactToPrint from 'react-to-print';
 import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
-
+import Settings from './Settings/Settings';
 import dayjs from 'dayjs';
 class Activity extends Component {
 	state = {
@@ -22,7 +22,8 @@ class Activity extends Component {
 			<Tabs>
 				<TabList>
 					<Tab>Classifed settings</Tab>
-					<Tab>ID Card</Tab>
+					<Tab>Printing</Tab>
+					<Tab>Settings</Tab>
 				</TabList>
 				<TabPanel>
 					<div style={{ padding: '10px' }}>
@@ -30,21 +31,33 @@ class Activity extends Component {
 					</div>
 				</TabPanel>
 				<TabPanel>
-					<div className="id-card-preview">
-						<ToPrint ref={(el) => (this.componentRef = el)} />
-					</div>
-					<ReactToPrint
-						trigger={() => {
-							return (
-								<a href="#">
-									<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
-										Print ID Card
-									</button>
-								</a>
-							);
-						}}
-						content={() => this.componentRef}
-					/>
+					<Tabs>
+						<TabList>
+							<Tab>Print ID Card</Tab>
+							<Tab>Print Records</Tab>
+						</TabList>
+						<TabPanel>
+							<div className="id-card-preview">
+								<ToPrint ref={(el) => (this.componentRef = el)} />
+							</div>
+							<ReactToPrint
+								trigger={() => {
+									return (
+										<a href="#">
+											<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+												Print ID Card
+											</button>
+										</a>
+									);
+								}}
+								content={() => this.componentRef}
+							/>
+						</TabPanel>
+						<TabPanel>Print</TabPanel>
+					</Tabs>
+				</TabPanel>
+				<TabPanel>
+					<Settings history={this.props.history} />
 				</TabPanel>
 			</Tabs>
 		);

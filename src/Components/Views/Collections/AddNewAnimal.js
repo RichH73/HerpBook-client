@@ -110,14 +110,12 @@ class AddNewAnimal extends Component {
 	};
 
 	formChangeHandler = (event) => {
-		console.log(event);
 		this.props.createAnimalData({
 			[event.target.name]: event.target.value,
 		});
 	};
 
 	categoryChangeHandler = (event) => {
-		console.log(event);
 		this.props.createAnimalData({
 			[event.target.name]: _.toNumber(event.target.value),
 		});

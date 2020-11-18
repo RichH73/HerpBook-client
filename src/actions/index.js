@@ -11,7 +11,6 @@ export const newBarCode = (data) => {
 };
 
 export const barTest = (data) => {
-	console.log('action bar test', data);
 	return {
 		type: 'set_bar_img',
 		data,
