@@ -9,6 +9,7 @@ import ReactToPrint from 'react-to-print';
 import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Settings/Settings';
 import dayjs from 'dayjs';
+import PrintRecords from './Printing/PrintRecords';
 class Activity extends Component {
 	state = {
 		data: 'Not Found',
@@ -53,7 +54,9 @@ class Activity extends Component {
 								content={() => this.componentRef}
 							/>
 						</TabPanel>
-						<TabPanel>Print</TabPanel>
+						<TabPanel>
+							<PrintRecords />
+						</TabPanel>
 					</Tabs>
 				</TabPanel>
 				<TabPanel>

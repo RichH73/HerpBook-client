@@ -1,0 +1,106 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (min-width: 840px) {
+  .collections-pairing-table-tr:hover {
+    cursor: pointer;
+    background-color: #cce2f8;
+  }
+  .collections-pairing-table th {
+    font-size: 1.2em;
+  }
+  .collections-pairing-table td {
+    font-size: 1.3em;
+  }
+  .collections-pairings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+    position: relative;
+  }
+  .collections-pairings-new-pairing {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    margin: auto;
+    width: 50%;
+  }
+  .collections-pairings-new-pairing-date-desktop-selector {
+    display: block;
+  }
+  .collections-pairings-new-pairing-date-mobile-selector {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 839px) {
+  .collections-pairing-table-tr:hover {
+    cursor: pointer;
+    background-color: #cce2f8;
+  }
+  .collections-pairing-table th {
+    font-size: 1.2em;
+  }
+  .collections-pairing-table td {
+    font-size: 1.3em;
+  }
+  .collections-pairings-list-button {
+    margin: 1em auto 2em;
+    padding-right: 40px;
+    text-align: center;
+  }
+  .collections-pairings-new-pairing {
+    width: 50%;
+    margin: auto;
+  }
+  .collections-pairings-new-pairing input {
+    margin: 3px auto;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .collections-pairing-table-tr:hover {
+    cursor: pointer;
+    background-color: #cce2f8;
+  }
+  .collections-pairing-table th {
+    font-size: 1em;
+  }
+  .collections-pairing-table tr {
+    font-size: 1em;
+  }
+  .collections-pairing-table td {
+    font-size: 1em;
+  }
+  .collections-pairings-new-pairing-form {
+    margin-bottom: 1em;
+  }
+  .collections-pairings-new-pairing label {
+    font-size: 1.2em;
+  }
+  .collections-parings-new-paring-form-para {
+    padding: 0 4px 0 0;
+    font-size: 1.2em;
+  }
+  .collections-pairings-list-button {
+    margin: 0.5em auto;
+    padding-right: 40px;
+    text-align: right;
+    position: relative;
+  }
+  .collections-pairings-new-pairing input {
+    font-size: 1.2em;
+    margin: 3px auto;
+  }
+  .collections-pairings-new-pairing select {
+    font-size: 1em;
+    margin: 3px auto;
+  }
+  .collections-pairings-new-pairing-date-desktop-selector {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Pairing.css.map */

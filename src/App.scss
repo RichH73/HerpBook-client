@@ -32,6 +32,9 @@
 	}
 }
 @media screen and ($maxWidth) {
+	input {
+		font-size: 1.2em;
+	}
 	#nav-button {
 		display: block;
 		//   top: 20px;

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
+import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
 import axios from 'axios';
-// import ReactGA from "react-ga";
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
 import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
 import moment from 'moment';
-import AlertModal from '../../../_services/Modal/Modal';
+import AlertModal from '../../../../_services/Modal/Modal';
+import './Animal.css';
 
 class Animal extends Component {
 	state = {
@@ -22,39 +22,10 @@ class Animal extends Component {
 		if (_.get(this.props, 'location.searchString')) {
 			this.searchId(this.props.location.searchString);
 		}
-		// if(!!this.props.match.params.id) {
-		//     axios({
-		//         method: 'post',
-		//         url: `${this.props.API}/collections/search`,
-		//         headers: {
-		//             Authorization: `Bearer ${localStorage.token}`,
-		//         },
-		//         data: {
-		//             id: this.props.match.params.id,
-		//         },
-		//     })
-		//         .then((response) => {
-		//             if (response.status === 201) {
-		//                 this.props.currentAnimalDisplay(response.data[0]);
-		//                 //this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
-		//                 //this.props.history.push('/view_animal')
-		//             }
-		//         })
-		//         .catch((error) => {
-		//             if (error) {
-		//                 console.log('An error has occured', error);
-		//             }
-		//         });
-		// };
 		if (this.props.uid === this.props.currentAnimal.owner) {
 			this.setState({ readOnly: false });
 		}
 	}
-
-	// componentWillUnmount() {
-	// 	this.props.hideLargeImage();
-	// 	this.props.clearCurrentAnimalDisplay()
-	// }
 
 	handleChange = (value) => {
 		this.props.animalUpdate({
@@ -110,11 +81,6 @@ class Animal extends Component {
 			);
 		}
 		return <React.Fragment></React.Fragment>;
-	};
-
-	viewRecord = (id) => {
-		// this.props.setCurrentAnimal(id);
-		//console.log(id);
 	};
 
 	largImage = (img) => {
@@ -291,7 +257,7 @@ class Animal extends Component {
 						</div>
 						<div className="collection-animal-gender">
 							<label>Gender:</label>
-							<div className="collection-animal-gender">{this.genderSelect()}</div>
+							<div>{this.genderSelect()}</div>
 						</div>
 					</div>
 				</div>
