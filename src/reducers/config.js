@@ -3,12 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const server_state = true;
-//const redux = false;
+// Using Test Environment?
+const server_state = false;
+
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
 export const server_status = () => {
-	if (server_state === false) {
+	if (server_state === true) {
 		return {
 			serverAPI: 'http://localhost:8550',
 			serverURL: 'htts://www.herpbook.com',
@@ -30,7 +31,8 @@ const analytics = () => {
 };
 
 export const store_config = () => {
-	if (origins.includes(window.origin)) {
+	if (origins.includes(window.origin) || !!server_state) {
+		// return applyMiddleware(thunk);
 		return composeWithDevTools(applyMiddleware(thunk));
 	}
 	return applyMiddleware(thunk);

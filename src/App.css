@@ -1,5 +1,19 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
 .application-body {
   text-align: left;
+}
+
+.button {
+  border-radius: 7px;
+  width: 80px;
+  background: orange;
+  text-align: center;
+}
+
+.button:hover {
+  border: solid darkorange 1px;
 }
 
 @media screen and (min-width: 900px) {
@@ -9,6 +23,11 @@
 }
 
 @media screen and (max-width: 899px) {
+  input {
+    font-size: 1em;
+    margin-top: .3em;
+    margin-bottom: .8em;
+  }
   #nav-button {
     display: block;
     text-align: right;

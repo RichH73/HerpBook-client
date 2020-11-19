@@ -34,7 +34,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'weight weight weight' 'listId listId .' 'price price .' 'gender gender .' 'category category .' 'subCategory subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'weight weight weight' 'listId listId .' 'price price .' 'gender gender .' 'category category .' 'subCategory subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     text-align: center;
@@ -118,12 +118,11 @@
     grid-area: submit;
     width: 130px;
     margin: 1em 10px 1em auto;
-    background-color: lime;
     width: 130px;
   }
   .create-classified-submit-button button {
     width: 140px;
-    border-radius: 5px;
+    border-radius: 7px;
     text-align: center;
   }
 }
@@ -161,7 +160,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     margin: 1em auto;
@@ -238,7 +237,6 @@
     grid-area: submit;
     width: 130px;
     margin: 1em 10px 1em auto;
-    background-color: lime;
     width: 130px;
   }
   .create-classified-submit-button button {
@@ -281,7 +279,7 @@
   .create-classified-form-inputs {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
+        grid-template-areas: 'title title title' 'price . listId' 'weight . gender' 'category subCategory .' 'shipping shipping shipping ' 'description description description' '. . submit ';
   }
   .create-classified-title {
     margin: 1em auto;
@@ -358,7 +356,6 @@
     grid-area: submit;
     width: 130px;
     margin: 1em 10px 1em auto;
-    background-color: lime;
     width: 130px;
   }
   .create-classified-submit-button button {

@@ -3,12 +3,149 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const newBarCode = (data) => {
+	return {
+		type: 'new_scan',
+		data,
+	};
+};
+
+export const barTest = (data) => {
+	return {
+		type: 'set_bar_img',
+		data,
+	};
+};
+
+export const clearRecordsEditor = () => {
+	return {
+		type: 'clear_record_edit',
+	};
+};
+
+export const recordsEditor = (data) => {
+	return {
+		type: 'record_edit_new_data',
+		data,
+	};
+};
+
+export const loadrecordsEditor = (data) => {
+	return {
+		type: 'new_record_edit',
+		data,
+	};
+};
+
+export const modalSetState = (state) => {
+	return {
+		type: 'modal_state',
+		state,
+	};
+};
+
 export const setPageTitle = (pageTitle) => {
 	return {
 		type: 'PageTitle',
 		pageTitle,
 	};
 };
+
+// Collections animal change
+export const animalUpdate = (data) => {
+	return {
+		type: 'update_animal',
+		data,
+	};
+};
+
+// Large Image Display
+export const displayLargeImage = (data) => {
+	return {
+		type: 'floating_image',
+		display: data.display,
+		img: data.img,
+		name: data.name,
+	};
+};
+export const hideLargeImage = () => {
+	return {
+		type: 'floating_image',
+		display: 'none',
+		img: '',
+		name: '',
+	};
+};
+// Large Image END
+
+// Collections
+
+export const setCurrentAnimal = (id) => {
+	return {
+		type: 'new_selected_animal',
+		id,
+	};
+};
+
+export const createAnimalData = (data) => {
+	return {
+		type: 'create_new_animal_data',
+		data,
+	};
+};
+
+const loadMyCollections = (data) => {
+	return {
+		type: 'my_collections_data',
+		data,
+	};
+};
+
+export const currentAnimalDisplay = (data) => {
+	return {
+		type: 'display_animal',
+		data,
+	};
+};
+
+export const clearCurrentAnimalDisplay = (data) => {
+	return {
+		type: 'clear_current_animal',
+		data,
+	};
+};
+
+export const getMyCollections = (data) => {
+	return function (dispatch) {
+		dispatch(pageLoading(true));
+		setTimeout(() => {
+			dispatch(pageLoading(false));
+		}, 8000);
+		axios({
+			method: 'post',
+			url: `${API}/collections/my_collections`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {},
+		})
+			.then((response) => {
+				dispatch(pageLoading(false));
+				dispatch(loadMyCollections(response.data));
+			})
+			.catch((error) => {
+				if (error) console.log(error);
+			});
+	};
+};
+
+export const quickCollection = (id) => {
+	return function (dispatch) {
+		dispatch(loadMyCollections(id));
+	};
+};
+
+// End Collections
 
 // Vedors listings
 export const vendorList = (data) => {
@@ -239,6 +376,7 @@ export const sendMessage = (key, value) => {
 	};
 };
 
+// Spinner location tools.js
 export const pageLoading = (spinner) => {
 	return {
 		type: 'SPINNER_STATE',

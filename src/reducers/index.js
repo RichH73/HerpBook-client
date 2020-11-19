@@ -14,14 +14,19 @@ import listing from './listing';
 import messages from './messages';
 import messageReply from './messageReply';
 import richText from './richText';
-import { spinner } from './tools';
+import { spinner, alertModal, bar_img, scanBarCode } from './tools';
 import { subCategoryListings } from './classified';
+import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
 import wallOfShame from './wallOfShame';
+import showFloatingImage from './floatingImage';
+import editRecord from './editRecords';
 
 const allReducers = combineReducers({
+	alertModal,
 	categories,
 	classified,
 	config,
+	editRecord,
 	imageHandler,
 	listing,
 	messageReply,
@@ -29,6 +34,7 @@ const allReducers = combineReducers({
 	pageId,
 	pictures,
 	richText,
+	scanBarCode,
 	spinner,
 	states,
 	subCategoryListings,
@@ -37,6 +43,12 @@ const allReducers = combineReducers({
 	user,
 	Vendors,
 	wallOfShame,
+	viewAnimal,
+	wholeCollection,
+	selectedAnimal,
+	createNewAnimal,
+	showFloatingImage,
+	bar_img,
 });
 
 export default allReducers;

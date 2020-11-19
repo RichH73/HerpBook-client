@@ -11,7 +11,7 @@
 .wall-of-shame-user-report {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'businessName businessName' 'webSiteName businessOwnerName' 'businessPhoneNumber businessEmail' 'incidentDescription incidentDescription' 'reportImages reportImages' 'reportComments reportComments' 'leaveComment leaveComment';
+      grid-template-areas: 'businessName businessName' 'webSiteName businessOwnerName' 'businessPhoneNumber businessEmail' 'incidentDescription incidentDescription' 'reportImages reportImages' 'reportComments reportComments' 'leaveComment leaveComment';
 }
 
 .wall-of-shame-user-report label {
@@ -155,7 +155,7 @@
 
 .shame-file-report-label {
   margin-top: 1em;
-  margin-bottom: .1em;
+  margin-bottom: 0.1em;
 }
 
 .shame-file-reort-dropbox {

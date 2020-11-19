@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import React, { Component } from 'react';
-import { get, set } from 'lodash';
+import { get } from 'lodash';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
+//import ReactQuill from 'react-quill';
 import { Link } from 'react-router-dom';
 //import ReactGA from "react-ga";
 
@@ -88,7 +88,7 @@ class Shame extends Component {
 		if (this.props.registeredUser) {
 			return (
 				<div className="wall-of-shame-user-report-leave-comment">
-					<label>Leave a comment:</label>
+					<label className="field-input-label">Leave a comment:</label>
 					<div>
 						<input type="text" name="newComment" onChange={this.onChangeHandler} />
 						<button onClick={() => this.submitHandler(props)}>Submit</button>

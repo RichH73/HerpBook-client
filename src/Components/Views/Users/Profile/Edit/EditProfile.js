@@ -70,7 +70,6 @@ class EditProfile extends React.Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					console.log('updated...');
 					this.setState({ modalIsOpen: true });
 					setTimeout(() => {
 						this.setState({
@@ -164,7 +163,7 @@ class EditProfile extends React.Component {
 				</div>
 				<div className="edit-profile-form-business-info">
 					<div className="edit-profile-form-businessName">
-						<label>Business Name</label>
+						<label className="field-input-label">Business Name</label>
 						<input
 							type="text"
 							name="businessName"
@@ -176,7 +175,7 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessPhone">
-						<label>Business Phone: </label>
+						<label className="field-input-label">Business Phone: </label>
 						<input
 							type="text"
 							name="businessPhone"
@@ -187,15 +186,15 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessWebsite">
-						<label>Website: </label>
+						<label className="field-input-label">Website: </label>
 						<input type="url" name="website" value={user.website} maxLength="200" className="urlinput form-control" onChange={this.onChangeHandler} />
 					</div>
 					<div className="edit-profile-form-displayBusinessAddress">
-						<label>Display Address? </label>
+						<label className="field-input-label">Display Address? </label>
 						{this.display_address()}
 					</div>
 					<div className="edit-profile-form-businessStreet">
-						<label>Street</label>
+						<label className="field-input-label">Street</label>
 						<input
 							type="text"
 							name="businessStreet"
@@ -206,7 +205,7 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessCity">
-						<label>City</label>
+						<label className="field-input-label">City</label>
 						<input
 							type="text"
 							name="businessCity"
@@ -217,11 +216,11 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessState">
-						<label>State: </label>
+						<label className="field-input-label">State: </label>
 						{this.state_selector('businessState', user.businessState)}
 					</div>
 					<div className="edit-profile-form-businessZip">
-						<label>Zip Code: </label>
+						<label className="field-input-label">Zip Code: </label>
 						<input
 							type="text"
 							name="businessZip"
@@ -232,7 +231,7 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessFooter">
-						<label>Add a footer to your classified ads.</label>
+						<label className="field-input-label">Add a footer to your classified ads.</label>
 						<ReactQuill
 							style={{ backgroundColor: 'white', color: 'black' }}
 							name="businessFooter"
@@ -323,7 +322,7 @@ class EditProfile extends React.Component {
 						</div>
 						<div className="edit-profile-entity-info">
 							<div className="edit-profile-form-name-first">
-								<label>First Name: </label>
+								<label className="field-input-label">First Name: </label>
 								<input
 									type="text"
 									name="firstName"
@@ -335,7 +334,7 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-name-last">
-								<label>Last Name: </label>
+								<label className="field-input-label">Last Name: </label>
 								<input
 									type="text"
 									name="lastName"
@@ -347,7 +346,7 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-entityEmail">
-								<label>Email: </label>
+								<label className="field-input-label">Email: </label>
 								<input
 									type="email"
 									value={user.entityEmail}
@@ -357,15 +356,15 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-display-entity-email">
-								<label>Display Email: </label>
+								<label className="field-input-label">Display Email: </label>
 								{display_entity_email()}
 							</div>
 							<div className="edit-profile-form-entity-email-type">
-								<label>Email Type: </label>
+								<label className="field-input-label">Email Type: </label>
 								{entityEmailType('entityEmailType', user.entityEmailType)}
 							</div>
 							<div className="edit-profile-form-entity-phone-number">
-								<label>Phone: </label>
+								<label className="field-input-label">Phone: </label>
 								<input
 									type="text"
 									value={user.entityPhoneNumber}
@@ -375,19 +374,19 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-display-entity-phone">
-								<label>Display Phone: </label>
+								<label className="field-input-label">Display Phone: </label>
 								<select>
 									<option>No</option>
 									<option>Yes</option>
 								</select>
 							</div>
 							<div className="edit-profile-form-entity-phone-type">
-								<label>Phone Type: </label>
+								<label className="field-input-label">Phone Type: </label>
 								{this.phoneTypeSelector('entityPhoneType', user.entityPhoneType)}
 							</div>
 
 							<div className="edit-profile-form-entity-street">
-								<label>Street: </label>
+								<label className="field-input-label">Street: </label>
 								<input
 									type="text"
 									value={user.entityStreet}
@@ -397,7 +396,7 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-entity-city">
-								<label>City: </label>
+								<label className="field-input-label">City: </label>
 								<input
 									type="text"
 									value={user.entityCity}
@@ -407,11 +406,11 @@ class EditProfile extends React.Component {
 								/>
 							</div>
 							<div className="edit-profile-form-entity-state">
-								<label>State: </label>
+								<label className="field-input-label">State: </label>
 								{this.state_selector('entityState', user.entityState)}
 							</div>
 							<div className="edit-profile-form-entity-zip">
-								<label>Zipcode: </label>
+								<label className="field-input-label">Zipcode: </label>
 								<input
 									type="entityZip"
 									value={user.entityZip}
@@ -423,7 +422,7 @@ class EditProfile extends React.Component {
 						</div>
 						{!!user.is_this_a_business ? this.businessProfile(user) : ''}
 						<div className="edit-profile-form-button">
-							<button type="submit" className="btn btn-success">
+							<button type="submit" className="button">
 								Save Profile
 							</button>
 						</div>

@@ -111,7 +111,7 @@ class Contact extends React.Component {
 							</div>
 							<div>
 								{/* <br />
-                <label>Upload an image: </label>
+                <label className='field-input-label'>Upload an image: </label>
                 <input
                   type="file"
                   name="picture_2"

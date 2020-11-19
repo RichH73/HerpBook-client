@@ -6,6 +6,7 @@ import Recaptcha from 'react-recaptcha';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
+import _ from 'lodash';
 
 class Register extends React.Component {
 	state = {
@@ -44,11 +45,11 @@ class Register extends React.Component {
 					url: `${this.props.API}/login/signup`,
 					responseType: 'json',
 					data: {
-						username: this.state.username,
-						entityEmail: this.state.entityEmail,
-						firstName: this.state.firstName,
-						lastName: this.state.lastName,
-						password: this.state.password,
+						username: _.trim(this.state.username).replace(/ /g, ''),
+						entityEmail: _.trim(this.state.entityEmail).replace(/ /g, ''),
+						firstName: _.trim(this.state.firstName).replace(/ /g, ''),
+						lastName: _.trim(this.state.lastName).replace(/ /g, ''),
+						password: _.trim(this.state.password).replace(/ /g, ''),
 					},
 				})
 					.then((response) => {

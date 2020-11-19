@@ -16,6 +16,7 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
+    position: relative;
   }
   .body-main-header {
     background-color: orange;

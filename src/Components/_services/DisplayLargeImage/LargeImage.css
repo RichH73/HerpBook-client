@@ -1,0 +1,59 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (min-width: 601px) {
+  .display-larg-image {
+    z-index: 1;
+    position: absolute;
+    color: black;
+    padding: 0px;
+  }
+  .display-large-inner-display {
+    margin: auto;
+    text-align: center;
+  }
+  .display-large-image-attrs {
+    display: none;
+    z-index: 2;
+    position: absolute;
+    margin: auto;
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.342);
+    top: 80%;
+    left: 10%;
+    padding: 20px;
+    text-align: left;
+    border-radius: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .display-larg-image {
+    z-index: 1;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+  }
+  .display-larg-image img {
+    width: 98%;
+    text-align: center;
+  }
+  .display-large-inner-display {
+    margin: auto;
+    text-align: center;
+  }
+  .display-large-image-attrs {
+    display: none;
+    z-index: 150;
+    position: fixed;
+    margin: auto;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.342);
+    top: 80%;
+    left: 10%;
+    padding: 20px;
+    text-align: left;
+    border-radius: 15px;
+  }
+}
+/*# sourceMappingURL=LargeImage.css.map */

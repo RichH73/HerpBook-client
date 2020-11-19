@@ -1,0 +1,453 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+@media screen and (min-width: 1010px) {
+  .collection-edit-record-header {
+    background-color: orange;
+  }
+  .collection-edit-record-header h4 {
+    margin: 0 auto;
+  }
+  .collection-edit-record-body {
+    padding: 10px;
+  }
+  .collection-edit-record-main-panel {
+    top: -45;
+  }
+  .collections-feeding-records-editor-feeding-date {
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-feeding-records-editor-feeding-type {
+    padding: 0 10px;
+    grid-area: type;
+  }
+  .collections-feeding-records-editor-feeding-weight {
+    padding: 0 10px;
+    grid-area: weight;
+  }
+  .collections-feeding-records-editor-feeding-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-feeding-records-editor-feeding-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    grid-area: fbuttons;
+    margin: 1em 1em 1em auto;
+  }
+  .collections-pairing-records-editor-body {
+    padding: 10px;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+  }
+  .collections-pairing-records-editor-pairing-date {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-pairing-records-editor-pairing-mate {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: mate;
+  }
+  .collections-pairing-records-editor-pairing-whitnessed {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: whitnessed;
+  }
+  .collections-pairing-records-editor-pairing-successful {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: successful;
+  }
+  .collections-pairing-records-editor-pairing-clutch-info {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: info;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 100%;
+    margin: 1em auto;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size {
+    grid-area: clutchSize;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile {
+    grid-area: infertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile {
+    grid-area: fertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-id {
+    padding: 10px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: clutchId;
+  }
+  .collections-pairing-records-editor-pairing-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-pairing-records-editor-pairing-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    grid-area: pbuttons;
+    margin: 1em 1em 1em auto;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1009px) {
+  .collection-edit-record-header {
+    background-color: orange;
+  }
+  .collection-edit-record-header h4 {
+    margin: 0 auto;
+  }
+  .collection-edit-record-body {
+    padding: 10px;
+  }
+  .collection-edit-record-main-panel {
+    top: -45;
+  }
+  .collections-feeding-records-editor-body {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "date type weight" "notes notes notes" "... ... fbuttons";
+  }
+  .collections-feeding-records-editor-feeding-date {
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-feeding-records-editor-feeding-type {
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: type;
+  }
+  .collections-feeding-records-editor-feeding-weight {
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    grid-area: weight;
+  }
+  .collections-feeding-records-editor-feeding-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-feeding-records-editor-feeding-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+    grid-area: fbuttons;
+    margin: 1em 1em 1em auto;
+  }
+  .collections-pairing-records-editor-body {
+    padding: 10px;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+  }
+  .collections-pairing-records-editor-pairing-date {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-pairing-records-editor-pairing-mate {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: mate;
+  }
+  .collections-pairing-records-editor-pairing-whitnessed {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: whitnessed;
+  }
+  .collections-pairing-records-editor-pairing-successful {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: successful;
+  }
+  .collections-pairing-records-editor-pairing-clutch-info {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: info;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 100%;
+    margin: 1em auto;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size {
+    grid-area: clutchSize;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile {
+    grid-area: infertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile {
+    grid-area: fertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-id {
+    padding: 10px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: clutchId;
+  }
+  .collections-pairing-records-editor-pairing-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-pairing-records-editor-pairing-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    grid-area: pbuttons;
+    margin: 1em 1em 1em auto;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  input {
+    font-size: 1em;
+  }
+  .collection-edit-record-header {
+    background-color: orange;
+  }
+  .collection-edit-record-header h4 {
+    margin: 0 auto;
+  }
+  .collection-edit-record-body {
+    padding: 10px;
+  }
+  .collection-edit-record-main-panel {
+    top: -45;
+  }
+  .collections-feeding-records-editor-feeding-date {
+    margin: 1em auto;
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-feeding-records-editor-feeding-date input {
+    margin: .5em auto;
+    padding: 0 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-feeding-records-editor-feeding-type {
+    margin: 1em auto;
+    padding: 0 10px;
+    grid-area: type;
+  }
+  .collections-feeding-records-editor-feeding-type input {
+    margin: .5em auto;
+    padding: 0 10px;
+    grid-area: type;
+  }
+  .collections-feeding-records-editor-feeding-weight {
+    margin: 1em auto;
+    padding: 0 10px;
+    grid-area: weight;
+  }
+  .collections-feeding-records-editor-feeding-weight input {
+    margin: .5em auto;
+    padding: 0 10px;
+    grid-area: weight;
+  }
+  .collections-feeding-records-editor-feeding-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-feeding-records-editor-feeding-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    grid-area: fbuttons;
+    margin: 1em 1em 1em auto;
+  }
+  .collections-pairing-records-editor-body {
+    padding: 10px;
+        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+  }
+  .collections-pairing-records-editor-pairing-date {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: date;
+  }
+  .collections-pairing-records-editor-pairing-mate {
+    padding: 10px;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: mate;
+  }
+  .collections-pairing-records-editor-pairing-whitnessed {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: whitnessed;
+  }
+  .collections-pairing-records-editor-pairing-successful {
+    padding: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: successful;
+  }
+  .collections-pairing-records-editor-pairing-clutch-info {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: info;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 100%;
+    margin: 1em auto;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size {
+    display: none;
+    grid-area: clutchSize;
+  }
+  .collections-pairing-records-editor-pairing-clutch-size input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile {
+    display: none;
+    grid-area: infertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-infertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile {
+    display: none;
+    grid-area: fertile;
+  }
+  .collections-pairing-records-editor-pairing-clutch-fertile input {
+    text-align: right;
+    width: 25px;
+  }
+  .collections-pairing-records-editor-pairing-clutch-id {
+    display: none;
+    padding: 10px;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: clutchId;
+  }
+  .collections-pairing-records-editor-pairing-notes {
+    margin: 1em 0;
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: notes;
+  }
+  .collections-pairing-records-editor-pairing-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 170px;
+    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    grid-area: pbuttons;
+    margin: 1em 1em 1em auto;
+  }
+}
+/*# sourceMappingURL=Forms.css.map */

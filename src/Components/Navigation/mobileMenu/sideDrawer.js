@@ -43,6 +43,19 @@ class SideDrawer extends React.Component {
 						</div>
 					</div>
 				</div>
+				<div className="sideDrawer-left-main-navigation-outter-panel">
+					<div className="sideDrawer-left-navigation-panel-header">
+						<h3>My Collections</h3>
+					</div>
+					<div className="sideDrawer-left-main-nav">
+						<div className="sideDrawer-nav-link">
+							<a href="/my_collections">My Collections</a>
+						</div>
+						<div className="sideDrawer-nav-link">
+							<a href="/new_collection">Add new animal</a>
+						</div>
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	};

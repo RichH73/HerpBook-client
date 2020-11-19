@@ -24,7 +24,6 @@ class SellerContactForm extends React.Component {
 	formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video'];
 
 	componentDidMount() {
-		console.log(this.props.location.sellerData);
 		//ReactGA.pageview(`/message-seller/${this.props.seller}`);
 	}
 

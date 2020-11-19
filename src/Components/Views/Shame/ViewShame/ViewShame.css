@@ -13,7 +13,7 @@
 .wall-of-shame-user-report {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'businessName businessName' 'webSiteName businessOwnerName' 'businessPhoneNumber businessEmail' 'incidentDescription incidentDescription' 'reportImages reportImages' 'reportComments reportComments' 'leaveComment leaveComment';
+      grid-template-areas: 'businessName businessName' 'webSiteName businessOwnerName' 'businessPhoneNumber businessEmail' 'incidentDescription incidentDescription' 'reportImages reportImages' 'reportComments reportComments' 'leaveComment leaveComment';
 }
 
 .wall-of-shame-user-report label {
@@ -94,7 +94,7 @@
 .wall-of-shame-user-report-comment {
   width: 90%;
   margin: 1em auto;
-  border-bottom: .5px solid lightgray;
+  border-bottom: 0.5px solid lightgray;
 }
 
 .wall-of-shame-user-report-leave-comment {

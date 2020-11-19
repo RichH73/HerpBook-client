@@ -1,0 +1,38 @@
+.collection-settings-buttons-delete {
+  border: 3px solid red;
+}
+
+.collection-settings-active-record {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .react-confirm-alert-body {
+    width: 400px;
+  }
+  .collection-settings-body {
+    padding: 10px;
+  }
+  .collection-settings-buttons {
+    margin-top: 1em;
+  }
+  .collection-settings-buttons-update {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .react-confirm-alert-body {
+    width: 300px;
+  }
+  .collection-settings-body {
+    padding: 10px;
+  }
+  .collection-settings-buttons {
+    margin-top: 1em;
+  }
+  .collection-settings-buttons-update {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Settings.css.map */

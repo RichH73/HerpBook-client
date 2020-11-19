@@ -43,6 +43,21 @@ class LeftNav extends Component {
 						</div>
 					</div>
 				</div>
+				<div className="left-main-navigation-outter-panel">
+					<div className="left-navigation-panel-header">
+						<h3>My Collections</h3>
+					</div>
+					<div className="left-main-nav">
+						<div className="left-nav-link">
+							<div className="left-nav-link">
+								<Link to="/my_collections">My Collections</Link>
+							</div>
+							<div className="left-nav-link">
+								<Link to="/new_collection">Add new animal</Link>
+							</div>
+						</div>
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	};
@@ -99,6 +114,8 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userCheck: state.user.uid,
 	displayMessageCount: state.messages.messageCount,
+	collectionsIds: state.wholeCollection,
+	collectionsData: state.wholeCollection.collections,
 });
 
 const mapDispatchToProps = (dispatch) => {
