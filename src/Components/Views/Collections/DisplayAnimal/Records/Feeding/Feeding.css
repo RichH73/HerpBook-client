@@ -29,7 +29,7 @@
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
     margin: auto;
-    width: 50%;
+    width: 80%;
   }
   .collections-feedings-new-feeding-date-desktop-selector {
     display: block;
@@ -70,7 +70,6 @@
   }
   .collections-feedings-new-feeding input {
     font-size: 1em;
-    margin: 3px auto;
   }
   .collections-feedings-new-feeding-date-desktop-selector {
     display: none;

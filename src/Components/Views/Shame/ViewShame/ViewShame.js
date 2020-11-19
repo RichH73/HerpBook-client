@@ -150,7 +150,7 @@ class ViewShame extends Component {
 
 							{report.shameComments ? <div className="wall-of-shame-user-report-comments">{this.commentMapper(report.shameComments)}</div> : ''}
 							<div className="wall-of-shame-user-report-leave-comment">
-								<label>Leave a comment:</label>
+								<label className="field-input-label">Leave a comment:</label>
 								<div>
 									<ReactQuill
 										style={{ backgroundColor: 'white', color: 'black' }}

@@ -126,26 +126,26 @@ class Master extends Component {
 					<React.Fragment>
 						<div className="collections-feeding-records-editor-body">
 							<div className="collections-feeding-records-editor-feeding-date">
-								<label>Date:</label>
+								<label className="field-input-label">Date:</label>
 								{/* defaultValue={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} */}
 								<div>
 									<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-type">
-								<label>Type of feeder:</label>
+								<label className="field-input-label">Type of feeder:</label>
 								<div>
 									<input type="text" name="feederType" defaultValue={data.feederType} onChange={this.onChangeHandler} />
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-weight">
-								<label>Weight or amount:</label>
+								<label className="field-input-label">Weight or amount:</label>
 								<div>
 									<input type="text" name="feederWeight" defaultValue={data.feederWeight} onChange={this.onChangeHandler} />
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-notes">
-								<label>Notes:</label>
+								<label className="field-input-label">Notes:</label>
 								<div>
 									<ReactQuill
 										style={{ backgroundColor: 'white', color: 'black' }}
@@ -178,17 +178,17 @@ class Master extends Component {
 					<React.Fragment>
 						<div className="collections-pairing-records-editor-body">
 							<div className="collections-pairing-records-editor-pairing-date">
-								<label>Date: </label>
+								<label className="field-input-label">Date: </label>
 								<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-mate">
-								<label>Mate: </label>
+								<label className="field-input-label">Mate: </label>
 								<input type="text" name="mate" defaultValue={data.mate} onChange={this.onChangeHandler} />
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-whitnessed">
-								<label>Whitnessed: </label>
+								<label className="field-input-label">Whitnessed: </label>
 								<select name="whitnessed" defaultValue={data.whitnessed} onChange={this.onChangeHandler}>
 									<option></option>
 									<option value={true}>Yes</option>
@@ -197,7 +197,7 @@ class Master extends Component {
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-successful">
-								<label>Successful: </label>
+								<label className="field-input-label">Successful: </label>
 								<select name="successful" defaultValue={data.successful} onChange={this.onChangeHandler}>
 									<option></option>
 									<option value={true}>Yes</option>
@@ -207,7 +207,7 @@ class Master extends Component {
 
 							<div className="collections-pairing-records-editor-pairing-clutch-info">
 								<div className="collections-pairing-records-editor-pairing-clutch-size">
-									<label>Clutch Size: </label>
+									<label className="field-input-label">Clutch Size: </label>
 									<NumberFormat
 										thousandSeparator={false}
 										defaultValue={data.clutchSize}
@@ -218,7 +218,7 @@ class Master extends Component {
 								</div>
 
 								<div className="collections-pairing-records-editor-pairing-clutch-infertile">
-									<label>Infertile Amount: </label>
+									<label className="field-input-label">Infertile Amount: </label>
 									<NumberFormat
 										thousandSeparator={false}
 										defaultValue={data.infertile}
@@ -229,7 +229,7 @@ class Master extends Component {
 								</div>
 
 								<div className="collections-pairing-records-editor-pairing-clutch-fertile">
-									<label>Fertile Amount: </label>
+									<label className="field-input-label">Fertile Amount: </label>
 									<NumberFormat
 										thousandSeparator={false}
 										defaultValue={data.fertile}
@@ -242,12 +242,12 @@ class Master extends Component {
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-clutch-id">
-								<label>Clutch ID: </label>
+								<label className="field-input-label">Clutch ID: </label>
 								<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-notes">
-								<label>Notes: </label>
+								<label className="field-input-label">Notes: </label>
 								<div>
 									<ReactQuill
 										style={{ backgroundColor: 'white', color: 'black' }}

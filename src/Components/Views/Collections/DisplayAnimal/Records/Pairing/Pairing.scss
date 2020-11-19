@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-evenly;
     margin: auto;
-    width: 50%;
+    width: 80%;
   }
 
   .collections-pairings-new-pairing-date-desktop-selector {
@@ -113,13 +113,11 @@
   }
 
   .collections-pairings-new-pairing input {
-      font-size: 1.2em;
-    margin: 3px auto;
+      font-size: 1em;
   }
 
   .collections-pairings-new-pairing select {
       font-size: 1em;
-    margin: 3px auto;
   }
 
   .collections-pairings-new-pairing-date-desktop-selector {

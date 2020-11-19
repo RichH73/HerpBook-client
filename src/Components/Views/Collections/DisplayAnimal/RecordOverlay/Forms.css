@@ -358,8 +358,6 @@
   }
   .collections-pairing-records-editor-body {
     padding: 10px;
-    display: -ms-grid;
-    display: grid;
         grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
   }
   .collections-pairing-records-editor-pairing-date {
@@ -401,6 +399,7 @@
     margin: 1em auto;
   }
   .collections-pairing-records-editor-pairing-clutch-size {
+    display: none;
     grid-area: clutchSize;
   }
   .collections-pairing-records-editor-pairing-clutch-size input {
@@ -408,6 +407,7 @@
     width: 25px;
   }
   .collections-pairing-records-editor-pairing-clutch-infertile {
+    display: none;
     grid-area: infertile;
   }
   .collections-pairing-records-editor-pairing-clutch-infertile input {
@@ -415,6 +415,7 @@
     width: 25px;
   }
   .collections-pairing-records-editor-pairing-clutch-fertile {
+    display: none;
     grid-area: fertile;
   }
   .collections-pairing-records-editor-pairing-clutch-fertile input {
@@ -422,6 +423,7 @@
     width: 25px;
   }
   .collections-pairing-records-editor-pairing-clutch-id {
+    display: none;
     padding: 10px;
     -ms-grid-row: 3;
     -ms-grid-column: 1;

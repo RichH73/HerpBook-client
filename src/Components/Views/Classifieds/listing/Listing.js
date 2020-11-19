@@ -93,11 +93,11 @@ class Listing extends React.Component {
 					<hr />
 					<div className="list-info">
 						<div className="list-price">
-							<label>Price: </label>${list.price}
+							<label className="field-input-label">Price: </label>${list.price}
 						</div>
 						{!!list.userListId ? (
 							<div className="list-user-list-id">
-								<label>ID: </label>
+								<label className="field-input-label">ID: </label>
 								{list.userListId}
 							</div>
 						) : (
@@ -106,7 +106,7 @@ class Listing extends React.Component {
 
 						{!!list.gender ? (
 							<div className="list-gender">
-								<label>Gender: </label>
+								<label className="field-input-label">Gender: </label>
 								{list.gender}
 							</div>
 						) : (
@@ -114,7 +114,7 @@ class Listing extends React.Component {
 						)}
 						{!!list.weight ? (
 							<div className="list-weight">
-								<label>Weight: </label>
+								<label className="field-input-label">Weight: </label>
 								{list.weight}
 								<span>{list.weightUnit}</span>
 							</div>

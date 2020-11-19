@@ -197,7 +197,7 @@ class CreateListing extends React.Component {
 	shippingPrice = (
 		<div className="create-classified-shipping-price">
 			<p>Do you offer a flat rate for shipping? If shipping charges vary leave this box blank.</p>
-			<label>Flat Rate Shipping Cost: </label>
+			<label className="field-input-label">Flat Rate Shipping Cost: </label>
 			<input type="number" name="shippingPrice" className="numberinput form-control" onChange={this.onChangeHandler} />
 		</div>
 	);
@@ -206,8 +206,8 @@ class CreateListing extends React.Component {
 		return (
 			<div className="create-classified-form">
 				<div className="image-drop">
-					<label>* Denotes required entires</label>
-					<label>*Images (at least one image required)</label>
+					<label className="field-input-label">* Denotes required entires</label>
+					<label className="field-input-label">*Images (at least one image required)</label>
 					<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
 						{({ getRootProps, getInputProps }) => (
 							<section>
@@ -221,7 +221,7 @@ class CreateListing extends React.Component {
 					{this.props.images.length > 0 && (
 						<div id="image-preview">
 							<h5>Image Preview</h5>
-							<label>Click on an image to remove it.</label>
+							<label className="field-input-label">Click on an image to remove it.</label>
 							<br />
 							<div className="img-preview">
 								{this.props.images.map((file) => (
@@ -238,7 +238,7 @@ class CreateListing extends React.Component {
 				<form onSubmit={this.submitHandler}>
 					<div className="create-classified-form-inputs">
 						<div className="create-classified-title">
-							<label>* Title: </label>
+							<label className="field-input-label">* Title: </label>
 							<input
 								type="text"
 								name="title"
@@ -249,12 +249,12 @@ class CreateListing extends React.Component {
 							/>
 						</div>
 						<div className="create-classified-weight">
-							<label>Weight: </label>
+							<label className="field-input-label">Weight: </label>
 							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
 							{!!this.props.weight ? <this.weightSelect /> : ''}
 						</div>
 						<div className="create-classified-gender">
-							<label>Gender: </label>
+							<label className="field-input-label">Gender: </label>
 							<select name="gender" onChange={this.onChangeHandler}>
 								<option value="">Choose a gender</option>
 								<option value="Male">Male</option>
@@ -263,15 +263,15 @@ class CreateListing extends React.Component {
 							</select>
 						</div>
 						<div className="create-classified-list-id">
-							<label>ID: </label>
+							<label className="field-input-label">ID: </label>
 							<input type="text" name="userListId" onChange={this.onChangeHandler} />
 						</div>
 						<div className="create-classified-price">
-							<label>*Price: </label>
+							<label className="field-input-label">*Price: </label>
 							<input type="text" name="price" onChange={this.onChangeHandler} />
 						</div>
 						<div className="create-classified-category">
-							<label>Category</label>
+							<label className="field-input-label">Category</label>
 							<select id="category" required name="category" onChange={this.onChangeHandler}>
 								<option value="">Choose a category</option>
 								{this.category_menu()}
@@ -280,7 +280,7 @@ class CreateListing extends React.Component {
 
 						{!!this.props.category ? (
 							<div className="create-classified-sub-category">
-								<label>Sub category</label>
+								<label className="field-input-label">Sub category</label>
 								<select id="sub-category" required name="sub_category" onChange={this.onChangeHandler}>
 									<option value="">Choose a category</option>
 									{this.sub_category_menu()}
@@ -290,7 +290,7 @@ class CreateListing extends React.Component {
 							''
 						)}
 						<div className="create-classified-shipping">
-							<label>Do you offer shipping?</label>
+							<label className="field-input-label">Do you offer shipping?</label>
 							<select required name="shipping" onChange={this.onChangeHandler}>
 								<option value="false">No shipping</option>
 								<option value="true">Sipping Available</option>
@@ -299,7 +299,7 @@ class CreateListing extends React.Component {
 						</div>
 						<div className="create-classified-description">
 							<div className="create-classified-description-label">
-								<label>*Description.</label>
+								<label className="field-input-label">*Description.</label>
 							</div>
 							<div className="create-classified-description-editor">
 								<ReactQuill

@@ -12,7 +12,7 @@ import './Pairing.css';
 
 class Pairings extends Component {
 	state = {
-		date: '', // new Date(),
+		date: new Date(),
 		isOpen: false,
 	};
 
@@ -140,7 +140,7 @@ class Pairings extends Component {
 					</div>
 					<div className="collections-pairings-new-pairing">
 						<div>
-							<label>Date:</label>
+							<label className="field-input-label">Date:</label>
 							<div className="collections-pairings-new-pairing-date-desktop-selector">
 								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
 							</div>
@@ -159,13 +159,13 @@ class Pairings extends Component {
 							</div>
 						</div>
 						<div>
-							<label>Mate:</label>
+							<label className="field-input-label">Mate:</label>
 							<div>
 								<input type="text" name="mate" onChange={this.onChangeHandler} />
 							</div>
 						</div>
 						<div>
-							<label>Whitnessed:</label>
+							<label className="field-input-label">Whitnessed:</label>
 							<div>
 								<select name="whitnessed" onChange={this.onChangeHandler}>
 									<option></option>
@@ -176,7 +176,7 @@ class Pairings extends Component {
 						</div>
 					</div>
 					<div className="collections-pairings-list-button">
-						<button className="button" onClick={this.onSubmitHandler}>
+						<button className="button" onClick={this.onSubmitHandler} disabled={!this.state.mate}>
 							Save
 						</button>
 					</div>

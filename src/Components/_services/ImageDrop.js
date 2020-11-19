@@ -100,7 +100,7 @@ class ImageDrop extends React.Component {
 				{this.props.images.length > 0 && (
 					<div className={`${this.props.imgDrop.className}-preview`}>
 						<h5>Image Preview</h5>
-						<label>Click on an image to remove it.</label>
+						<label className="field-input-label">Click on an image to remove it.</label>
 						<br />
 						<div className="img-preview">
 							{this.props.images.map((file) => (

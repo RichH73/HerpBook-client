@@ -199,21 +199,21 @@ class Animal extends Component {
 					<div className="collection-animal-image">{this.showImage(animal.images)}</div>
 					<div className="collection-animal-common-info">
 						<div className="collection-animal-name">
-							<label>Name:</label>
+							<label className="field-input-label">Name:</label>
 							<div>
 								<input type="text" name="name" defaultValue={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
 							</div>
 						</div>
 
 						<div className="collection-animal-id">
-							<label>ID #:</label>
+							<label className="field-input-label">ID #:</label>
 							<div>
 								<input type="text" name="animalID" value={animal._id} />
 							</div>
 						</div>
 
 						<div className="collection-animal-dob">
-							<label>DOB:</label>
+							<label className="field-input-label">DOB:</label>
 							<div>
 								<DatePicker
 									showPopperArrow={false}
@@ -226,7 +226,7 @@ class Animal extends Component {
 
 						<div className="collection-animal-sire">
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<label>Sire:</label>
+								<label className="field-input-label">Sire:</label>
 								{!!animal.sire.length ? (
 									<span name="viewLink" onClick={() => this.searchId(animal.sire)}>
 										view
@@ -242,7 +242,7 @@ class Animal extends Component {
 
 						<div className="collection-animal-dam">
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<label>Dam:</label>
+								<label className="field-input-label">Dam:</label>
 								{animal.dam.length ? (
 									<span name="viewLink" onClick={() => this.searchId(animal.dam)}>
 										view
@@ -256,7 +256,7 @@ class Animal extends Component {
 							</div>
 						</div>
 						<div className="collection-animal-gender">
-							<label>Gender:</label>
+							<label className="field-input-label">Gender:</label>
 							<div>{this.genderSelect()}</div>
 						</div>
 					</div>
@@ -264,7 +264,7 @@ class Animal extends Component {
 				<div className="collection-animal-body">
 					{this.quickRecords(animal.quickRecords)}
 					<div className="collection-animal-comments">
-						<label>Notes:</label>
+						<label className="field-input-label">Notes:</label>
 						<div className="collection-animal-comments-box">
 							<ReactQuill
 								style={{ backgroundColor: 'white', color: 'black' }}

@@ -140,31 +140,31 @@ class AddNewAnimal extends Component {
 					</div>
 					<div className="collections-create-new-animal-form">
 						<div className="collections-create-new-animal-name">
-							<label>Name:</label>
+							<label className="field-input-label">Name:</label>
 							<div>
 								<input type="text" name="name" onChange={this.formChangeHandler} />
 							</div>
 						</div>
 						<div className="collections-create-new-animal-sire">
-							<label>Sire:</label>
+							<label className="field-input-label">Sire:</label>
 							<div>
 								<input type="text" name="sire" onChange={this.formChangeHandler} />
 							</div>
 						</div>
 						<div className="collections-create-new-animal-dam">
-							<label>Dam:</label>
+							<label className="field-input-label">Dam:</label>
 							<div>
 								<input type="text" name="dam" onChange={this.formChangeHandler} />
 							</div>
 						</div>
 						<div className="collections-create-new-animal-dob">
-							<label>DOB:</label>
+							<label className="field-input-label">DOB:</label>
 							<div>
 								<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
 							</div>
 						</div>
 						<div className="collections-create-new-animal-gender">
-							<label>Gender:</label>
+							<label className="field-input-label">Gender:</label>
 							<div>
 								<select name="gender" onChange={this.formChangeHandler}>
 									<option>Choose</option>
@@ -175,7 +175,7 @@ class AddNewAnimal extends Component {
 							</div>
 						</div>
 						<div className="collections-create-new-animal-category">
-							<label>Category: </label>
+							<label className="field-input-label">Category: </label>
 							<select id="category" required name="category" onChange={this.categoryChangeHandler}>
 								<option value="">Choose a category</option>
 								{this.category_menu()}
@@ -184,7 +184,7 @@ class AddNewAnimal extends Component {
 
 						{!!this.props.createAnimal.category ? (
 							<div className="collections-create-new-animal-sub-category">
-								<label>Sub category: </label>
+								<label className="field-input-label">Sub category: </label>
 								<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
 									<option value="">Choose a category</option>
 									{this.sub_category_menu()}

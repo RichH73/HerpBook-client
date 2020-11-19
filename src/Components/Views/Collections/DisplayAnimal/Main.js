@@ -69,7 +69,7 @@ class Main extends Component {
 								<TabList>
 									<Tab>Feedings</Tab>
 									<Tab>Pairings</Tab>
-									<Tab>Sheddings</Tab>
+									{/* <Tab>Sheddings</Tab> */}
 								</TabList>
 								<TabPanel>
 									<Feedings />
@@ -77,7 +77,7 @@ class Main extends Component {
 								<TabPanel>
 									<Pairings />
 								</TabPanel>
-								<TabPanel>Shed</TabPanel>
+								{/* <TabPanel>Shed</TabPanel> */}
 							</Tabs>
 						</TabPanel>
 						<TabPanel>

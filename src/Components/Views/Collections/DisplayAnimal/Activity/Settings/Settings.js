@@ -54,9 +54,9 @@ class Settings extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<label>Active:</label>
+			<div className="collection-settings-body">
+				<div className="collection-settings-active-record">
+					<label className="field-input-label">Active:</label>
 					<select>
 						<option value={true}>Yes</option>
 						<option value={false}>No</option>
@@ -64,11 +64,12 @@ class Settings extends Component {
 				</div>
 				<div>
 					Remove this animal record?
-					<br />
-					<button className="button">Update</button>
-					<button className="button danger" onClick={this.submit}>
-						Delete
-					</button>
+					<div className="collection-settings-buttons">
+						<button className="button collection-settings-buttons-update">Update</button>
+						<button className="button collection-settings-buttons-delete" onClick={this.submit}>
+							Delete
+						</button>
+					</div>
 				</div>
 			</div>
 		);

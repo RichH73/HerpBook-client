@@ -13,6 +13,9 @@ class Feedings extends Component {
 	state = {
 		date: new Date(),
 		isOpen: false,
+		readOnly: true,
+		feederType: '',
+		feederWeight: '',
 	};
 
 	componentDidMount() {}
@@ -139,7 +142,7 @@ class Feedings extends Component {
 					</div>
 					<div className="collections-feedings-new-feeding">
 						<div>
-							<label>Date:</label>
+							<label className="field-input-label">Date:</label>
 							<div className="collections-feedings-new-feeding-date-desktop-selector">
 								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
 							</div>
@@ -158,20 +161,26 @@ class Feedings extends Component {
 							</div>
 						</div>
 						<div>
-							<label>Feeder Type:</label>
+							<label className="field-input-label">Feeder Type:</label>
 							<div>
 								<input type="text" name="feederType" onChange={this.onChangeHandler} />
 							</div>
 						</div>
 						<div>
-							<label>Amout or weight:</label>
+							<label className="field-input-label">Amout or weight:</label>
 							<div>
 								<input type="text" name="feederWeight" onChange={this.onChangeHandler} />
 							</div>
 						</div>
 					</div>
 					<div className="collections-feedings-list-button">
-						<button className="button" onClick={this.onSubmitHandler}>
+						<button
+							className="button"
+							disabled={this.state.readOnly}
+							onClick={this.onSubmitHandler}
+							disabled={!this.state.feederType.length || !this.state.feederWeight.length}
+							label="Save"
+						>
 							Save
 						</button>
 					</div>

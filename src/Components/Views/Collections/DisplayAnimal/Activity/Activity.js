@@ -35,7 +35,7 @@ class Activity extends Component {
 					<Tabs>
 						<TabList>
 							<Tab>Print ID Card</Tab>
-							<Tab>Print Records</Tab>
+							{/* <Tab>Print Records</Tab> */}
 						</TabList>
 						<TabPanel>
 							<div className="id-card-preview">
@@ -54,9 +54,9 @@ class Activity extends Component {
 								content={() => this.componentRef}
 							/>
 						</TabPanel>
-						<TabPanel>
+						{/* <TabPanel>
 							<PrintRecords />
-						</TabPanel>
+						</TabPanel> */}
 					</Tabs>
 				</TabPanel>
 				<TabPanel>

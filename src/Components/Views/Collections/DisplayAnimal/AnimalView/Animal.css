@@ -185,7 +185,7 @@
     font-size: 1rem;
   }
   .collection-animal-id {
-    margin: 2em auto 0.5em;
+    margin: 1em auto 0.5em;
     width: 200px;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -197,7 +197,7 @@
     font-size: 1rem;
   }
   .collection-animal-dob {
-    margin: 2em auto 0.5em;
+    margin: 1em auto 0.5em;
     -ms-grid-row: 3;
     -ms-grid-column: 2;
     grid-area: dob;
@@ -209,7 +209,7 @@
     font-size: 1rem;
   }
   .collection-animal-gender {
-    margin: 2em auto 0.5em;
+    margin: 1em auto 0.5em;
     -ms-grid-row: 3;
     -ms-grid-column: 1;
     grid-area: gender;
@@ -220,7 +220,7 @@
     font-size: 1rem;
   }
   .collection-animal-sire {
-    margin: 2em auto 0.5em;
+    margin: 1em auto 0.5em;
     width: 200px;
     -ms-grid-row: 4;
     -ms-grid-column: 1;

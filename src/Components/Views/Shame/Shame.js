@@ -88,7 +88,7 @@ class Shame extends Component {
 		if (this.props.registeredUser) {
 			return (
 				<div className="wall-of-shame-user-report-leave-comment">
-					<label>Leave a comment:</label>
+					<label className="field-input-label">Leave a comment:</label>
 					<div>
 						<input type="text" name="newComment" onChange={this.onChangeHandler} />
 						<button onClick={() => this.submitHandler(props)}>Submit</button>
