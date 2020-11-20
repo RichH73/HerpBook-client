@@ -112,9 +112,7 @@ class Animal extends Component {
 			data: {
 				...this.props.currentAnimal,
 			},
-		}).then((response) => {
-			console.log('my response', response);
-		});
+		}).then((response) => {});
 	};
 
 	genderSelect = () => {

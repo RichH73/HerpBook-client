@@ -1,0 +1,42 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+.collections-create-report-body {
+  padding: 10px;
+}
+
+.collections-create-report-form {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'startDate endDate' 'method generate';
+}
+
+.collections-create-report-date-range-start {
+  margin: 1em auto;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: startDate;
+}
+
+.collections-create-report-date-range-end {
+  margin: 1em auto;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: endDate;
+}
+
+.collections-create-report-form-method {
+  margin: 1em auto;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: method;
+}
+
+.collections-create-report-form-buttons {
+  margin: 1em auto;
+  text-align: right;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: generate;
+}
+/*# sourceMappingURL=PrintRecords.css.map */

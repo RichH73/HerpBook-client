@@ -24,7 +24,7 @@ class SearchCollections extends Component {
 					if (response.status === 201) {
 						this.props.currentAnimalDisplay(response.data[0]);
 						//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
-						//this.props.history.push('/view_animal')
+						this.props.history.push('/view_animal');
 					}
 				})
 				.catch((error) => {
@@ -36,13 +36,13 @@ class SearchCollections extends Component {
 	}
 
 	componentWillUnmount() {
-		this.props.hideLargeImage();
-		this.props.clearCurrentAnimalDisplay();
-		this.props.clearRecordsEditor();
+		//this.props.hideLargeImage();
+		//this.props.clearCurrentAnimalDisplay();
+		//this.props.clearRecordsEditor();
 	}
 
 	render() {
-		console.log(this.props.match.params.id);
+		console.log('this params', this.props.match.params.id);
 		// if (!this.props.currentAnimal._id.length) {
 		// 	return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
 		// }
