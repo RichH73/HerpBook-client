@@ -82,7 +82,6 @@ class NewVendor extends Component {
 	};
 
 	verifyCallback = (response) => {
-		console.log('this response', response);
 		if (response) {
 			this.setState({
 				isVerified: true,

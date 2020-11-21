@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
+import MDatePicker from 'react-mobile-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import _ from 'lodash';
 import dayjs from 'dayjs';
-import MDatePicker from 'react-mobile-datepicker';
 import './Feeding.css';
 class Feedings extends Component {
 	state = {

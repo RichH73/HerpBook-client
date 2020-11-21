@@ -1,0 +1,40 @@
+@import '../../../../../../index';
+
+
+    .collections-create-report-body {
+        padding: 10px;
+    }
+
+    .collections-create-report-form {
+        display: grid;
+        grid-template-areas:
+        'startDate endDate'
+        'method generate';
+    }
+
+    .collections-create-report-date-range-start {
+        display: none;
+        margin: 1em auto;
+        grid-area: startDate;
+    }
+
+    .collections-create-report-date-range-end {
+        display: none;
+        margin: 1em auto;
+        grid-area: endDate;
+    }
+
+    .collections-create-report-form-method {
+        margin: 1em auto;
+        grid-area: method;
+    }
+
+    .collections-create-report-date-range {
+
+    }
+
+    .collections-create-report-form-buttons {
+        margin: 1em auto;
+        text-align: right;
+        grid-area: generate;
+    }
