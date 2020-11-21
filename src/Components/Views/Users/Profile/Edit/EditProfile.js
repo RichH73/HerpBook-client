@@ -267,7 +267,6 @@ class EditProfile extends React.Component {
 		};
 
 		const entityEmailType = (fieldName, entityEmailType) => {
-			console.log('this stuff', fieldName, entityEmailType);
 			return (
 				<select name={fieldName} onChange={this.onChangeHandler}>
 					<option value={entityEmailType}>{entityEmailType}</option>

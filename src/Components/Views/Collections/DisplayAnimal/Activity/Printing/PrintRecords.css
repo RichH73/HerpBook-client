@@ -12,6 +12,7 @@
 }
 
 .collections-create-report-date-range-start {
+  display: none;
   margin: 1em auto;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
@@ -19,6 +20,7 @@
 }
 
 .collections-create-report-date-range-end {
+  display: none;
   margin: 1em auto;
   -ms-grid-row: 1;
   -ms-grid-column: 2;

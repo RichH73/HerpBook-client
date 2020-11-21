@@ -13,11 +13,13 @@
     }
 
     .collections-create-report-date-range-start {
+        display: none;
         margin: 1em auto;
         grid-area: startDate;
     }
 
     .collections-create-report-date-range-end {
+        display: none;
         margin: 1em auto;
         grid-area: endDate;
     }

@@ -42,7 +42,6 @@ class SearchCollections extends Component {
 	}
 
 	render() {
-		console.log('this params', this.props.match.params.id);
 		// if (!this.props.currentAnimal._id.length) {
 		// 	return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
 		// }

@@ -110,7 +110,6 @@ class ViewShame extends Component {
 	render() {
 		const pattern = date.compile('MMM D YYYY h:m:s A');
 		const myDate = date.parse('Mar 22 2019 2:54:21 PM', pattern);
-		console.log('my date', myDate);
 		if (this.props.location.reportId === undefined) this.props.history.push('/user_reports');
 		const report = this.props.shames.filter((shame) => shame._id === this.props.location.reportId);
 		//const { username } = this.props.user;

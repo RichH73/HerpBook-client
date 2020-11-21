@@ -15,7 +15,6 @@ class FormElements extends Component {
 
 	render() {
 		const { type, name, readOnly } = this.props;
-		console.log('form props', this.props);
 		return (
 			<div className={`form-element-input-field-${type}`}>
 				<button name={name}>{name}</button>

@@ -31,6 +31,13 @@ class PrintRecords extends Component {
 		});
 	};
 
+	filterData = (data) => {
+		const newData = data.filter((d) => {
+			return d[0] === '11/19/2020';
+		});
+		return data;
+	};
+
 	makePdf = (image) => {
 		const { beginDate, endDate, method } = this.state;
 		const pairData = _.get(this, 'props.currentAnimal.pairings')
@@ -46,23 +53,23 @@ class PrintRecords extends Component {
 				];
 			})
 			.filter((p) => {
-				return !!beginDate.length ? p[0] >= dayjs(beginDate).format('MM/DD/YYYY') : p;
+				return !!beginDate.length ? p[0] === dayjs(beginDate).format('MM/DD/YYYY') : p[0];
 			})
 			.filter((p) => {
-				return !!endDate.length ? p[0] <= dayjs(endDate).format('MM/DD/YYYY') : p;
+				return !!endDate.length ? p[0] > dayjs(endDate).format('MM/DD/YYYY') : p[0];
 			});
+
 		const feedData = _.get(this, 'props.currentAnimal.feedings')
 			.map((f) => {
-				return [dayjs(f.date).format('MM/DD/YYYY'), f.feederType, f.feederWeight];
+				return [dayjs(f.date).format('MM/DD/YYYY'), _.get(f, 'feederType'), _.get(f, 'feederWeight')];
 			})
 			.filter((f) => {
-				return !!beginDate.length ? f[0] >= dayjs(beginDate).format('MM/DD/YYYY') : f;
+				return !!beginDate.length ? f[0] < dayjs(beginDate).format('MM/DD/YYYY') : f;
 			})
 			.filter((f) => {
-				return !!endDate.length ? f[0] <= dayjs(endDate).format('MM/DD/YYYY') : f;
+				return !!endDate.length ? f[0] < dayjs(endDate).format('MM/DD/YYYY') : f;
 			});
-		console.log(!!beginDate, !!endDate);
-		console.log(feedData, pairData);
+
 		feedData.unshift(['Date', 'Feeder Type', 'Feeder Amount or Weight']);
 		pairData.unshift(['Date', 'Mate ID', 'Whitenessed', 'Successful?', 'Clutch Size', 'Infertile#', 'Fertile#']);
 		var dd = {
@@ -72,7 +79,7 @@ class PrintRecords extends Component {
 				subject: this.props.currentAnimal._id,
 			},
 			footer: function (currentPage, pageCount) {
-				return currentPage.toString() + ' of ' + pageCount;
+				return currentPage.toString() + ' of ' + pageCount + '\n' + dayjs(new Date()).format('MM/DD/YYYY');
 			},
 			header: function (currentPage, pageCount, pageSize) {
 				// you can apply any logic and return any valid pdfmake element
@@ -91,6 +98,14 @@ class PrintRecords extends Component {
 			},
 			content: [
 				{
+					text: `Records for animal ID: ${this.props.currentAnimal._id}`,
+					fontSize: '18',
+					alignment: 'center',
+					fontStyle: 'bold',
+					style: 'header',
+					margin: [0, 0, 0, 30],
+				},
+				{
 					alignment: 'justify',
 					columns: [
 						{
@@ -98,6 +113,7 @@ class PrintRecords extends Component {
 							width: 150,
 							alignment: 'center',
 							link: `https://www.herpbook.com/search_collections/${this.props.currentAnimal._id}`,
+							margin: [0, 5],
 						},
 						{
 							qr: `https://www.herpbook.com/search_collections/${this.props.currentAnimal._id}`,
@@ -106,10 +122,10 @@ class PrintRecords extends Component {
 						},
 					],
 				},
-				// {
-				//   text: `Feeding report for ${this.props.currentAnimal._id}`,
-				//   style: "subheader",
-				// },
+				{
+					text: `Feeding Records`,
+					style: 'subheader',
+				},
 				{
 					style: 'table',
 					table: {
@@ -117,9 +133,13 @@ class PrintRecords extends Component {
 					},
 				},
 				{
+					text: `Pairing Records`,
+					style: 'subheader',
+				},
+				{
 					style: 'table',
 					table: {
-						body: pairData,
+						body: this.filterData(pairData),
 					},
 				},
 			],
