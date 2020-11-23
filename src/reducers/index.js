@@ -20,17 +20,21 @@ import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './
 import wallOfShame from './wallOfShame';
 import showFloatingImage from './floatingImage';
 import editRecord from './editRecords';
+import { new_clutch, current_clutch, my_clutches } from './clutches';
 
 const allReducers = combineReducers({
 	alertModal,
+	my_clutches,
 	categories,
 	classified,
 	config,
+	current_clutch,
 	editRecord,
 	imageHandler,
 	listing,
 	messageReply,
 	messages,
+	new_clutch,
 	pageId,
 	pictures,
 	richText,

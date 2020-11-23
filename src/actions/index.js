@@ -3,6 +3,27 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const new_clutch_data = (data) => {
+	return {
+		type: 'create_new_clutch',
+		data,
+	};
+};
+
+export const current_clutch_data = (data) => {
+	return {
+		type: 'view_clutch',
+		data,
+	};
+};
+
+export const all_clutch_data = (data) => {
+	return {
+		type: 'all_clutches',
+		data,
+	};
+};
+
 export const newBarCode = (data) => {
 	return {
 		type: 'new_scan',

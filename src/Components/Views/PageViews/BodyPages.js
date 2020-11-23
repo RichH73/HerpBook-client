@@ -26,6 +26,7 @@ import Main from '../Collections/DisplayAnimal/Main';
 import AddNewAnimal from '../Collections/AddNewAnimal';
 import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
+import NewClutch from '../Clutches/NewClutch/NewClutch';
 
 const Pages = () => {
 	return (
@@ -55,6 +56,7 @@ const Pages = () => {
 			<Route path="/view_animal" component={Main} />
 			<Route path="/new_collection" component={AddNewAnimal} />
 			<Route path="/search_collections/:id" component={AnimalSearch} />
+			<Route path="/new_clutch" component={NewClutch} />
 		</React.Fragment>
 	);
 };

@@ -117,6 +117,10 @@
     -ms-grid-column: 1;
     grid-area: clutchId;
   }
+  .collections-pairing-records-editor-pairing-clutch-id span {
+    cursor: pointer;
+    color: blue;
+  }
   .collections-pairing-records-editor-pairing-notes {
     margin: 1em 0;
     -ms-grid-row: 5;

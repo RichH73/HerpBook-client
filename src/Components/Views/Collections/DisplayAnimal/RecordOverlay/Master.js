@@ -244,6 +244,7 @@ class Master extends Component {
 							<div className="collections-pairing-records-editor-pairing-clutch-id">
 								<label className="field-input-label">Clutch ID: </label>
 								<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
+								<span onClick={() => this.new_clutch({ record: this.props.recordOverlay, dam: this.props.currentAnimal })}> Create new clutch?</span>
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-notes">
@@ -279,6 +280,30 @@ class Master extends Component {
 			default:
 				return <div>No record selected</div>;
 		}
+	};
+
+	new_clutch = (clutch_data) => {
+		this.props.new_clutch_data(clutch_data);
+		axios({
+			method: 'post',
+			url: `${this.props.API}/clutches/new_clutch`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				clutch_data,
+			},
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					this.props.pageLoading(false);
+					this.porps.current_clutch_data(response.new_clutch);
+					this.porps.all_clutch_data(response.clutches);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	render() {
