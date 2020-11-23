@@ -1,4 +1,6 @@
-const initialState = {};
+const initialState = {
+	price: '$0.00',
+};
 
 const listing = (state = initialState, listing) => {
 	switch (listing.type) {

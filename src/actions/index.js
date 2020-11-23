@@ -152,7 +152,8 @@ export const getMyCollections = (data) => {
 		})
 			.then((response) => {
 				dispatch(pageLoading(false));
-				dispatch(loadMyCollections(response.data));
+				dispatch(loadMyCollections(response.data.collections));
+				dispatch(all_clutch_data(response.data.clutches));
 			})
 			.catch((error) => {
 				if (error) console.log(error);

@@ -10,6 +10,7 @@ import _ from 'lodash';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
+import NumberFormat from 'react-number-format';
 
 class CreateListing extends React.Component {
 	state = {
@@ -195,10 +196,18 @@ class CreateListing extends React.Component {
 	};
 
 	shippingPrice = (
-		<div className="create-classified-shipping-price">
-			<p>Do you offer a flat rate for shipping? If shipping charges vary leave this box blank.</p>
+		<div className="create-classified-shipping-price" style={{ margin: '1em auto' }}>
 			<label className="field-input-label">Flat Rate Shipping Cost: </label>
-			<input type="number" name="shippingPrice" className="numberinput form-control" onChange={this.onChangeHandler} />
+			<NumberFormat
+				thousandSeparator={true}
+				placeholder={'Leave blank if calculated'}
+				allowNegative={false}
+				prefix={'$'}
+				decimalScale={2}
+				fixedDecimalScale={2}
+				onChange={this.onChangeHandler}
+				name="shippingPrice"
+			/>
 		</div>
 	);
 
@@ -248,10 +257,27 @@ class CreateListing extends React.Component {
 								onChange={this.onChangeHandler}
 							/>
 						</div>
+						<div className="create-classified-price">
+							<label className="field-input-label">*Price: </label>
+							<NumberFormat
+								thousandSeparator={true}
+								placeholder={this.props.price}
+								allowNegative={false}
+								prefix={'$'}
+								decimalScale={2}
+								fixedDecimalScale={2}
+								onChange={this.onChangeHandler}
+								name="price"
+							/>
+						</div>
 						<div className="create-classified-weight">
 							<label className="field-input-label">Weight: </label>
 							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
 							{!!this.props.weight ? <this.weightSelect /> : ''}
+						</div>
+						<div className="create-classified-list-id">
+							<label className="field-input-label">ID: </label>
+							<input type="text" name="userListId" onChange={this.onChangeHandler} />
 						</div>
 						<div className="create-classified-gender">
 							<label className="field-input-label">Gender: </label>
@@ -262,14 +288,7 @@ class CreateListing extends React.Component {
 								<option value="Unknown">Unknown</option>
 							</select>
 						</div>
-						<div className="create-classified-list-id">
-							<label className="field-input-label">ID: </label>
-							<input type="text" name="userListId" onChange={this.onChangeHandler} />
-						</div>
-						<div className="create-classified-price">
-							<label className="field-input-label">*Price: </label>
-							<input type="text" name="price" onChange={this.onChangeHandler} />
-						</div>
+
 						<div className="create-classified-category">
 							<label className="field-input-label">Category</label>
 							<select id="category" required name="category" onChange={this.onChangeHandler}>
@@ -290,9 +309,11 @@ class CreateListing extends React.Component {
 							''
 						)}
 						<div className="create-classified-shipping">
-							<label className="field-input-label">Do you offer shipping?</label>
+							<label className="field-input-label">Do you offer shipping? </label>
 							<select required name="shipping" onChange={this.onChangeHandler}>
-								<option value="false">No shipping</option>
+								<option selected value="false">
+									No shipping
+								</option>
 								<option value="true">Sipping Available</option>
 							</select>
 							{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
