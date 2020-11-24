@@ -1,5 +1,11 @@
 @import '../../../../index';
+a {
+	text-decoration: none;
+}
 
+td {
+	text-align: center;
+}
 @media screen and ($maxWidth) {
 	table {
 		width: 100%;
@@ -25,13 +31,18 @@
 		// 	'image gender price';
 		// grid-template-columns: repeat(2);
 		// grid-template-rows: repeat(2);
+		text-decoration: none;
+	}
+
+	.listing-box th {
+		text-align: center;
 	}
 
 	.listing-title {
-		font-weight: bold;
+		// //font-weight: bold;
 		width: 100%;
 		padding: 0.5em 0 0.5em 0;
-		text-align: left;
+		////text-align: left;
 		margin: auto;
 		font-size: 1em;
 		grid-area: title;
@@ -44,9 +55,9 @@
 		// margin-left: 50%;
 		//padding: .5em 0 .5em 0;
 		//margin-right: 2px;
-		font-weight: bold;
+		//font-weight: bold;
 		font-size: 0.7em;
-		text-align: left;
+		////text-align: left;
 		grid-area: gender;
 		// grid-column: 2;
 		// grid-row: 2;
@@ -57,10 +68,10 @@
 		// margin-left: auto;
 		// margin-right: 10px;
 		//padding: .5em 0 .5em 0;
-		font-weight: bold;
+		//font-weight: bold;
 		//margin-left: 2px;
 		font-size: 0.7em;
-		text-align: left;
+		//text-align: left;
 		grid-area: price;
 		// grid-column: 3 ;
 		// grid-row: 2
@@ -156,31 +167,50 @@
 	.listing-box {
 		// background-color: $panelBodyColor;
 		border: 1px solid orange;
-		margin: 5px auto;
+		margin: 10px auto;
 		width: 95%;
 		color: black;
+		border-radius: 7px;
+		height: 5em;
+		display: flex;
+	}
+
+	.listing-box:hover {
+		background-color: $lightBlue;
+	}
+
+	.listing-box a {
+		text-decoration: none;
+	}
+
+	.listing-box-info {
+		text-decoration: none;
 	}
 
 	.listing-title {
-		font-weight: bold;
+		//font-weight: bold;
 		// width: 100%;
 		// padding: .5em 0 .5em 0;
-		text-align: left;
+		//text-align: left;
 		//margin: 2em auto 0;
 		bottom: 0;
 		font-size: 1em;
 		// grid-area: title
 	}
 
+	.listing-title a {
+		text-decoration: none;
+	}
+
 	.listing-gender {
-		font-weight: bold;
+		//font-weight: bold;
 		font-size: 0.7em;
 	}
 
 	.listing-price {
-		font-weight: bold;
+		//font-weight: bold;
 		font-size: 0.7em;
-		text-align: left;
+		//text-align: left;
 	}
 
 	.listing-img {

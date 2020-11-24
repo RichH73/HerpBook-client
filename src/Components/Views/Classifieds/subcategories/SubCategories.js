@@ -57,20 +57,30 @@ class SubCategory extends React.Component {
 				<React.Fragment>
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
-							<table>
-								<tr>
-									<td>
-										<img src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${list.image}`} alt={list.image} />
-									</td>
-									<td>
-										<div className="listing-title">{list.title}</div>
-									</td>
-									<td>{!!list.gender ? <div className="listing-gender">Gender: {list.gender}</div> : ''}</td>
-									<td>
-										<div className="listing-price">Price ${list.price}</div>
-									</td>
-								</tr>
-							</table>
+							<div style={{ textAlign: 'center', margin: 'auto' }}>
+								<img src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${list.image}`} alt={list.image} />
+							</div>
+							<div className="listing-box-info" style={{ width: '80%', margin: 'auto' }}>
+								<table>
+									<th>Title</th>
+									<th>Gender</th>
+									<th>Price</th>
+									<th>Seller</th>
+									<tr>
+										<td>
+											<div className="listing-title">{list.title}</div>
+										</td>
+										<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
+										<td>
+											{' '}
+											<div className="listing-price">${list.price}</div>
+										</td>
+										<td>
+											<div>{list.username}</div>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</Link>
 				</React.Fragment>

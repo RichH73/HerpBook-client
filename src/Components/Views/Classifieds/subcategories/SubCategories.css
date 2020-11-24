@@ -1,6 +1,14 @@
 /*
     Color section to define the colors used in the entire app.
 */
+a {
+  text-decoration: none;
+}
+
+td {
+  text-align: center;
+}
+
 @media screen and (max-width: 899px) {
   table {
     width: 100%;
@@ -13,26 +21,24 @@
     border: 1px solid orange;
     margin-top: 20px;
     color: black;
+    text-decoration: none;
+  }
+  .listing-box th {
+    text-align: center;
   }
   .listing-title {
-    font-weight: bold;
     width: 100%;
     padding: 0.5em 0 0.5em 0;
-    text-align: left;
     margin: auto;
     font-size: 1em;
     grid-area: title;
   }
   .listing-gender {
-    font-weight: bold;
     font-size: 0.7em;
-    text-align: left;
     grid-area: gender;
   }
   .listing-price {
-    font-weight: bold;
     font-size: 0.7em;
-    text-align: left;
     grid-area: price;
   }
   .listing-img {
@@ -102,24 +108,36 @@
   }
   .listing-box {
     border: 1px solid orange;
-    margin: 5px auto;
+    margin: 10px auto;
     width: 95%;
     color: black;
+    border-radius: 7px;
+    height: 5em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .listing-box:hover {
+    background-color: #cce2f8;
+  }
+  .listing-box a {
+    text-decoration: none;
+  }
+  .listing-box-info {
+    text-decoration: none;
   }
   .listing-title {
-    font-weight: bold;
-    text-align: left;
     bottom: 0;
     font-size: 1em;
   }
+  .listing-title a {
+    text-decoration: none;
+  }
   .listing-gender {
-    font-weight: bold;
     font-size: 0.7em;
   }
   .listing-price {
-    font-weight: bold;
     font-size: 0.7em;
-    text-align: left;
   }
   .listing-img {
     width: 100px;

@@ -10,6 +10,7 @@ import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Settings/Settings';
 import dayjs from 'dayjs';
 import PrintRecords from './Printing/PrintRecords';
+
 class Activity extends Component {
 	state = {
 		data: 'Not Found',
