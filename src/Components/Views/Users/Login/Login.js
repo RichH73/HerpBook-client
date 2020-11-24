@@ -118,7 +118,9 @@ class Login extends React.Component {
 								<input type="password" name="password" className="textinput form-control" required id="id_password" onChange={this.onChangeHandler} />
 							</div>
 						</fieldset>
-						<button type="submit">Send</button>
+						<button type="submit" className="button">
+							Login
+						</button>
 						{this.state.login_failed === true ? (
 							<div style={{ color: 'red' }}>Login failed. Please check your username and or password and try again.</div>
 						) : (

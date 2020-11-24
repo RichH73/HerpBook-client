@@ -20,7 +20,6 @@ class MessageDisplay extends React.Component {
 		const { messages } = this.props;
 		const { messageId } = this.props.location;
 		const message = first(filter(messages, { _id: messageId }));
-		console.log('location', this.props.location);
 		this.messageSeen(message);
 		this.props.setPageTitle(_.get(message, 'subject', 'No Message'));
 	}

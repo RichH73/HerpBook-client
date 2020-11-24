@@ -17,9 +17,10 @@
 @media screen and (min-width: 900px) {
   .ql-editor {
     min-height: 200px !important;
-    max-height: 300px;
+    max-height: 600px;
+    height: 360px;
     /* background-color: white; */
-    overflow: hidden;
+    overflow: scroll;
     /* overflow-y: scroll;
     overflow-x: scroll; */
   }

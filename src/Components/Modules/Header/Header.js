@@ -4,11 +4,9 @@ import './Header.css';
 class Header extends Component {
 	render() {
 		return (
-			<React.Fragment>
-				<div className="main-navigation-header">
-					<h2>HerpBook</h2>
-				</div>
-			</React.Fragment>
+			<div className="main-navigation-header">
+				<h1>HerpBook</h1>
+			</div>
 		);
 	}
 }

@@ -47,21 +47,43 @@ class Vendors extends Component {
 
 		return list.map((breeder) => (
 			<div className="breeder" key={breeder._id}>
-				<div>
+				<div className="vendor-list-header">
 					<h4>{breeder.business_name}</h4>
 				</div>
-				<div>
-					{breeder.projects.length > 0 ? <b>Projects/Supplies:</b> : ''}
-					<ul>
-						{_.get(breeder, 'projects').map((project) => (
-							<li>{project}</li>
-						))}
-					</ul>
+				<div className="vendor-list-url">
+					<a href={breeder.website} target="blank">
+						{breeder.website}
+					</a>
 				</div>
-				<div className="about">
-					<b>About:</b> <p>{breeder.about}</p>
-				</div>
-				<div>
+				<div className="vendor-list-body">
+					<div style={{ marginBottom: '1em' }}>
+						<table>
+							<th>Location</th>
+							<th>Zip Code</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<tr>
+								<td>{breeder.state}</td>
+								<td>{breeder.zip_code}</td>
+								<td>{breeder.phone}</td>
+								<td>
+									<a href={`mailto:${breeder.email}`}>{breeder.email}</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						{breeder.projects.length > 0 ? <b>Projects/Supplies:</b> : ''}
+						<ul>
+							{_.get(breeder, 'projects').map((project) => (
+								<li>{project}</li>
+							))}
+						</ul>
+					</div>
+					<div className="vendor-list-about">
+						<b>About:</b> <p>{breeder.about}</p>
+					</div>
+					{/* <div>
 					<div>
 						<b>Location:</b> {breeder.state}
 					</div>
@@ -81,7 +103,8 @@ class Vendors extends Component {
 				<div>
 					<a href={`mailto: ${breeder.email}`}>{breeder.email}</a>
 				</div>
-				{breeder.phone ? breeder.phone : ''}
+				{breeder.phone ? breeder.phone : ''} */}
+				</div>
 			</div>
 		));
 	};

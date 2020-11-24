@@ -21,7 +21,6 @@
 	}
 
 	.list-box a:hover {
-		color: red;
 		font-weight: bold;
 	}
 
@@ -144,6 +143,14 @@
 		width: 300px;
 		height: 30px;
 		font-weight: bold;
+	}
+
+	.classified-listing-seller-other {
+		color: black;
+	}
+
+	.classified-listing-seller-other a {
+		color: blue;
 	}
 }
 @media screen and ($maxWidth) {

@@ -66,7 +66,6 @@ class Main extends React.Component {
 	};
 
 	render() {
-		//console.log('this is passed', this.props)
 		if (!!this.props.React) {
 			ReactGA.pageview(`/listing/${this.props.match.params.id}`);
 		}
@@ -76,11 +75,9 @@ class Main extends React.Component {
 			this.props.setPageTitle(this.props.listTitle);
 		}
 		const Listing = () => {
-			// let list = this.state.listing;
 			let list = this.props.classified_listing;
 			return (
 				<div className="list-box">
-					{/* <div className="list-title">{list.title}</div> */}
 					<div style={{ display: 'flex' }}>
 						<div className="list-images">
 							{list.images.thumbnail.map((img) => (
@@ -102,7 +99,7 @@ class Main extends React.Component {
 									<th>Weight</th>
 									<th>ID</th>
 									<tr>
-										<td>${list.price}</td>
+										<td>{list.price}</td>
 										<td>{list.gender}</td>
 										<td>
 											{list.weight}
@@ -112,69 +109,35 @@ class Main extends React.Component {
 									</tr>
 								</tbody>
 							</table>
+							<div
+								className="classified-listing-seller-other"
+								style={{
+									display: 'flex',
+									justifyContent: 'space-evenly',
+									margin: '.5em auto',
+								}}
+							>
+								{localStorage.token ? (
+									<div>
+										Seller: <Link to={`/profile`}>{list.username}</Link>
+									</div>
+								) : (
+									<Link to="/login">Contact seller</Link>
+								)}
+								<div style={{ color: 'blue' }}>
+									<Link to={`/sellers-listings/${list.creatorId}`}>See all listing by seller</Link>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr />
 
 					<div className="list-info">
-						<div className="list-price">
-							<label className="field-input-label">Price: </label>${list.price}
-						</div>
-						{!!list.userListId ? (
-							<div className="list-user-list-id">
-								<label className="field-input-label">ID: </label>
-								{list.userListId}
-							</div>
-						) : (
-							''
-						)}
-
-						{!!list.gender ? (
-							<div className="list-gender">
-								<label className="field-input-label">Gender: </label>
-								{list.gender}
-							</div>
-						) : (
-							''
-						)}
-						{!!list.weight ? (
-							<div className="list-weight">
-								<label className="field-input-label">Weight: </label>
-								{list.weight}
-								<span>{list.weightUnit}</span>
-							</div>
-						) : (
-							''
-						)}
 						<div className="list-description">
 							<b>Sellers Description:</b>
 							{ReactHtmlParser(list.description)}
 						</div>
 						<div className="list-description-businessFooter">{ReactHtmlParser(get(list, 'businessFooter', ''))}</div>
-						<div className="list-footer">
-							{/* {localStorage.token ? (
-								<div>
-									Seller: <Link to={`/profile`}>{list.username}</Link>
-								</div>
-							) : (
-								<Link to="/login">Login to see profile</Link>
-							)} */}
-							{/* <div onLoad={this.props.get_user({ uid: list.username })}> */}
-							<div>
-								<Link to={`/sellers-listings/${list.creatorId}`}>See all listing by seller</Link>
-							</div>
-							{localStorage.token ? (
-								<div>
-									<Link to={{ pathname: '/message-seller', userToUid: list.creatorId, listSubject: list.title, sellerData: list }}>
-										Contact Seller
-									</Link>
-								</div>
-							) : (
-								<div>
-									<Link to="/login">Login to contact Seller</Link>
-								</div>
-							)}
-						</div>
 					</div>
 				</div>
 			);

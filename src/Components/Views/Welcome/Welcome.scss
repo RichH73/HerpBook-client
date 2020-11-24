@@ -3,6 +3,40 @@
 @media screen and (min-width: 601px){
 	.welcome-page-main {
 		padding: 8px;
+		position: relative;
+		color: black;
+		//color: white;
+	}
+	
+	// .welcome-page-main-hero {
+	// 	content: '';
+	// 	background-image: url('/images/perry.jpg');
+	// 	background-position: cover;
+	// 	position: relative;
+	// 	top: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	opacity: .2;
+	// 	z-index: -1;
+	// }
+
+	// .welcome-page-main::before {
+	// 	content: '';
+	// 	background-image: url('/images/perry.jpg');
+	// 	background-position: center;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	opacity: .5;
+	// 	z-index: -1;
+	// }
+	
+	.welcome-page-bg {
+		width: 600px;
+		height: 400px;
 	}
 	
 	.welcome-page-fb-like {

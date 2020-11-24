@@ -1,18 +1,43 @@
 @import '../../../index';
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
 
 @media screen and ($maxWidth) {
 	.main-navigation-header {
 		display: none;
 	}
 }
+
 .main-navigation-header {
 	width: 1000px;
+	position: relative;
 	margin: 100px auto 50px;
 	border: 2px solid $headerBorderColor;
 	border-radius: 10px;
-	//padding: 1em;
 }
 
-.main-navigation-header h2 {
-	text-align: center;
+.main-navigation-header::before {
+	content: '';
+	position: absolute;
+	background-image: url('/images/iggy.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+	opacity: .6;
+	z-index: -1;
+}
+
+
+
+.main-navigation-header h1 {
+	font-family: 'Concert One', cursive;
+	text-align: left;
+	margin-left: 1em;
+	font-size: 3rem;
+	color: orange;
+	-webkit-text-stroke-width: .5px;
+	-webkit-text-stroke-color: black;
 }

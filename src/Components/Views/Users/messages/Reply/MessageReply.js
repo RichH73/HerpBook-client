@@ -5,18 +5,45 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
+//import Quill from 'quill'
+import ImageCompress from 'quill-image-compress';
+import '../Messages.css';
+
+Quill.register('modules/imageCompress', ImageCompress);
+
 class SellerContactForm extends React.Component {
+	quill = new Quill('.editor', {
+		// ...
+		modules: {
+			// ...
+			imageCompress: {
+				quality: 0.7, // default
+				maxWidth: 1000, // default
+				maxHeight: 1000, // default
+				imageType: 'image/jpeg', // default
+				debug: true, // default
+			},
+		},
+	});
+
 	modules = {
+		imageCompress: {
+			quality: 0.7, // default
+			maxWidth: 400, // default
+			maxHeight: 400, // default
+			imageType: 'image/jpeg', // default
+			debug: false, // default
+		},
 		toolbar: [
 			[{ header: [1, 2, false] }],
 			['bold', 'italic', 'underline', 'strike', 'blockquote'],
 			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-			['link'],
+			['link', 'image', 'video'],
 		],
 	};
 
-	formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link'];
+	formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video', 'clean'];
 
 	componentWillUnmount() {
 		this.props.clearRichText();
@@ -100,7 +127,7 @@ class SellerContactForm extends React.Component {
 							</label>
 						</div>
 
-						<div className="form-group" id="id_message_box">
+						<div className="message-reply-form-group" id="id_message_box">
 							<div style={{ backgroundColor: 'white' }}>
 								{/* <Editor settings={{ modules: this.modules, formats: this.formats }} /> */}
 								<ReactQuill
@@ -125,7 +152,7 @@ class SellerContactForm extends React.Component {
         </div> */}
 					</fieldset>
 					<div style={{ textAlign: 'right' }}>
-						<button type="submit" className="btn btn-success">
+						<button type="submit" className="message-reply-button button">
 							Send
 						</button>
 					</div>

@@ -59,7 +59,7 @@ class ListingTest extends React.Component {
 						<Tab>Animal</Tab>
 						{/* <Tab>Records</Tab>
 						<Tab>Activity</Tab> */}
-						{!!images.thumbnail ? <Tab>Photos</Tab> : ''}
+						{!!images.thumbnail ? <Tab>Gallery</Tab> : ''}
 					</TabList>
 					<div className="collections-tab-body">
 						<TabPanel>

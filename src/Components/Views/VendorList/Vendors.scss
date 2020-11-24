@@ -6,13 +6,31 @@
 	}
 }
 .breeder {
-	background-color: $panelBodyColor;
+	//background-color: $panelBodyColor;
+	border: 1px solid orange;
+	border-radius: 7px;
 	//margin-top: 2em;
-	margin: 1em 0;
+	margin: 1em auto 2em;
 	//border: .5px solid rgb(242, 242, 245);
-	padding: 0.5em;
+	//padding: 0.5em;
 	// box-shadow: 5px 6px 10px -1px rgba(139,245,155,1);
 }
+
+.vendor-list-header {
+	height: 22px;
+	background-color: orange;
+	top: 0;
+	margin-top: 0px;
+}
+
+.vendor-list-header h4 {
+	margin-top: 0px;
+}
+
+.vendor-list-body {
+	padding: 8px;
+}
+
 .breeder a {
 	color: $linkColor;
 }
@@ -41,9 +59,14 @@
 //     width: 660px;
 // }
 
-#about p {
+.vendor-list-about p {
 	//margin-top: .8em;
 	white-space: pre-line;
 	padding-left: 0.5em;
 	width: 660px;
+}
+
+.vendor-list-url {
+	margin: .5em auto;
+	text-align: center;
 }

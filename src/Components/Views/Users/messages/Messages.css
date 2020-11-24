@@ -51,4 +51,13 @@
 .display-message-buttons button {
   width: 60px;
 }
+
+.message-reply-form-group {
+  width: 100%;
+  overflow: hidden;
+}
+
+.message-reply-button {
+  margin: 1em 1em 1em auto;
+}
 /*# sourceMappingURL=Messages.css.map */

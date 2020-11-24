@@ -11,13 +11,18 @@
 	#contact_form img {
 		width: 150px;
 	}
+
+	
 }
 @media screen and ($minWidth) {
 	.ql-editor {
 		min-height: 200px !important;
-		max-height: 300px;
+		max-height: 600px;
+		height: 360px;
 		/* background-color: white; */
-		overflow: hidden;
+		//max-width: 680px;
+		// overflow: hidden;
+		overflow: scroll;
 		/* overflow-y: scroll;
     overflow-x: scroll; */
 	}
