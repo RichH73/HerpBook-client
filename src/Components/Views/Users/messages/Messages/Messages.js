@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
 import date from 'date-and-time';
+import dayjs from 'dayjs';
 
 class Messages extends React.Component {
 	componentDidMount() {
@@ -36,24 +37,30 @@ class Messages extends React.Component {
 			return <div>No new messages</div>;
 		} else {
 			return get(this, 'props.messages', []).map((msg) => (
-				<div key={msg._id}>
-					{/* <Link to={`/message-display/${get(msg, '_id', '')}/`}><div className='message-list' */}
-					<Link to={{ pathname: '/message-display', messageId: msg._id }}>
-						<div className="message-list">
-							<div className="message-list-subject">Subject: </div>
-							<div className="message-list-link">{msg.subject}</div>
-							<div className="message-list-date">{date.format(new Date(msg.created), 'dddd MMMM DD h:mmA')}</div>
-						</div>
-					</Link>
-				</div>
+				<tr style={!!msg.seen ? { backgroundColor: 'lightgray' } : {}}>
+					<td>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.created}</Link>
+					</td>
+					<td>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.subject}</Link>
+					</td>
+					<td>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{dayjs(msg.date).format('MM/DD/YYYY HH:MM')}</Link>
+					</td>
+				</tr>
 			));
 		}
 	};
 	render() {
 		return (
-			<React.Fragment>
-				<this.displayMessages />
-			</React.Fragment>
+			<div>
+				<table>
+					<th>From</th>
+					<th>Subject</th>
+					<th>Date</th>
+					<this.displayMessages />
+				</table>
+			</div>
 		);
 	}
 }
@@ -69,3 +76,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);
+
+/*
+<div className="message-list">
+							<div className="message-list-subject">Subject: </div>
+							<div className="message-list-link">{msg.subject}</div>
+							<div className="message-list-date">{date.format(new Date(msg.created), 'dddd MMMM DD h:mmA')}</div>
+						</div>
+
+*/

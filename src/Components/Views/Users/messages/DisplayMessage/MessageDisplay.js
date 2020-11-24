@@ -45,7 +45,7 @@ class MessageDisplay extends React.Component {
 	};
 
 	messageSeen = (message) => {
-		this.props.messageSeen(message._id);
+		//TODO add code to set messageSeen: true
 	};
 
 	render() {
@@ -55,7 +55,7 @@ class MessageDisplay extends React.Component {
 		const { messageId } = this.props.location;
 		const { messages } = this.props;
 		const message = first(filter(messages, { _id: messageId }));
-
+		console.log('my message', message);
 		return (
 			<div className="message-display-pane" key={message.id}>
 				<div className="message-display-footer">

@@ -126,7 +126,7 @@ class SellerContactForm extends React.Component {
         </div> */}
 					</fieldset>
 
-					<button type="submit" className="btn btn-success">
+					<button type="submit" className="btn btn-success button">
 						Send
 					</button>
 				</form>
