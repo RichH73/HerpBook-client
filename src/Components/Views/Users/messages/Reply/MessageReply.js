@@ -54,6 +54,7 @@ class SellerContactForm extends React.Component {
 			url: `${this.props.API}/messages/send_message`,
 			headers: {
 				Authorization: `Bearer ${localStorage.token}`,
+				'Content-type': 'application/json',
 			},
 			data: {
 				message: this.props.text,
@@ -63,13 +64,16 @@ class SellerContactForm extends React.Component {
 				fromuid: this.props.myUid,
 				fromusername: fromusername,
 			},
-		}).then((res) => {
-			if (res.status === 201) {
-				this.props.history.push('/success');
-			} else {
-				alert('Oops! Something went wrong, please try again.');
-			}
-		});
+		})
+			.then((res) => {
+				if (res.status === 201) {
+					this.props.history.push('/success');
+				}
+			})
+			.catch((error) => {
+				alert('Oops! Something went wrong, please try again.', error);
+				console.log(error);
+			});
 	};
 
 	render() {

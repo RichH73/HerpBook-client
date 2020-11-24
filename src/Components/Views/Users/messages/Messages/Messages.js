@@ -37,15 +37,15 @@ class Messages extends React.Component {
 			return <div>No new messages</div>;
 		} else {
 			return get(this, 'props.messages', []).map((msg) => (
-				<tr style={!!msg.seen ? { backgroundColor: 'lightgray' } : {}}>
+				<tr style={!!msg.seen ? { backgroundColor: 'lightgray' } : { fontWeight: 'bold' }}>
 					<td>
-						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.created}</Link>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{dayjs(msg.date).format('MM/DD/YYYY')}</Link>
 					</td>
 					<td>
 						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.subject}</Link>
 					</td>
 					<td>
-						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{dayjs(msg.date).format('MM/DD/YYYY HH:MM')}</Link>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.fromusername}</Link>
 					</td>
 				</tr>
 			));
@@ -55,9 +55,9 @@ class Messages extends React.Component {
 		return (
 			<div>
 				<table>
-					<th>From</th>
-					<th>Subject</th>
 					<th>Date</th>
+					<th>Subject</th>
+					<th>From</th>
 					<this.displayMessages />
 				</table>
 			</div>

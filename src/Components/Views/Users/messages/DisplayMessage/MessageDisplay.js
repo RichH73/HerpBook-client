@@ -8,6 +8,7 @@ import { first, filter } from 'lodash';
 import date from 'date-and-time';
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
+import dayjs from 'dayjs';
 
 class MessageDisplay extends React.Component {
 	messageReply = (message) => {
@@ -19,6 +20,8 @@ class MessageDisplay extends React.Component {
 		const { messages } = this.props;
 		const { messageId } = this.props.location;
 		const message = first(filter(messages, { _id: messageId }));
+		console.log('location', this.props.location);
+		this.messageSeen(message);
 		this.props.setPageTitle(_.get(message, 'subject', 'No Message'));
 	}
 
@@ -45,7 +48,23 @@ class MessageDisplay extends React.Component {
 	};
 
 	messageSeen = (message) => {
-		//TODO add code to set messageSeen: true
+		if (!!message) {
+			if (!message.seen) {
+				axios({
+					url: `${this.props.API}/messages/message_seen`,
+					method: 'post',
+					headers: {
+						Authorization: `Bearer ${localStorage.token}`,
+						'Content-Type': 'application/json',
+					},
+					data: {
+						messageId: message._id,
+					},
+				}).then((response) => {
+					console.log('this response', response);
+				});
+			}
+		}
 	};
 
 	render() {
@@ -55,19 +74,29 @@ class MessageDisplay extends React.Component {
 		const { messageId } = this.props.location;
 		const { messages } = this.props;
 		const message = first(filter(messages, { _id: messageId }));
-		console.log('my message', message);
 		return (
 			<div className="message-display-pane" key={message.id}>
-				<div className="message-display-footer">
-					<div className="message-display-from">From: {message.fromusername}</div>
-					<div className="message-display-sent">Sent: {date.format(new Date(message.created), 'dddd MMMM DD h:mmA')}</div>
-				</div>
-				<div className="message-display-body">{ReactHtmlParser(message.message)}</div>
+				<table>
+					<th>From</th>
+					<th>Subject</th>
+					<th>Sent</th>
+					<tr>
+						<td>{message.fromusername}</td>
+						<td>{message.subject}</td>
+						<td>{dayjs(message.created).format('MM/DD/YYYY @h:mm A')}</td>
+					</tr>
+				</table>
+				<table>
+					<th>{message.fromusername} wrote:</th>
+					<tr>
+						<td>{ReactHtmlParser(message.message)}</td>
+					</tr>
+				</table>
 				<div className="display-message-buttons">
-					<button type="button" className="btn btn-success display-message-button" onClick={() => this.messageReply(message)}>
+					<button type="button" className="btn btn-success display-message-button button" onClick={() => this.messageReply(message)}>
 						Reply
 					</button>
-					<button onClick={() => this.deleteMessage(message._id)} className="btn btn-danger display-message-button">
+					<button onClick={() => this.deleteMessage(message._id)} className="btn btn-danger display-message-button button">
 						Delete
 					</button>
 				</div>
