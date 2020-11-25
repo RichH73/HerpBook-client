@@ -110,7 +110,7 @@ class Photos extends Component {
 					</div>
 					<div className="collections-images-imgage-body-info">
 						<p>Name: {image.large}</p>
-						<p>Uploaded: {`${id.$M + 1}/${id.$D}/${id.$y}`}</p>
+						<p>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</p>
 					</div>
 					<div className="collections-images-imgage-footer">
 						<button className="button" onClick={() => this.deleteImage(image)}>

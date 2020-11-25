@@ -9,6 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
 import Modal from 'react-modal';
+import NumberFormat from 'react-number-format';
 //import { Base64 } from 'js-base64';
 
 class EditProfile extends React.Component {
@@ -16,12 +17,18 @@ class EditProfile extends React.Component {
 		pic_selected: false,
 		modalIsOpen: false,
 	};
+
+	componentDidMount() {
+		this.props.setPageTitle('My Profile');
+		this.props.getMyProfile(this.props.uid);
+		// if(!!this.props.user.is_this_a_business) {
+		// 	axios.get(`${API}/`)
+		// }
+	}
+
 	footerChangeHandler = (text) => {
 		this.props.userInfoUpdate('businessFooter', text);
 	};
-	componentDidMount() {
-		this.props.setPageTitle('My Profile');
-	}
 	pic_selected = () => {
 		if (this.state.pic_selected === true) {
 			this.setState({ pic_selected: false });
@@ -64,7 +71,6 @@ class EditProfile extends React.Component {
 				Authorization: `Bearer ${localStorage.token}`,
 				uid: localStorage.uid,
 				username: this.props.username,
-				//enctype: "mylipart/form-data"
 			},
 			data: fileData,
 		})
@@ -176,13 +182,14 @@ class EditProfile extends React.Component {
 					</div>
 					<div className="edit-profile-form-businessPhone">
 						<label className="field-input-label">Business Phone: </label>
-						<input
-							type="text"
-							name="businessPhone"
-							value={user.businessPhone}
-							maxLength="60"
-							className="textinput textInput form-control"
+						<NumberFormat
+							format="+1 (###) ###-####"
+							allowEmptyFormatting
+							mask="_"
+							thousandSeparator={false}
+							defaultValue={user.businessPhone}
 							onChange={this.onChangeHandler}
+							name="businessPhone"
 						/>
 					</div>
 					<div className="edit-profile-form-businessWebsite">
@@ -364,12 +371,13 @@ class EditProfile extends React.Component {
 							</div>
 							<div className="edit-profile-form-entity-phone-number">
 								<label className="field-input-label">Phone: </label>
-								<input
-									type="text"
-									value={user.entityPhoneNumber}
-									name="entityPhoneNumber"
-									className="textinput textInput form-control"
+								<NumberFormat
+									format="+1 (###) ###-####"
+									allowEmptyFormatting
+									mask="_"
+									defaultValue={user.entityPhoneNumber}
 									onChange={this.onChangeHandler}
+									name="entityPhoneNumber"
 								/>
 							</div>
 							<div className="edit-profile-form-display-entity-phone">

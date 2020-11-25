@@ -10,6 +10,7 @@ import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
 import Main from './files/MainView';
+import Gallery from './files/Gallery';
 
 class ListingTest extends React.Component {
 	state = {
@@ -85,16 +86,7 @@ class ListingTest extends React.Component {
 							<Activity history={this.props.history} />
 						</TabPanel> */}
 						<TabPanel>
-							<div>
-								{images.thumbnail.map((image) => (
-									<div>
-										<img
-											src={`https://users.herpbook.com/${this.props.classified_listing.username}/classifieds/${this.props.classified_listing.directory}/${image}`}
-										/>
-										{console.log(image)}
-									</div>
-								))}
-							</div>
+							<Gallery />
 						</TabPanel>
 					</div>
 				</Tabs>

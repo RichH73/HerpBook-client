@@ -198,26 +198,6 @@ export const user_login = (user) => {
 	return {
 		type: 'LOG_IN',
 		...user,
-		// uid: _.get(user, 'uid'),
-		// usrlvl: _.get(user, 'usrlvl'),
-		// token: _.get(user, 'token'),
-		// username: _.get(user, 'username'),
-		// email: _.get(user, 'email'),
-		// about: _.get(user, 'about'),
-		// profile_pic: _.get(user, 'profile_pic'),
-		// first_name: _.get(user, 'first_name'),
-		// last_name: _.get(user, 'last_name'),
-		// last_login: _.get(user, 'last_login'),
-		// business_name: _.get(user, 'business_name'),
-		// website: _.get(user, 'website'),
-		// address: _.get(user, 'address'),
-		// street: _.get(user, 'street'),
-		// city: _.get(user, 'city'),
-		// state: _.get(user, 'state'),
-		// zip_code: _.get(user, 'zip_code'),
-		// is_this_a_business: _.get(user, 'is_this_a_business'),
-		// display_address: _.get(user, 'display_address'),
-		// my_friends: _.get(user, 'my_friends', []),
 	};
 };
 
@@ -463,5 +443,29 @@ export const fileNewReport = (key, value) => {
 		type: 'FILE_REPORT',
 		key,
 		value,
+	};
+};
+
+export const getMyProfile = (data) => {
+	return function (dispatch) {
+		pageLoading(true);
+		setTimeout(() => {
+			dispatch(pageLoading(false));
+		}, 10000);
+		axios({
+			method: 'post',
+			url: `${API}/users/my_profile`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				uid: data,
+			},
+		}).then((response) => {
+			if (response.status === 200) {
+				dispatch(pageLoading(false));
+				dispatch(user_login(response.data));
+			}
+		});
 	};
 };
