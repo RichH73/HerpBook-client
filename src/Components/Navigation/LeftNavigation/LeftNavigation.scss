@@ -1,8 +1,8 @@
 @import '../../../index';
 
-a {
-	color: $linkColor;
-}
+// a {
+// 	color: black;
+// }
 
 h3 {
 	text-align: center;
@@ -33,6 +33,10 @@ h3 {
 	text-align: left;
 	width: 190px;
 	padding: 1em 0 1em 0.5em;
+}
+
+.left-main-nav a {
+	color: black;
 }
 
 .left-navigation-panel-header {

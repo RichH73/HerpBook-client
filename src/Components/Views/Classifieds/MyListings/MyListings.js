@@ -19,6 +19,7 @@ class MyListings extends Component {
 			method: 'get',
 			url: `${this.props.API}/listings/seller/${this.props.uid}`,
 		}).then((response) => {
+			console.log(response.data.listings);
 			this.setState({
 				listings: response.data.listings,
 			});
@@ -48,49 +49,44 @@ class MyListings extends Component {
 	};
 
 	render() {
-		// <div className="my-listings-box" key={list._id}>
-		// 	<div className="my-listings-img">
-		// 		<Link to={`/listing/${list._id}`}>
-		// 			<img src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${list.image}`} alt="" />
-		// 		</Link>
-		// 	</div>
-
-		// 	<div className="my-listings-title">{list.title}</div>
-		// 	{/* <div className="my-listings-description">{list.description.slice(0, 50)} ...</div> */}
-		// 	<div className="my-listings-price">Price: ${list.price}</div>
-		// 	<div className="my-listings-gender">Gender: {list.gender}</div>
-		// 	<div className="my-listings-date">{list.created.split('T', 2)[0]}</div>
-		// 	<div className="my-listings-delete" onClick={() => this.delete_listing(list._id)}>
-		// 		Delete
-		// 	</div>
-		// </div>
 		const SellerListings = () => {
 			return this.state.listings.map((list) => (
 				<React.Fragment>
-					{''}
-					<div className="my-listings-box" key={list._id}>
-						<Link to={`/listing/${list._id}`}>
-							<table>
-								<tr>
-									<td>
-										<img src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${list.image}`} alt={list.image} />
-									</td>
-									<td>
-										<div className="my-listings-title">{list.title}</div>
-									</td>
-									<td>
-										<div className="my-listings-gender">Gender: {list.gender}</div>
-									</td>
-									<td>
-										<div className="my-listings-price">Price: ${list.price}</div>
-									</td>
-								</tr>
-							</table>
-						</Link>
-						<div className="my-listings-delete" onClick={() => this.delete_listing(list._id)}>
-							Delete
+					<Link to={`/listing/${list._id}`}>
+						<div className="my-listings-box" key={list._id}>
+							{/* <div className="my-listings-box-image-box"> */}
+							<div className="my-listings-box-image">
+								<img src={`${list.URL}/${list.image}`} alt={list.image} />
+							</div>
+							<div className="my-listings-delete">
+								<button onClick={() => this.delete_listing(list)} className="button">
+									Delete
+								</button>
+							</div>
+							{/* </div> */}
+							<div className="my-listings-box-info">
+								<table>
+									<th>Title</th>
+									<th>Gender</th>
+									<th>Price</th>
+									<th>Seller</th>
+									<tr>
+										<td>
+											<div className="my-listings-title">{list.title}</div>
+										</td>
+										<td>{!!list.gender ? <div className="my-listings-gender">{list.gender}</div> : ''}</td>
+										<td>
+											{' '}
+											<div className="my-listings-price">${list.price}</div>
+										</td>
+										<td>
+											<div>{list.username}</div>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					</div>
+					</Link>
 				</React.Fragment>
 			));
 		};

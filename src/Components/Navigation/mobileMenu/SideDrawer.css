@@ -14,10 +14,15 @@
   z-index: 200;
   top: 0;
   left: 0;
-  background-color: #cce2f8;
+  background-color: white;
+}
+
+.sideDrawer-left-main-nav a {
+  color: black;
 }
 
 .sideDrawer-left-main-nav {
+  font-size: 1.3em;
   text-align: left;
   padding: 1em 0 1em 0.5em;
 }

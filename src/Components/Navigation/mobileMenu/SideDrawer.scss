@@ -62,12 +62,17 @@
 	top: 0;
 	left: 0;
 	// position: fixed;
-	background-color: $navigationPanelColor;
+	background-color: white;
+	// background-color: $navigationPanelColor;
 	//margin: .5em;
 }
 
+.sideDrawer-left-main-nav a {
+	color: black;
+}
+
 .sideDrawer-left-main-nav {
-	//font-size: .8em;
+	font-size: 1.3em;
 	// border: 1px solid lightgray;
 	text-align: left;
 	//width: 190px;

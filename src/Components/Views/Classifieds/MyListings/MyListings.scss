@@ -1,137 +1,62 @@
 @import '../../../../index';
+a {
+	text-decoration: none;
+}
 
-// @media screen and ($minMaxWidth) and ($maxMinWidth) {
-// 	body {
-// 		background-color: black;
-// 	}
-// }
+td {
+	text-align: center;
+}
 @media screen and ($maxWidth) {
-	a,
-	a :visited,
-	:active,
-	:hover {
-		color: black;
-	}
-	.my-listings-body {
-		width: 98%;
-		//display: grid;
-		//grid-template-columns: repeat(3, 220px);
-		grid-row-gap: 20px;
-		grid-column-gap: 10px;
+	.my-listings-box-info table {
+		width: 100%;
+		border-collapse: collapse;
+		margin: .5em;
 	}
 
 	.my-listings-box {
-		background-color: $bodyPanelColor;
-		border: 1px solid $bodyBorderColor;
-		margin: 0.5em auto;
-		width: 100%;
-		// width: 212px;
-		//height: 412px;
-		padding: 3px;
+		border: 1px solid $borderColor;
+		margin-top: 20px;
 		color: black;
-		// display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: 1fr 0.2fr 0.3fr 0.2fr;
-	}
-
-	.my-listings-title {
-		font-weight: bold;
-		// width: 100%;
-		padding: 0.5em 0 0.5em 0;
-		text-align: center;
-		font-size: 1em;
-		grid-column: 2 / 3;
-		grid-row: 1 / 3;
-	}
-
-	.my-listings-gender {
-		// width: 50%;
-		// margin-left: 50%;
-		padding: 0.5em 0 0.5em 0;
-		margin-right: 2px;
-		font-weight: bold;
-		font-size: 0.7em;
-		text-align: right;
-		grid-column: 2 / 3;
-	}
-
-	.my-listings-price {
-		// margin-left: auto;
-		// margin-right: 10px;
-		padding: 0.5em 0 0.5em 0;
-		font-weight: bold;
-		margin-left: 2px;
-		font-size: 0.7em;
-		text-align: left;
-		grid-column: 1 / 2;
-	}
-
-	.my-listings-img {
-		width: 100px;
-		// height: 150px;
-		grid-column: 1 / 2;
-		text-align: center;
-	}
-
-	.my-listings-description {
-		// width: 80%;
-		// height: 20px;
-		// margin: auto;
-		padding: 0.5em 0 0.5em 0;
-		font-size: 0.8em;
-		text-align: center;
-		grid-column: 1 / 3;
-		grid-row: 2;
-	}
-
-	.my-listings-img img {
-		max-width: 90%;
-	}
-
-	.my-listings-info {
-		width: 75%;
-		height: 100px;
-		position: absolute;
-		text-align: center;
-	}
-
-	.my-listings-date {
-		text-align: center;
-		font-size: 0.5em;
-		grid-column: 1 / 3;
+		display: grid;
+		grid-template-areas:
+		'list-table list-table'
+		'list-img delete-button';
+		text-decoration: none;
 	}
 
 	.my-listings-delete {
-		background-color: red;
+		grid-area: delete-button;
 		text-align: center;
-		grid-column: 1 / 3;
-		cursor: pointer;
+	}
+	
+	.my-listings-box-image {
+		grid-area: list-img;
+		margin: auto;
 	}
 
-	.gird-item {
-		background-color: $bodyPanelColor;
-		border: 1px lightgreen solid;
-		margin: 5px;
-		width: 275px;
-		padding: 3px;
-		height: 412px;
-		color: black;
+	.my-listings-box-info {
+		width: 98%;
+		grid-area: list-table;
 	}
 
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-		/* display: none; <- Crashes Chrome on hover */
-		-webkit-appearance: none;
-		margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	.my-listings-box th {
+		text-align: center;
 	}
 
-	input[type='number'] {
-		-moz-appearance: textfield; /* Firefox */
+	.my-listings-box td {
+		text-align: center;
 	}
 
-	.my-listings-box-grid {
-		//display: inline-grid;
-		grid-template-columns: repeat(3, 1fr);
+	.my-listings-title {
+		font-size: 1em;
+	}
+
+	.my-listings-gender {
+		font-size: 0.7em;
+	}
+
+	.my-listings-price {
+		font-size: 0.7em;
 	}
 }
 
@@ -141,84 +66,84 @@
 		border-collapse: collapse;
 	}
 
-	a,
-	a :visited,
-	:active,
-	:hover {
-		color: black;
-	}
-
 	.my-listings-body {
-		// display: grid;
+		//display: grid;
 		// grid-template-columns: repeat(3, 220px);
 		// grid-row-gap: 20px;
 		// grid-column-gap: 10px;
 	}
 
 	.my-listings-box {
-		// background-color: $bodyPanelColor;
-		border: 1px solid $bodyBorderColor;
-		margin: 5px auto;
+		// background-color: $panelBodyColor;
+		border: 1px solid orange;
+		margin: 10px auto;
 		width: 95%;
-		//height: 412px;
-		//padding: 3px;
 		color: black;
-		// display: grid;
-		// grid-template-columns: repeat(2, 1fr);
-		// grid-template-rows: 1fr .2fr .3fr .2fr;
+		border-radius: 7px;
+		//height: 5em;
+		display: flex;
+	}
+
+	.my-listings-box:hover {
+		background-color: $lightBlue;
+	}
+
+	.my-listings-box a {
+		text-decoration: none;
+	}
+
+	.my-listings-box-info {
+		text-decoration: none;
+		width: 80%;
+		margin: auto;
+	}
+
+	.my-listings-box-image-box {
+		text-align: center;
+		margin: .5em auto;	
 	}
 
 	.my-listings-title {
-		font-weight: bold;
+		//font-weight: bold;
 		// width: 100%;
 		// padding: .5em 0 .5em 0;
-		text-align: left;
+		//text-align: left;
+		//margin: 2em auto 0;
+		bottom: 0;
 		font-size: 1em;
-		// grid-column: 1 / 3;
-		// grid-row: 2 / 3
+		// grid-area: title
+	}
+
+	.my-listings-title a {
+		text-decoration: none;
 	}
 
 	.my-listings-gender {
-		// width: 50%;
-		// margin-left: 50%;
-		// padding: .5em 0 .5em 0;
-		// margin-right: 2px;
-		font-weight: bold;
+		//font-weight: bold;
 		font-size: 0.7em;
-		// text-align: right;
-		// grid-column: 2 / 3;
 	}
 
 	.my-listings-price {
-		// margin-left: auto;
-		// margin-right: 10px;
-		// padding: .5em 0 .5em 0;
-		font-weight: bold;
-		// margin-left: 2px;
+		//font-weight: bold;
 		font-size: 0.7em;
-		text-align: left;
-		// grid-column: 1 / 2;
+		//text-align: left;
 	}
 
 	.my-listings-img {
-		width: 100%;
-		// height: 150px;
-		// padding: 3px;
-		// grid-column: 1 / 3;
+		width: 100px;
 	}
 
 	.my-listings-description {
-		// width: 80%;
-		// height: 20px;
-		// margin: auto;
 		padding: 0.5em 0 0.5em 0;
 		font-size: 0.8em;
 		text-align: center;
-		grid-column: 1 / 3;
 	}
 
 	.my-listings-img img {
-		max-width: 75px;
+		width: 75px;
+	}
+	.my-listings-box img {
+		width: 75px;
 	}
 
 	.my-listings-info {
@@ -231,21 +156,6 @@
 	.my-listings-date {
 		text-align: center;
 		font-size: 0.5em;
-		grid-column: 1 / 3;
-	}
-
-	.my-listings-delete {
-		background-color: red;
-		text-align: center;
-		grid-column: 1 / 3;
-		cursor: pointer;
-	}
-
-	.grid-container {
-		// display: grid;
-		// grid-template-columns: repeat(3, 1fr);
-		// grid-column-gap: 50px;
-		// grid-row-gap: 50px;
 	}
 
 	.gird-item {
@@ -256,6 +166,10 @@
 		padding: 3px;
 		height: 412px;
 		color: black;
+	}
+
+	.my-listings-delete {
+		z-index: 1;
 	}
 
 	input::-webkit-outer-spin-button,
@@ -269,8 +183,8 @@
 		-moz-appearance: textfield; /* Firefox */
 	}
 
-	.my-listings-box-grid {
-		//display: inline-grid;
-		grid-template-columns: repeat(3, 1fr);
-	}
+	// .my-listings-box-grid {
+	// 	//display: inline-grid;
+	// 	grid-template-columns: repeat(3, 1fr);
+	// }
 }

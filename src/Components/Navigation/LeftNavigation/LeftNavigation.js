@@ -55,9 +55,9 @@ class LeftNav extends Component {
 							<div className="left-nav-link">
 								<Link to="/new_collection">Add new animal</Link>
 							</div>
-							<div className="left-nav-link">
+							{/* <div className="left-nav-link">
 								<Link to="/new_clutch">Create New Clutch</Link>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

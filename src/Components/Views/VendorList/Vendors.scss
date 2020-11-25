@@ -1,10 +1,80 @@
 @import '../../../index';
 
-@media screen and ($maxWidth) {
-	#about {
-		width: 98%;
+@media screen and (max-width: 699px) {
+	.vendor-list-about {
+		width: 100%;
 	}
+
+	.vendor-list-about p {
+		width: 98%;
+		white-space: pre-line;
+		padding-left: 0.5em;
+	}
+
+
+	.breeder {
+		//background-color: $panelBodyColor;
+		border: 1px solid orange;
+		border-radius: 7px;
+		//margin-top: 2em;
+		margin: 1em auto 2em;
+		//border: .5px solid rgb(242, 242, 245);
+		//padding: 0.5em;
+		// box-shadow: 5px 6px 10px -1px rgba(139,245,155,1);
+	}
+	
+	.vendor-list-header {
+		height: 22px;
+		background-color: orange;
+		top: 0;
+		margin-top: 0px;
+	}
+	
+	.vendor-list-header h4 {
+		margin-top: 0px;
+	}
+	
+	.vendor-list-body {
+		padding: 8px;
+	}
+	
+	.breeder a {
+		color: $linkColor;
+	}
+	
+	.breeders-list h5 {
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+	
+	.breeders-list a {
+		color: $linkColor;
+	}
+	
+	.breeders-list {
+		// border: $borders;
+		//margin: .5em;
+		// border-top-right-radius: 15px;
+		// border-bottom-right-radius: 15px;
+		padding: 0.5em;
+	}
+	
+
+	
+	.vendor-list-about {
+		width: 100%;
+	}
+	
+
+	
+	.vendor-list-url {
+		margin: .5em auto;
+		text-align: center;
+	}
+	
 }
+
+@media screen and (min-width: 700px) {
 .breeder {
 	//background-color: $panelBodyColor;
 	border: 1px solid orange;
@@ -59,6 +129,10 @@
 //     width: 660px;
 // }
 
+.vendor-list-about {
+	width: 100%;
+}
+
 .vendor-list-about p {
 	//margin-top: .8em;
 	white-space: pre-line;
@@ -69,4 +143,5 @@
 .vendor-list-url {
 	margin: .5em auto;
 	text-align: center;
+}
 }

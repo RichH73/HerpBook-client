@@ -11,6 +11,15 @@
     color: black;
     margin: 1em auto;
   }
+  .list-box-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .list-box-inner-table-data {
+    width: 60%;
+    margin: auto;
+  }
   .list-box a {
     color: black;
   }
@@ -153,7 +162,7 @@
   }
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 699px) {
   .list-box {
     width: 98%;
     color: black;
@@ -161,9 +170,15 @@
     margin: 1em auto;
   }
   .list-info {
-    display: -ms-grid;
-    display: grid;
+    width: 100%;
         grid-template-areas: 'price listId' 'gender listWeight' 'footer footer' 'description description' 'businessFooter businessFooter';
+  }
+  .list-box-inner-table-data {
+    width: 98%;
+    margin: auto;
+  }
+  .classified-listing-thumbnail-images {
+    text-align: center;
   }
   .list-box a {
     color: black;
@@ -191,23 +206,11 @@
     -ms-grid-column-span: 2;
     grid-area: description;
   }
-  .list-description-businessFooter {
-    margin: 1em auto 4em;
-    width: 96%;
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
-    grid-area: businessFooter;
+  .list-description img {
+    max-width: 98%;
   }
   .list-images {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto;
-        grid-template-columns: auto auto;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    margin-top: 1em;
+    margin: 1em;
   }
   .list-images a {
     text-align: center;

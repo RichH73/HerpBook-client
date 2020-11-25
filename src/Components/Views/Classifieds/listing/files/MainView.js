@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactHtmlParser from 'react-html-parser';
 import * as actionCreators from '../../../../../actions/index';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
+import _ from 'lodash';
 
 class Main extends React.Component {
 	state = {
@@ -57,11 +57,11 @@ class Main extends React.Component {
 		return;
 	};
 
-	display_image = (img) => {
-		let largImage = img.replace('thumb', 'large');
-		this.setState({
-			file: largImage,
-			floating_img: true,
+	largImage = (img) => {
+		this.props.displayLargeImage({
+			display: 'block',
+			img: `${img.URL}/${img.large}`,
+			name: img.large,
 		});
 	};
 
@@ -75,23 +75,21 @@ class Main extends React.Component {
 			this.props.setPageTitle(this.props.listTitle);
 		}
 		const Listing = () => {
+			const { images } = this.props.classifiedData.listData;
 			let list = this.props.classified_listing;
 			return (
 				<div className="list-box">
-					<div style={{ display: 'flex' }}>
+					<div className="list-box-inner">
 						<div className="list-images">
-							{list.images.thumbnail.map((img) => (
-								<div className="classified-listing-thumbnail-images">
-									{console.log('this is list', list)}
-									<img
-										src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${img}`}
-										alt={img}
-										onClick={() => this.display_image(img)}
-									/>
-								</div>
-							))}
+							<div className="classified-listing-thumbnail-images">
+								<img
+									src={`${list.URL}/${_.get(images, '0.thumbnail')}`}
+									alt={_.get(images, '0.thumbnail')}
+									onClick={() => this.largImage(_.get(list, 'images.0'))}
+								/>
+							</div>
 						</div>
-						<div style={{ width: '50%', margin: 'auto' }}>
+						<div className="list-box-inner-table-data">
 							<table>
 								<tbody>
 									<th>Price</th>
@@ -105,7 +103,7 @@ class Main extends React.Component {
 											{list.weight}
 											<span>{list.weightUnit}</span>
 										</td>
-										<td>{list.userListId}</td>
+										<td>{!!list.userListId ? list.userListId : list._id}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -136,8 +134,8 @@ class Main extends React.Component {
 						<div className="list-description">
 							<b>Sellers Description:</b>
 							{ReactHtmlParser(list.description)}
+							{ReactHtmlParser(get(list, 'businessFooter', ''))}
 						</div>
-						<div className="list-description-businessFooter">{ReactHtmlParser(get(list, 'businessFooter', ''))}</div>
 					</div>
 				</div>
 			);
@@ -178,6 +176,7 @@ const mapStateToProps = (state) => ({
 	visitor_get_username: state.classified.listData.username,
 	listTitle: state.classified.listData.title,
 	classified_listing: state.classified.listData,
+	classifiedData: state.classified,
 	React: state.config.analytics,
 });
 

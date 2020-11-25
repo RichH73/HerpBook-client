@@ -10,6 +10,7 @@ import * as actionCreators from '../../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
+import _ from 'lodash';
 
 class Gallery extends React.Component {
 	state = {};
@@ -48,80 +49,27 @@ class Gallery extends React.Component {
 		});
 	};
 
-	render() {
-		if (!!this.props.React) {
-			ReactGA.pageview(`/listing/${this.props.match.params.id}`);
-		}
-		//ReactGA.pageview(`/listing/${this.props.match.params.id}`);
-		// !!this.props.listTitle ? this.props.setPageTitle(this.props.listTitle) : ''
-		if (!!this.props.listTitle) {
-			this.props.setPageTitle(this.props.listTitle);
-		}
-		const Listing = () => {
-			// let list = this.state.listing;
-			let list = this.props.classified_listing;
+	imageMap = () => {
+		return this.props.images.map((image) => {
+			let id = dayjs(_.get(image, 'date'));
 			return (
-				<div className="list-box">
-					{/* <div className="list-title">{list.title}</div> */}
-					<div className="list-images">
-						{list.images.thumbnail.map((img) => (
-							<div className="classified-listing-thumbnail-images">
-								<img
-									src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${img}`}
-									alt="null"
-									onClick={() => this.largImage(img)}
-								/>
-								{/* <img
-                                src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${img}`}
-                                alt={img}
-                                onClick={() => this.display_image(img)}
-                            /> */}
-							</div>
-						))}
+				<div className="collections-images-image-box">
+					<div className="collections-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
+					<div className="collections-images-imgage-body">
+						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
+					<div className="collections-images-imgage-body-info">
+						<p>Name: {image.large}</p>
+						<p>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</p>
+					</div>
+					<div className="collections-images-imgage-footer"></div>
 				</div>
 			);
-		};
+		});
+	};
 
-		return (
-			<div className="list-box">
-				{/* <div className="list-title">{list.title}</div> */}
-				<div className="list-images">
-					{this.props.classified_listing.images.thumbnail.map((img) => (
-						<div className="classified-listing-thumbnail-images">
-							<img
-								src={`${this.props.USERSURL}/${get(this.props, 'classified_listing.username')}/classifieds/${
-									this.props.classified_listing.directory
-								}/${this.state.file}`}
-								alt="null"
-								onClick={() => this.display_image(img)}
-							/>
-							{/* <img src={`${this.props.USERSURL}/${list.username}/classifieds/${list.directory}/${img}`} alt={img} onClick={() => this.display_image(img)} /> */}
-						</div>
-					))}
-				</div>
-
-				<Listing />
-			</div>
-			//     <div>
-			//         {this.state.floating_img === true ? (
-			//             <div className="classified-listing-picture-display-gray-back" onClick={this.close_floating_image}>
-			//                 <div className="classified-listing-picture-display">
-			//                     <img
-			//                         src={`${this.props.USERSURL}/${get(this.props, 'classified_listing.username')}/classifieds/${this.props.classified_listing.directory}/${
-			//                             this.state.file
-			//                         }`}
-			//                         alt=""
-			//                     />
-			//                 </div>
-			//             </div>
-			//         ) : (
-			//             ''
-			//         )}
-			// <Listing />
-			//         {/* {this.props.classified_listing._id ? <Listing /> : ''} */}
-			//     </div>
-		);
+	render() {
+		return <div style={{ padding: '10px' }}>{this.imageMap()}</div>;
 	}
 }
 
@@ -137,7 +85,7 @@ const mapStateToProps = (state) => ({
 	visitor_get_username: state.classified.listData.username,
 	listTitle: state.classified.listData.title,
 	classified_listing: state.classified.listData,
-	React: state.config.analytics,
+	images: state.classified.listData.images,
 });
 
 const mapDispatchToProps = (dispatch) => {
