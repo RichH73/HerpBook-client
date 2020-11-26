@@ -10,7 +10,7 @@ import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
 import Main from './files/MainView';
-import Gallery from './files/Gallery';
+import Gallery from './files/Gallery/Gallery';
 
 class Listing extends React.Component {
 	state = {

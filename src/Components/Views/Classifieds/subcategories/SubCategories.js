@@ -57,10 +57,10 @@ class SubCategory extends React.Component {
 				<React.Fragment>
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
-							<div style={{ textAlign: 'center', margin: 'auto' }}>
+							<div className="listing-box-image">
 								<img src={`${list.URL}/${list.image}`} alt={list.image} />
 							</div>
-							<div className="listing-box-info" style={{ width: '80%', margin: 'auto' }}>
+							<div className="listing-box-info">
 								<table>
 									<th>Title</th>
 									<th>Gender</th>

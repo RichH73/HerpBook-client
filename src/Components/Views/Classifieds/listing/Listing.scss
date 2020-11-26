@@ -170,6 +170,26 @@
 		margin: 1em auto;
 	}
 
+	.listing-box {
+		border-radius: 7px;;
+	}
+
+	.listing-box-image {
+		text-align: center;
+		margin: .5em auto;
+		//padding: 1em;
+	}
+
+	.listing-box-image img {
+		border-radius: 7px;
+		border: 2px solid orange;
+	}
+
+	.listing-box-info {
+		width: 99%;
+		margin: auto;
+	}
+
 	.list-info {
 		width: 100%;
 		//display: grid;
@@ -228,8 +248,10 @@
 	}
 
 	.list-images img {
-		width: 100px;
+		//width: 100px;
 		text-align: center;
+		border: 3px solid orange;
+		border-radius: 7px;
 	}
 
 	.list-footer {

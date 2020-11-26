@@ -27,6 +27,7 @@ class Main extends React.Component {
 		});
 	};
 
+	//TODO setup to use Redux
 	componentDidMount() {
 		this.props.setPageTitle(this.props.listTitle);
 		//this.props.loader(true);

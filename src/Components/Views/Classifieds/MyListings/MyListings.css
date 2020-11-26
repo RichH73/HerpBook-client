@@ -71,6 +71,7 @@ td {
     width: 95%;
     color: black;
     border-radius: 7px;
+    height: 5em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

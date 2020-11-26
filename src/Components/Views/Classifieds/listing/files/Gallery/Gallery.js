@@ -1,14 +1,9 @@
 import React from 'react';
-import '../Listing.css';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { get } from 'lodash';
+import './Gallery.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ReactHtmlParser from 'react-html-parser';
-import * as actionCreators from '../../../../../actions/index';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import ReactGA from 'react-ga';
+import * as actionCreators from '../../../../../../actions/index';
+//import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
 import _ from 'lodash';
 
@@ -53,23 +48,23 @@ class Gallery extends React.Component {
 		return this.props.images.map((image) => {
 			let id = dayjs(_.get(image, 'date'));
 			return (
-				<div className="collections-images-image-box">
-					<div className="collections-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
-					<div className="collections-images-imgage-body">
+				<div className="classifieds-images-image-box">
+					<div className="classifieds-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
+					<div className="classifieds-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
-					<div className="collections-images-imgage-body-info">
+					<div className="classifieds-images-imgage-body-info">
 						<p>Name: {image.large}</p>
 						<p>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</p>
 					</div>
-					<div className="collections-images-imgage-footer"></div>
+					<div className="classifieds-images-imgage-footer"></div>
 				</div>
 			);
 		});
 	};
 
 	render() {
-		return <div style={{ padding: '10px' }}>{this.imageMap()}</div>;
+		return <div className="classifieds-images-gallery">{this.imageMap()}</div>;
 	}
 }
 
