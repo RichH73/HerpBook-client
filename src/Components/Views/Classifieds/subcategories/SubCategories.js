@@ -73,10 +73,10 @@ class SubCategory extends React.Component {
 										<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
 										<td>
 											{' '}
-											<div className="listing-price">${list.price}</div>
+											<div className="listing-price">{list.price}</div>
 										</td>
 										<td>
-											<div>{list.username}</div>
+											<div>{list.username || list.user}</div>
 										</td>
 									</tr>
 								</table>

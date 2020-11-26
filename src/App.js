@@ -13,16 +13,6 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
-import io, { Socket } from 'socket.io-client';
-
-//const socket = io.connect('http://localhost:9000');
-
-const socket = io.connect('http://localhost:9000');
-console.log(socket.connected);
-
-socket.emit('news', (data) => {
-	console.log('did something', data);
-});
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {

@@ -81,15 +81,16 @@ td {
   }
   .my-listings-box a {
     text-decoration: none;
+    color: black;
   }
   .my-listings-box-info {
     text-decoration: none;
-    width: 80%;
+    width: 70%;
     margin: auto;
   }
-  .my-listings-box-image-box {
+  .my-listings-box-image {
     text-align: center;
-    margin: .5em auto;
+    margin: .5em auto auto .2em;
   }
   .my-listings-title {
     bottom: 0;
@@ -138,7 +139,7 @@ td {
     color: black;
   }
   .my-listings-delete {
-    z-index: 1;
+    margin: auto .4em;
   }
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

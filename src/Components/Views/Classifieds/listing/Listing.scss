@@ -33,6 +33,12 @@
 		font-weight: bold;
 	}
 
+	.classified-listing-thumbnail-images img {
+		border-radius: 7px;
+		border: 2px solid orange;
+		cursor: pointer;
+	}
+
 	.list-title {
 		font-weight: bold;
 		text-align: center;
@@ -47,8 +53,9 @@
 		grid-area: description;
 	}
 
+	// Drops in from the server
 	.list-description-businessFooter {
-		margin: 1em auto 4em;
+		margin: 4em auto 4em;
 		width: 96%;
 		grid-area: businessFooter;
 	}
@@ -209,6 +216,8 @@
 	.classified-listing-thumbnail-images {
 		text-align: center;
 	}
+
+	
 
 	.list-box a {
 		color: black;

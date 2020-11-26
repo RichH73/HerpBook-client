@@ -5,6 +5,7 @@ import './MyListings.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
+import dayjs from 'dayjs';
 import ReactGA from 'react-ga';
 class MyListings extends Component {
 	state = {
@@ -52,41 +53,40 @@ class MyListings extends Component {
 		const SellerListings = () => {
 			return this.state.listings.map((list) => (
 				<React.Fragment>
-					<Link to={`/listing/${list._id}`}>
-						<div className="my-listings-box" key={list._id}>
-							{/* <div className="my-listings-box-image-box"> */}
-							<div className="my-listings-box-image">
+					<div className="my-listings-box" key={list._id}>
+						<div className="my-listings-box-image">
+							<Link to={`/listing/${list._id}`}>
 								<img src={`${list.URL}/${list.image}`} alt={list.image} />
-							</div>
-							<div className="my-listings-delete">
-								<button onClick={() => this.delete_listing(list)} className="button">
-									Delete
-								</button>
-							</div>
-							{/* </div> */}
-							<div className="my-listings-box-info">
+							</Link>
+						</div>
+						<div className="my-listings-delete">
+							<button onClick={() => this.delete_listing(list)} className="button">
+								Delete
+							</button>
+						</div>
+						<div className="my-listings-box-info">
+							<Link to={`/listing/${list._id}`}>
 								<table>
 									<th>Title</th>
 									<th>Gender</th>
 									<th>Price</th>
-									<th>Seller</th>
+									<th>Listed On</th>
 									<tr>
 										<td>
 											<div className="my-listings-title">{list.title}</div>
 										</td>
 										<td>{!!list.gender ? <div className="my-listings-gender">{list.gender}</div> : ''}</td>
 										<td>
-											{' '}
-											<div className="my-listings-price">${list.price}</div>
+											<div className="my-listings-price">{list.price}</div>
 										</td>
 										<td>
-											<div>{list.username}</div>
+											<div>{dayjs(list.created).format('MM/DD/YYYY')}</div>
 										</td>
 									</tr>
 								</table>
-							</div>
+							</Link>
 						</div>
-					</Link>
+					</div>
 				</React.Fragment>
 			));
 		};

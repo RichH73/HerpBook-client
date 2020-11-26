@@ -39,7 +39,7 @@ class Messages extends React.Component {
 			return get(this, 'props.messages', []).map((msg) => (
 				<tr style={!!msg.seen ? { backgroundColor: 'lightgray' } : { fontWeight: 'bold' }}>
 					<td>
-						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{dayjs(msg.date).format('MM/DD/YYYY')}</Link>
+						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{dayjs(msg.created).format('MM/DD/YYYY')}</Link>
 					</td>
 					<td>
 						<Link to={{ pathname: '/message-display', messageId: msg._id }}>{msg.subject}</Link>

@@ -84,6 +84,7 @@ class CreateListing extends React.Component {
 		});
 		let listingInfo = {
 			creatorId: this.props.creatorId,
+			created: new Date(),
 			description: this.props.listDescription,
 			user: this.props.username,
 			images: images,

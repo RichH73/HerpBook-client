@@ -66,6 +66,23 @@ class Main extends React.Component {
 		});
 	};
 
+	businessDisplay = (data) => {
+		return (
+			<table>
+				<th>Business</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Phone</th>
+				<tr>
+					<td>{data.businessName}</td>
+					<td>{data.businessCity}</td>
+					<td>{data.businessState}</td>
+					<td>{data.businessPhone}</td>
+				</tr>
+			</table>
+		);
+	};
+
 	render() {
 		if (!!this.props.React) {
 			ReactGA.pageview(`/listing/${this.props.match.params.id}`);
@@ -118,7 +135,7 @@ class Main extends React.Component {
 							>
 								{localStorage.token ? (
 									<div>
-										Seller: <Link to={`/profile`}>{list.username}</Link>
+										Seller: <Link to={`/profile`}>{list.username || list.user}</Link>
 									</div>
 								) : (
 									<Link to="/login">Contact seller</Link>
@@ -136,6 +153,7 @@ class Main extends React.Component {
 							<b>Sellers Description:</b>
 							{ReactHtmlParser(list.description)}
 							{ReactHtmlParser(get(list, 'businessFooter', ''))}
+							{!!list.businessName ? this.businessDisplay(list) : ''}
 						</div>
 					</div>
 				</div>
