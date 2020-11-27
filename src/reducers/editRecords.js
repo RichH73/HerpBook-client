@@ -3,7 +3,6 @@ const initialState = {
 	display: 'none',
 	_id: '',
 	date: '',
-	_id: '',
 	notes: '',
 };
 

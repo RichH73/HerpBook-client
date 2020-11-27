@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 //import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
-import _ from 'lodash';
 
 class Gallery extends React.Component {
 	state = {};
@@ -46,7 +45,6 @@ class Gallery extends React.Component {
 
 	imageMap = () => {
 		return this.props.images.map((image) => {
-			let id = dayjs(_.get(image, 'date'));
 			return (
 				<div className="classifieds-images-image-box">
 					<div className="classifieds-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>

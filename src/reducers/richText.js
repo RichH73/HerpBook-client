@@ -6,7 +6,7 @@ const initial_state = {
 			maxWidth: 400, // default
 			maxHeight: 400, // default
 			imageType: 'image/jpeg', // default
-			debug: true, // default
+			debug: false, // default
 		},
 		toolbar: [
 			[{ header: [1, 2, false] }],

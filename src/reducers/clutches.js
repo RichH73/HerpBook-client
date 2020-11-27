@@ -35,7 +35,6 @@ export const current_clutch = (state = initialClutches, data) => {
 export const my_clutches = (state = initialAllClutches, data) => {
 	switch (data.type) {
 		case 'all_clutches':
-			console.log(data.data);
 			return {
 				...state,
 				...data.data,

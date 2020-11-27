@@ -1,14 +1,10 @@
 import React from 'react';
 import './Listing.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ReactHtmlParser from 'react-html-parser';
 import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import ReactGA from 'react-ga';
 import Main from './files/MainView';
 import Gallery from './files/Gallery/Gallery';
 
@@ -52,7 +48,6 @@ class Listing extends React.Component {
 	}
 
 	render() {
-		const images = this.props.classifiedImages;
 		return (
 			<div className="collections-tab-header">
 				<Tabs>

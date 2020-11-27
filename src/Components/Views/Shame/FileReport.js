@@ -1,4 +1,3 @@
-//import date from 'date-and-time';
 import './Shame.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

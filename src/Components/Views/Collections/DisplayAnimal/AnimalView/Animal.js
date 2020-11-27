@@ -9,7 +9,6 @@ import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
 import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
-import moment from 'moment';
 import AlertModal from '../../../../_services/Modal/Modal';
 import './Animal.css';
 
@@ -215,7 +214,7 @@ class Animal extends Component {
 							<div>
 								<DatePicker
 									showPopperArrow={false}
-									selected={!!this.props.currentAnimal.dob ? moment(this.props.currentAnimal.dob).toDate() : ''}
+									selected={!!this.props.currentAnimal.dob ? new Date(this.props.currentAnimal.dob) : ''}
 									onChange={this.dateHandler}
 									readOnly={this.state.readOnly}
 								/>

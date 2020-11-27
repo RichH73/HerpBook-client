@@ -8,7 +8,7 @@ import './Activity.css';
 import ReactToPrint from 'react-to-print';
 import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Settings/Settings';
-import dayjs from 'dayjs';
+//import dayjs from 'dayjs';
 import PrintRecords from './Printing/PrintRecords';
 
 class Activity extends Component {
@@ -19,7 +19,6 @@ class Activity extends Component {
 	componentDidMount() {}
 
 	render() {
-		const fd = dayjs(this.props.currentAnimal.dob);
 		return (
 			<Tabs>
 				<TabList>
@@ -45,6 +44,8 @@ class Activity extends Component {
 							<ReactToPrint
 								trigger={() => {
 									return (
+										//TODO review this a href ref
+										// eslint-disable-next-line
 										<a href="#">
 											<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
 												Print ID Card

@@ -1,4 +1,3 @@
-import date from 'date-and-time';
 import './ViewShame.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +10,7 @@ import axios from 'axios';
 // import ReactHtmlParser from 'react-html-parser';
 import HtmlParser from 'react-html-parser';
 import ReactQuill from 'react-quill';
+import dayjs from 'dayjs';
 // import QuillEmoji from 'quill-emoji';
 class ViewShame extends Component {
 	state = {
@@ -86,10 +86,11 @@ class ViewShame extends Component {
 	commentMapper = (comments) => {
 		return comments.map((comment) => (
 			<React.Fragment>
+				{console.log(comment.date)}
 				<div className="wall-of-shame-user-report-comment">
 					Comment by: {comment.username}
 					<br />
-					<small>{date.format(new Date(comment.date), 'dddd MMMM DD h:mmA')}</small>
+					<small>{dayjs(comment.date).format('MM/DD/YYYY h:mmA')}</small>
 					<br />
 					{HtmlParser(comment.comment)}
 				</div>
@@ -108,8 +109,6 @@ class ViewShame extends Component {
 	};
 
 	render() {
-		const pattern = date.compile('MMM D YYYY h:m:s A');
-		const myDate = date.parse('Mar 22 2019 2:54:21 PM', pattern);
 		if (this.props.location.reportId === undefined) this.props.history.push('/user_reports');
 		const report = this.props.shames.filter((shame) => shame._id === this.props.location.reportId);
 		//const { username } = this.props.user;

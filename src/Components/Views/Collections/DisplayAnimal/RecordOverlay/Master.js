@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import axios from 'axios';
-import dayjs from 'dayjs';
+//import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import NumberFormat from 'react-number-format';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import './Forms.css';
-import Editor from '../../../../_functions/Editor';
 
 class Master extends Component {
 	state = {};
@@ -68,7 +66,6 @@ class Master extends Component {
 						recordType: '',
 						display: 'none',
 						date: '',
-						_id: '',
 						record: {
 							feederType: '',
 							feederWeight: '',
@@ -118,7 +115,6 @@ class Master extends Component {
 
 	ReturnRecord = () => {
 		const date = this.props.recordOverlay.date;
-		const fd = dayjs(this.props.recordOverlay.date);
 		const data = this.props.recordOverlay;
 		switch (this.props.recordOverlay.recordType) {
 			case 'feeding':
@@ -129,7 +125,7 @@ class Master extends Component {
 								<label className="field-input-label">Date:</label>
 								{/* defaultValue={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} */}
 								<div>
-									<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
+									<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
 								</div>
 							</div>
 							<div className="collections-feeding-records-editor-feeding-type">
@@ -179,7 +175,7 @@ class Master extends Component {
 						<div className="collections-pairing-records-editor-body">
 							<div className="collections-pairing-records-editor-pairing-date">
 								<label className="field-input-label">Date: </label>
-								<DatePicker showPopperArrow={false} selected={!!date ? moment(date).toDate() : ''} onChange={this.handleDate} />
+								<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
 							</div>
 
 							<div className="collections-pairing-records-editor-pairing-mate">
@@ -304,6 +300,7 @@ class Master extends Component {
 			.then((response) => {
 				if (response.status === 201) {
 					this.props.pageLoading(false);
+					//TODO correct error for next line.
 					this.porps.current_clutch_data(response.new_clutch);
 					this.porps.all_clutch_data(response.clutches);
 				}

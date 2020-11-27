@@ -32,7 +32,7 @@ class PrintRecords extends Component {
 	};
 
 	filterData = (data) => {
-		const newData = data.filter((d) => {
+		data.filter((d) => {
 			return d[0] === '11/19/2020';
 		});
 		return data;
@@ -221,41 +221,39 @@ class PrintRecords extends Component {
 	};
 
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
+		// const monthMap = {
+		// 	'1': 'Jan',
+		// 	'2': 'Feb',
+		// 	'3': 'Mar',
+		// 	'4': 'Apr',
+		// 	'5': 'May',
+		// 	'6': 'Jun',
+		// 	'7': 'Jul',
+		// 	'8': 'Aug',
+		// 	'9': 'Sep',
+		// 	'10': 'Oct',
+		// 	'11': 'Nov',
+		// 	'12': 'Dec',
+		// };
 
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
+		// const dateConfig = {
+		// 	month: {
+		// 		format: (value) => monthMap[value.getMonth() + 1],
+		// 		caption: 'Mon',
+		// 		step: 1,
+		// 	},
+		// 	date: {
+		// 		format: 'DD',
+		// 		caption: 'Day',
+		// 		step: 1,
+		// 	},
+		// 	year: {
+		// 		format: 'YYYY',
+		// 		caption: 'Year',
+		// 		step: 1,
+		// 	},
+		// };
 
-		const sd = dayjs(_.get(this, 'state.startTime'));
-		const ed = dayjs(_.get(this, 'state.endTime'));
 		return (
 			<div className="collections-create-report-body">
 				<div className="collections-create-report-form">
@@ -287,7 +285,8 @@ class PrintRecords extends Component {
 						</button>
 					</div>
 				</div>
-
+				{/* TODO check this for warning without eslint line. */}
+				{/* eslint-disable-next-line */}
 				<div>{!!this.state.pdfData.length ? <object data={this.state.pdfData} width="100%" height="800px" /> : ''}</div>
 			</div>
 		);

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import axios from 'axios';
-import { server_address } from '../../../functions/helper_functions/Data';
 import _ from 'lodash';
+//TODO remvoe date-and-time
 import date from 'date-and-time';
 
 const date_format = 'ddd, MMM DD YYYY h:mm:ss A';
@@ -85,7 +85,7 @@ class Activity extends Component {
 		);
 	}
 }
-
+//TODO if this is used, add API and SERVER adresses
 const mapStateToProps = (state) => ({
 	uid: state.user_profile.uid,
 	about: state.user_profile.about,

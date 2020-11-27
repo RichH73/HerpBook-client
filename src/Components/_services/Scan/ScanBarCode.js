@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import QrReader from 'react-qr-reader';
-import query from 'query-string';
+// import query from 'query-string';
 import './ScanBarCode.css';
 
 class ScanQr extends Component {
@@ -24,7 +24,7 @@ class ScanQr extends Component {
 	};
 
 	render() {
-		let id = !!this.state.result ? query.parse(this.state.result).id : 'No Results';
+		//let id = !!this.state.result ? query.parse(this.state.result).id : 'No Results';
 		return (
 			// <div className='collections-bar-code-scanner'>
 			<QrReader

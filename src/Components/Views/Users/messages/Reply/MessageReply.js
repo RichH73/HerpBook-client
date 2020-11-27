@@ -22,7 +22,7 @@ class SellerContactForm extends React.Component {
 				maxWidth: 1000, // default
 				maxHeight: 1000, // default
 				imageType: 'image/jpeg', // default
-				debug: true, // default
+				debug: false, // default
 			},
 		},
 	});

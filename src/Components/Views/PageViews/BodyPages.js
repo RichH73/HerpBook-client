@@ -24,7 +24,8 @@ import ShameReport from '../Shame/ViewShame/ViewShame';
 import MyCollections from '../Collections/MyCollections';
 import Main from '../Collections/DisplayAnimal/Main';
 import AddNewAnimal from '../Collections/AddNewAnimal';
-import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';
+//TODO what is this??
+//import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
 

@@ -6,7 +6,6 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
-import date from 'date-and-time';
 import dayjs from 'dayjs';
 
 class Messages extends React.Component {

@@ -101,7 +101,6 @@ class Photos extends Component {
 
 	imageMap = () => {
 		return this.props.moreImages.map((image) => {
-			let id = dayjs(_.get(image, 'date'));
 			return (
 				<div className="collections-images-image-box">
 					<div className="collections-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>

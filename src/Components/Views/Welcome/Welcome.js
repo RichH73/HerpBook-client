@@ -38,15 +38,7 @@ class Welcome extends Component {
 		return (
 			<React.Fragment>
 				<div className="welcome-page-main">
-					{/* <div className="welcome-page-main-text">{ReactHtmlParser(this.state.news)}</div> */}
-					<div className="welcome-page-main-text">
-						<h3>Welcome to HerpBook</h3>
-						<h5>Updates*</h5>
-						<p>
-							We have been working hard on our classifieds section. A complete re-design of how they are listed along with a couple of new additions.
-						</p>
-						<p>Collections is finally here. This is a place to track all of your animal records.</p>
-					</div>
+					<div className="welcome-page-main-text">{ReactHtmlParser(this.state.news)}</div>
 					<div className="welcome-page-fb-like">
 						<Like href="https://www.facebook.com/HerpBookcom-2378686682182233" colorScheme="light" share />
 					</div>

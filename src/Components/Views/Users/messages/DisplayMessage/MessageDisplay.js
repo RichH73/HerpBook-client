@@ -5,7 +5,6 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { first, filter } from 'lodash';
-import date from 'date-and-time';
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 import dayjs from 'dayjs';

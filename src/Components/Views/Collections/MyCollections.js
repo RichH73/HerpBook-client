@@ -7,7 +7,6 @@ import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
 import dayjs from 'dayjs';
 import ScanQr from '../../_services/Scan/ScanBarCode';
-import moment from 'moment';
 
 class MyCollections extends Component {
 	state = {
@@ -61,18 +60,14 @@ class MyCollections extends Component {
 	};
 
 	sortLists = () => {
-		const formatDate = (dob) => {
-			const d = dayjs(dob);
-			return `${d.$M + 1}/${d.$D}/${d.$y}`;
-		};
 		const { subCategory, collections } = this.props;
 		let combine = [];
 		let collection_sub = collections.map((collection) => {
 			return collection.sub_category;
 		});
-
+		//TODO review this. It's throwing a warning without eslint-disable
+		// eslint-disable-next-line
 		subCategory.filter((sub) => {
-			const dob = dayjs(_.get(sub, 'dob'));
 			if (_.includes(collection_sub, sub.id)) {
 				combine.push({
 					header: sub.name,
@@ -97,7 +92,7 @@ class MyCollections extends Component {
 								<tr onClick={() => this.loadAnimal(sub._id)}>
 									<td>{sub._id}</td>
 									<td>{sub.name}</td>
-									{!!_.get(sub, 'dob') ? <td>{formatDate(sub.dob)}</td> : <td></td>}
+									{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
 									<td>{sub.gender}</td>
 								</tr>
 							);

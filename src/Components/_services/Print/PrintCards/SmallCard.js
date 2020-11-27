@@ -37,7 +37,7 @@ class SmallCard extends Component {
 						</div>
 						<div className="bar-code-name">
 							<div className="bar-code">
-								<img src={this.props.imgSrc} />
+								<img src={this.props.imgSrc} alt="" />
 							</div>
 							<div className="bar-code-inner-name">
 								<h3>{this.props.currentAnimal.name}</h3>
