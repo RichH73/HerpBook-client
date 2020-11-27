@@ -64,7 +64,6 @@ class CreateListing extends React.Component {
 	}
 
 	onChangeHandler = (event) => {
-		//console.log(this.props.newLisingData);
 		this.props.newListing([event.target.name], event.target.value);
 	};
 

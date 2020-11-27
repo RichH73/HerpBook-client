@@ -97,10 +97,6 @@ class Editor extends Component {
 	};
 
 	render() {
-		// console.log('this modules', this.modules)
-		// // eslint-disable-next-line
-		// const { modules, formats, readOnly, value, type, theme } = this.props;
-		// console.log('incoming modules', this.props.mods.modules)
 		return (
 			<React.Fragment>
 				<ReactQuill

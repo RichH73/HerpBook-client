@@ -64,23 +64,6 @@ class Shame extends Component {
 			comment: this.props.comment,
 		};
 		this.props.shameReportComment(commentData);
-		// console.log('this data', data)
-		// const { uid, username, first_name, last_name} = this.props.user
-		// axios({
-		//   method: 'post',
-		//   url: `${this.props.server_address}/shame/new_report_comment`,
-		//   headers: {
-		//     Authorization: `bearer ${localStorage.token}`
-		//   },
-		//   data: {
-		//     reportId: get(data, '_id'),
-		//     uid: this.props.userId,
-		//     username: username,
-		//     firstName: first_name,
-		//     lastName: last_name,
-		//     comment: this.props.comment,
-		//   }
-		// })
 	};
 
 	leaveCommentBox = (props) => {

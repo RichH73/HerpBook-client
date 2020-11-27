@@ -58,9 +58,7 @@ class MessageDisplay extends React.Component {
 					data: {
 						messageId: message._id,
 					},
-				}).then((response) => {
-					console.log('this response', response);
-				});
+				}).then(() => {});
 			}
 		}
 	};

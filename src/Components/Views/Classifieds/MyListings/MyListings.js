@@ -20,7 +20,6 @@ class MyListings extends Component {
 			method: 'get',
 			url: `${this.props.API}/listings/seller/${this.props.uid}`,
 		}).then((response) => {
-			console.log(response.data.listings);
 			this.setState({
 				listings: response.data.listings,
 			});

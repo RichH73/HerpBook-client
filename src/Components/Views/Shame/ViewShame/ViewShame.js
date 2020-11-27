@@ -70,15 +70,9 @@ class ViewShame extends Component {
 			},
 			data: commentData,
 		}).then((response) => {
-			console.log({
-				commentData: commentData,
-				responseData: response.data,
-			});
 			if (response.status === 201) {
 				this.props.shameReportComment(commentData);
 				this.props.clearRichText();
-				// commentBox.value = ''
-				//this.props.history.push('/user_reports')
 			}
 		});
 	};
@@ -86,7 +80,6 @@ class ViewShame extends Component {
 	commentMapper = (comments) => {
 		return comments.map((comment) => (
 			<React.Fragment>
-				{console.log(comment.date)}
 				<div className="wall-of-shame-user-report-comment">
 					Comment by: {comment.username}
 					<br />
