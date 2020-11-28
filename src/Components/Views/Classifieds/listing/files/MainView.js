@@ -69,16 +69,22 @@ class Main extends React.Component {
 	businessDisplay = (data) => {
 		return (
 			<table>
-				<th>Business</th>
-				<th>City</th>
-				<th>State</th>
-				<th>Phone</th>
-				<tr>
-					<td>{data.businessName}</td>
-					<td>{data.businessCity}</td>
-					<td>{data.businessState}</td>
-					<td>{data.businessPhone}</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>Business</th>
+						<th>City</th>
+						<th>State</th>
+						<th>Phone</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{data.businessName}</td>
+						<td>{data.businessCity}</td>
+						<td>{data.businessState}</td>
+						<td>{data.businessPhone}</td>
+					</tr>
+				</tbody>
 			</table>
 		);
 	};
@@ -109,11 +115,15 @@ class Main extends React.Component {
 						</div>
 						<div className="list-box-inner-table-data">
 							<table>
+								<thead>
+									<tr>
+										<th>Price</th>
+										<th>Gender</th>
+										<th>Weight</th>
+										<th>ID</th>
+									</tr>
+								</thead>
 								<tbody>
-									<th>Price</th>
-									<th>Gender</th>
-									<th>Weight</th>
-									<th>ID</th>
 									<tr>
 										<td>{list.price}</td>
 										<td>{list.gender}</td>

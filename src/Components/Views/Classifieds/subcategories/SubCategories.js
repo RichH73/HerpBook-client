@@ -42,7 +42,7 @@ class SubCategory extends React.Component {
 			<p>
 				Sorry, there were no listings in this category. If you have something that you would like to sell please feel free to create a free account.
 				Then create a classified listing here so the next person doens't see this message{' '}
-				<span class="ap ap-sunglasses" role="img" aria-label="sun glasses">
+				<span className="ap ap-sunglasses" role="img" aria-label="sun glasses">
 					😎
 				</span>
 			</p>
@@ -62,23 +62,29 @@ class SubCategory extends React.Component {
 							</div>
 							<div className="listing-box-info">
 								<table>
-									<th>Title</th>
-									<th>Gender</th>
-									<th>Price</th>
-									<th>Seller</th>
-									<tr>
-										<td>
-											<div className="listing-title">{list.title}</div>
-										</td>
-										<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
-										<td>
-											{' '}
-											<div className="listing-price">{list.price}</div>
-										</td>
-										<td>
-											<div>{list.username || list.user}</div>
-										</td>
-									</tr>
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>Gender</th>
+											<th>Price</th>
+											<th>Seller</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div className="listing-title">{list.title}</div>
+											</td>
+											<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
+											<td>
+												{' '}
+												<div className="listing-price">{list.price}</div>
+											</td>
+											<td>
+												<div>{list.username || list.user}</div>
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</div>

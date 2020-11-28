@@ -54,10 +54,16 @@ class Messages extends React.Component {
 		return (
 			<div>
 				<table>
-					<th>Date</th>
-					<th>Subject</th>
-					<th>From</th>
-					<this.displayMessages />
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Subject</th>
+							<th>From</th>
+						</tr>
+					</thead>
+					<tbody>
+						<this.displayMessages />
+					</tbody>
 				</table>
 			</div>
 		);

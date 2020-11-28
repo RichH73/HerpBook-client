@@ -117,7 +117,7 @@ class Master extends Component {
 		const date = this.props.recordOverlay.date;
 		const data = this.props.recordOverlay;
 		switch (this.props.recordOverlay.recordType) {
-			case 'feeding':
+			case 'feedings':
 				return (
 					<React.Fragment>
 						<div className="collections-feeding-records-editor-body">
@@ -169,7 +169,7 @@ class Master extends Component {
 						</div>
 					</React.Fragment>
 				);
-			case 'pairing':
+			case 'pairings':
 				return (
 					<React.Fragment>
 						<div className="collections-pairing-records-editor-body">

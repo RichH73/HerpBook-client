@@ -66,22 +66,28 @@ class MyListings extends Component {
 						<div className="my-listings-box-info">
 							<Link to={`/listing/${list._id}`}>
 								<table>
-									<th>Title</th>
-									<th>Gender</th>
-									<th>Price</th>
-									<th>Listed On</th>
-									<tr>
-										<td>
-											<div className="my-listings-title">{list.title}</div>
-										</td>
-										<td>{!!list.gender ? <div className="my-listings-gender">{list.gender}</div> : ''}</td>
-										<td>
-											<div className="my-listings-price">{list.price}</div>
-										</td>
-										<td>
-											<div>{dayjs(list.created).format('MM/DD/YYYY')}</div>
-										</td>
-									</tr>
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>Gender</th>
+											<th>Price</th>
+											<th>Listed On</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div className="my-listings-title">{list.title}</div>
+											</td>
+											<td>{!!list.gender ? <div className="my-listings-gender">{list.gender}</div> : ''}</td>
+											<td>
+												<div className="my-listings-price">{list.price}</div>
+											</td>
+											<td>
+												<div>{dayjs(list.created).format('MM/DD/YYYY')}</div>
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</Link>
 						</div>

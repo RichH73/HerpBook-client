@@ -73,20 +73,32 @@ class MessageDisplay extends React.Component {
 		return (
 			<div className="message-display-pane" key={message.id}>
 				<table>
-					<th>From</th>
-					<th>Subject</th>
-					<th>Sent</th>
-					<tr>
-						<td>{message.fromusername}</td>
-						<td>{message.subject}</td>
-						<td>{dayjs(message.created).format('MM/DD/YYYY @h:mm A')}</td>
-					</tr>
+					<thead>
+						<tr>
+							<th>From</th>
+							<th>Subject</th>
+							<th>Sent</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{message.fromusername}</td>
+							<td>{message.subject}</td>
+							<td>{dayjs(message.created).format('MM/DD/YYYY @h:mm A')}</td>
+						</tr>
+					</tbody>
 				</table>
 				<table>
-					<th>{message.fromusername} wrote:</th>
-					<tr>
-						<td>{ReactHtmlParser(message.message)}</td>
-					</tr>
+					<thead>
+						<tr>
+							<th>{message.fromusername} wrote:</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{ReactHtmlParser(message.message)}</td>
+						</tr>
+					</tbody>
 				</table>
 				<div className="display-message-buttons">
 					<button type="button" className="btn btn-success display-message-button button" onClick={() => this.messageReply(message)}>

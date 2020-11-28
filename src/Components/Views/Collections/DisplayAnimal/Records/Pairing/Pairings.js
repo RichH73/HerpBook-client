@@ -75,7 +75,7 @@ class Pairings extends Component {
 
 	editingRecord = (pairRecord) => {
 		this.props.loadrecordsEditor({
-			recordType: 'pairing',
+			recordType: 'pairings',
 			display: 'block',
 			...pairRecord,
 		});

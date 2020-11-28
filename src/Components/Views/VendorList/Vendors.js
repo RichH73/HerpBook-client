@@ -58,18 +58,24 @@ class Vendors extends Component {
 				<div className="vendor-list-body">
 					<div style={{ marginBottom: '1em' }}>
 						<table>
-							<th>Location</th>
-							<th>Zip Code</th>
-							<th>Phone</th>
-							<th>Email</th>
-							<tr>
-								<td>{breeder.state}</td>
-								<td>{breeder.zip_code}</td>
-								<td>{breeder.phone}</td>
-								<td>
-									<a href={`mailto:${breeder.email}`}>{breeder.email}</a>
-								</td>
-							</tr>
+							<thead>
+								<tr>
+									<th>Location</th>
+									<th>Zip Code</th>
+									<th>Phone</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{breeder.state}</td>
+									<td>{breeder.zip_code}</td>
+									<td>{breeder.phone}</td>
+									<td>
+										<a href={`mailto:${breeder.email}`}>{breeder.email}</a>
+									</td>
+								</tr>
+							</tbody>
 						</table>
 					</div>
 					<div>
@@ -83,27 +89,6 @@ class Vendors extends Component {
 					<div className="vendor-list-about">
 						<b>About:</b> <p>{breeder.about}</p>
 					</div>
-					{/* <div>
-					<div>
-						<b>Location:</b> {breeder.state}
-					</div>
-					<div>
-						<b>Zip Code:</b> {breeder.zip_code}
-					</div>
-				</div>
-				<div style={{ marginTop: '.5em' }}>
-					<b>
-						Contact:
-						<br />
-					</b>
-					<a href={breeder.website} target="new">
-						{breeder.website}
-					</a>
-				</div>
-				<div>
-					<a href={`mailto: ${breeder.email}`}>{breeder.email}</a>
-				</div>
-				{breeder.phone ? breeder.phone : ''} */}
 				</div>
 			</div>
 		));
