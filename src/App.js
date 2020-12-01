@@ -13,7 +13,6 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
-import TestSock from './Components/_services/Sockets/testSock';
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {
@@ -104,7 +103,6 @@ class App extends Component {
 		}
 		return (
 			<React.Fragment>
-				<TestSock />
 				<div className="application-body">
 					{sideDrawer}
 					{backdrop}

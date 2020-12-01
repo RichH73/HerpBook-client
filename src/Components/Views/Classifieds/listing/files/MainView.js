@@ -100,12 +100,20 @@ class Main extends React.Component {
 		}
 		const Listing = () => {
 			const { images } = this.props.classifiedData.listData;
+			const c_images = this.props.classified_listing.collectionData;
 			let list = this.props.classified_listing;
+			const c_data = _.get(this.props, 'classifiedData.listData.collectionData', {});
+			console.log('this data', c_data.URL);
 			return (
 				<div className="list-box">
 					<div className="list-box-inner">
 						<div className="list-images">
 							<div className="classified-listing-thumbnail-images">
+								<img
+									src={`${c_data.URL}/${_.get(c_data.images, '0.thumbnail')}`}
+									alt={_.get(images, '0.thumbnail')}
+									onClick={() => this.largImage(_.get(c_data, 'images.0'))}
+								/>
 								<img
 									src={`${list.URL}/${_.get(images, '0.thumbnail')}`}
 									alt={_.get(images, '0.thumbnail')}

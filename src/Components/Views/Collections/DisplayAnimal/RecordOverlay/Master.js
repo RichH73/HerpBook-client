@@ -116,6 +116,7 @@ class Master extends Component {
 	ReturnRecord = () => {
 		const date = this.props.recordOverlay.date;
 		const data = this.props.recordOverlay;
+		const gender = this.props.currentAnimal.gender;
 		switch (this.props.recordOverlay.recordType) {
 			case 'feedings':
 				return (
@@ -169,6 +170,54 @@ class Master extends Component {
 						</div>
 					</React.Fragment>
 				);
+			case 'sheddings':
+				return (
+					<React.Fragment>
+						<div className="collections-shedding-records-editor-body">
+							<div className="collections-shedding-records-editor-shedding-date">
+								<label className="field-input-label">Date:</label>
+								<div>
+									<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
+								</div>
+							</div>
+							<div className="collections-shedding-records-editor-shedding-type">
+								<label className="field-input-label">Complete Shed:</label>
+								<div>
+									<select name="fullShed" defaultValue={data.fullShed} onChange={this.onChangeHandler}>
+										<option value={true}>Yes</option>
+										<option value={false}>No</option>
+									</select>
+								</div>
+							</div>
+							<div className="collections-shedding-records-editor-shedding-notes">
+								<label className="field-input-label">Notes:</label>
+								<div>
+									<ReactQuill
+										style={{ backgroundColor: 'white', color: 'black' }}
+										name="comments"
+										value={this.props.recordOverlay.notes}
+										onChange={this.noteHandler}
+										modules={this.props.mods.modules}
+										formats={this.props.mods.formats}
+										readOnly={this.state.readOnly}
+										theme="snow"
+									/>
+								</div>
+							</div>
+							<div className="collections-shedding-records-editor-shedding-buttons">
+								<button className="button" onClick={this.deleteRecord}>
+									Delete
+								</button>
+								<button className="button" onClick={this.updateRecord}>
+									Save
+								</button>
+								<button className="button" onClick={this.cancelEdit}>
+									Cancel
+								</button>
+							</div>
+						</div>
+					</React.Fragment>
+				);
 			case 'pairings':
 				return (
 					<React.Fragment>
@@ -200,56 +249,61 @@ class Master extends Component {
 									<option value={false}>No</option>
 								</select>
 							</div>
+							{/* Hide if male */}
+							{gender === 'FEMALE' ? (
+								<React.Fragment>
+									<div className="collections-pairing-records-editor-pairing-clutch-info">
+										<div className="collections-pairing-records-editor-pairing-clutch-size">
+											<label className="field-input-label">Clutch Size: </label>
+											<NumberFormat
+												thousandSeparator={false}
+												defaultValue={data.clutchSize}
+												allowNegative={false}
+												onChange={this.onChangeHandler}
+												name="clutchSize"
+											/>
+										</div>
 
-							<div className="collections-pairing-records-editor-pairing-clutch-info">
-								<div className="collections-pairing-records-editor-pairing-clutch-size">
-									<label className="field-input-label">Clutch Size: </label>
-									<NumberFormat
-										thousandSeparator={false}
-										defaultValue={data.clutchSize}
-										allowNegative={false}
-										onChange={this.onChangeHandler}
-										name="clutchSize"
-									/>
-								</div>
+										<div className="collections-pairing-records-editor-pairing-clutch-infertile">
+											<label className="field-input-label">Infertile Amount: </label>
+											<NumberFormat
+												thousandSeparator={false}
+												defaultValue={data.infertile}
+												allowNegative={false}
+												onChange={this.onChangeHandler}
+												name="infertile"
+											/>
+										</div>
 
-								<div className="collections-pairing-records-editor-pairing-clutch-infertile">
-									<label className="field-input-label">Infertile Amount: </label>
-									<NumberFormat
-										thousandSeparator={false}
-										defaultValue={data.infertile}
-										allowNegative={false}
-										onChange={this.onChangeHandler}
-										name="infertile"
-									/>
-								</div>
+										<div className="collections-pairing-records-editor-pairing-clutch-fertile">
+											<label className="field-input-label">Fertile Amount: </label>
+											<NumberFormat
+												thousandSeparator={false}
+												defaultValue={data.fertile}
+												allowNegative={false}
+												onChange={this.onChangeHandler}
+												name="fertile"
+											/>
+										</div>
+									</div>
 
-								<div className="collections-pairing-records-editor-pairing-clutch-fertile">
-									<label className="field-input-label">Fertile Amount: </label>
-									<NumberFormat
-										thousandSeparator={false}
-										defaultValue={data.fertile}
-										allowNegative={false}
-										onChange={this.onChangeHandler}
-										name="fertile"
-									/>
-									{/* <input type="number" name="fertile" defaultValue={data.fertile} maxLength={2} onChange={this.onChangeHandler} /> */}
-								</div>
-							</div>
-
-							<div className="collections-pairing-records-editor-pairing-clutch-id">
-								<label className="field-input-label">Clutch ID: </label>
-								<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
-								{!data.clutchId ? (
-									<span onClick={() => this.new_clutch({ record: this.props.recordOverlay, dam: this.props.currentAnimal })}>
-										{' '}
-										Create new clutch?
-									</span>
-								) : (
-									''
-								)}
-							</div>
-
+									<div className="collections-pairing-records-editor-pairing-clutch-id">
+										<label className="field-input-label">Clutch ID: </label>
+										<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
+										{!data.clutchId ? (
+											<span onClick={() => this.new_clutch({ record: this.props.recordOverlay, dam: this.props.currentAnimal })}>
+												{' '}
+												Create new clutch?
+											</span>
+										) : (
+											''
+										)}
+									</div>
+								</React.Fragment>
+							) : (
+								''
+							)}
+							{/* Finish Hiding */}
 							<div className="collections-pairing-records-editor-pairing-notes">
 								<label className="field-input-label">Notes: </label>
 								<div>

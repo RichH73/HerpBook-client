@@ -103,13 +103,14 @@ class Photos extends Component {
 		return this.props.moreImages.map((image) => {
 			return (
 				<div className="collections-images-image-box">
-					<div className="collections-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
+					<div className="collections-images-image-header">
+						<span>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</span>
+					</div>
 					<div className="collections-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
 					<div className="collections-images-imgage-body-info">
-						<p>Name: {image.large}</p>
-						<p>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</p>
+						<p>Image Name: {image.large}</p>
 					</div>
 					<div className="collections-images-imgage-footer">
 						<button className="button" onClick={() => this.deleteImage(image)}>
