@@ -97,6 +97,27 @@ class Animal extends Component {
 								) : (
 									''
 								)}
+								{!_.isEmpty(_.get(records, 'weight')) ? (
+									<tr>
+										<td>Last Weight</td>
+										{!!_.get(records, 'weight.date', '').length ? (
+											<td>Date: {dayjs(_.get(records, 'weight.date')).format('MM/DD/YYYY')}</td>
+										) : (
+											<td></td>
+										)}
+										{!!_.get(records, 'weight.weightUnit', '') ? (
+											<td>
+												Weight: {_.get(records, 'weight.weight', '')}
+												{_.get(records, 'weight.weightUnit', '')}
+											</td>
+										) : (
+											<td></td>
+										)}
+										<td></td>
+									</tr>
+								) : (
+									''
+								)}
 							</tbody>
 						</table>
 					</div>

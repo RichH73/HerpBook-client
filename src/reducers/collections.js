@@ -9,6 +9,12 @@ const initialState = {
 	sheddings: [],
 	pairings: [],
 	images: [],
+	isClassified: false,
+	classifiedData: {
+		_id: '',
+		title: '',
+		price: '',
+	},
 	quickRecords: {
 		feeding: {
 			date: '',

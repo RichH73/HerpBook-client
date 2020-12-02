@@ -170,6 +170,67 @@ class Master extends Component {
 						</div>
 					</React.Fragment>
 				);
+			case 'weights':
+				return (
+					<React.Fragment>
+						<div className="collections-weight-records-editor-body">
+							<div className="collections-weight-records-editor-shedding-date">
+								<label className="field-input-label">Date:</label>
+								<div>
+									<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
+								</div>
+							</div>
+							<div>
+								<label>Weight:</label>
+								<div>
+									<NumberFormat
+										thousandSeparator={true}
+										defaultValue={this.props.recordOverlay.weight}
+										allowNegative={false}
+										fixedDecimalScale={2}
+										onChange={this.onChangeHandler}
+										name="weight"
+									/>
+									<select name="weightUnit" onChange={this.onChangeHandler}>
+										<option>Unit</option>
+										<option selected value="gm">
+											gm
+										</option>
+										<option value="kg">kg</option>
+										<option value="oz">oz</option>
+										<option value="lb">lb</option>
+									</select>
+								</div>
+							</div>
+							<div className="collections-weight-records-editor-weight-notes">
+								<label className="field-input-label">Notes:</label>
+								<div>
+									<ReactQuill
+										style={{ backgroundColor: 'white', color: 'black' }}
+										name="notes"
+										value={this.props.recordOverlay.notes}
+										onChange={this.noteHandler}
+										modules={this.props.mods.modules}
+										formats={this.props.mods.formats}
+										readOnly={this.state.readOnly}
+										theme="snow"
+									/>
+								</div>
+							</div>
+							<div className="collections-weight-records-editor-weight-buttons">
+								<button className="button" onClick={this.deleteRecord}>
+									Delete
+								</button>
+								<button className="button" onClick={this.updateRecord}>
+									Save
+								</button>
+								<button className="button" onClick={this.cancelEdit}>
+									Cancel
+								</button>
+							</div>
+						</div>
+					</React.Fragment>
+				);
 			case 'sheddings':
 				return (
 					<React.Fragment>
@@ -291,7 +352,14 @@ class Master extends Component {
 										<label className="field-input-label">Clutch ID: </label>
 										<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
 										{!data.clutchId ? (
-											<span onClick={() => this.new_clutch({ record: this.props.recordOverlay, dam: this.props.currentAnimal })}>
+											<span
+												onClick={() =>
+													this.new_clutch({
+														record: this.props.recordOverlay,
+														dam: this.props.currentAnimal,
+													})
+												}
+											>
 												{' '}
 												Create new clutch?
 											</span>

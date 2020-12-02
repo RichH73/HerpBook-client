@@ -47,13 +47,14 @@ class Gallery extends React.Component {
 		return this.props.images.map((image) => {
 			return (
 				<div className="classifieds-images-image-box">
-					<div className="classifieds-images-image-header">{image.thumbnail.replace('thumb_', '')}</div>
+					<div className="classifieds-images-image-header">
+						<span>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</span>
+					</div>
 					<div className="classifieds-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
 					<div className="classifieds-images-imgage-body-info">
 						<p>Name: {image.large}</p>
-						<p>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</p>
 					</div>
 					<div className="classifieds-images-imgage-footer"></div>
 				</div>

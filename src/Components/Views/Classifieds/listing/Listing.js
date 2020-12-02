@@ -7,7 +7,6 @@ import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Main from './files/MainView';
 import Gallery from './files/Gallery/Gallery';
-import ClassifiedList from './files/ListPages/ClassifiedList';
 
 class Listing extends React.Component {
 	state = {
@@ -49,7 +48,7 @@ class Listing extends React.Component {
 	};
 
 	componentWillUnmount() {
-		//this.props.clearClassifiedData();
+		this.props.clearClassifiedData();
 	}
 
 	render() {

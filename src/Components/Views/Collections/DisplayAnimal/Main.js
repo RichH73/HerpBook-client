@@ -8,6 +8,7 @@ import 'react-tabs/style/react-tabs.css';
 import Pairings from './Records/Pairing/Pairings';
 import Feedings from './Records/Feeding/Feedings';
 import Sheddings from './Records/Shedding/Sheddings';
+import Weight from './Records/Weights/Weight';
 import Animal from './AnimalView/Animal';
 import Photos from './Photos';
 import Activity from './Activity/Activity';
@@ -71,6 +72,7 @@ class Main extends Component {
 									<Tab>Feedings</Tab>
 									<Tab>Pairings</Tab>
 									<Tab>Sheddings</Tab>
+									<Tab>Weights</Tab>
 								</TabList>
 								<TabPanel>
 									<Feedings />
@@ -80,6 +82,9 @@ class Main extends Component {
 								</TabPanel>
 								<TabPanel>
 									<Sheddings history={this.props.history} />
+								</TabPanel>
+								<TabPanel>
+									<Weight history={this.props.history} />
 								</TabPanel>
 							</Tabs>
 						</TabPanel>

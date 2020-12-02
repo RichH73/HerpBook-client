@@ -10,6 +10,7 @@ import ToPrint from '../../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Settings/Settings';
 //import dayjs from 'dayjs';
 import PrintRecords from './Printing/PrintRecords';
+import CollectionList from './Classified/CollectionList';
 
 class Activity extends Component {
 	state = {
@@ -27,9 +28,7 @@ class Activity extends Component {
 					<Tab>Settings</Tab>
 				</TabList>
 				<TabPanel>
-					<div style={{ padding: '10px' }}>
-						<h3>Coming Soon...</h3>
-					</div>
+					<CollectionList />
 				</TabPanel>
 				<TabPanel>
 					<Tabs>
