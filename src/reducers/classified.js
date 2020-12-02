@@ -12,6 +12,12 @@ const initialState = {
 			large: [],
 		},
 		list_id: '',
+		isCollection: false,
+		collectionsData: {
+			_id: '',
+			images: [],
+			URL: '',
+		},
 		price: '',
 		shipping: '',
 		sub_category: '',

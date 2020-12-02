@@ -1,4 +1,4 @@
-@import '../../../../index';
+@import '../../../../../../index';
 
 @media screen and ($minWidth) {
 	.list-info {
@@ -20,11 +20,12 @@
 		display: flex;
 	}
 
+
 	.list-box-inner-table-data {
 		width: 60%;
 		margin: auto;
 	}
-
+	
 	.list-box a {
 		color: black;
 	}

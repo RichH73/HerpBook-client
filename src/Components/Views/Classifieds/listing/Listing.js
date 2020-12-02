@@ -1,5 +1,5 @@
 import React from 'react';
-import './Listing.css';
+// import './Listing.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,6 +7,7 @@ import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Main from './files/MainView';
 import Gallery from './files/Gallery/Gallery';
+import ClassifiedList from './files/ListPages/ClassifiedList';
 
 class Listing extends React.Component {
 	state = {
@@ -31,12 +32,16 @@ class Listing extends React.Component {
 			if (localStorage.token) {
 				this.props.get_user({ uid: response.data.username });
 			}
-			this.setState({
-				listing: response.data,
-			});
+			// this.setState({
+			// 	listing: response.data,
+			// });
 			const listData = response.data;
 			this.props.classified(listData);
 		});
+	}
+
+	componentWillUnmount() {
+		this.props.clearClassifiedData();
 	}
 
 	setTitle = (title) => {
@@ -44,7 +49,7 @@ class Listing extends React.Component {
 	};
 
 	componentWillUnmount() {
-		this.props.clearClassifiedData();
+		//this.props.clearClassifiedData();
 	}
 
 	render() {
@@ -97,7 +102,6 @@ const mapStateToProps = (state) => ({
 	uid: state.user_profile.uid,
 	username: state.user_profile.username,
 	albums: state.pictures.albums,
-	thumbnails: state.classified.listData.images.thumbnail,
 	//loading: state.loader.loading,
 	visitor_get_username: state.classified.listData.username,
 	listTitle: state.classified.listData.title,
