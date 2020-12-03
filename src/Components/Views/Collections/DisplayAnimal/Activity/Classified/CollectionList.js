@@ -12,11 +12,21 @@ import dayjs from 'dayjs';
 import AlertModal from '../../../../../_services/Modal/Modal';
 import NumberFormat from 'react-number-format';
 import './CollectionList.css';
+import Checkbox from 'rc-checkbox';
+import 'rc-checkbox/assets/index.css';
 
 class CollectionList extends Component {
 	state = {
 		readOnly: true,
 		modalIsOpen: true,
+		disabled: false,
+		display_weights: null,
+	};
+
+	toggle = () => {
+		this.setState((state) => ({
+			disabled: !state.disabled,
+		}));
 	};
 
 	componentDidMount() {}
@@ -29,6 +39,23 @@ class CollectionList extends Component {
 		this.props.editText({
 			text: value,
 		});
+	};
+
+	onChange = (e) => {
+		e.preventDefault();
+		if (this.state.display_weights === false) {
+			this.setState({ display_weights: true });
+			this.props.newListing(['display_weights'], true);
+		}
+		if (this.state.display_weights === true) {
+			this.setState({ display_weights: false });
+			this.props.newListing(['display_weights'], false);
+		}
+		console.log(this.state);
+	};
+
+	but = () => {
+		console.log(this.state.display_weights);
 	};
 
 	// handleChange = (value) => {
@@ -61,6 +88,12 @@ class CollectionList extends Component {
 	// 		<img src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} onClick={() => this.largImage(firstImg)} />
 	// 	);
 	// };
+
+	checkboxChangeHandler = (event) => {
+		console.log(event.target.name);
+		let checkData = this.props.collection.classifiedData;
+		this.props.newListing([event.target.name]);
+	};
 
 	onSubmitHandler = () => {
 		let listingInfo = {
@@ -161,6 +194,51 @@ class CollectionList extends Component {
 						fixedDecimalScale={2}
 						onChange={this.onChangeHandler}
 						name="price"
+					/>
+				</div>
+				<div>
+					<label>Display feed records: </label>
+					<input
+						type="checkbox"
+						name="display_feedings"
+						onChange={this.checkboxChangeHandler}
+						defaultChecked={animal.classifiedData.display_feedings}
+					/>
+				</div>
+				<div>
+					<label>Display shed records: </label>
+					<input
+						type="checkbox"
+						name="display_shedings"
+						onChange={this.checkboxChangeHandler}
+						defaultChecked={animal.classifiedData.display_sheddings}
+					/>
+				</div>
+				<div>
+					<label>Display pairing records: </label>
+					<input
+						type="checkbox"
+						name="display_pairings"
+						onChange={this.checkboxChangeHandler}
+						defaultChecked={animal.classifiedData.display_pairings}
+					/>
+				</div>
+				<div>
+					<label>Display weight records: </label>
+					<label>
+						<Checkbox
+							defaultChecked={this.props.collection.classifiedData.display_weights}
+							name="display_weights"
+							onChange={this.onChange}
+							disabled={this.state.disabled}
+						/>
+						<button onClick={this.but}>state</button>
+					</label>
+					<input
+						type="checkbox"
+						name="display_weights"
+						onChange={this.checkboxChangeHandler}
+						defaultChecked={animal.classifiedData.display_weights}
 					/>
 				</div>
 				<div>

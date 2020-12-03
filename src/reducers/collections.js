@@ -14,6 +14,10 @@ const initialState = {
 		_id: '',
 		title: '',
 		price: '',
+		display_feedings: true,
+		display_sheddings: true,
+		display_weights: true,
+		display_pairings: true,
 	},
 	quickRecords: {
 		feeding: {
