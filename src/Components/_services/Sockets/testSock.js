@@ -6,15 +6,13 @@ const TestSock = () => {
 
 	useEffect(() => {
 		const socket = io('http://localhost:8551');
-		socket.on('FromAPI', (data) => {
-			console.log('some data? ', data);
-			setResponse(data);
+		console.log(socket.connect());
+		socket.emit('joinRoom', 123);
+		socket.on('connect', (sock) => {
+			console.log('connected', sock);
+			socket.emit('joinRoom', 123);
 		});
-		console.log(
-			socket.on('FromAPI', (data) => {
-				setResponse(data);
-			})
-		);
+		console.log(socket.open());
 
 		return () => socket.disconnect();
 	}, []);

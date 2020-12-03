@@ -47,10 +47,6 @@ class Listing extends React.Component {
 		this.props.setPageTitle(title);
 	};
 
-	componentWillUnmount() {
-		this.props.clearClassifiedData();
-	}
-
 	render() {
 		return (
 			<div className="collections-tab-header">

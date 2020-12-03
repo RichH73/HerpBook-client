@@ -28,11 +28,10 @@ import AddNewAnimal from '../Collections/AddNewAnimal';
 //import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
-
-const Pages = () => {
+const Pages = (props) => {
 	return (
 		<React.Fragment>
-			<Route exact path="/" component={Welcome} />
+			<Route exact path="/" render={(props) => <Welcome {...props} title={`Props through render`} />} />
 			<Route path="/add_vendor" component={NewVendor} />
 			<Route path="/classifieds" component={Categories} />
 			<Route path="/contact" component={Contact} />

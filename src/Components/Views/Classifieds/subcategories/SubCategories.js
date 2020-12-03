@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../../../actions/index';
 import ReactGA from 'react-ga';
+import dayjs from 'dayjs';
 
 class SubCategory extends React.Component {
 	state = {
@@ -64,21 +65,21 @@ class SubCategory extends React.Component {
 								<table>
 									<thead>
 										<tr>
-											<th>Title</th>
-											<th>Gender</th>
 											<th>Price</th>
+											<th>Gender</th>
+											<th>Listed</th>
 											<th>Seller</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>
-												<div className="listing-title">{list.title}</div>
+												{' '}
+												<div className="listing-price">{list.price}</div>
 											</td>
 											<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
 											<td>
-												{' '}
-												<div className="listing-price">{list.price}</div>
+												<div className="listing-title">{dayjs(list.created).format('MM/DD/YYYY')}</div>
 											</td>
 											<td>
 												<div>{list.username || list.user}</div>

@@ -9,6 +9,9 @@ import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
 import MainView from '../../../Components/Views/Collections/DisplayAnimal/RecordOverlay/Master';
 
 class Body extends Component {
+	componentDidMount() {
+		console.log('body props', this.props);
+	}
 	render() {
 		return (
 			<React.Fragment>
@@ -23,7 +26,7 @@ class Body extends Component {
 								<MainView />
 								<h3>{this.props.navPageId}</h3>
 							</div>
-							<Pages />
+							<Pages socket={this.props.socket} />
 						</div>
 					</div>
 				</div>

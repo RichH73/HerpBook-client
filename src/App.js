@@ -13,8 +13,16 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
+import io from 'socket.io-client';
+const socket = io('http://localhost:8551');
+
+//   console.log(this.props.myId)
+// socket.on('connect_error', (error) => {
+// 	console.log('connect_error', error);
+//   })
 
 ReactGA.initialize('UA-136119302-1');
+
 class App extends Component {
 	state = {
 		sideDrawerOpen: false,
@@ -39,6 +47,21 @@ class App extends Component {
 				// }
 			});
 		}
+
+		//Sockets
+
+		socket.on('connect', () => {
+			console.log('connected');
+			socket.emit('joinRoom', this.props.myId);
+		});
+
+		socket.on('userJoined', (data) => {
+			console.log('A user joined', data);
+		});
+
+		socket.on('newUser', (data) => {
+			console.log('a new user joined', data);
+		});
 	}
 
 	drawerToggleClickHandler = () => {
@@ -111,7 +134,7 @@ class App extends Component {
 					</div>
 					<this.spinner />
 					<Header />
-					<Body></Body>
+					<Body socket={socket} />
 					{/* <Footer /> */}
 				</div>
 			</React.Fragment>
@@ -123,6 +146,7 @@ const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	spinnerState: state.spinner,
 	userUID: state.user.uid,
+	myId: state.user.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {

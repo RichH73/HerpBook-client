@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
-import _ from 'lodash';
+// import _ from 'lodash';
 import axios from 'axios';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
-import DatePicker from 'react-datepicker';
-import dayjs from 'dayjs';
-import AlertModal from '../../../../../_services/Modal/Modal';
+// import DatePicker from 'react-datepicker';
+// import dayjs from 'dayjs';
+// import AlertModal from '../../../../../_services/Modal/Modal';
 import NumberFormat from 'react-number-format';
 import './CollectionList.css';
 import Checkbox from 'rc-checkbox';
@@ -91,7 +91,6 @@ class CollectionList extends Component {
 
 	checkboxChangeHandler = (event) => {
 		console.log(event.target.name);
-		let checkData = this.props.collection.classifiedData;
 		this.props.newListing([event.target.name]);
 	};
 

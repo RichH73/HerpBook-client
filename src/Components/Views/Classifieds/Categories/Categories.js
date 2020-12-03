@@ -3,6 +3,7 @@ import './Categories.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
 import * as actionCreators from '../../../../actions/index';
 
 //Google analytics for visitor tracking
@@ -19,6 +20,20 @@ class Categories extends React.Component {
 		}
 		this.props.setPageTitle('Classifieds');
 	}
+
+	getCount = async (cat) => {
+		await axios({
+			url: `${this.props.serverAPI}/listings/category_count2`,
+			method: 'post',
+			headers: {},
+			data: {
+				category: cat,
+			},
+		}).then((res) => {
+			//console.log('the count', res.data.count)
+			return <div>{res.data.count}</div>;
+		});
+	};
 
 	SubListings = () => {
 		var combined = (num) => {
@@ -58,7 +73,7 @@ class Categories extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	serverAPI: state.config.serverAPI,
+	serverAPI: state.config.server.serverAPI,
 	categories: state.categories.categories,
 	subCategories: state.categories.subCategories,
 	React: state.config.analytics,

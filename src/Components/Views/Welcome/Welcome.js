@@ -12,6 +12,7 @@ class Welcome extends Component {
 		news: '',
 	};
 	componentDidMount() {
+		console.log('propppies', this.props);
 		if (!!this.props.React) {
 			ReactGA.pageview('/welcome');
 		}
