@@ -23,12 +23,6 @@ class CollectionList extends Component {
 		display_weights: null,
 	};
 
-	toggle = () => {
-		this.setState((state) => ({
-			disabled: !state.disabled,
-		}));
-	};
-
 	componentDidMount() {}
 
 	onChangeHandler = (event) => {
@@ -104,7 +98,6 @@ class CollectionList extends Component {
 			user: this.props.username,
 			category: this.props.collection.category,
 			sub_category: this.props.collection.sub_category,
-			//images: this.props.collection.images,
 			businessFooter: '',
 			...this.props.newLisingData,
 		};
@@ -119,7 +112,12 @@ class CollectionList extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: listingInfo,
-		}).then((response) => {});
+		}).then((response) => {
+			if (response.status === 201) {
+				this.props.pageLoading(false);
+				this.props.currentAnimalDisplay(response.data);
+			}
+		});
 	};
 
 	genderSelect = () => {
@@ -176,13 +174,13 @@ class CollectionList extends Component {
 						<h4>This animal is listed in classifieds</h4>
 					</div>
 				) : (
-					''
+					<div>
+						<h4>This animal is not listed in classifieds</h4>
+						<p>Would you like to list this animal for sale? Fill in the form below and click list.</p>
+					</div>
 				)}
-				<div>
-					<label>Title: </label>
-					<input type="text" name="title" onChange={this.onChangeHandler} defaultValue={animal.classifiedData.title} />
-				</div>
-				<div>
+				<div className="collection-to-classified-price">
+					<p>Please set a price for this animal. Price is mandatory.</p>
 					<label>Price: </label>
 					<NumberFormat
 						thousandSeparator={true}
@@ -195,52 +193,22 @@ class CollectionList extends Component {
 						name="price"
 					/>
 				</div>
-				<div>
-					<label>Display feed records: </label>
-					<input
-						type="checkbox"
-						name="display_feedings"
-						onChange={this.checkboxChangeHandler}
-						defaultChecked={animal.classifiedData.display_feedings}
-					/>
+				<div className="collection-to-classified-display-records">
+					<p>
+						If you would like to display this animals records, choose yes otherwise leave setting as no and only basic information and images will be
+						displayed.
+					</p>
+					<label>Display animal records: </label>
+					<select name="display_records" onChange={this.onChangeHandler}>
+						<option value={false}>No</option>
+						<option value={true}>Yes</option>
+					</select>
 				</div>
 				<div>
-					<label>Display shed records: </label>
-					<input
-						type="checkbox"
-						name="display_shedings"
-						onChange={this.checkboxChangeHandler}
-						defaultChecked={animal.classifiedData.display_sheddings}
-					/>
-				</div>
-				<div>
-					<label>Display pairing records: </label>
-					<input
-						type="checkbox"
-						name="display_pairings"
-						onChange={this.checkboxChangeHandler}
-						defaultChecked={animal.classifiedData.display_pairings}
-					/>
-				</div>
-				<div>
-					<label>Display weight records: </label>
-					<label>
-						<Checkbox
-							defaultChecked={this.props.collection.classifiedData.display_weights}
-							name="display_weights"
-							onChange={this.onChange}
-							disabled={this.state.disabled}
-						/>
-						<button onClick={this.but}>state</button>
-					</label>
-					<input
-						type="checkbox"
-						name="display_weights"
-						onChange={this.checkboxChangeHandler}
-						defaultChecked={animal.classifiedData.display_weights}
-					/>
-				</div>
-				<div>
+					<p>
+						A descripton of this listing is highly encouraged but not mandatory. If you have a business account and your business footer has been set,
+						that infomation will display in the description field for this classified listing.
+					</p>
 					<ReactQuill
 						style={{ backgroundColor: 'white', color: 'black' }}
 						name="description"
@@ -252,9 +220,15 @@ class CollectionList extends Component {
 						theme="snow"
 					/>
 				</div>
-				<button className="button" onClick={this.onSubmitHandler}>
-					List
-				</button>
+				<div className="collection-to-classified-buttons">
+					{!!animal.isClassified ? (
+						<button className="button">UnList</button>
+					) : (
+						<button className="button" onClick={this.onSubmitHandler}>
+							List
+						</button>
+					)}
+				</div>
 			</div>
 		);
 	}

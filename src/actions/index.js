@@ -3,6 +3,13 @@ import config from '../reducers/config';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const my_classifieds_data = (data) => {
+	return {
+		type: 'my_classifieds',
+		data,
+	};
+};
+
 export const new_clutch_data = (data) => {
 	return {
 		type: 'create_new_clutch',

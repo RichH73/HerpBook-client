@@ -13,7 +13,7 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
-import socket from './Components/_services/SocketService';
+//import socket from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 
@@ -25,7 +25,9 @@ class App extends Component {
 	componentDidMount() {
 		if (!!localStorage.token) {
 			// socket.on('connect', () => {
-			// 	socket.emit('newUser', this.props.user)
+			// 	socket.emit('newUser', {
+			// 		uid: this.props.userUid
+			// 	})
 			// })
 
 			this.props.getMyCollections({ uid: this.props.userUID });
@@ -56,6 +58,9 @@ class App extends Component {
 			});
 			// }
 		});
+		// socket.on('newMessages', (data) => {
+		// 	console.log('something new', data)
+		// })
 	}
 
 	drawerToggleClickHandler = () => {
@@ -139,6 +144,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	spinnerState: state.spinner,
+	userUid: state.user.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {

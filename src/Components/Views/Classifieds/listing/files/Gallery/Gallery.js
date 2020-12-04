@@ -10,7 +10,7 @@ class Gallery extends React.Component {
 	state = {};
 
 	componentDidMount() {
-		this.props.setPageTitle(this.props.listTitle);
+		//this.props.setPageTitle(this.props.listTitle);
 	}
 
 	setTitle = (title) => {

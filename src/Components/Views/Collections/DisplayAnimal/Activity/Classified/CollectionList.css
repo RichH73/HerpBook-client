@@ -4,4 +4,31 @@
 .collection-to-classified {
   padding: 10px;
 }
+
+.collection-to-classified input {
+  font-size: 1em;
+  padding: 2px;
+}
+
+.collection-to-classified-price {
+  padding-left: 10px;
+  margin: auto;
+}
+
+.collection-to-classified-price p {
+  font-style: italic;
+}
+
+.collection-to-classified-display-records {
+  padding-left: 10px;
+}
+
+.collection-to-classified-display-records p {
+  font-style: italic;
+}
+
+.collection-to-classified-buttons {
+  width: 80px;
+  margin: 10px 10px 0 auto;
+}
 /*# sourceMappingURL=CollectionList.css.map */

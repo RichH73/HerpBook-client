@@ -23,6 +23,7 @@ class MyListings extends Component {
 			this.setState({
 				listings: response.data.listings,
 			});
+			this.props.my_classifieds_data(response.data.listings);
 		});
 	}
 
@@ -36,13 +37,14 @@ class MyListings extends Component {
 					Authorization: `Bearer ${localStorage.token}`,
 				},
 				data: {
-					list_id: listing,
+					listing: listing,
 				},
 			}).then((response) => {
 				if (response.status === 200) {
 					this.setState({
 						listings: this.state.listings.filter((list) => list._id !== listing),
 					});
+					this.props.my_classifieds_data(response.data);
 				}
 			});
 		}
@@ -50,7 +52,7 @@ class MyListings extends Component {
 
 	render() {
 		const SellerListings = () => {
-			return this.state.listings.map((list) => (
+			return this.props.myClassifieds.map((list) => (
 				<React.Fragment>
 					<div className="my-listings-box" key={list._id}>
 						<div className="my-listings-box-image">
@@ -120,6 +122,7 @@ const mapStateToProps = (state) => ({
 	website: state.user.website,
 	zip_code: state.user.zip_code,
 	React: state.config.analytics,
+	myClassifieds: state.my_listings.listings,
 });
 
 const mapDispatchToProps = (dispatch) => {

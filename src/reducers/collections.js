@@ -8,6 +8,7 @@ const initialState = {
 	feedings: [],
 	sheddings: [],
 	pairings: [],
+	weights: [],
 	images: [],
 	isClassified: false,
 	classifiedData: {
