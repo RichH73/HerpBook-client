@@ -9,9 +9,6 @@ import LargeImage from '../../_services/DisplayLargeImage/LargeImage';
 import MainView from '../../../Components/Views/Collections/DisplayAnimal/RecordOverlay/Master';
 
 class Body extends Component {
-	componentDidMount() {
-		console.log('body props', this.props);
-	}
 	render() {
 		return (
 			<React.Fragment>

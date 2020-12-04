@@ -13,13 +13,7 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
-import io from 'socket.io-client';
-const socket = io('http://localhost:8551');
-
-//   console.log(this.props.myId)
-// socket.on('connect_error', (error) => {
-// 	console.log('connect_error', error);
-//   })
+import socket from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 
@@ -27,40 +21,40 @@ class App extends Component {
 	state = {
 		sideDrawerOpen: false,
 	};
+
 	componentDidMount() {
-		this.props.getVendors();
-		if (localStorage.token) {
+		if (!!localStorage.token) {
+			// socket.on('connect', () => {
+			// 	socket.emit('newUser', this.props.user)
+			// })
+
 			this.props.getMyCollections({ uid: this.props.userUID });
-			axios({
-				method: 'get',
-				url: `${this.props.API}/messages/my_messages`,
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-				},
-			}).then((response) => {
-				// if(response.data.length > 0) {
-				this.props.newMessages({
-					type: 'NEW_MESSAGES',
-					messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
-					messages: get(response, 'data', []),
-				});
-				// }
-			});
 		}
+		// socket.on('allMessages', (data) => {
+		// 	console.log(data)
+		// 	this.props.newMessages({
+		// 		type: 'NEW_MESSAGES',
+		// 		messageCount: data.filter((count) => !count.seen).length, //get(response, "data", 0).length,
+		// 		messages: data//get(response, 'data', []),
+		// 	});
+		// })
 
-		//Sockets
+		this.props.getVendors();
 
-		socket.on('connect', () => {
-			console.log('connected');
-			socket.emit('joinRoom', this.props.myId);
-		});
-
-		socket.on('userJoined', (data) => {
-			console.log('A user joined', data);
-		});
-
-		socket.on('newUser', (data) => {
-			console.log('a new user joined', data);
+		axios({
+			method: 'get',
+			url: `${this.props.API}/messages/my_messages`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		}).then((response) => {
+			// if(response.data.length > 0) {
+			this.props.newMessages({
+				type: 'NEW_MESSAGES',
+				messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
+				messages: get(response, 'data', []),
+			});
+			// }
 		});
 	}
 
@@ -134,7 +128,7 @@ class App extends Component {
 					</div>
 					<this.spinner />
 					<Header />
-					<Body socket={socket} />
+					<Body />
 					{/* <Footer /> */}
 				</div>
 			</React.Fragment>
@@ -145,8 +139,6 @@ class App extends Component {
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	spinnerState: state.spinner,
-	userUID: state.user.uid,
-	myId: state.user.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {
