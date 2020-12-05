@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA;;EAEE;ADCF,AAAA,kCAAkC,CAAC;EACjC,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "Records.scss",
+        "../../../../../../_index.scss"
+    ],
+    "names": [],
+    "file": "Records.css"
+}

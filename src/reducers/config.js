@@ -4,7 +4,7 @@ import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 // Using Test Environment?
-const server_state = true;
+const server_state = false;
 
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
@@ -31,10 +31,10 @@ const analytics = () => {
 };
 
 export const store_config = () => {
-	if (origins.includes(window.origin) || !!server_state) {
-		// return applyMiddleware(thunk);
-		return composeWithDevTools(applyMiddleware(thunk));
-	}
+	// if (origins.includes(window.origin) || !!server_state) {
+	// 	// return applyMiddleware(thunk);
+	// 	return composeWithDevTools(applyMiddleware(thunk));
+	// }
 	return applyMiddleware(thunk);
 };
 

@@ -7,6 +7,7 @@ import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Main from './files/MainView';
 import Gallery from './files/Gallery/Gallery';
+import Records from './files/Records/Records';
 
 class Listing extends React.Component {
 	state = {
@@ -56,6 +57,7 @@ class Listing extends React.Component {
 						{/* <Tab>Records</Tab>
 						<Tab>Activity</Tab> */}
 						<Tab>Gallery</Tab>
+						{!!this.props.classified_listing.records ? <Tab>Records</Tab> : ''}
 					</TabList>
 					<div className="collections-tab-body">
 						<TabPanel>
@@ -83,6 +85,7 @@ class Listing extends React.Component {
 						<TabPanel>
 							<Gallery />
 						</TabPanel>
+						<TabPanel>{!!this.props.classified_listing.records ? <Records /> : ''}</TabPanel>
 					</div>
 				</Tabs>
 			</div>

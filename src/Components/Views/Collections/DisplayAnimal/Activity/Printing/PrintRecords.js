@@ -192,7 +192,7 @@ class PrintRecords extends Component {
 	getImage = async () => {
 		const img = _.get(this, 'props.currentAnimal.images.0');
 		const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-		const file = await fetch(proxyurl + `${img.URL}/${img.thumbnail}`);
+		const file = await fetch(`${img.URL}/${img.thumbnail}`);
 		const blob = await file.blob();
 		const fileReader = new FileReader();
 		fileReader.readAsDataURL(blob);

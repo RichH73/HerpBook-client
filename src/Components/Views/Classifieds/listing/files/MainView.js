@@ -110,12 +110,23 @@ class ClassifiedList extends React.Component {
 								margin: '.5em auto',
 							}}
 						>
-							{localStorage.token ? (
+							{/* {localStorage.token ? (
 								<div>
 									Seller: <Link to={`/profile`}>{list.username || list.user}</Link>
 								</div>
 							) : (
 								<Link to="/login">Contact seller</Link>
+							)} */}
+							{localStorage.token ? (
+								<div>
+									<Link to={{ pathname: '/message-seller', userToUid: list.creatorId, listSubject: `Classified ID: ${list._id}`, sellerData: list }}>
+										Contact Seller
+									</Link>
+								</div>
+							) : (
+								<div>
+									<Link to="/login">Login to contact Seller</Link>
+								</div>
 							)}
 							<div style={{ color: 'blue' }}>
 								<Link to={`/sellers-listings/${list.creatorId}`}>See all listing by seller</Link>

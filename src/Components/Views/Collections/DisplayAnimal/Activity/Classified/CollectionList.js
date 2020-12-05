@@ -12,7 +12,6 @@ import ReactQuill from 'react-quill';
 // import AlertModal from '../../../../../_services/Modal/Modal';
 import NumberFormat from 'react-number-format';
 import './CollectionList.css';
-import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 
 class CollectionList extends Component {
