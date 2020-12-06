@@ -4,19 +4,21 @@ import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 // Using Test Environment?
-const server_state = false;
+const server_state = true;
 
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
 export const server_status = () => {
 	if (server_state === true) {
 		return {
-			serverAPI: 'http://localhost:8550',
+			serverSocket: 'http://192.168.0.2:8551',
+			serverAPI: 'http://192.168.0.2:8550',
 			serverURL: 'htts://www.herpbook.com',
 			usersURL: 'http://users.herpbook.com',
 		};
 	}
 	return {
+		serverSocket: 'https://herpbook.com:8551',
 		serverAPI: 'https://herpbook.com:8550',
 		serverURL: 'https://www.herpbook.com',
 		usersURL: 'https://users.herpbook.com',
@@ -31,10 +33,10 @@ const analytics = () => {
 };
 
 export const store_config = () => {
-	// if (origins.includes(window.origin) || !!server_state) {
-	// 	// return applyMiddleware(thunk);
-	// 	return composeWithDevTools(applyMiddleware(thunk));
-	// }
+	if (origins.includes(window.origin) || !!server_state) {
+		// return applyMiddleware(thunk);
+		return composeWithDevTools(applyMiddleware(thunk));
+	}
 	return applyMiddleware(thunk);
 };
 

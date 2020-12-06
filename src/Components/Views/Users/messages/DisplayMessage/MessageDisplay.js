@@ -8,6 +8,7 @@ import { first, filter } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 import dayjs from 'dayjs';
+//import socket from '../../../../_services/SocketService'
 
 class MessageDisplay extends React.Component {
 	messageReply = (message) => {
@@ -24,41 +25,25 @@ class MessageDisplay extends React.Component {
 	}
 
 	deleteMessage = (id) => {
-		axios({
-			method: 'post',
-			url: `${this.props.API}/messages/delete_message`,
-			headers: {
-				Authorization: `Bearer ${localStorage.token}`,
-				uid: localStorage.uid,
-			},
-			data: {
-				message_id: id,
-			},
-		})
-			.then((response) => {
-				if (response.status === 200) {
-					this.props.history.push({
-						pathname: '/messages',
-					});
-				}
-			})
-			.catch((error) => [console.log(error)]);
+		// socket.emit('deleteMessage', {
+		// 	socket.emit('messages', {
+		// 	eventType: 'deleteMessage',
+		// 	authToken: localStorage.token,
+		// 	uid: this.props.userInfo.uid,
+		// 	message_id: id
+		// })
+		this.props.history.push('/messages');
 	};
 
 	messageSeen = (message) => {
 		if (!!message) {
 			if (!message.seen) {
-				axios({
-					url: `${this.props.API}/messages/message_seen`,
-					method: 'post',
-					headers: {
-						Authorization: `Bearer ${localStorage.token}`,
-						'Content-Type': 'application/json',
-					},
-					data: {
-						messageId: message._id,
-					},
-				}).then(() => {});
+				// socket.emit('messages', {
+				// 	eventType: 'messageSeen',
+				// 	authToken: localStorage.token,
+				// 	uid: this.props.userInfo.uid,
+				// 	messageId: message._id
+				// })
 			}
 		}
 	};

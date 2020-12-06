@@ -13,7 +13,7 @@ import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
-// import socket from './Components/_services/SocketService';
+import socket from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 
@@ -24,11 +24,19 @@ class App extends Component {
 
 	componentDidMount() {
 		if (!!localStorage.token) {
-			// socket.on('connect', () => {
-			// 	socket.emit('newUser', {
-			// 		uid: this.props.userUid,
-			// 	});
-			// });
+			socket.on('connect', () => {
+				socket.emit('newUser', {
+					uid: this.props.userUid,
+				});
+				// 	socket.emit('checkMessages', { uid: this.props.userUid, Authorization: `Bearer ${localStorage.token}` });
+				// 	socket.on('newMessages', (messageData) => {
+				// 		console.log('new message data', messageData);
+				// 		this.props.newMessages({
+				// 					messageCount: messageData.filter((count) => !count.seen).length, //get(response, "data", 0).length,
+				// 					messages: messageData,
+				// 				});
+				// 	});
+			});
 
 			this.props.getMyCollections({ uid: this.props.userUID });
 		}
