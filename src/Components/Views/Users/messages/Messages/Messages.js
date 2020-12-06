@@ -2,7 +2,7 @@ import React from 'react';
 import '../Messages.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
@@ -14,27 +14,37 @@ class Messages extends React.Component {
 		this.props.setPageTitle('Messages');
 		if (localStorage.token) {
 			console.log('Chcking for new messages');
-			socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
+			socket.emit('checkMessages', this.props.userInfo);
+			//socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
 			socket.on('newMessages', (messageData) => {
-				console.log('new message data', messageData);
-			});
-			axios({
-				method: 'get',
-				url: `${this.props.API}/messages/my_messages`,
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-				},
-			}).then((response) => {
-				// if(response.data.length > 0) {
+				//console.log('new message data', messageData);
 				this.props.newMessages({
-					type: 'NEW_MESSAGES',
-					messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
-					messages: get(response, 'data', []),
+					messageCount: messageData.filter((count) => !count.seen).length,
+					messages: messageData,
 				});
-				// }
 			});
+			// axios({
+			// 	method: 'get',
+			// 	url: `${this.props.API}/messages/my_messages`,
+			// 	headers: {
+			// 		Authorization: `Bearer ${localStorage.token}`,
+			// 	},
+			// }).then((response) => {
+			// 	// if(response.data.length > 0) {
+			// 	this.props.newMessages({
+			// 		type: 'NEW_MESSAGES',
+			// 		messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
+			// 		messages: get(response, 'data', []),
+			// 	});
+			// 	// }
+			// });
 		}
 	}
+
+	polling = () => {
+		//console.log('Polling for messages')
+		socket.emit('checkMessages', this.props.userInfo);
+	};
 
 	// <Link to={{pathname: `/profile`, profile: { uid: friend._id }}}>
 	displayMessages = () => {
@@ -71,6 +81,9 @@ class Messages extends React.Component {
 						<this.displayMessages />
 					</tbody>
 				</table>
+				<div>
+					<button onClick={this.polling}>Poll Messages</button>
+				</div>
 			</div>
 		);
 	}
@@ -80,6 +93,7 @@ const mapStateToProps = (state) => ({
 	messageCount: state.messages.messageCount,
 	messages: state.messages.messages,
 	API: state.config.server.serverAPI,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {
