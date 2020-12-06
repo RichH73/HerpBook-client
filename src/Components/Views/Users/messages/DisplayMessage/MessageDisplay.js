@@ -48,17 +48,17 @@ class MessageDisplay extends React.Component {
 	messageSeen = (message) => {
 		if (!!message) {
 			if (!message.seen) {
-				// axios({
-				// 	url: `${this.props.API}/messages/message_seen`,
-				// 	method: 'post',
-				// 	headers: {
-				// 		Authorization: `Bearer ${localStorage.token}`,
-				// 		'Content-Type': 'application/json',
-				// 	},
-				// 	data: {
-				// 		messageId: message._id,
-				// 	},
-				// }).then(() => {});
+				axios({
+					url: `${this.props.API}/messages/message_seen`,
+					method: 'post',
+					headers: {
+						Authorization: `Bearer ${localStorage.token}`,
+						'Content-Type': 'application/json',
+					},
+					data: {
+						messageId: message._id,
+					},
+				}).then(() => {});
 			}
 		}
 	};
