@@ -2,7 +2,7 @@ import React from 'react';
 import '../Messages.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
@@ -27,32 +27,14 @@ class Messages extends React.Component {
 			}).then((response) => {
 				// if(response.data.length > 0) {
 				this.props.newMessages({
-					messageCount: messageData.filter((count) => !count.seen).length,
-					messages: messageData,
+					type: 'NEW_MESSAGES',
+					messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
+					messages: get(response, 'data', []),
 				});
+				// }
 			});
-			// axios({
-			// 	method: 'get',
-			// 	url: `${this.props.API}/messages/my_messages`,
-			// 	headers: {
-			// 		Authorization: `Bearer ${localStorage.token}`,
-			// 	},
-			// }).then((response) => {
-			// 	// if(response.data.length > 0) {
-			// 	this.props.newMessages({
-			// 		type: 'NEW_MESSAGES',
-			// 		messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
-			// 		messages: get(response, 'data', []),
-			// 	});
-			// 	// }
-			// });
 		}
 	}
-
-	polling = () => {
-		//console.log('Polling for messages')
-		socket.emit('checkMessages', this.props.userInfo);
-	};
 
 	// <Link to={{pathname: `/profile`, profile: { uid: friend._id }}}>
 	displayMessages = () => {
@@ -98,7 +80,6 @@ const mapStateToProps = (state) => ({
 	messageCount: state.messages.messageCount,
 	messages: state.messages.messages,
 	API: state.config.server.serverAPI,
-	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {
