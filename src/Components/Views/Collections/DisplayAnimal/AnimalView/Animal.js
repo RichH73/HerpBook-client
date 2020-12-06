@@ -143,6 +143,18 @@ class Animal extends Component {
 	};
 
 	onSubmitHandler = () => {
+		const { name, dob, gender, sire, dam, isClassified, comments } = this.props.currentAnimal;
+		let animalUpdate = {
+			name: name,
+			dob: dob,
+			gender: gender,
+			sire: sire,
+			dam: dam,
+			isClassified: isClassified,
+			comments: comments,
+		};
+
+		console.log('this animal', animalUpdate);
 		this.props.modalSetState(true);
 		setTimeout(() => {
 			this.props.modalSetState(false);
@@ -154,7 +166,8 @@ class Animal extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				...this.props.currentAnimal,
+				collectionId: this.props.currentAnimal._id,
+				update: animalUpdate,
 			},
 		}).then((response) => {});
 	};

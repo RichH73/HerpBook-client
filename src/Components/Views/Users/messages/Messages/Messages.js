@@ -7,17 +7,17 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
 import dayjs from 'dayjs';
-import socket from '../../../../_services/SocketService';
+//import socket from '../../../../_services/SocketService';
 
 class Messages extends React.Component {
 	componentDidMount() {
 		this.props.setPageTitle('Messages');
 		if (localStorage.token) {
-			console.log('Chcking for new messages');
-			socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
-			socket.on('newMessages', (messageData) => {
-				console.log('new message data', messageData);
-			});
+			// console.log('Chcking for new messages');
+			// socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
+			// socket.on('newMessages', (messageData) => {
+			// 	console.log('new message data', messageData);
+			// });
 			axios({
 				method: 'get',
 				url: `${this.props.API}/messages/my_messages`,
