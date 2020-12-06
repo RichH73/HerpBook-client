@@ -8,7 +8,6 @@ import { first, filter } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 import dayjs from 'dayjs';
-import socket from '../../../../_services/SocketService';
 
 class MessageDisplay extends React.Component {
 	messageReply = (message) => {
@@ -49,10 +48,6 @@ class MessageDisplay extends React.Component {
 	messageSeen = (message) => {
 		if (!!message) {
 			if (!message.seen) {
-				socket.emit('messageSeen', {
-					messageId: message._id,
-					uid: this.props.userInfo.uid,
-				});
 				// axios({
 				// 	url: `${this.props.API}/messages/message_seen`,
 				// 	method: 'post',

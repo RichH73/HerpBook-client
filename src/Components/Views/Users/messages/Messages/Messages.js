@@ -7,17 +7,25 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { get, toNumber } from 'lodash';
 import dayjs from 'dayjs';
-import socket from '../../../../_services/SocketService';
+//import socket from '../../../../_services/SocketService';
 
 class Messages extends React.Component {
 	componentDidMount() {
 		this.props.setPageTitle('Messages');
 		if (localStorage.token) {
-			console.log('Chcking for new messages');
-			socket.emit('checkMessages', this.props.userInfo);
-			//socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
-			socket.on('newMessages', (messageData) => {
-				//console.log('new message data', messageData);
+			// console.log('Chcking for new messages');
+			// socket.emit('checkForMessages', { Authorization: `Bearer ${localStorage.token}` });
+			// socket.on('newMessages', (messageData) => {
+			// 	console.log('new message data', messageData);
+			// });
+			axios({
+				method: 'get',
+				url: `${this.props.API}/messages/my_messages`,
+				headers: {
+					Authorization: `Bearer ${localStorage.token}`,
+				},
+			}).then((response) => {
+				// if(response.data.length > 0) {
 				this.props.newMessages({
 					messageCount: messageData.filter((count) => !count.seen).length,
 					messages: messageData,
@@ -81,9 +89,6 @@ class Messages extends React.Component {
 						<this.displayMessages />
 					</tbody>
 				</table>
-				<div>
-					<button onClick={this.polling}>Poll Messages</button>
-				</div>
 			</div>
 		);
 	}
