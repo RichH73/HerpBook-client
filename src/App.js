@@ -17,6 +17,9 @@ import socket from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 
+if (!!localStorage.token) {
+}
+
 class App extends Component {
 	state = {
 		sideDrawerOpen: false,
@@ -28,47 +31,51 @@ class App extends Component {
 				socket.emit('newUser', {
 					uid: this.props.userUid,
 				});
-				// 	socket.emit('checkMessages', { uid: this.props.userUid, Authorization: `Bearer ${localStorage.token}` });
-				// 	socket.on('newMessages', (messageData) => {
-				// 		console.log('new message data', messageData);
-				// 		this.props.newMessages({
-				// 					messageCount: messageData.filter((count) => !count.seen).length, //get(response, "data", 0).length,
-				// 					messages: messageData,
-				// 				});
-				// 	});
 			});
+			//
+
+			// socket.on('connect', () => {
+			// 	socket.emit('newUser', {
+			// 		uid: this.props.userUid,
+			// 	});
+			// 	socket.emit('checkMessages', { uid: this.props.userUid, Authorization: `Bearer ${localStorage.token}` });
+			// 	socket.on('newMessages', (messageData) => {
+			// 		console.log('new message data', messageData);
+			// 		this.props.newMessages({
+			// 					messageCount: messageData.filter((count) => !count.seen).length, //get(response, "data", 0).length,
+			// 					messages: messageData,
+			// 				});
+			// 	});
+			// });
 
 			this.props.getMyCollections({ uid: this.props.userUID });
 		}
-		// socket.on('allMessages', (data) => {
-		// 	console.log(data)
-		// 	this.props.newMessages({
-		// 		type: 'NEW_MESSAGES',
-		// 		messageCount: data.filter((count) => !count.seen).length, //get(response, "data", 0).length,
-		// 		messages: data//get(response, 'data', []),
-		// 	});
-		// })
+		socket.on('newMessages', (data) => {
+			console.log(data);
+			this.props.newMessages({
+				type: 'NEW_MESSAGES',
+				messageCount: data.filter((count) => !count.seen).length, //get(response, "data", 0).length,
+				messages: data, //get(response, 'data', []),
+			});
+		});
 
 		this.props.getVendors();
 
-		axios({
-			method: 'get',
-			url: `${this.props.API}/messages/my_messages`,
-			headers: {
-				Authorization: `Bearer ${localStorage.token}`,
-			},
-		}).then((response) => {
-			// if(response.data.length > 0) {
-			this.props.newMessages({
-				type: 'NEW_MESSAGES',
-				messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
-				messages: get(response, 'data', []),
-			});
-			// }
-		});
-		// socket.on('newMessages', (data) => {
-		// 	console.log('something new', data)
-		// })
+		// axios({
+		// 	method: 'get',
+		// 	url: `${this.props.API}/messages/my_messages`,
+		// 	headers: {
+		// 		Authorization: `Bearer ${localStorage.token}`,
+		// 	},
+		// }).then((response) => {
+		// 	// if(response.data.length > 0) {
+		// 	this.props.newMessages({
+		// 		type: 'NEW_MESSAGES',
+		// 		messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
+		// 		messages: get(response, 'data', []),
+		// 	});
+		// 	// }
+		// });
 	}
 
 	drawerToggleClickHandler = () => {
@@ -130,7 +137,16 @@ class App extends Component {
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 			this.props.user_login(user);
+			console.log('property again', !!this.props.userUid);
+			if (!!this.props.userUid) {
+				socket.emit('messages', {
+					eventType: 'checkMessages',
+					uid: this.props.userUid,
+					authToken: localStorage.token,
+				});
+			}
 		}
+
 		return (
 			<React.Fragment>
 				<div className="application-body">

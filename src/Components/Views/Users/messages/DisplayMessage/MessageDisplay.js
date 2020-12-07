@@ -8,7 +8,7 @@ import { first, filter } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 import dayjs from 'dayjs';
-//import socket from '../../../../_services/SocketService'
+import socket from '../../../../_services/SocketService';
 
 class MessageDisplay extends React.Component {
 	messageReply = (message) => {
@@ -26,24 +26,24 @@ class MessageDisplay extends React.Component {
 
 	deleteMessage = (id) => {
 		// socket.emit('deleteMessage', {
-		// 	socket.emit('messages', {
-		// 	eventType: 'deleteMessage',
-		// 	authToken: localStorage.token,
-		// 	uid: this.props.userInfo.uid,
-		// 	message_id: id
-		// })
+		socket.emit('messages', {
+			eventType: 'deleteMessage',
+			authToken: localStorage.token,
+			uid: this.props.userInfo.uid,
+			message_id: id,
+		});
 		this.props.history.push('/messages');
 	};
 
 	messageSeen = (message) => {
 		if (!!message) {
 			if (!message.seen) {
-				// socket.emit('messages', {
-				// 	eventType: 'messageSeen',
-				// 	authToken: localStorage.token,
-				// 	uid: this.props.userInfo.uid,
-				// 	messageId: message._id
-				// })
+				socket.emit('messages', {
+					eventType: 'messageSeen',
+					authToken: localStorage.token,
+					uid: this.props.userInfo.uid,
+					messageId: message._id,
+				});
 			}
 		}
 	};

@@ -11,8 +11,8 @@ const origins = ['http://localhost:3000', 'http://localhost:4000'];
 export const server_status = () => {
 	if (server_state === true) {
 		return {
-			serverSocket: 'http://192.168.0.2:8551',
-			serverAPI: 'http://192.168.0.2:8550',
+			serverSocket: 'http://localhost:8551',
+			serverAPI: 'http://localhost:8550',
 			serverURL: 'htts://www.herpbook.com',
 			usersURL: 'http://users.herpbook.com',
 		};
