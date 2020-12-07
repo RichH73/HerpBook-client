@@ -365,6 +365,14 @@ export const newMessages = (message) => {
 	};
 };
 
+export const newUserMail = (mailData) => {
+	// console.log('some mail data', mailData)
+	return {
+		type: 'NEW_MAIL',
+		mailData,
+	};
+};
+
 export const deleteMessage = (id) => ({
 	type: 'DELETE_MESSAGE',
 	id,

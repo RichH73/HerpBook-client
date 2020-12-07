@@ -8,8 +8,6 @@ import Body from './Components/Modules/Body/Body';
 import Spinner from 'react-spinner-material';
 import SideDrawer from './Components/Navigation/mobileMenu/sideDrawer';
 import Backdrop from './Components/Navigation/mobileMenu/Backdrop/Backdrop';
-import { get } from 'lodash';
-import axios from 'axios';
 import { Base64 } from 'js-base64';
 //import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
@@ -23,59 +21,49 @@ if (!!localStorage.token) {
 class App extends Component {
 	state = {
 		sideDrawerOpen: false,
+		user: this.props.userInfo,
 	};
 
-	componentDidMount() {
-		if (!!localStorage.token) {
+	async componentDidMount() {
+		if (localStorage.token) {
+			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			this.props.user_login(user);
+			if (!!this.props.userInfo.uid) {
+			}
+		}
+
+		this.props.getMyCollections({ uid: this.props.userUID });
+
+		this.props.getVendors();
+	}
+
+	componentDidUpdate() {
+		const openSocket = () => {
+			if (!!this.props.userInfo.socketId) {
+				return;
+			}
 			socket.on('connect', () => {
 				socket.emit('newUser', {
 					uid: this.props.userUid,
+					authToken: localStorage.token,
 				});
 			});
-			//
-
-			// socket.on('connect', () => {
-			// 	socket.emit('newUser', {
-			// 		uid: this.props.userUid,
-			// 	});
-			// 	socket.emit('checkMessages', { uid: this.props.userUid, Authorization: `Bearer ${localStorage.token}` });
-			// 	socket.on('newMessages', (messageData) => {
-			// 		console.log('new message data', messageData);
-			// 		this.props.newMessages({
-			// 					messageCount: messageData.filter((count) => !count.seen).length, //get(response, "data", 0).length,
-			// 					messages: messageData,
-			// 				});
-			// 	});
-			// });
-
-			this.props.getMyCollections({ uid: this.props.userUID });
-		}
-		socket.on('newMessages', (data) => {
-			console.log(data);
-			this.props.newMessages({
-				type: 'NEW_MESSAGES',
-				messageCount: data.filter((count) => !count.seen).length, //get(response, "data", 0).length,
-				messages: data, //get(response, 'data', []),
+			//   socket.emit("mail", {
+			// 	eventType: "checkMail",
+			// 	uid: this.props.userInfo.uid,
+			// 	authToken: localStorage.token,
+			//   });
+			socket.on('downloadNewMail', (mailData) => {
+				this.props.newUserMail({
+					mailCount: mailData.inbox.filter((count) => !count.seen).length,
+					inbox: mailData.inbox,
+					sentItmes: mailData.sentItems,
+				});
 			});
-		});
-
-		this.props.getVendors();
-
-		// axios({
-		// 	method: 'get',
-		// 	url: `${this.props.API}/messages/my_messages`,
-		// 	headers: {
-		// 		Authorization: `Bearer ${localStorage.token}`,
-		// 	},
-		// }).then((response) => {
-		// 	// if(response.data.length > 0) {
-		// 	this.props.newMessages({
-		// 		type: 'NEW_MESSAGES',
-		// 		messageCount: get(response, 'data', 0).filter((count) => !count.seen).length, //get(response, "data", 0).length,
-		// 		messages: get(response, 'data', []),
-		// 	});
-		// 	// }
-		// });
+		};
+		if (!!this.props.userInfo.uid) {
+			openSocket();
+		}
 	}
 
 	drawerToggleClickHandler = () => {
@@ -129,24 +117,10 @@ class App extends Component {
 	render() {
 		let backdrop;
 		let sideDrawer;
-
 		if (this.state.sideDrawerOpen) {
 			backdrop = <Backdrop click={this.backdropClickHandler} />;
 			sideDrawer = <SideDrawer history={this.props.history} />;
 		}
-		if (localStorage.token) {
-			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
-			this.props.user_login(user);
-			console.log('property again', !!this.props.userUid);
-			if (!!this.props.userUid) {
-				socket.emit('messages', {
-					eventType: 'checkMessages',
-					uid: this.props.userUid,
-					authToken: localStorage.token,
-				});
-			}
-		}
-
 		return (
 			<React.Fragment>
 				<div className="application-body">
@@ -169,6 +143,7 @@ const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	spinnerState: state.spinner,
 	userUid: state.user.uid,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

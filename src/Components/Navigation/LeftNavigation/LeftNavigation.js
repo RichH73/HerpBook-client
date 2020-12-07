@@ -7,7 +7,7 @@ import * as actionCreators from '../../../actions/index';
 
 class LeftNav extends Component {
 	userNavigation = () => {
-		const { displayMessageCount } = this.props;
+		const { displayMailCount } = this.props;
 		return (
 			<React.Fragment>
 				<div className="left-main-navigation-outter-panel">
@@ -19,12 +19,12 @@ class LeftNav extends Component {
 							<Link to="/my_profile">My Profile</Link>
 						</div>
 						<div className="left-nav-link">
-							{!!displayMessageCount ? (
-								<Link to="/messages">
-									My Messages: <small style={{ color: 'red' }}>{displayMessageCount}</small>
+							{!!displayMailCount ? (
+								<Link to="/my_mail">
+									My Mail: <small style={{ color: 'red' }}>{displayMailCount}</small>
 								</Link>
 							) : (
-								<Link to="/messages">My Messages</Link>
+								<Link to="/my_mail">My Mail</Link>
 							)}
 						</div>
 					</div>
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => ({
 	USERSURL: state.config.server.usersURL,
 	URL: state.config.server.serverURL,
 	userCheck: state.user.uid,
-	displayMessageCount: state.messages.messageCount,
+	displayMailCount: state.userMail.mailCount,
 	collectionsIds: state.wholeCollection,
 	collectionsData: state.wholeCollection.collections,
 });

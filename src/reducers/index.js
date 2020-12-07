@@ -22,6 +22,7 @@ import showFloatingImage from './floatingImage';
 import editRecord from './editRecords';
 import { new_clutch, current_clutch, my_clutches } from './clutches';
 import my_listings from './my_listings';
+import userMail from './userMail';
 
 const allReducers = combineReducers({
 	alertModal,
@@ -55,6 +56,7 @@ const allReducers = combineReducers({
 	createNewAnimal,
 	showFloatingImage,
 	bar_img,
+	userMail,
 });
 
 export default allReducers;
