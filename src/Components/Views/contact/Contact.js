@@ -3,6 +3,8 @@ import './Contact.css';
 import axios from 'axios';
 import Recaptcha from 'react-recaptcha';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../../../actions/index';
 
 class Contact extends React.Component {
 	state = {
@@ -10,7 +12,7 @@ class Contact extends React.Component {
 		subject: '',
 		message: '',
 		to_admin: 1,
-		isVerified: true,
+		isVerified: false,
 	};
 
 	handleChange = (event) => {
@@ -19,10 +21,30 @@ class Contact extends React.Component {
 		});
 	};
 
-	submitHandler = (event) => {
+	submitHandler = async (event) => {
+		let user = this.props.userInfo;
+		let userData = `<div>
+		  <div>
+		  <p>Form Submission information.<p>
+		  <div>Form Email: ${this.state.email}</div>
+		  <div>Form Subject: ${this.state.subject}</div>
+		  </div>
+			${
+				!!user.uid
+					? `<div>
+				<p>Contact was logged in when form was submitted. Here is the users info.<p>
+				  <div>User ID: ${user.uid}</div>
+				  <div>User Name: ${user.username}</div>
+				  <div>User Email: ${user.entityEmail}</div>
+				  <div>User First Name: ${user.firstName}</div>
+				  <div>User Last Name: ${user.lastName}</div>
+				</div>`
+					: '<div><p>No user logged in.</p></div>'
+			}
+		  </div>`;
 		event.preventDefault();
 		if (this.state.isVerified) {
-			axios({
+			await axios({
 				method: 'post',
 				url: `${this.props.API}/contact`,
 				responseType: 'json',
@@ -30,15 +52,13 @@ class Contact extends React.Component {
 					subject: `(Contact Submission) ${this.state.subject}`,
 					email: this.state.email,
 					message: this.state.message,
+					userData: userData,
 				},
 			})
-				.then(() => {
-					// if (res.status === 201) {
-
-					this.props.history.push('/success/sitecontact');
-					// } else {
-					// alert("Oops! Something went wrong.");
-					// }
+				.then((response) => {
+					if (response.status === 200) {
+						this.props.history.push('/success/sitecontact');
+					}
 				})
 				.catch((err) => {
 					alert('Oops something went wrong!', err);
@@ -50,9 +70,7 @@ class Contact extends React.Component {
 
 	verifyCallback = (response) => {
 		if (response) {
-			this.setState({
-				isVerified: true,
-			});
+			this.setState({ isVerified: true });
 		}
 	};
 	render() {
@@ -109,25 +127,14 @@ class Contact extends React.Component {
 									onChange={this.handleChange}
 								></textarea>
 							</div>
-							<div>
-								{/* <br />
-                <label className='field-input-label'>Upload an image: </label>
-                <input
-                  type="file"
-                  name="picture_2"
-                  accept="image/*"
-                  className="btn btn-success"
-                  id="id_picture_2"
-                  onChange={this.fileChangeHandler}
-                /> */}
-							</div>
+							<div></div>
 						</fieldset>
 						<div id="recaptcha">
 							<Recaptcha sitekey="6LcLs7IUAAAAANJD7BGAJmQ8R_sLQg_Dox8NyNA-" render="explicit" verifyCallback={this.verifyCallback} />
 							<br />
 						</div>
 
-						<button type="submit" className="btn btn-success">
+						<button type="submit" disabled={!!this.state.isVerified ? false : true} className="button">
 							Send
 						</button>
 					</div>
@@ -139,6 +146,12 @@ class Contact extends React.Component {
 
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
+	USERSURL: state.config.server.usersURL,
+	userInfo: state.user,
 });
 
-export default connect(mapStateToProps)(Contact);
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators(actionCreators, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

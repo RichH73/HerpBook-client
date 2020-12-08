@@ -8,6 +8,8 @@ import * as actionCreators from '../../../../actions/index';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { Base64 } from 'js-base64';
+import socket from '../../../_services/SocketService';
+import { setSocketID } from '../../../_services/SocketService';
 /*
 facebook login stuff
 
@@ -52,6 +54,9 @@ class Login extends React.Component {
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					this.props.user_login(user);
+
+					setSocketID(user);
+					socket.connect();
 					this.props.history.push({
 						pathname: '/',
 					});
@@ -137,6 +142,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	USERSURL: state.config.server.usersURL,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

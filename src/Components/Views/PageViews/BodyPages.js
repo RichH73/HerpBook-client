@@ -14,7 +14,8 @@ import Messages from '../Users/messages/Messages/Messages';
 import MessageDisplay from '../Users/messages/DisplayMessage/MessageDisplay';
 import MailDisplay from '../Users/Mail/DisplayMailMessage/MailDisplay';
 import MessageReply from '../Users/messages/Reply/MessageReply';
-import SellerContactForm from '../Classifieds/SellerContactForm';
+import SellerContactForm from '../Users/Mail/SellerContact/SellerContactForm';
+// import SellerContactForm from '../Classifieds/SellerContactForm';
 import Success from '../../_functions/Success';
 import Contact from '../contact/Contact';
 import SellersOtherListings from '../Classifieds/SellersListings/SellersListings';
@@ -43,7 +44,7 @@ const Pages = (props) => {
 			<Route path="/login" component={Login} />
 			<Route path="/message-display" component={MessageDisplay} />
 			<Route path="/message-reply" component={MessageReply} />
-			<Route path="/message-seller" component={SellerContactForm} />
+			<Route path="/contact_seller" component={SellerContactForm} />
 			<Route path="/messages" component={Messages} />
 			<Route path="/my_mail" component={GetMail} />
 			<Route path="/read_mail" component={MailDisplay} />

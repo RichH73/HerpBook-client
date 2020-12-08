@@ -82,7 +82,10 @@ class SubCategory extends React.Component {
 												<div className="listing-title">{dayjs(list.created).format('MM/DD/YYYY')}</div>
 											</td>
 											<td>
-												<div>{list.username || list.user}</div>
+												<div>
+													{list.username || list.user}{' '}
+													{!!list.online ? <span style={{ color: 'green', fontStyle: 'bold' }}> (Online)</span> : <React.Fragment></React.Fragment>}
+												</div>
 											</td>
 										</tr>
 									</tbody>

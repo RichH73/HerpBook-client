@@ -41,7 +41,7 @@ class GetMail extends React.Component {
 						<Link to={{ pathname: '/read_mail', mailID: mail._id }}>{mail.subject}</Link>
 					</td>
 					<td>
-						<Link to={{ pathname: '/read_mail', mailID: mail._id }}>{mail.from.username}</Link>
+						<Link to={{ pathname: '/read_mail', mailID: mail._id }}>{get(mail, 'from.username', 'No User Found')}</Link>
 					</td>
 				</tr>
 			));

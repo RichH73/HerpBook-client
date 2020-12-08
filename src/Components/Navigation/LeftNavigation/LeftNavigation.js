@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-
+import socket from '../../_services/SocketService';
 class LeftNav extends Component {
 	userNavigation = () => {
 		const { displayMailCount } = this.props;
@@ -66,6 +66,7 @@ class LeftNav extends Component {
 	};
 
 	logOut = () => {
+		socket.disconnect();
 		localStorage.removeItem('token');
 		this.props.userLogOut();
 	};

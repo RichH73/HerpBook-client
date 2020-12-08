@@ -32,21 +32,20 @@ class App extends Component {
 			}
 		}
 
-		this.props.getMyCollections({ uid: this.props.userUID });
-
 		this.props.getVendors();
 	}
 
 	componentDidUpdate() {
+		console.log('this is the socket', socket);
 		const openSocket = () => {
 			if (!!this.props.userInfo.socketId) {
 				return;
 			}
 			socket.on('connect', () => {
-				socket.emit('newUser', {
-					uid: this.props.userUid,
-					authToken: localStorage.token,
-				});
+				// socket.emit('newUser', {
+				// 	uid: this.props.userUid,
+				// 	authToken: localStorage.token,
+				// });
 			});
 			//   socket.emit("mail", {
 			// 	eventType: "checkMail",

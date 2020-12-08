@@ -119,7 +119,7 @@ class ClassifiedList extends React.Component {
 							)} */}
 							{localStorage.token ? (
 								<div>
-									<Link to={{ pathname: '/message-seller', userToUid: list.creatorId, listSubject: `Classified ID: ${list._id}`, sellerData: list }}>
+									<Link to={{ pathname: '/contact_seller', userToUid: list.creatorId, listSubject: `Classified ID: ${list._id}`, sellerData: list }}>
 										Contact Seller
 									</Link>
 								</div>
