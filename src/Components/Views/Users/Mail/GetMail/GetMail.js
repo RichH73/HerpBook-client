@@ -12,11 +12,11 @@ class GetMail extends React.Component {
 	componentDidMount() {
 		this.props.setPageTitle('Mail');
 		if (localStorage.token) {
-			//   socket.emit("mail", {
-			//     eventType: "checkMail",
-			//     uid: this.props.userInfo.uid,
-			//     authToken: localStorage.token,
-			//   });
+			socket.emit('mail', {
+				eventType: 'checkMail',
+				uid: this.props.userInfo.uid,
+				authToken: localStorage.token,
+			});
 			//   socket.on("sendMail", (mailData) => {
 			//     console.log('new mail data', mailData)
 			//     this.props.newUserMail({

@@ -9,10 +9,11 @@ import ReactQuill, { Quill } from 'react-quill';
 //import Quill from 'quill'
 import ImageCompress from 'quill-image-compress';
 import '../Messages.css';
+import socket from '../../../../_services/SocketService';
 
 Quill.register('modules/imageCompress', ImageCompress);
 
-class SellerContactForm extends React.Component {
+class MailReply extends React.Component {
 	quill = new Quill('.editor', {
 		// ...
 		modules: {
@@ -76,31 +77,51 @@ class SellerContactForm extends React.Component {
 
                 */
 		const { fromusername, tousername, touid, subject } = this.props.data;
-		axios({
-			method: 'post',
-			url: `${this.props.API}/messages/send_message`,
-			headers: {
-				Authorization: `Bearer ${localStorage.token}`,
-				'Content-type': 'application/json',
+		socket.emit('mail', {
+			eventType: 'createMail',
+			uid: this.props.userInfo.uid,
+			authToken: localStorage.token,
+			args: {
+				headers: {
+					recipient: this.props.data.from._id,
+					from: this.props.userInfo.uid,
+				},
+				newMailMessage: {
+					from: this.props.userInfo.uid,
+					sent: new Date(),
+					subject: subject,
+					body: this.props.text,
+				},
 			},
-			data: {
-				message: this.props.text,
-				subject: _.includes(subject, 'RE:') ? subject : `RE: ${subject}`,
-				touid: touid,
-				tousername: tousername,
-				fromuid: this.props.myUid,
-				fromusername: fromusername,
-			},
-		})
-			.then((res) => {
-				if (res.status === 201) {
-					this.props.history.push('/success');
-				}
-			})
-			.catch((error) => {
-				alert('Oops! Something went wrong, please try again.', error);
-				console.log(error);
-			});
+		});
+		socket.on('mailStatus', (status) => {
+			if (status === 201) this.props.history.push('/my_mail');
+		});
+		// axios({
+		// 	method: 'post',
+		// 	url: `${this.props.API}/messages/send_message`,
+		// 	headers: {
+		// 		Authorization: `Bearer ${localStorage.token}`,
+		// 		'Content-type': 'application/json',
+		// 	},
+		// 	data: {
+		// 		message: this.props.text,
+		// 		subject: _.includes(subject, 'RE:') ? subject : `RE: ${subject}`,
+		// 		touid: touid,
+		// 		tousername: tousername,
+		// 		fromuid: this.props.myUid,
+		// 		fromusername: fromusername,
+		// 	},
+		// })
+		// 	.then((res) => {
+		// 		if (res.status === 201) {
+		// 			this.props.history.push('/success');
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		alert('Oops! Something went wrong, please try again.', error);
+		// 		console.log(error);
+		// 	});
 	};
 
 	render() {
@@ -171,6 +192,7 @@ const mapStateToProps = (state) => {
 		myUid: state.user.uid,
 		text: state.richText.text,
 		mods: state.richText,
+		userInfo: state.user,
 	};
 };
 
@@ -178,4 +200,4 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SellerContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(MailReply);

@@ -12,7 +12,7 @@ import socket from '../../../../_services/SocketService';
 class MailDisplay extends React.Component {
 	messageReply = (message) => {
 		this.props.messageReply(message);
-		this.props.history.push('/message-reply');
+		this.props.history.push('/mail_reply');
 	};
 
 	componentDidMount() {
@@ -24,14 +24,17 @@ class MailDisplay extends React.Component {
 	}
 
 	deleteMessage = (id) => {
+		console.log('mail id', id);
 		// socket.emit('deleteMessage', {
-		socket.emit('messages', {
-			eventType: 'deleteMessage',
+		socket.emit('mail', {
+			eventType: 'deleteMail',
 			authToken: localStorage.token,
 			uid: this.props.userInfo.uid,
-			message_id: id,
+			args: {
+				mailID: id,
+			},
 		});
-		this.props.history.push('/messages');
+		this.props.history.push('/my_mail');
 	};
 
 	messageSeen = (mail) => {

@@ -30,6 +30,7 @@ import GetMail from '../Users/Mail/GetMail/GetMail';
 //import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
+import MailReply from '../Users/Mail/MailReply/MailReply';
 const Pages = (props) => {
 	return (
 		<React.Fragment>
@@ -46,6 +47,7 @@ const Pages = (props) => {
 			<Route path="/messages" component={Messages} />
 			<Route path="/my_mail" component={GetMail} />
 			<Route path="/read_mail" component={MailDisplay} />
+			<Route path="/mail_reply" component={MailReply} />
 			<Route path="/my_classifieds" component={MyListings} />
 			<Route path="/my_profile" component={EditProfile} />
 			<Route path="/register" component={Register} />
