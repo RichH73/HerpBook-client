@@ -37,32 +37,6 @@ class App extends Component {
 
 	componentDidUpdate() {
 		console.log('this is the socket', socket);
-		const openSocket = () => {
-			if (!!this.props.userInfo.socketId) {
-				return;
-			}
-			socket.on('connect', () => {
-				// socket.emit('newUser', {
-				// 	uid: this.props.userUid,
-				// 	authToken: localStorage.token,
-				// });
-			});
-			//   socket.emit("mail", {
-			// 	eventType: "checkMail",
-			// 	uid: this.props.userInfo.uid,
-			// 	authToken: localStorage.token,
-			//   });
-			socket.on('downloadNewMail', (mailData) => {
-				this.props.newUserMail({
-					mailCount: mailData.inbox.filter((count) => !count.seen).length,
-					inbox: mailData.inbox,
-					sentItmes: mailData.sentItems,
-				});
-			});
-		};
-		if (!!this.props.userInfo.uid) {
-			openSocket();
-		}
 	}
 
 	drawerToggleClickHandler = () => {
@@ -120,6 +94,16 @@ class App extends Component {
 			backdrop = <Backdrop click={this.backdropClickHandler} />;
 			sideDrawer = <SideDrawer history={this.props.history} />;
 		}
+
+		// socket.on('downloadNewMail', (mailData) => {
+		// 	console.log('email download tripped', mailData)
+		// 	this.props.newUserMail({
+		// 		mailCount: mailData.inbox.filter((count) => !count.seen).length,
+		// 		inbox: mailData.inbox,
+		// 		sentItmes: mailData.sentItems,
+		// 	});
+		// });
+
 		return (
 			<React.Fragment>
 				<div className="application-body">

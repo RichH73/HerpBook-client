@@ -1,24 +1,90 @@
 import io from 'socket.io-client';
 import serverStatus from '../../reducers/config';
+import { Base64 } from 'js-base64';
 
 const socket = io(serverStatus().server.serverSocket);
 
+if (localStorage.token) {
+	const user = localStorage.token ? JSON.parse(Base64.decode(localStorage.token.split('.')[1])) : '';
+	socket.on('connect', () => {
+		socket.emit('newUser', {
+			uid: user.uid,
+			authToken: localStorage.token,
+		});
+	});
+	socket.emit('mail', {
+		eventType: 'checkMail',
+		authToken: localStorage.token,
+		uid: user.uid,
+	});
+}
+console.log(io);
+
 export const setSocketID = (userData) => {
-	console.log('is there a socketID? ', !!userData.socketId);
 	if (!!userData.uid && !userData.socketId) {
 		socket.emit('newUser', {
 			uid: userData.uid,
 			authToken: localStorage.token,
 		});
 	}
+	if (!!userData.uid && userData.socketId) {
+		socket.on('downloadNewMail', (mailData) => {
+			console.log('email download tripped', mailData);
+			// this.props.newUserMail({
+			// 	mailCount: mailData.inbox.filter((count) => !count.seen).length,
+			// 	inbox: mailData.inbox,
+			// 	sentItmes: mailData.sentItems,
+			// });
+		});
+	}
 };
-socket.on('testing', (data) => {
-	console.log('Holy Shit! Does it work?');
+
+socket.on('disconnect', (data) => {
+	console.log('disconnect data', socket.removeAllListeners());
+	socket.off('downloadNewMail');
+	socket.removeAllListeners();
+	// io.sockets.removeListener('connect', data => {
+	// 	console.log(data)
+	// });
 });
 
 export default socket;
 
 /*
+		const openSocket = () => {
+			if (!!this.props.userInfo.socketId) {
+				return;
+			}
+			socket.on('connect', () => {
+				// socket.emit('newUser', {
+				// 	uid: this.props.userUid,
+				// 	authToken: localStorage.token,
+				// });
+			});
+			//   socket.emit("mail", {
+			// 	eventType: "checkMail",
+			// 	uid: this.props.userInfo.uid,
+			// 	authToken: localStorage.token,
+			//   });
+			socket.on('downloadNewMail', (mailData) => {
+				this.props.newUserMail({
+					mailCount: mailData.inbox.filter((count) => !count.seen).length,
+					inbox: mailData.inbox,
+					sentItmes: mailData.sentItems,
+				});
+			});
+		};
+		if (!!this.props.userInfo.uid) {
+			openSocket();
+		}
+
+
+
+
+
+
+
+
 businessCity: "Tampa"
 businessName: "Herpbook Classifieds"
 businessPhone: "+1 (813) 555-1232"

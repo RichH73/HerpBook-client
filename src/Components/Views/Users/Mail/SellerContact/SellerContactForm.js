@@ -51,23 +51,23 @@ class SellerContactForm extends React.Component {
 		event.preventDefault();
 		console.log('submitting form');
 		socket.emit('getMyMail', this.props.userInfo);
-		// socket.emit('mail', {
-		// 	eventType: 'createMail',
-		// 	uid: this.props.userInfo.uid,
-		// 	authToken: localStorage.token,
-		// 	args: {
-		// 		headers: {
-		// 			recipient: this.props.location.userToUid,
-		// 			from: this.props.userInfo.uid,
-		// 		},
-		// 		newMailMessage: {
-		// 			from: this.props.userInfo.uid,
-		// 			sent: new Date(),
-		// 			subject: `${this.props.location.listSubject} (Message from visitor)`,
-		// 			body: this.props.text,
-		// 		},
-		// 	},
-		// });
+		socket.emit('mail', {
+			eventType: 'createMail',
+			uid: this.props.userInfo.uid,
+			authToken: localStorage.token,
+			args: {
+				headers: {
+					recipient: this.props.location.userToUid,
+					from: this.props.userInfo.uid,
+				},
+				newMailMessage: {
+					from: this.props.userInfo.uid,
+					sent: new Date(),
+					subject: `${this.props.location.listSubject} (Message from visitor)`,
+					body: this.props.text,
+				},
+			},
+		});
 		// socket.on('mailStatus', (status) => {
 		//     if (status === 201) this.props.history.push('/my_mail');
 		//     console.log(status)
