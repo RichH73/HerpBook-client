@@ -5,7 +5,6 @@ const initialState = {
 const my_listings = (state = initialState, data) => {
 	switch (data.type) {
 		case 'my_classifieds':
-			console.log(data);
 			return {
 				...state,
 				listings: data.data,

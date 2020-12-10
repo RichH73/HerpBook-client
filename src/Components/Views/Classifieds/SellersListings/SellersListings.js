@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './SellersListings.css';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 
 class SellersOtherListings extends Component {
 	state = {
@@ -28,13 +29,13 @@ class SellersOtherListings extends Component {
 							</div>
 							<div className="listing-box-info" style={{ width: '80%', margin: 'auto' }}>
 								<table>
-									<th>Title</th>
+									<th>Price</th>
 									<th>Gender</th>
 									<th>Price</th>
 									<th>Seller</th>
 									<tr>
 										<td>
-											<div className="listing-title">{list.title}</div>
+											<div className="listing-title">{list.price}</div>
 										</td>
 										<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
 										<td>
@@ -42,7 +43,7 @@ class SellersOtherListings extends Component {
 											<div className="listing-price">${list.price}</div>
 										</td>
 										<td>
-											<div>{list.username}</div>
+											<div>{get(list, 'username', get(list, 'user'))}</div>
 										</td>
 									</tr>
 								</table>

@@ -10,31 +10,22 @@ import socket from '../../../../_services/SocketService';
 
 class GetMail extends React.Component {
 	componentDidMount() {
-		console.log('User Socket ID', !!socket.id);
-		console.log('socket check?', !!this.props.userInfo.socketId);
-		console.log('User uid check', !!this.props.userInfo.uid);
 		this.props.setPageTitle('Mail');
-		if (!!this.props.userInfo.socketId) {
+		// if (!!this.props.userInfo.socketId) {
+		// 	socket.emit('mail', {
+		// 		eventType: 'checkMail',
+		// 		uid: this.props.userInfo.uid,
+		// 		authToken: localStorage.token,
+		// 		socketID: socket.id, //this.props.userInfo.socketId,
+		// 	});
+		// }
+		if (typeof socket.id === 'string') {
 			socket.emit('mail', {
 				eventType: 'checkMail',
 				uid: this.props.userInfo.uid,
 				authToken: localStorage.token,
-				socketID: socket.id, //this.props.userInfo.socketId,
+				socketID: socket.id,
 			});
-
-			// socket.emit('mail', {
-			// 	eventType: 'checkMail',
-			// 	uid: this.props.userInfo.uid,
-			// 	authToken: localStorage.token,
-			// });
-			//   socket.on("sendMail", (mailData) => {
-			//     console.log('new mail data', mailData)
-			//     this.props.newUserMail({
-			//       mailCount: mailData.inbox.filter((count) => !count.seen).length,
-			//       inbox: mailData.inbox,
-			//       sentItmes: mailData.sentItems,
-			//     });
-			//   });
 		}
 	}
 

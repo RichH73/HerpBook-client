@@ -24,8 +24,6 @@ class MailDisplay extends React.Component {
 	}
 
 	deleteMessage = (id) => {
-		console.log('mail id', id);
-		// socket.emit('deleteMessage', {
 		socket.emit('mail', {
 			eventType: 'deleteMail',
 			authToken: localStorage.token,
@@ -38,7 +36,6 @@ class MailDisplay extends React.Component {
 	};
 
 	messageSeen = (mail) => {
-		console.log('mail data', mail);
 		if (!!mail) {
 			if (!mail.seen) {
 				socket.emit('mail', {
@@ -60,7 +57,6 @@ class MailDisplay extends React.Component {
 		const { mailID } = this.props.location;
 		const { mail } = this.props;
 		const message = first(filter(mail, { _id: mailID }));
-		console.log('message data', message);
 		return (
 			<div className="message-display-pane" key={message._id}>
 				<table>

@@ -154,7 +154,6 @@ class Animal extends Component {
 			comments: comments,
 		};
 
-		console.log('this animal', animalUpdate);
 		this.props.modalSetState(true);
 		setTimeout(() => {
 			this.props.modalSetState(false);

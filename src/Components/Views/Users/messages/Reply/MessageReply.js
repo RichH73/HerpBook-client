@@ -56,7 +56,6 @@ class SellerContactForm extends React.Component {
 	};
 
 	messageText = (value) => {
-		//this.props.userInfoUpdate('businessFooter', text);
 		this.props.editText({
 			text: value,
 		});
@@ -64,17 +63,6 @@ class SellerContactForm extends React.Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		/*
-                  _id(pin):""
-                  fromusername(pin):""
-                  tousername(pin):""
-                  touid(pin):""
-                  subject(pin):""
-                  message(pin):""
-                  seen(pin):""
-                  created(pin):""
-
-                */
 		const { fromusername, tousername, touid, subject } = this.props.data;
 		axios({
 			method: 'post',
@@ -129,7 +117,6 @@ class SellerContactForm extends React.Component {
 
 						<div className="message-reply-form-group" id="id_message_box">
 							<div style={{ backgroundColor: 'white' }}>
-								{/* <Editor settings={{ modules: this.modules, formats: this.formats }} /> */}
 								<ReactQuill
 									style={{ backgroundColor: 'white', color: 'black' }}
 									name="message"
@@ -141,15 +128,7 @@ class SellerContactForm extends React.Component {
 									theme="snow"
 								/>
 							</div>
-							{/* <textarea name="message" cols="65" rows="10" className="vLargeTextField" maxLength="1000" id="id_message" onChange={this.onChangeHandler}/> */}
 						</div>
-
-						{/* <div id="div_id_message" className="form-group">
-          <label name="id_to_name" className="col-form-label requiredField">
-            To: 
-            {this.props.seller}
-          </label>
-        </div> */}
 					</fieldset>
 					<div style={{ textAlign: 'right' }}>
 						<button type="submit" className="message-reply-button button">

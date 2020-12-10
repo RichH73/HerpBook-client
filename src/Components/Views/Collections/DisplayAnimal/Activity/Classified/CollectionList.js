@@ -44,11 +44,6 @@ class CollectionList extends Component {
 			this.setState({ display_weights: false });
 			this.props.newListing(['display_weights'], false);
 		}
-		console.log(this.state);
-	};
-
-	but = () => {
-		console.log(this.state.display_weights);
 	};
 
 	// handleChange = (value) => {
@@ -83,7 +78,6 @@ class CollectionList extends Component {
 	// };
 
 	checkboxChangeHandler = (event) => {
-		console.log(event.target.name);
 		this.props.newListing([event.target.name]);
 	};
 

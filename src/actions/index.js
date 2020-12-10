@@ -233,7 +233,6 @@ export const token_login = () => {
 };
 
 export const setSocketID = (data) => {
-	console.log(data);
 	return {
 		type: 'updatingsocket',
 		data,
@@ -241,7 +240,6 @@ export const setSocketID = (data) => {
 };
 
 export const userInfoUpdate = (key, value) => {
-	console.log('Im updating', value);
 	return {
 		type: 'updateProfile',
 		key,

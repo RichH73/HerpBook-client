@@ -9,7 +9,7 @@ import Spinner from 'react-spinner-material';
 import SideDrawer from './Components/Navigation/mobileMenu/sideDrawer';
 import Backdrop from './Components/Navigation/mobileMenu/Backdrop/Backdrop';
 import { Base64 } from 'js-base64';
-//import Footer from './Components/Modules/Footer/Footer';
+import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
 
@@ -23,10 +23,8 @@ class App extends Component {
 	componentDidMount() {
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
-			console.log('silly socket', socket.id);
 			this.props.user_login(user);
 			socket.on('connect', () => {
-				console.log('Socket Conencted');
 				socket.emit('newUser', {
 					uid: this.props.userInfo.uid,
 				});
@@ -39,10 +37,12 @@ class App extends Component {
 				});
 			});
 		}
+		socket.onAny((event, ...args) => {
+			console.log(`got ${event}`);
+		});
 		this.props.getVendors();
 
 		socket.on('newMail', (mail) => {
-			console.log('got some new mail here!');
 			this.props.newUserMail({
 				mailCount: mail.inbox.filter((count) => !count.seen).length,
 				inbox: mail.inbox,
@@ -55,31 +55,16 @@ class App extends Component {
 		let socketID = this.props.userInfo.socketId;
 		let newSocket = socket.id;
 		let userID = this.props.userInfo.uid;
-
-		// if(!this.props.userInfo.socketId) {
-		// 	this.props.setSocketID(123)
-		// }
 		if (!!userID) {
 			socket.emit('setSocketID', {
 				uid: userID,
 				socketID: newSocket,
 			});
 			const mySocketID = socket.id;
-			//this.props.setSocketID(mySocketID)
-		}
-		if (!!socket.connected) {
-			console.log(socket.id);
-		}
-		if (!userID) {
-			console.log('Running no user logged in', newSocket);
 		}
 		if (!socketID) {
 		}
 		if (socketID) {
-			//let socketID = socket.id
-			//console.log('checking for socket', !!socketID)
-			console.log('I got a new ID', socketID);
-			console.log('Now checking for new mail...');
 			socket.emit('mail', {
 				eventType: 'checkMail',
 				uid: this.props.userInfo.uid,
@@ -88,11 +73,10 @@ class App extends Component {
 			});
 		}
 		socket.on('disconnect', () => {
-			console.log('Disconnecting, now sending clear to server');
 			socket.emit('removeSocketID', {
 				uid: this.props.userInfo.uid,
 			});
-			socket.removeAllListeners();
+			//socket.removeAllListeners();
 		});
 	}
 
@@ -145,43 +129,25 @@ class App extends Component {
 	};
 
 	render() {
-		// socket.on('newMail', (mail) => {
-		// 	console.log('got some new mail here!');
-		// 	this.props.newUserMail({
-		// 		mailCount: mail.inbox.filter((count) => !count.seen).length,
-		// 		inbox: mail.inbox,
-		// 		sentItmes: mail.sentItems,
-		// 	});
-		// });
-
 		let backdrop;
 		let sideDrawer;
 		if (this.state.sideDrawerOpen) {
 			backdrop = <Backdrop click={this.backdropClickHandler} />;
 			sideDrawer = <SideDrawer history={this.props.history} />;
 		}
-		console.log('This is my socket', socket.id);
-		// socket.on('downloadNewMail', (mailData) => {
-		// 	console.log('email download tripped', mailData)
-		// 	this.props.newUserMail({
-		// 		mailCount: mailData.inbox.filter((count) => !count.seen).length,
-		// 		inbox: mailData.inbox,
-		// 		sentItmes: mailData.sentItems,
-		// 	});
-		// });
 
 		return (
 			<React.Fragment>
 				<div className="application-body">
 					{sideDrawer}
 					{backdrop}
-					<div id="nav-button" onClick={this.drawerToggleClickHandler}>
+					<div className="mobile-nav-button" onClick={this.drawerToggleClickHandler}>
 						<img src="/images/hamburger_button.png" alt="nav" />
 					</div>
 					<this.spinner />
 					<Header />
 					<Body />
-					{/* <Footer /> */}
+					<Footer />
 				</div>
 			</React.Fragment>
 		);

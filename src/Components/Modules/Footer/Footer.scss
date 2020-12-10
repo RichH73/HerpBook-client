@@ -1,6 +1,27 @@
-.footer {
-	bottom: 0;
-	//position: fixed;
-	margin: auto;
-	width: 900px;
+@import '../../../index';
+
+@media screen and (min-width: 1000px) {
+	.main-app-footer {
+		display: none;
+		bottom: 20px;
+		height: 100px;
+		width: 1000px;
+		margin: 0 auto 1em;
+		border: 2px solid $bodyBorderColor;
+		border-radius: 10px;
+		justify-content: space-evenly;
+	}
+	.main-app-inner-footer {
+		width: 100%;
+		padding: 10px;
+		display: flex;
+		justify-content: space-evenly;
+	}
+}
+
+
+@media screen and (max-width: 999px) {
+	.main-app-footer {
+		display: none;
+	}
 }

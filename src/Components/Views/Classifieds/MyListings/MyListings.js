@@ -70,7 +70,7 @@ class MyListings extends Component {
 								<table>
 									<thead>
 										<tr>
-											<th>Title</th>
+											<th>Price</th>
 											<th>Gender</th>
 											<th>Price</th>
 											<th>Listed On</th>
@@ -79,7 +79,7 @@ class MyListings extends Component {
 									<tbody>
 										<tr>
 											<td>
-												<div className="my-listings-title">{list.title}</div>
+												<div className="my-listings-title">{list.price}</div>
 											</td>
 											<td>{!!list.gender ? <div className="my-listings-gender">{list.gender}</div> : ''}</td>
 											<td>

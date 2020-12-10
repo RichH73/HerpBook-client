@@ -1,12 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-//import './MessageReply.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
 import ReactQuill, { Quill } from 'react-quill';
-//import Quill from 'quill'
 import ImageCompress from 'quill-image-compress';
 import '../Messages.css';
 import socket from '../../../../_services/SocketService';
@@ -57,7 +55,6 @@ class MailReply extends React.Component {
 	};
 
 	messageText = (value) => {
-		//this.props.userInfoUpdate('businessFooter', text);
 		this.props.editText({
 			text: value,
 		});
@@ -65,17 +62,6 @@ class MailReply extends React.Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		/*
-                  _id(pin):""
-                  fromusername(pin):""
-                  tousername(pin):""
-                  touid(pin):""
-                  subject(pin):""
-                  message(pin):""
-                  seen(pin):""
-                  created(pin):""
-
-                */
 		const { fromusername, tousername, touid, subject } = this.props.data;
 		socket.emit('mail', {
 			eventType: 'createMail',
@@ -89,39 +75,13 @@ class MailReply extends React.Component {
 			newMailMessage: {
 				from: this.props.userInfo.uid,
 				sent: new Date(),
-				subject: subject,
+				subject: _.includes(subject, 'RE:') ? subject : `RE: ${subject}`,
 				body: this.props.text,
 			},
 		});
 		socket.on('mailStatus', (status) => {
-			console.log('staus coming in', status);
 			if (status === 201) this.props.history.push('/my_mail');
 		});
-		// axios({
-		// 	method: 'post',
-		// 	url: `${this.props.API}/messages/send_message`,
-		// 	headers: {
-		// 		Authorization: `Bearer ${localStorage.token}`,
-		// 		'Content-type': 'application/json',
-		// 	},
-		// 	data: {
-		// 		message: this.props.text,
-		// 		subject: _.includes(subject, 'RE:') ? subject : `RE: ${subject}`,
-		// 		touid: touid,
-		// 		tousername: tousername,
-		// 		fromuid: this.props.myUid,
-		// 		fromusername: fromusername,
-		// 	},
-		// })
-		// 	.then((res) => {
-		// 		if (res.status === 201) {
-		// 			this.props.history.push('/success');
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		alert('Oops! Something went wrong, please try again.', error);
-		// 		console.log(error);
-		// 	});
 	};
 
 	render() {
@@ -150,7 +110,6 @@ class MailReply extends React.Component {
 
 						<div className="message-reply-form-group" id="id_message_box">
 							<div style={{ backgroundColor: 'white' }}>
-								{/* <Editor settings={{ modules: this.modules, formats: this.formats }} /> */}
 								<ReactQuill
 									style={{ backgroundColor: 'white', color: 'black' }}
 									name="message"
@@ -162,15 +121,7 @@ class MailReply extends React.Component {
 									theme="snow"
 								/>
 							</div>
-							{/* <textarea name="message" cols="65" rows="10" className="vLargeTextField" maxLength="1000" id="id_message" onChange={this.onChangeHandler}/> */}
 						</div>
-
-						{/* <div id="div_id_message" className="form-group">
-          <label name="id_to_name" className="col-form-label requiredField">
-            To: 
-            {this.props.seller}
-          </label>
-        </div> */}
 					</fieldset>
 					<div style={{ textAlign: 'right' }}>
 						<button type="submit" className="message-reply-button button">

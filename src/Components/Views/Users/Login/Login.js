@@ -11,18 +11,23 @@ import { Base64 } from 'js-base64';
 import socket from '../../../_services/SocketService';
 import { startSocketService } from '../../../_services/SocketService';
 import _ from 'lodash';
+import FacebookLogin from 'react-facebook-login';
 /*
 facebook login stuff
 
 import FacebookLogin from 'react-facebook-login';
 
-        <Link to="/register">register here.</Link>
-          <FacebookLogin
-          appId="891710347959626"
-          autoLoad={true}
-          fields="name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook} />
+        <div>
+			<p>Or you can sing in with your Facebook Account.</p>
+			<div>
+				<FacebookLogin
+				appId="891710347959626"
+				autoLoad={true}
+				fields="name,email,picture"
+				onClick={this.componentClicked}
+				callback={this.responseFacebook} />
+			</div>
+		</div>
 
 */
 
@@ -85,9 +90,14 @@ class Login extends React.Component {
 		}
 	};
 
-	componentClicked = () => {};
+	componentClicked = (event) => {
+		console.log('this is facebook event', _.cloneDeep(event));
+	};
 
-	responseFacebook = (response) => {};
+	responseFacebook = (response) => {
+		console.log('this is facebook response', response);
+	};
+
 	render() {
 		return (
 			<div className="register-form">
@@ -149,3 +159,67 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
+
+/*
+TODO create code to make this functional
+
+*reponse*
+accessToken: "EAAMrAX6IXUoBAHczs7YWMGfpPUncsmRDPPeHltQ8E2IFXfz9rRy5xhxoYo81I8DHcQTL1sGsEfxV107Yi8LgFNVVr9xMRujGBDjyDkglfaFSRe52qqJIys5H37TBp8SLMVXTjEc7RqUHPKE5k8fvIEevEEifevOSZCRcH4xYF18hBHYZAvAjPr3VISGXXaj0w7ADDkUAZDZD"
+data_access_expiration_time: 1615378925
+email: "richh73@gmail.com"
+expiresIn: 5875
+graphDomain: "facebook"
+id: "3588944124455500"
+name: "Richard Howell"
+picture:
+data:
+height: 50
+is_silhouette: false
+url: "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3588944124455500&height=50&width=50&ext=1610194925&hash=AeQ4Ns4oFnGGnpyqQ00"
+width: 50
+__proto__: Object
+__proto__: Object
+signedRequest: "o4FQG2tPvmheqBPUZvK5W1zZN6Mi_4a3XgdXOD9UoWY.eyJ1c2VyX2lkIjoiMzU4ODk0NDEyNDQ1NTUwMCIsImNvZGUiOiJBUUR4Vk16SGxFbkg5aXVHNG9MeHp0TS1iMjhqVkhac1pRQjBtSWFZQmcxMldReWNheXJvMzlaeXZiWmhSNGhPSzFlcXExcW44NjRWcVhGd0k1Ykl4Y0VzRjhVUFpPQ1ktMWs2enQ2Z0o1SmZMa241c2dpWTRNLUFqeDNJdDRDempGUmRHWFV3cXpZNnY2VHhrakNzVy1TOTI5alA1Tnh2Um1RMFBxR2thQWlfYzhwS20yalo2V2txLXRUeURGcXNnMnNabkhYZWVmVVZRbk5jMXdSSHoxX1ZNbFMwcXZxU3EtRDE0cHgwR2tic3J4bUhWRjc3V1B6TEFLZmhPSGhHMkhUS1VwMGtsQnpUVFEzWlppbXROa3VaazZYamxqRV80TEdWRDZpQldQYkxaWUlJRjNOd1IxY0JXMERvMjNmU21sVHFYWDZ1c1pEcGlpNjI3VnVJckZ0a3dNTXBxWnU1SksxNmJybHBWbWRDVGdiLWtmOWM1cGxIamFoRGotR3ZTY0UiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTYwNzYwMjkyNX0"
+userID: "3588944124455500"
+__proto__: Object
+
+
+*event*
+
+altKey: false
+bubbles: true
+button: 0
+buttons: 0
+cancelable: true
+clientX: 398
+clientY: 535
+ctrlKey: false
+currentTarget: button.kep-login-facebook.metro
+defaultPrevented: false
+detail: 1
+dispatchConfig: {phasedRegistrationNames: {…}, dependencies: Array(1), eventPriority: 0}
+eventPhase: 3
+getModifierState: ƒ modifierStateGetter(keyArg)
+isDefaultPrevented: ƒ functionThatReturnsFalse()
+isPropagationStopped: ƒ functionThatReturnsFalse()
+isTrusted: true
+metaKey: false
+movementX: 0
+movementY: 0
+nativeEvent: MouseEvent {isTrusted: true, screenX: 3598, screenY: 670, clientX: 398, clientY: 535, …}
+pageX: 398
+pageY: 535
+relatedTarget: null
+screenX: 3598
+screenY: 670
+shiftKey: false
+target: button.kep-login-facebook.metro
+timeStamp: 5249.164999928325
+type: "click"
+view: Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+_dispatchInstances: FiberNode {tag: 5, key: null, elementType: "button", type: "button", stateNode: button.kep-login-facebook.metro, …}
+_dispatchListeners: ƒ (e)
+_targetInst: FiberNode {tag: 5, key: null, elementType: "button", type: "button", stateNode: button.kep-login-facebook.metro, …}
+__proto__: Class
+
+*/
