@@ -1,5 +1,9 @@
+import socket from '../Components/_services/SocketService';
+
 const initialState = {
 	uid: '',
+	socketId: '',
+	socketID: '',
 };
 
 const clear_state = initialState;
@@ -16,6 +20,12 @@ const user = (state = initialState, user) => {
 			return {
 				...state,
 				about: user.about.about,
+			};
+
+		case 'updatingsocket':
+			return {
+				...state,
+				socketId: user.data,
 			};
 
 		case 'LOG_OUT':

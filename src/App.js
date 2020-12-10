@@ -13,30 +13,87 @@ import { Base64 } from 'js-base64';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
 
-ReactGA.initialize('UA-136119302-1');
-
-if (!!localStorage.token) {
-}
-
+//ReactGA.initialize('UA-136119302-1');
 class App extends Component {
 	state = {
 		sideDrawerOpen: false,
 		user: this.props.userInfo,
 	};
 
-	async componentDidMount() {
+	componentDidMount() {
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			console.log('silly socket', socket.id);
 			this.props.user_login(user);
-			if (!!this.props.userInfo.uid) {
-			}
+			socket.on('connect', () => {
+				console.log('Socket Conencted');
+				socket.emit('newUser', {
+					uid: this.props.userInfo.uid,
+				});
+				this.props.setSocketID(socket.id);
+				socket.emit('mail', {
+					eventType: 'checkMail',
+					uid: this.props.userInfo.uid,
+					authToken: localStorage.token,
+					socketID: this.props.userInfo.socketId,
+				});
+			});
 		}
-
 		this.props.getVendors();
+
+		socket.on('newMail', (mail) => {
+			console.log('got some new mail here!');
+			this.props.newUserMail({
+				mailCount: mail.inbox.filter((count) => !count.seen).length,
+				inbox: mail.inbox,
+				sentItmes: mail.sentItems,
+			});
+		});
 	}
 
 	componentDidUpdate() {
-		console.log('this is the socket', socket);
+		let socketID = this.props.userInfo.socketId;
+		let newSocket = socket.id;
+		let userID = this.props.userInfo.uid;
+
+		// if(!this.props.userInfo.socketId) {
+		// 	this.props.setSocketID(123)
+		// }
+		if (!!userID) {
+			socket.emit('setSocketID', {
+				uid: userID,
+				socketID: newSocket,
+			});
+			const mySocketID = socket.id;
+			//this.props.setSocketID(mySocketID)
+		}
+		if (!!socket.connected) {
+			console.log(socket.id);
+		}
+		if (!userID) {
+			console.log('Running no user logged in', newSocket);
+		}
+		if (!socketID) {
+		}
+		if (socketID) {
+			//let socketID = socket.id
+			//console.log('checking for socket', !!socketID)
+			console.log('I got a new ID', socketID);
+			console.log('Now checking for new mail...');
+			socket.emit('mail', {
+				eventType: 'checkMail',
+				uid: this.props.userInfo.uid,
+				authToken: localStorage.token,
+				socketID: this.props.userInfo.socketID,
+			});
+		}
+		socket.on('disconnect', () => {
+			console.log('Disconnecting, now sending clear to server');
+			socket.emit('removeSocketID', {
+				uid: this.props.userInfo.uid,
+			});
+			socket.removeAllListeners();
+		});
 	}
 
 	drawerToggleClickHandler = () => {
@@ -94,7 +151,7 @@ class App extends Component {
 			backdrop = <Backdrop click={this.backdropClickHandler} />;
 			sideDrawer = <SideDrawer history={this.props.history} />;
 		}
-
+		console.log('This is my socket', socket.id);
 		// socket.on('downloadNewMail', (mailData) => {
 		// 	console.log('email download tripped', mailData)
 		// 	this.props.newUserMail({

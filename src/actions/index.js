@@ -1,16 +1,6 @@
 import axios from 'axios';
 import config from '../reducers/config';
 
-import socket from '../Components/_services/SocketService';
-
-socket.on('downloadNewMail', (mailData) => {
-	console.log('email download tripped', mailData);
-	newUserMail({
-		mailCount: mailData.inbox.filter((count) => !count.seen).length,
-		inbox: mailData.inbox,
-		sentItmes: mailData.sentItems,
-	});
-});
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
@@ -242,7 +232,16 @@ export const token_login = () => {
 	};
 };
 
+export const setSocketID = (data) => {
+	console.log(data);
+	return {
+		type: 'updatingsocket',
+		data,
+	};
+};
+
 export const userInfoUpdate = (key, value) => {
+	console.log('Im updating', value);
 	return {
 		type: 'updateProfile',
 		key,

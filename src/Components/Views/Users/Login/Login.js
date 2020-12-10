@@ -9,7 +9,8 @@ import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { Base64 } from 'js-base64';
 import socket from '../../../_services/SocketService';
-import { setSocketID } from '../../../_services/SocketService';
+import { startSocketService } from '../../../_services/SocketService';
+import _ from 'lodash';
 /*
 facebook login stuff
 
@@ -51,12 +52,10 @@ class Login extends React.Component {
 		})
 			.then((response) => {
 				if (response.status === 200) {
+					//startSocketService()
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					this.props.user_login(user);
-
-					setSocketID(user);
-					socket.connect();
 					this.props.history.push({
 						pathname: '/',
 					});

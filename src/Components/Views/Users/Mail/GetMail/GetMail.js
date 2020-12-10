@@ -10,13 +10,23 @@ import socket from '../../../../_services/SocketService';
 
 class GetMail extends React.Component {
 	componentDidMount() {
+		console.log('User Socket ID', !!socket.id);
+		console.log('socket check?', !!this.props.userInfo.socketId);
+		console.log('User uid check', !!this.props.userInfo.uid);
 		this.props.setPageTitle('Mail');
-		if (localStorage.token) {
+		if (!!this.props.userInfo.socketId) {
 			socket.emit('mail', {
 				eventType: 'checkMail',
 				uid: this.props.userInfo.uid,
 				authToken: localStorage.token,
+				socketID: this.props.userInfo.socketId,
 			});
+
+			// socket.emit('mail', {
+			// 	eventType: 'checkMail',
+			// 	uid: this.props.userInfo.uid,
+			// 	authToken: localStorage.token,
+			// });
 			//   socket.on("sendMail", (mailData) => {
 			//     console.log('new mail data', mailData)
 			//     this.props.newUserMail({
@@ -47,6 +57,7 @@ class GetMail extends React.Component {
 			));
 		}
 	};
+
 	render() {
 		return (
 			<div>

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import socket from '../../_services/SocketService';
+
 class LeftNav extends Component {
 	userNavigation = () => {
 		const { displayMailCount } = this.props;
@@ -66,7 +67,9 @@ class LeftNav extends Component {
 	};
 
 	logOut = () => {
-		socket.disconnect();
+		socket.emit('removeUserSocket', {
+			uid: this.props.userInfo.uid,
+		});
 		localStorage.removeItem('token');
 		this.props.userLogOut();
 	};
@@ -120,6 +123,7 @@ const mapStateToProps = (state) => ({
 	displayMailCount: state.userMail.mailCount,
 	collectionsIds: state.wholeCollection,
 	collectionsData: state.wholeCollection.collections,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {
