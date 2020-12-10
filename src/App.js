@@ -145,6 +145,15 @@ class App extends Component {
 	};
 
 	render() {
+		// socket.on('newMail', (mail) => {
+		// 	console.log('got some new mail here!');
+		// 	this.props.newUserMail({
+		// 		mailCount: mail.inbox.filter((count) => !count.seen).length,
+		// 		inbox: mail.inbox,
+		// 		sentItmes: mail.sentItems,
+		// 	});
+		// });
+
 		let backdrop;
 		let sideDrawer;
 		if (this.state.sideDrawerOpen) {

@@ -54,18 +54,17 @@ class SellerContactForm extends React.Component {
 		socket.emit('mail', {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,
+			socketID: socket.id,
 			authToken: localStorage.token,
-			args: {
-				headers: {
-					recipient: this.props.location.userToUid,
-					from: this.props.userInfo.uid,
-				},
-				newMailMessage: {
-					from: this.props.userInfo.uid,
-					sent: new Date(),
-					subject: `${this.props.location.listSubject} (Message from visitor)`,
-					body: this.props.text,
-				},
+			headers: {
+				recipient: this.props.location.userToUid,
+				from: this.props.userInfo.uid,
+			},
+			newMailMessage: {
+				from: this.props.userInfo.uid,
+				sent: new Date(),
+				subject: `${this.props.location.listSubject} (Message from visitor)`,
+				body: this.props.text,
 			},
 		});
 		// socket.on('mailStatus', (status) => {

@@ -30,23 +30,24 @@ class MailDisplay extends React.Component {
 			eventType: 'deleteMail',
 			authToken: localStorage.token,
 			uid: this.props.userInfo.uid,
-			args: {
-				mailID: id,
-			},
+			socketId: socket.id,
+			mailID: id,
+			args: {},
 		});
 		this.props.history.push('/my_mail');
 	};
 
 	messageSeen = (mail) => {
+		console.log('mail data', mail);
 		if (!!mail) {
 			if (!mail.seen) {
 				socket.emit('mail', {
 					eventType: 'mailSeen',
 					authToken: localStorage.token,
 					uid: this.props.userInfo.uid,
-					args: {
-						mailID: mail._id,
-					},
+					socketId: socket.id,
+					mailID: mail._id,
+					args: {},
 				});
 			}
 		}
@@ -59,8 +60,9 @@ class MailDisplay extends React.Component {
 		const { mailID } = this.props.location;
 		const { mail } = this.props;
 		const message = first(filter(mail, { _id: mailID }));
+		console.log('message data', message);
 		return (
-			<div className="message-display-pane" key={message.id}>
+			<div className="message-display-pane" key={message._id}>
 				<table>
 					<thead>
 						<tr>

@@ -81,20 +81,20 @@ class MailReply extends React.Component {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,
 			authToken: localStorage.token,
-			args: {
-				headers: {
-					recipient: this.props.data.from._id,
-					from: this.props.userInfo.uid,
-				},
-				newMailMessage: {
-					from: this.props.userInfo.uid,
-					sent: new Date(),
-					subject: subject,
-					body: this.props.text,
-				},
+			socketID: socket.id,
+			headers: {
+				recipient: this.props.data.from._id,
+				from: this.props.userInfo.uid,
+			},
+			newMailMessage: {
+				from: this.props.userInfo.uid,
+				sent: new Date(),
+				subject: subject,
+				body: this.props.text,
 			},
 		});
 		socket.on('mailStatus', (status) => {
+			console.log('staus coming in', status);
 			if (status === 201) this.props.history.push('/my_mail');
 		});
 		// axios({
