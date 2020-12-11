@@ -32,7 +32,7 @@ class SubCategory extends React.Component {
 			// this.setState({
 			// 	listings: response.data.listings,
 			// });
-			this.props.getSubCategoryListings(response.data.listings);
+			this.props.getSubCategoryListings({ listings: response.data.listings, pager: response.data.pager });
 			this.props.pageLoading(false);
 		});
 	}
@@ -52,9 +52,16 @@ class SubCategory extends React.Component {
 	);
 	// }
 
+	nextPage = () => {
+		let totalDocs = this.props.pageData.totalDocuments;
+		let totalPages = this.props.pageData.totalPages;
+		let currentPage = Math.floor((totalPages * 10) / totalDocs);
+		let nextPage = currentPage + 1;
+	};
+
 	render() {
 		const Listings = () => {
-			return this.props.listingsData.map((list) => (
+			let page = this.props.listingsData.map((list) => (
 				<React.Fragment>
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
@@ -95,6 +102,20 @@ class SubCategory extends React.Component {
 					</Link>
 				</React.Fragment>
 			));
+			return (
+				<React.Fragment>
+					{page}
+					{/* <div style={{display: 'flex'}}>
+            <div>
+              <button className="button" onClick={this.previousPage}>{"<"}</button>
+            </div>
+			<div style={{backgroundColor: 'orange', borderRadius: '7px', width: '2em', textAlign: 'center', padding: '5px'}}>{Math.floor(this.props.pageData.totalPages * 10 / this.props.pageData.totalDocuments)}</div>
+            <div>
+              <button className="button" onClick={this.nextPage}>{">"}</button>
+            </div>
+          </div> */}
+				</React.Fragment>
+			);
 		};
 
 		return <div className="listings-body">{!!this.props.listingsData.length > 0 ? <Listings /> : this.emptyListingsResponse}</div>;
@@ -110,6 +131,7 @@ const mapStateToProps = (state) => ({
 	USERS: state.config.server.serverUSERS,
 	ReactGA: state.config.analytics,
 	listingsData: state.subCategoryListings.listings,
+	pageData: state.subCategoryListings.pager,
 });
 
 const mapDispatchToProps = (dispatch) => {

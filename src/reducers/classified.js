@@ -49,7 +49,8 @@ export const subCategoryListings = (state = subCategoryListingsInitialState, dat
 	switch (data.type) {
 		case 'New_Listings':
 			return {
-				listings: data.data,
+				listings: data.data.listings,
+				pager: data.data.pager,
 			};
 		default:
 			return state;
