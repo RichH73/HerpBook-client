@@ -157,7 +157,7 @@ td {
     width: 75px;
   }
   .listing-box img {
-    width: 75px;
+    max-height: 4em;
   }
   .listing-info {
     width: 75%;

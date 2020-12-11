@@ -9,9 +9,9 @@ import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { Base64 } from 'js-base64';
 import socket from '../../../_services/SocketService';
-import { startSocketService } from '../../../_services/SocketService';
 import _ from 'lodash';
-import FacebookLogin from 'react-facebook-login';
+
+// import FacebookLogin from "react-facebook-login";
 /*
 facebook login stuff
 
@@ -61,15 +61,30 @@ class Login extends React.Component {
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					this.props.user_login(user);
-					this.props.history.push({
-						pathname: '/',
-					});
 				}
+			})
+			.then(() => {
+				socket.emit('setSocketID', {
+					uid: this.props.userInfo.uid,
+					socketID: socket.id,
+				});
+			})
+			.then(() => {
+				socket.emit('mail', {
+					eventType: 'checkMail',
+					uid: this.props.userInfo.uid,
+					authToken: localStorage.token,
+					socketID: this.props.userInfo.socketId,
+				});
+				this.props.history.push({
+					pathname: '/',
+				});
 			})
 			.catch((error) => {
 				this.setState({
 					login_failed: true,
 				});
+				throw new Error('An error has occured', error);
 				console.log(error);
 			});
 	};

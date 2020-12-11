@@ -99,6 +99,10 @@ td {
 		margin: auto;
 	}
 
+	.my-listings-box img {
+		max-height: 4em;
+	}
+
 	.my-listings-box-image {
 		text-align: center;
 		margin: .5em auto auto .2em;	
@@ -138,13 +142,6 @@ td {
 		padding: 0.5em 0 0.5em 0;
 		font-size: 0.8em;
 		text-align: center;
-	}
-
-	.my-listings-img img {
-		width: 75px;
-	}
-	.my-listings-box img {
-		width: 75px;
 	}
 
 	.my-listings-info {
