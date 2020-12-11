@@ -19,6 +19,7 @@ class AddNewAnimal extends Component {
 	};
 
 	componentDidMount() {
+		this.props.setPageTitle('Add a new animal');
 		this.props.getMyCollections({ uid: this.props.userInfo.uid });
 	}
 

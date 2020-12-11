@@ -121,46 +121,6 @@ class EditProfile extends React.Component {
 		//this.props.newProfilePic(get(newFile, '0.name'));
 	};
 
-	state_selector = (fieldName, state) => {
-		return (
-			<select name={fieldName} onChange={this.onChangeHandler}>
-				<option>{state}</option>
-				{this.props.states.map((state) => (
-					<option value={state}>{state}</option>
-				))}
-			</select>
-		);
-	};
-
-	phoneTypeSelector = (fieldName, entityPhoneType) => {
-		return (
-			<select name={fieldName} onChange={this.onChangeHandler}>
-				<option value={entityPhoneType}>{entityPhoneType}</option>
-				<option value="MOBILE">MOBILE</option>
-				<option value="HOME">HOME</option>
-				<option value="WORK">WORK</option>
-			</select>
-		);
-	};
-
-	display_address = () => {
-		const display_address_true = (
-			<select name="display_address" onChange={this.onChangeHandler}>
-				<option value={true}>Yes</option>
-				<option value={false}>No</option>
-			</select>
-		);
-
-		const display_address_false = (
-			<select name="display_address" onChange={this.onChangeHandler}>
-				<option value={false}>No</option>
-				<option value={true}>Yes</option>
-			</select>
-		);
-
-		return this.props.display_address === true ? display_address_true : display_address_false;
-	};
-
 	businessProfile = (user) => {
 		return (
 			<React.Fragment>
@@ -198,7 +158,10 @@ class EditProfile extends React.Component {
 					</div>
 					<div className="edit-profile-form-displayBusinessAddress">
 						<label className="field-input-label">Display Address? </label>
-						{this.display_address()}
+						<select name="display_address" onChange={this.onChangeHandler} defaultValue={user.display_address}>
+							<option value={false}>No</option>
+							<option value={true}>Yes</option>
+						</select>
 					</div>
 					<div className="edit-profile-form-businessStreet">
 						<label className="field-input-label">Street</label>
@@ -224,7 +187,12 @@ class EditProfile extends React.Component {
 					</div>
 					<div className="edit-profile-form-businessState">
 						<label className="field-input-label">State: </label>
-						{this.state_selector('businessState', user.businessState)}
+						<select name="businessState" onChange={this.onChangeHandler} defaultValue={user.businessState}>
+							<option></option>
+							{this.props.states.map((state) => (
+								<option value={state}>{state}</option>
+							))}
+						</select>
 					</div>
 					<div className="edit-profile-form-businessZip">
 						<label className="field-input-label">Zip Code: </label>
@@ -382,14 +350,20 @@ class EditProfile extends React.Component {
 							</div>
 							<div className="edit-profile-form-display-entity-phone">
 								<label className="field-input-label">Display Phone: </label>
-								<select>
-									<option>No</option>
-									<option>Yes</option>
+								<select name="displayEntityPhone" defaultValue={user.displayEntityPhone} onChange={this.onChangeHandler}>
+									<option value={false}>No</option>
+									<option value={true}>Yes</option>
 								</select>
 							</div>
 							<div className="edit-profile-form-entity-phone-type">
 								<label className="field-input-label">Phone Type: </label>
-								{this.phoneTypeSelector('entityPhoneType', user.entityPhoneType)}
+								{/* {this.phoneTypeSelector('entityPhoneType', user.entityPhoneType)} */}
+								<select name="entityPhoneType" onChange={this.onChangeHandler} defaultValue={user.entityPhoneType}>
+									<option></option>
+									<option value="MOBILE">MOBILE</option>
+									<option value="HOME">HOME</option>
+									<option value="WORK">WORK</option>
+								</select>
 							</div>
 
 							<div className="edit-profile-form-entity-street">
@@ -414,7 +388,12 @@ class EditProfile extends React.Component {
 							</div>
 							<div className="edit-profile-form-entity-state">
 								<label className="field-input-label">State: </label>
-								{this.state_selector('entityState', user.entityState)}
+								<select name="entityState" onChange={this.onChangeHandler} defaultValue={user.entityState}>
+									<option></option>
+									{this.props.states.map((state) => (
+										<option value={state}>{state}</option>
+									))}
+								</select>
 							</div>
 							<div className="edit-profile-form-entity-zip">
 								<label className="field-input-label">Zipcode: </label>

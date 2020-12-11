@@ -62,8 +62,6 @@ class App extends Component {
 			});
 			const mySocketID = socket.id;
 		}
-		if (!socketID) {
-		}
 		if (socketID) {
 			socket.emit('mail', {
 				eventType: 'checkMail',
@@ -76,7 +74,6 @@ class App extends Component {
 			socket.emit('removeSocketID', {
 				uid: this.props.userInfo.uid,
 			});
-			//socket.removeAllListeners();
 		});
 	}
 

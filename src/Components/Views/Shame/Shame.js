@@ -27,6 +27,7 @@ class Shame extends Component {
 		},
 	};
 	componentDidMount() {
+		this.props.setPageTitle('Wall of Shame');
 		//ReactGA.pageview("/welcome");
 		axios({
 			method: 'get',
