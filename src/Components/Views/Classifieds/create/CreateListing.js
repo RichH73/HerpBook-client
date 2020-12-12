@@ -314,7 +314,7 @@ class CreateListing extends React.Component {
 								<option selected value="false">
 									No shipping
 								</option>
-								<option value="true">Sipping Available</option>
+								<option value="true">Shipping Available</option>
 							</select>
 							{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
 						</div>
