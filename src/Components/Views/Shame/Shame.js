@@ -84,40 +84,63 @@ class Shame extends Component {
 
 	user_reports = () => {
 		return this.props.shames.map((report) => (
-			<div className="wall-of-shame-user-reports">
-				<div className="wall-of-shame-user-report">
-					<div className="wall-of-shame-user-reports-business-name">
+			<React.Fragment>
+				<Link to={{ pathname: '/view_shame', reportId: report._id }}>
+					<div style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
 						<h3>{report.business_name}</h3>
+						<table style={{ width: '98%', margin: '0 auto .5em' }}>
+							<thead>
+								<tr>
+									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td>
+									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
+									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Individual or owners name</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style={{ textAlign: 'center' }}>{report.business_website}</td>
+									<td style={{ textAlign: 'center' }}>{report.business_phone}</td>
+									<td style={{ textAlign: 'center' }}>{report.business_owner}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					<div className="wall-of-shame-user-reports-business-name">
-						<h3>
-							<Link to={{ pathname: '/view_shame', reportId: report._id }}>{report.business_name}</Link>
-						</h3>
-					</div>
+				</Link>
+				<div className="wall-of-shame-user-reports">
+					<div className="wall-of-shame-user-report">
+						<div className="wall-of-shame-user-reports-business-name">
+							<h3>{report.business_name}</h3>
+						</div>
+						<div className="wall-of-shame-user-reports-business-name">
+							<h3>
+								<Link to={{ pathname: '/view_shame', reportId: report._id }}>{report.business_name}</Link>
+							</h3>
+						</div>
 
-					<div className="wall-of-shame-user-reports-business-owner-name">
-						<label className="wall-of-shame-user-reports-label">Business Owners Name:</label>
-						<div className="wall-of-shame-user-reports-business-owner wall-of-shame-attribute">{report.business_owner}</div>
-					</div>
+						<div className="wall-of-shame-user-reports-business-owner-name">
+							<label className="wall-of-shame-user-reports-label">Business Owners Name:</label>
+							<div className="wall-of-shame-user-reports-business-owner wall-of-shame-attribute">{report.business_owner}</div>
+						</div>
 
-					<div className="wall-of-shame-user-reports-website">
-						<label className="wall-of-shame-user-reports-label">Website URL:</label>
-						<div className="wall-of-shame-attribute">{report.business_website}</div>
-					</div>
+						<div className="wall-of-shame-user-reports-website">
+							<label className="wall-of-shame-user-reports-label">Website URL:</label>
+							<div className="wall-of-shame-attribute">{report.business_website}</div>
+						</div>
 
-					<div className="wall-of-shame-user-reports-email">
-						<label className="wall-of-shame-user-reports-label">Email Address:</label>
-						<div className="wall-of-shame-attribute">{report.business_email}</div>
-					</div>
+						<div className="wall-of-shame-user-reports-email">
+							<label className="wall-of-shame-user-reports-label">Email Address:</label>
+							<div className="wall-of-shame-attribute">{report.business_email}</div>
+						</div>
 
-					<div className="wall-of-shame-user-reports-business-phone-number">
-						<label className="wall-of-shame-user-reports-label">Phone Number:</label>
-						<div className="wall-of-shame-attribute">{report.business_phone}</div>
-					</div>
+						<div className="wall-of-shame-user-reports-business-phone-number">
+							<label className="wall-of-shame-user-reports-label">Phone Number:</label>
+							<div className="wall-of-shame-attribute">{report.business_phone}</div>
+						</div>
 
-					{/* <div><Link to={{pathname: '/view_shame', reportId: report._id}}>See full report</Link></div> */}
+						{/* <div><Link to={{pathname: '/view_shame', reportId: report._id}}>See full report</Link></div> */}
+					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		));
 	};
 
