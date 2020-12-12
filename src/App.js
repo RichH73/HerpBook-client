@@ -19,7 +19,6 @@ class App extends Component {
 		sideDrawerOpen: false,
 		user: this.props.userInfo,
 	};
-
 	componentDidMount() {
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
@@ -37,6 +36,10 @@ class App extends Component {
 				});
 			});
 		}
+		socket.on('alertMessage', (message) => {
+			alert(message);
+		});
+		socket.emit('alertRecieved', 'OK');
 		socket.onAny((event, ...args) => {
 			console.log(`got ${event}`);
 		});
@@ -144,6 +147,7 @@ class App extends Component {
 					<this.spinner />
 					<Header />
 					<Body />
+					{window.innerWidth}
 					<Footer />
 				</div>
 			</React.Fragment>

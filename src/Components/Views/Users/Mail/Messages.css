@@ -57,6 +57,10 @@
   overflow: hidden;
 }
 
+.message-reply-form-group p {
+  font-size: 1em;
+}
+
 .message-reply-button {
   margin: 1em 1em 1em auto;
 }

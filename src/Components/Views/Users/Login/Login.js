@@ -57,29 +57,28 @@ class Login extends React.Component {
 		})
 			.then((response) => {
 				if (response.status === 200) {
+					let sock = socket.id;
+					console.log('the socket is ', sock);
 					//startSocketService()
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					this.props.user_login(user);
+					socket.emit('setSocketID', {
+						uid: user.uid,
+						socketID: socket.id,
+					});
+					socket.emit('mail', {
+						eventType: 'checkMail',
+						uid: user.uid,
+						authToken: localStorage.token,
+						socketID: sock,
+					});
+					this.props.history.push({
+						pathname: '/',
+					});
 				}
 			})
-			.then(() => {
-				socket.emit('setSocketID', {
-					uid: this.props.userInfo.uid,
-					socketID: socket.id,
-				});
-			})
-			.then(() => {
-				socket.emit('mail', {
-					eventType: 'checkMail',
-					uid: this.props.userInfo.uid,
-					authToken: localStorage.token,
-					socketID: this.props.userInfo.socketId,
-				});
-				this.props.history.push({
-					pathname: '/',
-				});
-			})
+			.then(() => {})
 			.catch((error) => {
 				this.setState({
 					login_failed: true,

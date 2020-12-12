@@ -7,7 +7,7 @@ import * as actionCreators from '../../../actions/index';
 
 class SideDrawer extends React.Component {
 	userNavigation = () => {
-		const { displayMessageCount } = this.props;
+		const { displayMailCount } = this.props;
 		return (
 			<React.Fragment>
 				<div className="sideDrawer-left-main-navigation-outter-panel">
@@ -19,12 +19,12 @@ class SideDrawer extends React.Component {
 							<a href="/my_profile">My Profile</a>
 						</div>
 						<div className="sideDrawer-nav-link">
-							{!!displayMessageCount ? (
-								<a href="/messages">
-									My Messages: <small style={{ color: 'red' }}>{displayMessageCount}</small>
+							{!!displayMailCount ? (
+								<a href="/my_mail">
+									My Mail: <small style={{ color: 'red' }}>{displayMailCount}</small>
 								</a>
 							) : (
-								<a href="/messages">My Messages</a>
+								<a href="/my_mail">My Mail</a>
 							)}
 						</div>
 					</div>
@@ -109,6 +109,7 @@ class SideDrawer extends React.Component {
 }
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
+	displayMailCount: state.userMail.mailCount,
 	USERSURL: state.config.server.usersURL,
 	URL: state.config.server.serverURL,
 	userCheck: state.user.uid,
