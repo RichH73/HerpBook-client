@@ -123,7 +123,7 @@ class MailReply extends React.Component {
 						</div>
 					</fieldset>
 					<div style={{ textAlign: 'right' }}>
-						<button type="submit" className="message-reply-button button">
+						<button disabled={!!this.props.text ? false : true} type="submit" className="message-reply-button button">
 							Send
 						</button>
 					</div>
