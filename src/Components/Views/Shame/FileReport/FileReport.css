@@ -37,4 +37,8 @@
   width: 20%;
   margin: 1em 10px 1em auto;
 }
+
+.shame-file-report-type select {
+  font-size: 1em;
+}
 /*# sourceMappingURL=FileReport.css.map */
