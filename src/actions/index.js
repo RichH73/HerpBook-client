@@ -329,6 +329,13 @@ export const shameText = (data) => {
 		data,
 	};
 };
+
+export const clearShameText = () => {
+	return {
+		type: 'Clear_Shame_Text',
+	};
+};
+
 export const newShameComment = (data) => {
 	return {
 		type: 'SHAME_COMMENT',

@@ -97,6 +97,10 @@ class ViewShame extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.clearRichText();
+	}
+
 	submitHandler = (data) => {
 		const { uid, username, first_name, last_name } = this.props.user;
 		//const commentBox = this.refs.commentBox;
