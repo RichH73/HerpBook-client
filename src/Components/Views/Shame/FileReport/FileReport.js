@@ -1,7 +1,7 @@
-import './Shame.css';
+import './FileReport.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 import React, { Component } from 'react';
 import { flatten, get } from 'lodash';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
+import NumberFormat from 'react-number-format';
 // eslint-disable-next-line
 import QuillEmoji from 'quill-emoji';
 //import Dropzone from "react-dropzone";
@@ -20,6 +21,13 @@ import ReactGA from 'react-ga';
 
 class Shame extends Component {
 	modules = {
+		imageCompress: {
+			quality: 0.7, // default
+			maxWidth: 400, // default
+			maxHeight: 400, // default
+			imageType: 'image/jpeg', // default
+			debug: false, // default
+		},
 		toolbar: [
 			[{ header: [1, 2, false] }],
 			['bold', 'italic', 'underline', 'strike', 'blockquote'],
@@ -41,7 +49,7 @@ class Shame extends Component {
 	}
 
 	onChangeHandler = (event) => {
-		this.props.fileNewReport([event.target.name], event.target.value);
+		this.props.createNewReport([event.target.name], event.target.value);
 	};
 
 	submitHandler = (event) => {
@@ -72,7 +80,7 @@ class Shame extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 				enctype: 'mylipart/form-data',
 			},
-			data: fileData,
+			data: this.props.reportData,
 		}).then((res) => {
 			if (res.status === 201) {
 				this.props.imagesUploaded();
@@ -133,6 +141,79 @@ class Shame extends Component {
 		this.props.deleteImages(path);
 	};
 
+	returnForm = () => {
+		console.log('this type', this.props.reportData.reportType);
+		switch (this.props.reportData.reportType) {
+			case 'BUSINESS':
+				return (
+					<React.Fragment>
+						<div className="shame-file-report-business-name shame-report-form-input">
+							<label className="shame-file-report-label">Business Name: </label>
+							<input className="shame-file-report-input" type="text" name="business_name" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-owner shame-report-form-input">
+							<label className="shame-file-report-label">Owner Name: </label>
+							<input className="shame-file-report-input" type="text" name="business_owner" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-website shame-report-form-input">
+							<label className="shame-file-report-label">Website Address: </label>
+							<input className="shame-file-report-input" type="url" name="business_website" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-email shame-report-form-input">
+							<label className="shame-file-report-label">Business Email: </label>
+							<input className="shame-file-report-input" type="email" name="business_email" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-phone shame-report-form-input">
+							<label className="shame-file-report-label">Business Phone: </label>
+							<NumberFormat
+								format="+1 (###) ###-####"
+								allowEmptyFormatting
+								mask="_"
+								onChange={this.onChangeHandler}
+								name="business_phone"
+								className="shame-file-report-input"
+							/>
+						</div>
+					</React.Fragment>
+				);
+			case 'INDIVIDUAL':
+				return (
+					<React.Fragment>
+						<div className="shame-file-report-business-name shame-report-form-input">
+							<label className="shame-file-report-label">Name: </label>
+							<input className="shame-file-report-input" type="text" name="individual_name" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-website shame-report-form-input">
+							<label className="shame-file-report-label">Website Address: </label>
+							<input className="shame-file-report-input" type="url" name="individual_website" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-email shame-report-form-input">
+							<label className="shame-file-report-label">Email: </label>
+							<input className="shame-file-report-input" type="email" name="individual_email" onChange={this.onChangeHandler} />
+						</div>
+
+						<div className="shame-file-report-business-phone shame-report-form-input">
+							<label className="shame-file-report-label">Phone: </label>
+							<NumberFormat
+								format="+1 (###) ###-####"
+								allowEmptyFormatting
+								mask="_"
+								onChange={this.onChangeHandler}
+								name="individual_phone"
+								className="shame-file-report-input"
+							/>
+						</div>
+					</React.Fragment>
+				);
+		}
+	};
+
 	render() {
 		return !!this.props.uid.length ? (
 			<React.Fragment>
@@ -146,37 +227,25 @@ class Shame extends Component {
 							If you have had a report filed against you and feel this is incorrect please <Link to={'contact'}>contact us</Link>.
 						</p>
 					</div>
-					<div className="shame-file-report-business-name shame-report-form-input">
-						<label className="shame-file-report-label">Business Name: </label>
-						<input className="shame-file-report-input" type="text" name="business_name" onChange={this.onChangeHandler} />
+					<div className="shame-file-report-fb-profile shame-report-form-input">
+						<label className="shame-file-report-label">Report Type: </label>
+						<select name="reportType" onChange={this.onChangeHandler} defaultValue={this.props.reportData.reportType}>
+							<option value="BUSINESS">Business</option>
+							<option value="INDIVIDUAL">Individual</option>
+						</select>
 					</div>
+					{this.returnForm(this.props.reportData.reportType)}
 
-					<div className="shame-file-report-business-owner shame-report-form-input">
-						<label className="shame-file-report-label">Owner Name: </label>
-						<input className="shame-file-report-input" type="text" name="business_owner" onChange={this.onChangeHandler} />
+					<div className="shame-file-report-fb-profile shame-report-form-input">
+						<label className="shame-file-report-label">FaceBook Profile (https://www.facebook.com/): </label>
+						<input className="shame-file-report-input" type="text" name="faceBook" onChange={this.onChangeHandler} />
 					</div>
-
-					<div className="shame-file-report-business-website shame-report-form-input">
-						<label className="shame-file-report-label">Website Address: </label>
-						<input className="shame-file-report-input" type="url" name="business_website" onChange={this.onChangeHandler} />
-					</div>
-
-					<div className="shame-file-report-business-email shame-report-form-input">
-						<label className="shame-file-report-label">Business Email: </label>
-						<input className="shame-file-report-input" type="email" name="business_email" onChange={this.onChangeHandler} />
-					</div>
-
-					<div className="shame-file-report-business-phone shame-report-form-input">
-						<label className="shame-file-report-label">Business Phone: </label>
-						<input className="shame-file-report-input" type="text" name="business_phone" onChange={this.onChangeHandler} />
-					</div>
-
 					<div className="shame-file-report-textarea">
 						<label className="shame-file-report-label">Incident Description: </label>
 						<ReactQuill
 							style={{ backgroundColor: 'white', color: 'black' }}
 							name="description"
-							value={this.props.shameData.incident_description}
+							value={this.props.reportData.incident_description}
 							onChange={this.descriptionChange}
 							modules={this.modules}
 							// modules={this.props.mods.modules}
@@ -185,41 +254,11 @@ class Shame extends Component {
 							theme="snow"
 						/>
 					</div>
-
-					<div>
-						{/* <Dropzone
-              accept="image/*"
-              onDrop={this.onPreviewDrop}
-              maxSize={30000000}
-            >
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div className="shame-file-reort-dropbox" {...getRootProps()}>
-                    <span>
-                      Drag and drop or click here to upload any supporting screen shots for this event.
-                    </span>
-                    <input {...getInputProps()} />
-                  </div>
-                </section>
-              )}
-            </Dropzone> */}
-						{/* {this.props.images.length > 0 && (
-              <div className="shame-file-report-preview">
-                <h5>Image Preview</h5>
-                <p>Click on an image to remove it.</p>
-                {this.props.images.map(file => (
-                  <img
-                    alt="Preview"
-                    key={file.preview}
-                    src={file.preview}
-                    onClick={() => this.clickHandler(file.path)}
-                  />
-                ))}
-              </div>
-            )} */}
-					</div>
+					<div></div>
 					<div className="wall-of-shame-file-submit">
-						<button onClick={this.submitHandler}>Save</button>
+						<button className="button" onClick={this.submitHandler}>
+							Submit
+						</button>
 					</div>
 				</div>
 			</React.Fragment>
@@ -249,6 +288,7 @@ const mapStateToProps = (state) => ({
 	//images: state.classifiedImages.images,
 	uid: state.user.uid,
 	mods: state.richText.modules,
+	reportData: state.fileShameReport,
 });
 
 const mapDispatchToProps = (dispatch) => {

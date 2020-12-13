@@ -350,6 +350,21 @@ export const newShames = (data) => {
 	};
 };
 
+export const getReportData = (data) => {
+	return {
+		type: 'report_data',
+		reportData: data,
+	};
+};
+
+export const createNewReport = (key, value) => {
+	return {
+		type: 'new_report_data',
+		key,
+		value,
+	};
+};
+
 export const clearClassifiedData = () => {
 	return {
 		type: 'CLEAR_CLASSIFIED',
