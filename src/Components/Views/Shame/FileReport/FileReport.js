@@ -48,6 +48,10 @@ class Shame extends Component {
 		ReactGA.pageview('/file_shame');
 	}
 
+	componentWillUnmount() {
+		this.props.clearShameText();
+	}
+
 	onChangeHandler = (event) => {
 		this.props.createNewReport([event.target.name], event.target.value);
 	};
@@ -84,7 +88,7 @@ class Shame extends Component {
 		}).then((res) => {
 			if (res.status === 201) {
 				this.props.imagesUploaded();
-				this.props.clearRichText();
+				this.props.clearShameText();
 				this.props.history.push({
 					pathname: '/success/classified_listing',
 				});

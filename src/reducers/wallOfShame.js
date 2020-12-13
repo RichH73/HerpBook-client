@@ -89,6 +89,8 @@ export const fileShameReport = (state = fileShameReportInitialState, data) => {
 				...state,
 				incident_description: data.data,
 			};
+		case 'Clear_Shame_Text':
+			return state;
 		default:
 			return state;
 	}
