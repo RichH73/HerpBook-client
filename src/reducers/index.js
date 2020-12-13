@@ -17,7 +17,7 @@ import richText from './richText';
 import { spinner, alertModal, bar_img, scanBarCode } from './tools';
 import { subCategoryListings } from './classified';
 import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
-import wallOfShame from './wallOfShame';
+import { wallOfShame, fileShameReport } from './wallOfShame';
 import showFloatingImage from './floatingImage';
 import editRecord from './editRecords';
 import { new_clutch, current_clutch, my_clutches } from './clutches';
@@ -26,37 +26,38 @@ import userMail from './userMail';
 
 const allReducers = combineReducers({
 	alertModal,
-	my_clutches,
+	bar_img,
 	categories,
 	classified,
 	config,
+	createNewAnimal,
 	current_clutch,
 	editRecord,
+	fileShameReport,
 	imageHandler,
 	listing,
 	messageReply,
 	messages,
+	my_clutches,
 	my_listings,
 	new_clutch,
 	pageId,
 	pictures,
 	richText,
 	scanBarCode,
+	selectedAnimal,
+	showFloatingImage,
 	spinner,
 	states,
 	subCategoryListings,
 	user_posts,
 	user_profile,
 	user,
-	Vendors,
-	wallOfShame,
-	viewAnimal,
-	wholeCollection,
-	selectedAnimal,
-	createNewAnimal,
-	showFloatingImage,
-	bar_img,
 	userMail,
+	Vendors,
+	viewAnimal,
+	wallOfShame,
+	wholeCollection,
 });
 
 export default allReducers;

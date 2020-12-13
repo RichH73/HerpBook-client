@@ -147,7 +147,6 @@ class App extends Component {
 					<this.spinner />
 					<Header />
 					<Body />
-					{window.innerWidth}
 					<Footer />
 				</div>
 			</React.Fragment>

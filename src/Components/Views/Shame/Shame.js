@@ -10,22 +10,7 @@ import { Link } from 'react-router-dom';
 //import ReactGA from "react-ga";
 
 class Shame extends Component {
-	state = {
-		styles: {
-			zIndex: 300,
-			width: '100%',
-			height: '100%',
-			backgroundColor: 'white',
-			position: 'relative',
-			left: 0,
-			top: 0,
-			display: 'none',
-		},
-		image: {
-			name: '',
-			address: '',
-		},
-	};
+	state = {};
 	componentDidMount() {
 		this.props.setPageTitle('Wall of Shame');
 		//ReactGA.pageview("/welcome");
@@ -36,23 +21,6 @@ class Shame extends Component {
 			this.props.newShames(response.data);
 		});
 	}
-
-	imgFloatingDiv = (image) => {
-		const imgAddress = `https://www.herpbook.com/wall_of_shame/${image}`;
-		this.props.newFloatingImage(imgAddress);
-	};
-
-	hideFloatingImage = () => {
-		this.props.hideFloatingImage();
-	};
-
-	displayImages = (imgs) => {
-		return imgs.map((image) => (
-			<div className="wall-of-shame-images">
-				<img src={`https://www.herpbook.com/wall_of_shame/${image}`} onClick={() => this.imgFloatingDiv(image)} alt={image} />
-			</div>
-		));
-	};
 
 	submitHandler = (data) => {
 		const { uid, username, first_name, last_name } = this.props.user;
@@ -67,111 +35,100 @@ class Shame extends Component {
 		this.props.shameReportComment(commentData);
 	};
 
-	leaveCommentBox = (props) => {
-		if (this.props.registeredUser) {
-			return (
-				<div className="wall-of-shame-user-report-leave-comment">
-					<label className="field-input-label">Leave a comment:</label>
-					<div>
-						<input type="text" name="newComment" onChange={this.onChangeHandler} />
-						<button onClick={() => this.submitHandler(props)}>Submit</button>
-					</div>
-				</div>
-			);
-		}
-		return <div className="wall-of-shame-user-report-leave-comment">Log in to leave a comment</div>;
-	};
-
 	user_reports = () => {
-		return this.props.shames.map((report) => (
-			<React.Fragment>
-				<Link to={{ pathname: '/view_shame', reportId: report._id }}>
-					<div style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
-						<h3>{report.business_name}</h3>
-						<table style={{ width: '98%', margin: '0 auto .5em' }}>
-							<thead>
-								<tr>
-									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td>
-									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
-									<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Individual or owners name</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td style={{ textAlign: 'center' }}>{report.business_website}</td>
-									<td style={{ textAlign: 'center' }}>{report.business_phone}</td>
-									<td style={{ textAlign: 'center' }}>{report.business_owner}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</Link>
-				<div className="wall-of-shame-user-reports">
-					<div className="wall-of-shame-user-report">
-						<div className="wall-of-shame-user-reports-business-name">
-							<h3>{report.business_name}</h3>
-						</div>
-						<div className="wall-of-shame-user-reports-business-name">
-							<h3>
-								<Link to={{ pathname: '/view_shame', reportId: report._id }}>{report.business_name}</Link>
-							</h3>
-						</div>
-
-						<div className="wall-of-shame-user-reports-business-owner-name">
-							<label className="wall-of-shame-user-reports-label">Business Owners Name:</label>
-							<div className="wall-of-shame-user-reports-business-owner wall-of-shame-attribute">{report.business_owner}</div>
-						</div>
-
-						<div className="wall-of-shame-user-reports-website">
-							<label className="wall-of-shame-user-reports-label">Website URL:</label>
-							<div className="wall-of-shame-attribute">{report.business_website}</div>
-						</div>
-
-						<div className="wall-of-shame-user-reports-email">
-							<label className="wall-of-shame-user-reports-label">Email Address:</label>
-							<div className="wall-of-shame-attribute">{report.business_email}</div>
-						</div>
-
-						<div className="wall-of-shame-user-reports-business-phone-number">
-							<label className="wall-of-shame-user-reports-label">Phone Number:</label>
-							<div className="wall-of-shame-attribute">{report.business_phone}</div>
-						</div>
-
-						{/* <div><Link to={{pathname: '/view_shame', reportId: report._id}}>See full report</Link></div> */}
-					</div>
-				</div>
-			</React.Fragment>
-		));
+		return this.props.shames.map((report) => {
+			switch (report.reportType) {
+				case 'BUSINESS':
+					return (
+						<React.Fragment>
+							<Link to={{ pathname: '/view_shame', reportId: report.id }}>
+								<div className="wall-of-shame-user-reports" style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
+									<h3>{report.business_name}</h3>
+									<table style={{ width: '98%', margin: '0 auto .5em' }}>
+										<thead>
+											<tr>
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td>
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Individual or owners name</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td style={{ textAlign: 'center' }}>{report.business_website}</td>
+												<td style={{ textAlign: 'center' }}>{report.business_phone}</td>
+												<td style={{ textAlign: 'center' }}>{report.business_owner}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</Link>
+						</React.Fragment>
+					);
+				case 'INDIVIDUAL':
+					return (
+						<React.Fragment>
+							<Link to={{ pathname: '/view_shame', reportId: report.id }}>
+								<div className="wall-of-shame-user-reports" style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
+									<h3>{report.individual_name}</h3>
+									{console.log(report)}
+									<table style={{ width: '98%', margin: '0 auto .5em' }}>
+										<thead>
+											<tr>
+												{/* <td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td> */}
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Email</td>
+												<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Facebook profile</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												{/* <td style={{ textAlign: 'center' }}>{report.individual_website}</td> */}
+												<td style={{ textAlign: 'center' }}>{report.individual_phone}</td>
+												<td style={{ textAlign: 'center' }}>{report.individual_email}</td>
+												<td style={{ textAlign: 'center' }}>{report.faceBook}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</Link>
+						</React.Fragment>
+					);
+			}
+		});
 	};
 
-	commentMapper = (comments) => {
-		return comments.map((comment) => (
-			<React.Fragment>
-				<div className="wall-of-shame-user-report-comment">
-					{comment.username} <small>{comment.date}</small>
-					<br />
-					{comment.comment}
-				</div>
-			</React.Fragment>
-		));
-	};
-
-	onChangeHandler = (event, report) => {
-		event.preventDefault();
-		this.props.fileNewReport([event.target.name], event.target.value);
-		this.props.fileNewReport('testing', report);
-	};
+	// user_reports = () => {
+	// 	return this.props.shames.map((report) => (
+	// 		<React.Fragment>
+	// 			<Link to={{ pathname: '/view_shame', reportId: report.id }}>
+	// 				<div className='wall-of-shame-user-reports' style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
+	// 					<h3>{report.business_name}</h3>
+	// 					<table style={{ width: '98%', margin: '0 auto .5em' }}>
+	// 						<thead>
+	// 							<tr>
+	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td>
+	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
+	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Individual or owners name</td>
+	// 							</tr>
+	// 						</thead>
+	// 						<tbody>
+	// 							<tr>
+	// 								<td style={{ textAlign: 'center' }}>{report.business_website}</td>
+	// 								<td style={{ textAlign: 'center' }}>{report.business_phone}</td>
+	// 								<td style={{ textAlign: 'center' }}>{report.business_owner}</td>
+	// 							</tr>
+	// 						</tbody>
+	// 					</table>
+	// 				</div>
+	// 			</Link>
+	// 		</React.Fragment>
+	// 	));
+	// };
 
 	render() {
 		return (
 			<React.Fragment>
-				<div style={this.state.styles} onClick={this.hideFloatingImage}>
-					Hello world
-				</div>
 				<div>
-					<div className="wall-of-shame-header">
-						<h3>Wall of Shame</h3>
-					</div>
 					<div className="wall-of-shame-disclaimer">
 						<p>
 							The following reports are posted by individual users of HerpBook.com. Any views and opinions represented belong solely to the user and
@@ -185,7 +142,7 @@ class Shame extends Component {
 						</p>
 					</div>
 					<div className="wall-of-shame-file-report">
-						<Link to="/file_report">File a report by click here.</Link>
+						<Link to="/file_report">Click here to file a new report.</Link>
 					</div>
 				</div>
 				<this.user_reports />
