@@ -109,17 +109,6 @@ class Shame extends Component {
 				});
 			}
 		});
-		// if(this.props.images.length > 5) {
-		//   alert('Only 6 images are allowed per listing.')
-		//   this.props.imagesUploaded();
-		//   return
-		// }
-
-		// if(files.length > 5) {
-		//   alert('Only 6 images are allowed per listing.')
-		//   this.props.imagesUploaded();
-		//   return
-		// }
 
 		const saveFiles = files.map((file) => file);
 		const newFile = files.map((file) => ({
@@ -231,7 +220,7 @@ class Shame extends Component {
 							If you have had a report filed against you and feel this is incorrect please <Link to={'contact'}>contact us</Link>.
 						</p>
 					</div>
-					<div className="shame-file-report-fb-profile shame-report-form-input">
+					<div className="shame-file-report-type shame-report-form-input">
 						<label className="shame-file-report-label">Report Type: </label>
 						<select name="reportType" onChange={this.onChangeHandler} defaultValue={this.props.reportData.reportType}>
 							<option value="BUSINESS">Business</option>
