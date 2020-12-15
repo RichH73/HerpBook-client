@@ -7,6 +7,7 @@ import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
 import dayjs from 'dayjs';
 import ScanQr from '../../_services/Scan/ScanBarCode';
+import { sub } from 'date-fns';
 
 class MyCollections extends Component {
 	state = {
@@ -55,7 +56,6 @@ class MyCollections extends Component {
 				</tr>
 			);
 		});
-
 		return collections;
 	};
 
@@ -82,11 +82,13 @@ class MyCollections extends Component {
 			<div>
 				<h4>{display.header}</h4>
 				<table>
-					<tbody>
+					<thead>
 						<th>ID</th>
 						<th>Name</th>
 						<th>DOB</th>
 						<th>Gender</th>
+					</thead>
+					<tbody>
 						{display.subs.map((sub) => {
 							return (
 								<tr onClick={() => this.loadAnimal(sub._id)}>
@@ -103,6 +105,61 @@ class MyCollections extends Component {
 		));
 	};
 
+	showLists = () => {
+		const collectionFilter = !!this.state.sub_cat
+			? this.props.collections.filter((animal) => {
+					if (animal.sub_category === this.state.sub_cat) {
+						return animal;
+					}
+			  })
+			: this.props.collections;
+		return (
+			<div>
+				<table>
+					<thead>
+						<th>ID</th>
+						<th>Name</th>
+						<th>DOB</th>
+						<th>Gender</th>
+					</thead>
+					<tbody>
+						{collectionFilter.map((sub) => {
+							return (
+								<tr onClick={() => this.loadAnimal(sub._id)}>
+									<td>{sub._id}</td>
+									<td>{sub.name}</td>
+									{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
+									<td>{sub.gender}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		);
+	};
+
+	subDropdown = () => {
+		let changeFilter = (event) => {
+			this.setState({
+				[event.target.name]: _.toNumber(event.target.value),
+			});
+		};
+		let subsFiltered = _.uniq(
+			this.props.collections.map((sub) => {
+				return sub.sub_category;
+			})
+		);
+		return (
+			<select name="sub_cat" onChange={changeFilter}>
+				<option>Show all</option>
+				{subsFiltered.map((sub) => (
+					<option value={sub}>{sub}</option>
+				))}
+			</select>
+		);
+	};
+
 	render() {
 		const { codeSearched } = this.props;
 		if (!!codeSearched) {
@@ -115,8 +172,8 @@ class MyCollections extends Component {
 						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
 						{!!this.state.showScanner ? <ScanQr /> : ''}
 					</div>
-
-					<div className="collections-my-collections-active-list">{this.sortLists()}</div>
+					<div>{this.subDropdown()}</div>
+					<div className="collections-my-collections-active-list">{this.showLists()}</div>
 				</div>
 			</React.Fragment>
 		);
