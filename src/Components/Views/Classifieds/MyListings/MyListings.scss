@@ -10,7 +10,7 @@ td {
 	.my-listings-box-info table {
 		width: 100%;
 		border-collapse: collapse;
-		margin: .5em;
+		margin: 0.5em;
 	}
 
 	.my-listings-box {
@@ -19,8 +19,8 @@ td {
 		color: black;
 		display: grid;
 		grid-template-areas:
-		'list-table list-table'
-		'list-img delete-button';
+			'list-table list-table'
+			'list-img delete-button';
 		text-decoration: none;
 	}
 
@@ -28,7 +28,7 @@ td {
 		grid-area: delete-button;
 		text-align: center;
 	}
-	
+
 	.my-listings-box-image {
 		grid-area: list-img;
 		margin: auto;
@@ -105,7 +105,7 @@ td {
 
 	.my-listings-box-image {
 		text-align: center;
-		margin: .5em auto auto .2em;	
+		margin: 0.5em auto auto 0.2em;
 	}
 
 	.my-listings-title {
@@ -167,7 +167,7 @@ td {
 	}
 
 	.my-listings-delete {
-		margin: auto .4em;
+		margin: auto 0.4em;
 	}
 
 	input::-webkit-outer-spin-button,

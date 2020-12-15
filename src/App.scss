@@ -15,8 +15,6 @@
 	border: solid $buttonBorder 1px;
 }
 
-
-
 // button {
 // 	border-radius: 7px;
 // 	width: 80px;
@@ -36,8 +34,8 @@
 @media screen and ($maxWidth) {
 	input {
 		font-size: 1em;
-		margin-top: .3em;
-		margin-bottom: .8em;
+		margin-top: 0.3em;
+		margin-bottom: 0.8em;
 	}
 	.mobile-nav-button {
 		display: block;

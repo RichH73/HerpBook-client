@@ -107,7 +107,21 @@ export const hideLargeImage = () => {
 };
 // Large Image END
 
-// Collections
+//
+
+export const newCollectionFilter = (key, value) => {
+	return {
+		type: 'NewFilter',
+		key,
+		value,
+	};
+};
+
+export const clearCollectionFilters = () => {
+	return {
+		type: 'ClearFilters',
+	};
+};
 
 export const setCurrentAnimal = (id) => {
 	return {
@@ -119,6 +133,13 @@ export const setCurrentAnimal = (id) => {
 export const createAnimalData = (data) => {
 	return {
 		type: 'create_new_animal_data',
+		data,
+	};
+};
+
+export const clearAnimalData = (data) => {
+	return {
+		type: 'clear_new_animal_data',
 		data,
 	};
 };

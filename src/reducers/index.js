@@ -16,7 +16,7 @@ import messageReply from './messageReply';
 import richText from './richText';
 import { spinner, alertModal, bar_img, scanBarCode } from './tools';
 import { subCategoryListings } from './classified';
-import { viewAnimal, wholeCollection, selectedAnimal, createNewAnimal } from './collections';
+import { viewAnimal, myCollections, selectedAnimal, createNewAnimal, myCollectionsFilters } from './collections';
 import { wallOfShame, fileShameReport } from './wallOfShame';
 import showFloatingImage from './floatingImage';
 import editRecord from './editRecords';
@@ -40,6 +40,8 @@ const allReducers = combineReducers({
 	messages,
 	my_clutches,
 	my_listings,
+	myCollections,
+	myCollectionsFilters,
 	new_clutch,
 	pageId,
 	pictures,
@@ -57,7 +59,6 @@ const allReducers = combineReducers({
 	Vendors,
 	viewAnimal,
 	wallOfShame,
-	wholeCollection,
 });
 
 export default allReducers;

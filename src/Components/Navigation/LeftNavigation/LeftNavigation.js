@@ -121,8 +121,8 @@ const mapStateToProps = (state) => ({
 	URL: state.config.server.serverURL,
 	userCheck: state.user.uid,
 	displayMailCount: state.userMail.mailCount,
-	collectionsIds: state.wholeCollection,
-	collectionsData: state.wholeCollection.collections,
+	collectionsIds: state.myCollections,
+	collectionsData: state.myCollections.collections,
 	userInfo: state.user,
 });
 

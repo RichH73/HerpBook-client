@@ -25,6 +25,7 @@ class AddNewAnimal extends Component {
 
 	componentWillUnmount() {
 		this.props.imagesUploaded();
+		this.props.clearAnimalData();
 	}
 
 	onSubmitHandler = (event) => {
@@ -126,6 +127,64 @@ class AddNewAnimal extends Component {
 		console.error(err);
 	}
 
+	sireDisplay = () => {
+		const { category, sub_category } = this.props.createAnimal;
+		let collections = this.props.collections;
+		console.log('this sub', collections);
+		if (!sub_category) {
+			collections = [];
+		}
+		if (!!sub_category) {
+			collections = collections.filter((sub) => {
+				if (sub.sub_category === sub_category && sub.gender === 'MALE') {
+					return sub;
+				}
+			});
+			return (
+				<React.Fragment>
+					<label className="field-input-label">Sire:</label>
+					<div>
+						<select name="sire" onChange={this.formChangeHandler}>
+							<option>Add Sire</option>
+							{collections.map((collection) => (
+								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+							))}
+						</select>
+					</div>
+				</React.Fragment>
+			);
+		}
+	};
+
+	damDisplay = () => {
+		const { category, sub_category } = this.props.createAnimal;
+		let collections = this.props.collections;
+		console.log('this sub', collections);
+		if (!sub_category) {
+			collections = [];
+		}
+		if (!!sub_category) {
+			collections = collections.filter((sub) => {
+				if (sub.sub_category === sub_category && sub.gender === 'FEMALE') {
+					return sub;
+				}
+			});
+			return (
+				<React.Fragment>
+					<label className="field-input-label">Sire:</label>
+					<div>
+						<select name="dam" onChange={this.formChangeHandler}>
+							<option>Add Dam</option>
+							{collections.map((collection) => (
+								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+							))}
+						</select>
+					</div>
+				</React.Fragment>
+			);
+		}
+	};
+
 	render() {
 		return (
 			<React.Fragment>
@@ -147,17 +206,10 @@ class AddNewAnimal extends Component {
 							</div>
 						</div>
 						<div className="collections-create-new-animal-sire">
-							<label className="field-input-label">Sire:</label>
-							<div>
-								<input type="text" name="sire" onChange={this.formChangeHandler} />
-							</div>
+							{this.sireDisplay()}
+							{/* <input type="text" name="sire" onChange={this.formChangeHandler} /> */}
 						</div>
-						<div className="collections-create-new-animal-dam">
-							<label className="field-input-label">Dam:</label>
-							<div>
-								<input type="text" name="dam" onChange={this.formChangeHandler} />
-							</div>
-						</div>
+						<div className="collections-create-new-animal-dam">{this.damDisplay()}</div>
 						<div className="collections-create-new-animal-dob">
 							<label className="field-input-label">DOB:</label>
 							<div>
@@ -217,6 +269,7 @@ const mapStateToProps = (state) => ({
 	USERSURL: state.config.server.usersURL,
 	category: state.createNewAnimal.category,
 	categoryItems: state.categories.categories,
+	collections: state.myCollections.collections,
 	createAnimal: state.createNewAnimal,
 	creatorId: state.user.uid,
 	sendFiles: state.imageHandler.sendFiles,

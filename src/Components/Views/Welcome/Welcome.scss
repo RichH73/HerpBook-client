@@ -1,13 +1,13 @@
 @import '../../../index';
 
-@media screen and (min-width: 601px){
+@media screen and (min-width: 601px) {
 	.welcome-page-main {
 		padding: 8px;
 		position: relative;
 		color: black;
 		//color: white;
 	}
-	
+
 	// .welcome-page-main-hero {
 	// 	content: '';
 	// 	background-image: url('/images/perry.jpg');
@@ -33,12 +33,12 @@
 	// 	opacity: .5;
 	// 	z-index: -1;
 	// }
-	
+
 	.welcome-page-bg {
 		width: 600px;
 		height: 400px;
 	}
-	
+
 	.welcome-page-fb-like {
 		display: block;
 		width: 60%;
@@ -47,11 +47,11 @@
 	}
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
 	.welcome-page-main {
 		padding: 8px;
 	}
-	
+
 	.welcome-page-fb-like {
 		display: none;
 		width: 100%;
@@ -59,4 +59,3 @@
 		text-align: left;
 	}
 }
-

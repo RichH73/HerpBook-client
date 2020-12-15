@@ -1,152 +1,152 @@
 //@media screen and (min-width: 900px) {
-@import "../../../index";
+@import '../../../index';
 .wall-of-shame-header {
-  width: 100%;
-  //background-color: green;
-  color: white;
+	width: 100%;
+	//background-color: green;
+	color: white;
 }
 
 .wall-of-shame-user-reports {
-  color: black;
+	color: black;
 }
 
 .wall-of-shame-user-reports:hover {
-  background-color: $lightBlue;
+	background-color: $lightBlue;
 }
 
 .wall-of-shame-user-report {
-  display: grid;
-  grid-template-areas:
-    "businessName businessName"
-    "webSiteName businessOwnerName"
-    "businessPhoneNumber businessEmail"
-    "incidentDescription incidentDescription"
-    "reportImages reportImages"
-    "reportComments reportComments"
-    "leaveComment leaveComment";
+	display: grid;
+	grid-template-areas:
+		'businessName businessName'
+		'webSiteName businessOwnerName'
+		'businessPhoneNumber businessEmail'
+		'incidentDescription incidentDescription'
+		'reportImages reportImages'
+		'reportComments reportComments'
+		'leaveComment leaveComment';
 }
 
 .wall-of-shame-user-report label {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .wall-of-shame-user-reports-business-name {
-  grid-area: businessName;
+	grid-area: businessName;
 }
 
 .wall-of-shame-user-reports-business-owner-name {
-  grid-area: businessOwnerName;
-  text-align: center;
+	grid-area: businessOwnerName;
+	text-align: center;
 }
 
 .wall-of-shame-user-reports-website {
-  grid-area: webSiteName;
-  text-align: center;
+	grid-area: webSiteName;
+	text-align: center;
 }
 
 .wall-of-shame-user-reports-email {
-  grid-area: businessEmail;
-  text-align: center;
+	grid-area: businessEmail;
+	text-align: center;
 }
 
 .wall-of-shame-user-reports-business-phone-number {
-  grid-area: businessPhoneNumber;
-  text-align: center;
+	grid-area: businessPhoneNumber;
+	text-align: center;
 }
 
 .wall-of-shame-user-reports-incident-desription {
-  grid-area: incidentDescription;
-  margin-top: 1em;
-  margin-bottom: 2em;
+	grid-area: incidentDescription;
+	margin-top: 1em;
+	margin-bottom: 2em;
 }
 
 .wall-of-shame-user-report-images {
-  grid-area: reportImages;
-  display: flex;
-  justify-content: space-evenly;
+	grid-area: reportImages;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .shame-report-form-input {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 
 .wall-of-shame-user-report-leave-comment {
-  margin: 3em auto;
-  grid-area: leaveComment;
-  width: 98%;
+	margin: 3em auto;
+	grid-area: leaveComment;
+	width: 98%;
 }
 
-.wall-of-shame-user-report-leave-comment, .ql-editor {
-  height: 200px;
+.wall-of-shame-user-report-leave-comment,
+.ql-editor {
+	height: 200px;
 }
 
 .wall-of-shame-user-report-leave-comment input {
-  margin: auto;
-  width: 90%;
+	margin: auto;
+	width: 90%;
 }
 
 .wall-of-shame-header h3 {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .wall-of-shame-disclaimer {
-  color: black;
-  width: 100%;
-  //background-color: #B2D7B9;
-  //padding: 1em;
+	color: black;
+	width: 100%;
+	//background-color: #B2D7B9;
+	//padding: 1em;
 }
 
 .wall-of-shame-disclaimer p {
-  width: 95%;
-  margin: 1em auto;
-  text-align: left;
+	width: 95%;
+	margin: 1em auto;
+	text-align: left;
 }
 
 .wall-of-shame-attribute {
-  // margin-top: 10px;
-  font-size: 1rem;
+	// margin-top: 10px;
+	font-size: 1rem;
 }
 
 .wall-of-shame-user-reports-label {
-  margin: 1em 0 0 0;
+	margin: 1em 0 0 0;
 }
 
 .wall-of-shame-user-reports-incident-description {
-  width: 90%;
-  margin: auto;
+	width: 90%;
+	margin: auto;
 }
 
 .wall-of-shame-user-reports-incident-description p {
-  white-space: pre-line;
+	white-space: pre-line;
 }
 
 .wall-of-shame-images img {
-  width: 200px;
+	width: 200px;
 }
 
 .shame-file-reort-dropbox {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  width: 40%;
-  padding: 3px;
-  border-radius: 10px;
-  border: 2px solid limegreen;
-  //background-color: rgba(104, 168, 104, 0.253);
+	margin-top: 1em;
+	margin-bottom: 1em;
+	width: 40%;
+	padding: 3px;
+	border-radius: 10px;
+	border: 2px solid limegreen;
+	//background-color: rgba(104, 168, 104, 0.253);
 }
 
 .wall-of-shame-file-report {
-  margin: 1em auto;
-  font-size: 1.2em;
-  text-align: center;
+	margin: 1em auto;
+	font-size: 1.2em;
+	text-align: center;
 }
 .wall-of-shame-file-report a {
-  color: blue;
-  text-decoration: none;
+	color: blue;
+	text-decoration: none;
 }
 
 .wall-of-shame-user-report-imgFl img {
-  text-align: center;
+	text-align: center;
 }
-
 
 //}

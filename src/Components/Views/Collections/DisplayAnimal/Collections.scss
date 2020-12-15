@@ -1,828 +1,829 @@
-@import "../../../../index";
+@import '../../../../index';
 
 .collection-edit-record-main-panel {
-    z-index: 1;
-    position: absolute;
-    left: 0;
-    right: 0;
-    //bottom: 20px;
-    // display: none;
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	right: 0;
+	//bottom: 20px;
+	// display: none;
 
-    // height: 600px;
-    //width: 100%;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    background-color: white;
-    color: black;
-    border: 1px solid $borderColor;
+	// height: 600px;
+	//width: 100%;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	background-color: white;
+	color: black;
+	border: 1px solid $borderColor;
 
-    padding: 0px;
+	padding: 0px;
 }
 
 .collection-edit-record-header {
-
 }
 
 .body-main-header {
-  position: relative;
+	position: relative;
 }
-
 
 @media screen and (min-width: 840px) {
-// Start Animal
-
-
-.collection-animal-comment {
-  width: 200px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// End Animal
-
-// Create Animal
-
-.collections-create-new-animal {
-  display: grid;
-  grid-template-areas:
-    "new-animal-form"
-    "new-animal-images"
-    "footer";
-}
-
-.collections-create-new-animal-images {
-  margin: 3em auto;
-  grid-area: new-animal-images;
-}
-
-.collections-create-new-animal-form {
-  width: 75%;
-  margin: auto;
-  grid-area: new-animal-form;
-  display: grid;
-  grid-template-areas:
-    "create-name create-dob"
-    "create-sire create-dam"
-    "... create-gender"
-    "category ..."
-    "sub-category ...";
-}
-
-.collections-create-new-animal-footer {
-  margin: auto 5em 0;
-  grid-area: footer;
-  text-align: right;
-  padding-right: 5em;
-}
-
-.collections-create-new-animal-form input {
-  margin: 5px 0;
-}
-
-.collections-create-new-animal-name {
-  grid-area: create-name;
-  width: 200px;
-}
-
-.collections-create-new-animal-dob {
-  grid-area: create-dob;
-}
-
-.collections-create-new-animal-sire {
-  grid-area: create-sire;
-}
-
-.collections-create-new-animal-dam {
-  grid-area: create-dam;
-}
-
-.collections-create-new-animal-gender {
-  grid-area: create-gender;
-}
-
-.collections-create-new-animal-button {
-  grid-area: create-button;
-  padding: 8px;
-}
-
-.collections-create-new-animal-button button {
-  width: 80px;
-}
-
-.collections-create-new-animal-img-drop {
-}
-
-.collections-create-new-animal-img-drop-dropbox {
-  width: 60%;
-  padding: 3px;
-  border-radius: 10px;
-  border: 2px solid $borderColor;
-  background-color: $panelBodyColor;
-  margin: auto;
-}
-
-.img-preview {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-}
-.img-preview img {
-  width: 100px;
-}
-
-.collections-create-new-animal-img-drop-preview {
-}
-
-.collections-create-new-animal-category {
-  grid-area: category;
-  margin-bottom: 8px;
-}
-
-.collections-create-new-animal-sub-category {
-  grid-area: sub-category;
-}
-
-// End Create Animal
-
-.collections-tab-header {
-  border-color: orange;
-}
-
-.collections-tab-body {
-  //padding: 10px;
-}
-
-.react-tabs__tab--selected {
-  border-color: orange;
-}
-
-.react-tabs__tab-list {
-  border-color: orange;
-}
-
-
-
-
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.7rem;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-.collections-animal-more-images {
-  padding: 10px;
-}
-
-.collections-animal-more-images-display {
-  margin-top: 2em;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: auto auto auto;
-  justify-content: space-evenly;
-}
-
-.collections-create-new-animal-img-drop-button {
-  text-align: right;
-  margin-top: 10px;
-  padding-right: 134px;
-  //width: 80px;
-}
-
-.collections-animal-more-images img {
-  width: 100px;
-  cursor: pointer;
-}
-
-// Feeding Records
-//   .collections-animal-records-feedings {
-//       font-size: .8rem;
-//   }
-// End feeding records
-
-.collections-my-collections-active-list td:hover {
-  cursor: pointer;
-}
-
-.collections-my-collections-active-list {
-  padding: 10px;
-}
-
-.collections-my-collections-active-list tr:hover {
-  background-color: $lightBlue;
-}
-
-// Activity
-.collections-create-new-activity {
-  padding: 10px;
-}
-
-// Activity End
-
-// Images/Photos
-
-.collections-images-image-box {
-  width: 200px;
-  //height: 220px;
-  background-color: $lightBlue;
-  border-radius: 7px;
-  padding-bottom: 10px;
-}
-
-.collections-images-image-header {
-  text-align: center;
-  height: 25px;
-  background-color: orange;
-  padding: 4px 0;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  margin: 0 auto 1em;
-}
-.collections-images-imgage-body {
-  text-align: center;
-}
-
-.collections-images-image-body img {
-  text-align: center;
-}
-
-.collections-images-imgage-body-info p {
-  font-size: 0.8rem;
-  margin: 10px;
-}
-
-.collections-images-image {
-  text-align: center;
-  width: 100%;
-  height: 50%;
-}
-
-.collections-images-imgage-footer {
-  //padding: 10px;
-  text-align: center;
-}
-
-// End Images
-
-.collections-qr-search {
-  display: none;
-}
-
+	// Start Animal
+
+	.collection-animal-comment {
+		width: 200px;
+	}
+
+	.my-collections-quick-filters {
+		margin: 1em auto;
+		border: 1px solid $borderColor;
+		border-radius: 7px;
+		width: 90%;
+	}
+
+	.my-collections-quick-filters-select {
+		display: grid;
+		grid-template-columns: auto auto;
+		text-align: center;
+		//justify-content: space-around;
+		margin: 1em auto;
+	}
+
+	.my-collections-quick-filters-select-clear {
+		width: 100px;
+		margin: 1em 4.5em 1em auto;
+		cursor: pointer;
+		background-color: $borderColor;
+		border-radius: 3px;
+		text-align: center;
+		border: 0.5px solid $borderColor;
+	}
+
+	.my-collections-quick-filters-select-clear:hover {
+		background-color: rgb(255, 136, 0);
+		border: 0.5px solid red;
+	}
+
+	.my-collections-quick-filters select {
+		// background-color: $borderColor;
+		font-size: 1em;
+		border: 1px solid $borderColor;
+	}
+
+	// End Animal
+
+	// Create Animal
+
+	.collections-create-new-animal {
+		display: grid;
+		grid-template-areas:
+			'new-animal-form'
+			'new-animal-images'
+			'footer';
+	}
+
+	.collections-create-new-animal-images {
+		margin: 3em auto;
+		grid-area: new-animal-images;
+	}
+
+	.collections-create-new-animal-form {
+		width: 75%;
+		margin: auto;
+		grid-area: new-animal-form;
+		display: grid;
+		grid-template-areas:
+			'create-name create-dob'
+			'create-sire create-dam'
+			'... create-gender'
+			'category ...'
+			'sub-category ...';
+	}
+
+	.collections-create-new-animal-footer {
+		margin: auto 5em 0;
+		grid-area: footer;
+		text-align: right;
+		padding-right: 5em;
+	}
+
+	.collections-create-new-animal-form input {
+		margin: 5px 0;
+	}
+
+	.collections-create-new-animal-name {
+		grid-area: create-name;
+		width: 200px;
+	}
+
+	.collections-create-new-animal-dob {
+		grid-area: create-dob;
+	}
+
+	.collections-create-new-animal-sire {
+		grid-area: create-sire;
+	}
+
+	.collections-create-new-animal-dam {
+		grid-area: create-dam;
+	}
+
+	.collections-create-new-animal-gender {
+		grid-area: create-gender;
+	}
+
+	.collections-create-new-animal-button {
+		grid-area: create-button;
+		padding: 8px;
+	}
+
+	.collections-create-new-animal-button button {
+		width: 80px;
+	}
+
+	.collections-create-new-animal-img-drop {
+	}
+
+	.collections-create-new-animal-img-drop-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+
+	.img-preview {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+	.img-preview img {
+		width: 100px;
+	}
+
+	.collections-create-new-animal-img-drop-preview {
+	}
+
+	.collections-create-new-animal-category {
+		grid-area: category;
+		margin-bottom: 8px;
+	}
+
+	.collections-create-new-animal-sub-category {
+		grid-area: sub-category;
+	}
+
+	// End Create Animal
+
+	.collections-tab-header {
+		border-color: orange;
+	}
+
+	.collections-tab-body {
+		//padding: 10px;
+	}
+
+	.react-tabs__tab--selected {
+		border-color: orange;
+	}
+
+	.react-tabs__tab-list {
+		border-color: orange;
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 0.7rem;
+	}
+
+	td,
+	th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	.collections-animal-more-images {
+		padding: 10px;
+	}
+
+	.collections-animal-more-images-display {
+		margin-top: 2em;
+		display: grid;
+		grid-gap: 20px;
+		grid-template-columns: auto auto auto;
+		justify-content: space-evenly;
+	}
+
+	.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
+
+	.collections-animal-more-images img {
+		width: 100px;
+		cursor: pointer;
+	}
+
+	// Feeding Records
+	//   .collections-animal-records-feedings {
+	//       font-size: .8rem;
+	//   }
+	// End feeding records
+
+	.collections-my-collections-active-list td:hover {
+		cursor: pointer;
+	}
+
+	.collections-my-collections-active-list {
+		padding: 10px;
+	}
+
+	.collections-my-collections-active-list tr:hover {
+		background-color: $lightBlue;
+	}
+
+	// Activity
+	.collections-create-new-activity {
+		padding: 10px;
+	}
+
+	// Activity End
+
+	// Images/Photos
+
+	.collections-images-image-box {
+		width: 200px;
+		//height: 220px;
+		background-color: $lightBlue;
+		border-radius: 7px;
+		padding-bottom: 10px;
+	}
+
+	.collections-images-image-header {
+		text-align: center;
+		height: 25px;
+		background-color: orange;
+		padding: 4px 0;
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+		margin: 0 auto 1em;
+	}
+	.collections-images-imgage-body {
+		text-align: center;
+	}
+
+	.collections-images-image-body img {
+		text-align: center;
+	}
+
+	.collections-images-imgage-body-info p {
+		font-size: 0.8rem;
+		margin: 10px;
+	}
+
+	.collections-images-image {
+		text-align: center;
+		width: 100%;
+		height: 50%;
+	}
+
+	.collections-images-imgage-footer {
+		//padding: 10px;
+		text-align: center;
+	}
+
+	// End Images
+
+	.collections-qr-search {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 699px) {
+	// Create Animal
 
-// Create Animal
+	.collections-create-new-animal {
+		display: grid;
+		grid-template-areas:
+			'new-animal-form'
+			'new-animal-images'
+			'footer';
+	}
 
-.collections-create-new-animal {
-  display: grid;
-  grid-template-areas:
-    "new-animal-form"
-    "new-animal-images"
-    "footer";
-}
+	.collections-create-new-animal-images {
+		margin: 3em auto;
+		grid-area: new-animal-images;
+	}
 
-.collections-create-new-animal-images {
-  margin: 3em auto;
-  grid-area: new-animal-images;
-}
+	.collections-create-new-animal-form {
+		width: 90%;
+		margin: auto;
+		grid-area: new-animal-form;
+		display: grid;
+		grid-template-areas:
+			'create-name create-dob'
+			'create-sire create-dam'
+			'... create-gender'
+			'category ...'
+			'sub-category ...';
+	}
 
-.collections-create-new-animal-form {
-  width: 90%;
-  margin: auto;
-  grid-area: new-animal-form;
-  display: grid;
-  grid-template-areas:
-    "create-name create-dob"
-    "create-sire create-dam"
-    "... create-gender"
-    "category ..."
-    "sub-category ...";
-}
+	.collections-create-new-animal-footer {
+		margin: auto 5em 0;
+		grid-area: footer;
+		text-align: right;
+		padding-right: 5em;
+	}
 
-.collections-create-new-animal-footer {
-  margin: auto 5em 0;
-  grid-area: footer;
-  text-align: right;
-  padding-right: 5em;
-}
+	.collections-create-new-animal-form input {
+		margin: 15px 0;
+	}
 
-.collections-create-new-animal-form input {
-  margin: 15px 0;
-}
+	.collections-create-new-animal-name {
+		grid-area: create-name;
+		width: 200px;
+	}
 
-.collections-create-new-animal-name {
-  grid-area: create-name;
-  width: 200px;
-}
+	.collections-create-new-animal-dob {
+		grid-area: create-dob;
+	}
 
-.collections-create-new-animal-dob {
-  grid-area: create-dob;
-}
+	.collections-create-new-animal-sire {
+		grid-area: create-sire;
+	}
 
-.collections-create-new-animal-sire {
-  grid-area: create-sire;
-}
+	.collections-create-new-animal-dam {
+		grid-area: create-dam;
+	}
 
-.collections-create-new-animal-dam {
-  grid-area: create-dam;
-}
+	.collections-create-new-animal-gender {
+		grid-area: create-gender;
+	}
 
-.collections-create-new-animal-gender {
-  grid-area: create-gender;
-}
+	.collections-create-new-animal-button {
+		grid-area: create-button;
+		padding: 8px;
+	}
 
-.collections-create-new-animal-button {
-  grid-area: create-button;
-  padding: 8px;
-}
+	.collections-create-new-animal-button button {
+		width: 80px;
+	}
 
-.collections-create-new-animal-button button {
-  width: 80px;
-}
+	.collections-create-new-animal-img-drop {
+	}
 
-.collections-create-new-animal-img-drop {
-}
+	.collections-create-new-animal-img-drop-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
 
-.collections-create-new-animal-img-drop-dropbox {
-  width: 60%;
-  padding: 3px;
-  border-radius: 10px;
-  border: 2px solid $borderColor;
-  background-color: $panelBodyColor;
-  margin: auto;
-}
+	.img-preview {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+	.img-preview img {
+		width: 100px;
+	}
 
-.img-preview {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-}
-.img-preview img {
-  width: 100px;
-}
+	.collections-create-new-animal-img-drop-preview {
+	}
 
-.collections-create-new-animal-img-drop-preview {
-}
+	.collections-create-new-animal-category {
+		grid-area: category;
+		margin-bottom: 8px;
+	}
 
-.collections-create-new-animal-category {
-  grid-area: category;
-  margin-bottom: 8px;
-}
+	.collections-create-new-animal-sub-category {
+		grid-area: sub-category;
+	}
 
-.collections-create-new-animal-sub-category {
-  grid-area: sub-category;
-}
+	// End Create Animal
 
-// End Create Animal
+	.collections-tab-header {
+		border-color: orange;
+	}
 
-.collections-tab-header {
-  border-color: orange;
-}
+	.collections-tab-body {
+		//padding: 10px;
+	}
 
-.collections-tab-body {
-  //padding: 10px;
-}
+	.react-tabs__tab--selected {
+		border-color: orange;
+	}
 
-.react-tabs__tab--selected {
-  border-color: orange;
-}
+	.react-tabs__tab-list {
+		border-color: orange;
+	}
 
-.react-tabs__tab-list {
-  border-color: orange;
-}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 0.7rem;
+	}
 
+	td,
+	th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.7rem;
-}
+	.collections-animal-more-images {
+		padding: 10px;
+	}
 
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+	.collections-animal-more-images-display {
+		//width: 100%;
+		margin: 2em auto;
+		//display: grid;
+		width: 80%;
+		grid-gap: 20px;
+		grid-template-columns: auto;
+		justify-content: space-evenly;
+	}
 
-.collections-animal-more-images {
-  padding: 10px;
-}
+	.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
 
-.collections-animal-more-images-display {
-  //width: 100%;
-  margin: 2em auto;
-  //display: grid;
-  width: 80%;
-  grid-gap: 20px;
-  grid-template-columns: auto;
-  justify-content: space-evenly;
-}
+	.collections-animal-more-images img {
+		//width: 100px;
+		cursor: pointer;
+	}
 
-.collections-create-new-animal-img-drop-button {
-  text-align: right;
-  margin-top: 10px;
-  padding-right: 134px;
-  //width: 80px;
-}
+	// Feeding Records
+	//   .collections-animal-records-feedings {
+	//       font-size: .8rem;
+	//   }
+	// End feeding records
 
-.collections-animal-more-images img {
-  //width: 100px;
-  cursor: pointer;
-}
+	.collections-my-collections-active-list td:hover {
+		cursor: pointer;
+	}
 
-// Feeding Records
-//   .collections-animal-records-feedings {
-//       font-size: .8rem;
-//   }
-// End feeding records
+	.collections-my-collections-active-list {
+		padding: 10px;
+	}
 
-.collections-my-collections-active-list td:hover {
-  cursor: pointer;
-}
+	.collections-my-collections-active-list tr:hover {
+		background-color: $lightBlue;
+	}
 
-.collections-my-collections-active-list {
-  padding: 10px;
-}
+	// Activity
+	.collections-create-new-activity {
+		padding: 10px;
+	}
 
-.collections-my-collections-active-list tr:hover {
-  background-color: $lightBlue;
-}
+	// Activity End
 
-// Activity
-.collections-create-new-activity {
-  padding: 10px;
-}
+	// Images/Photos
 
-// Activity End
+	.collections-images-image-box {
+		margin: 2em auto;
+		width: 100%;
+		//height: 220px;
+		background-color: $lightBlue;
+		border-radius: 7px;
+		padding-bottom: 10px;
+	}
 
-// Images/Photos
+	.collections-images-image-header {
+		width: 100%;
+		text-align: center;
+		height: 25px;
+		background-color: orange;
+		padding: 4px 0;
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+		margin: 0 auto 1em;
+	}
+	.collections-images-imgage-body {
+		text-align: center;
+	}
 
-.collections-images-image-box {
-  margin: 2em auto;
-  width: 100%;
-  //height: 220px;
-  background-color: $lightBlue;
-  border-radius: 7px;
-  padding-bottom: 10px;
-}
+	.collections-images-image-body img {
+		text-align: center;
+	}
 
-.collections-images-image-header {
-  width: 100%;
-  text-align: center;
-  height: 25px;
-  background-color: orange;
-  padding: 4px 0;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  margin: 0 auto 1em;
-}
-.collections-images-imgage-body {
-  text-align: center;
-}
+	.collections-images-imgage-body-info {
+		margin: 1em auto;
+		text-align: center;
+		//padding: 10px 0 10px 20%;
+	}
 
-.collections-images-image-body img {
-  text-align: center;
-}
+	.collections-images-imgage-body-info p {
+		font-size: 0.8rem;
+		margin: 0px;
+	}
 
-.collections-images-imgage-body-info {
-  margin: 1em auto;
-  text-align: center;
-  //padding: 10px 0 10px 20%;
-}
+	.collections-images-image {
+		text-align: center;
+		width: 100%;
+		height: 50%;
+	}
 
-.collections-images-imgage-body-info p {
-  font-size: 0.8rem;
-  margin: 0px;
-}
+	.collections-images-imgage-footer {
+		//padding: 10px;
+		text-align: center;
+	}
 
-.collections-images-image {
-  text-align: center;
-  width: 100%;
-  height: 50%;
-}
+	// End Images
 
-.collections-images-imgage-footer {
-  //padding: 10px;
-  text-align: center;
-}
+	// My Collections
+	.collections-my-collections {
+		position: relative;
+	}
 
-// End Images
+	.collections-bar-code-search {
+		// z-index: 1;
+		// position: fixed;
+		//width: 200px;
+	}
 
+	.collections-qr-search {
+		text-align: right;
+		padding-right: 20px;
+		margin: auto;
+	}
 
-// My Collections
-  .collections-my-collections {
-    position: relative;
-  }
-
-  .collections-bar-code-search { 
-    // z-index: 1;
-    // position: fixed;
-    //width: 200px;
-  }
-
-  .collections-qr-search {
-    text-align: right;
-    padding-right: 20px;
-    margin: auto;
-  }
-  
-  .collections-qr-search img {
-    width: 40px;
-  }
-
+	.collections-qr-search img {
+		width: 40px;
+	}
 }
 
 @media screen and (min-width: 700px) and (max-width: 839px) {
-  // Start Animal
+	// Start Animal
 
+	.collection-animal-comment {
+		width: 200px;
+	}
 
-  .collection-animal-comment {
-    width: 200px;
-  }
- 
-  
-  // End Animal
-  
-  // Create Animal
-  
-  .collections-create-new-animal {
-    display: grid;
-    grid-template-areas:
-      "new-animal-form"
-      "new-animal-images"
-      "footer";
-  }
-  
-  .collections-create-new-animal-images {
-    margin: 3em auto;
-    grid-area: new-animal-images;
-  }
-  
-  .collections-create-new-animal-form {
-    width: 90%;
-    margin: auto;
-    grid-area: new-animal-form;
-    display: grid;
-    grid-template-areas:
-      "create-name create-dob"
-      "create-sire create-dam"
-      "... create-gender"
-      "category ..."
-      "sub-category ...";
-  }
-  
-  .collections-create-new-animal-footer {
-    margin: auto 5em 0;
-    grid-area: footer;
-    text-align: right;
-    padding-right: 5em;
-  }
-  
-  .collections-create-new-animal-form input {
-    margin: 15px 0;
-  }
-  
-  .collections-create-new-animal-name {
-    grid-area: create-name;
-    width: 200px;
-  }
-  
-  .collections-create-new-animal-dob {
-    grid-area: create-dob;
-  }
-  
-  .collections-create-new-animal-sire {
-    grid-area: create-sire;
-  }
-  
-  .collections-create-new-animal-dam {
-    grid-area: create-dam;
-  }
-  
-  .collections-create-new-animal-gender {
-    grid-area: create-gender;
-  }
-  
-  .collections-create-new-animal-button {
-    grid-area: create-button;
-    padding: 8px;
-  }
-  
-  .collections-create-new-animal-button button {
-    width: 80px;
-  }
-  
-  .collections-create-new-animal-img-drop {
-  }
-  
-  .collections-create-new-animal-img-drop-dropbox {
-    width: 60%;
-    padding: 3px;
-    border-radius: 10px;
-    border: 2px solid $borderColor;
-    background-color: $panelBodyColor;
-    margin: auto;
-  }
-  
-  .img-preview {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-  }
-  .img-preview img {
-    width: 100px;
-  }
-  
-  .collections-create-new-animal-img-drop-preview {
-  }
-  
-  .collections-create-new-animal-category {
-    grid-area: category;
-    margin-bottom: 8px;
-  }
-  
-  .collections-create-new-animal-sub-category {
-    grid-area: sub-category;
-  }
-  
-  // End Create Animal
-  
-  .collections-tab-header {
-    border-color: orange;
-  }
-  
-  .collections-tab-body {
-    //padding: 10px;
-  }
-  
-  .react-tabs__tab--selected {
-    border-color: orange;
-  }
-  
-  .react-tabs__tab-list {
-    border-color: orange;
-  }
-  
+	// End Animal
 
+	// Create Animal
 
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.7rem;
-  }
-  
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  .collections-animal-more-images {
-    padding: 10px;
-  }
-  
-  .collections-animal-more-images-display {
-    //width: 100%;
-    margin: 2em auto;
-    //display: grid;
-    width: 80%;
-    grid-gap: 20px;
-    grid-template-columns: auto;
-    justify-content: space-evenly;
-  }
-  
-  .collections-create-new-animal-img-drop-button {
-    text-align: right;
-    margin-top: 10px;
-    padding-right: 134px;
-    //width: 80px;
-  }
-  
-  .collections-animal-more-images img {
-    //width: 100px;
-    cursor: pointer;
-  }
-  
-  // Feeding Records
-  //   .collections-animal-records-feedings {
-  //       font-size: .8rem;
-  //   }
-  // End feeding records
-  
-  .collections-my-collections-active-list td:hover {
-    cursor: pointer;
-  }
-  
-  .collections-my-collections-active-list {
-    padding: 10px;
-  }
-  
-  .collections-my-collections-active-list tr:hover {
-    background-color: $lightBlue;
-  }
-  
-  // Activity
-  .collections-create-new-activity {
-    padding: 10px;
-  }
-  
-  // Activity End
-  
-  // Images/Photos
-  
-  .collections-images-image-box {
-    margin: 2em auto;
-    width: 100%;
-    //height: 220px;
-    background-color: $lightBlue;
-    border-radius: 7px;
-    padding-bottom: 10px;
-  }
-  
-  .collections-images-image-header {
-    width: 100%;
-    text-align: center;
-    height: 25px;
-    background-color: orange;
-    padding: 4px 0;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    margin: 0 auto 1em;
-  }
-  .collections-images-imgage-body {
-    text-align: center;
-  }
-  
-  .collections-images-image-body img {
-    text-align: center;
-  }
-  
-  .collections-images-imgage-body-info {
-    margin: 1em auto;
-    text-align: center;
-    //padding: 10px 0 10px 20%;
-  }
-  
-  .collections-images-imgage-body-info p {
-    font-size: 0.8rem;
-    margin: 0px;
-  }
-  
-  .collections-images-image {
-    text-align: center;
-    width: 100%;
-    height: 50%;
-  }
-  
-  .collections-images-imgage-footer {
-    //padding: 10px;
-    text-align: center;
-  }
-  
-  // End Images
-  
-  
-  // My Collections
-    .collections-my-collections {
-      position: relative;
-    }
-  
-    .collections-bar-code-search { 
-      // z-index: 1;
-      // position: fixed;
-      //width: 200px;
-    }
-  
-    .collections-qr-search {
-      text-align: right;
-      padding-right: 20px;
-      margin: auto;
-    }
-    
-    .collections-qr-search img {
-      width: 40px;
-    }
-  
+	.collections-create-new-animal {
+		display: grid;
+		grid-template-areas:
+			'new-animal-form'
+			'new-animal-images'
+			'footer';
+	}
+
+	.collections-create-new-animal-images {
+		margin: 3em auto;
+		grid-area: new-animal-images;
+	}
+
+	.collections-create-new-animal-form {
+		width: 90%;
+		margin: auto;
+		grid-area: new-animal-form;
+		display: grid;
+		grid-template-areas:
+			'create-name create-dob'
+			'create-sire create-dam'
+			'... create-gender'
+			'category ...'
+			'sub-category ...';
+	}
+
+	.collections-create-new-animal-footer {
+		margin: auto 5em 0;
+		grid-area: footer;
+		text-align: right;
+		padding-right: 5em;
+	}
+
+	.collections-create-new-animal-form input {
+		margin: 15px 0;
+	}
+
+	.collections-create-new-animal-name {
+		grid-area: create-name;
+		width: 200px;
+	}
+
+	.collections-create-new-animal-dob {
+		grid-area: create-dob;
+	}
+
+	.collections-create-new-animal-sire {
+		grid-area: create-sire;
+	}
+
+	.collections-create-new-animal-dam {
+		grid-area: create-dam;
+	}
+
+	.collections-create-new-animal-gender {
+		grid-area: create-gender;
+	}
+
+	.collections-create-new-animal-button {
+		grid-area: create-button;
+		padding: 8px;
+	}
+
+	.collections-create-new-animal-button button {
+		width: 80px;
+	}
+
+	.collections-create-new-animal-img-drop {
+	}
+
+	.collections-create-new-animal-img-drop-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+
+	.img-preview {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+	.img-preview img {
+		width: 100px;
+	}
+
+	.collections-create-new-animal-img-drop-preview {
+	}
+
+	.collections-create-new-animal-category {
+		grid-area: category;
+		margin-bottom: 8px;
+	}
+
+	.collections-create-new-animal-sub-category {
+		grid-area: sub-category;
+	}
+
+	// End Create Animal
+
+	.collections-tab-header {
+		border-color: orange;
+	}
+
+	.collections-tab-body {
+		//padding: 10px;
+	}
+
+	.react-tabs__tab--selected {
+		border-color: orange;
+	}
+
+	.react-tabs__tab-list {
+		border-color: orange;
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 0.7rem;
+	}
+
+	td,
+	th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	.collections-animal-more-images {
+		padding: 10px;
+	}
+
+	.collections-animal-more-images-display {
+		//width: 100%;
+		margin: 2em auto;
+		//display: grid;
+		width: 80%;
+		grid-gap: 20px;
+		grid-template-columns: auto;
+		justify-content: space-evenly;
+	}
+
+	.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
+
+	.collections-animal-more-images img {
+		//width: 100px;
+		cursor: pointer;
+	}
+
+	// Feeding Records
+	//   .collections-animal-records-feedings {
+	//       font-size: .8rem;
+	//   }
+	// End feeding records
+
+	.collections-my-collections-active-list td:hover {
+		cursor: pointer;
+	}
+
+	.collections-my-collections-active-list {
+		padding: 10px;
+	}
+
+	.collections-my-collections-active-list tr:hover {
+		background-color: $lightBlue;
+	}
+
+	// Activity
+	.collections-create-new-activity {
+		padding: 10px;
+	}
+
+	// Activity End
+
+	// Images/Photos
+
+	.collections-images-image-box {
+		margin: 2em auto;
+		width: 100%;
+		//height: 220px;
+		background-color: $lightBlue;
+		border-radius: 7px;
+		padding-bottom: 10px;
+	}
+
+	.collections-images-image-header {
+		width: 100%;
+		text-align: center;
+		height: 25px;
+		background-color: orange;
+		padding: 4px 0;
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+		margin: 0 auto 1em;
+	}
+	.collections-images-imgage-body {
+		text-align: center;
+	}
+
+	.collections-images-image-body img {
+		text-align: center;
+	}
+
+	.collections-images-imgage-body-info {
+		margin: 1em auto;
+		text-align: center;
+		//padding: 10px 0 10px 20%;
+	}
+
+	.collections-images-imgage-body-info p {
+		font-size: 0.8rem;
+		margin: 0px;
+	}
+
+	.collections-images-image {
+		text-align: center;
+		width: 100%;
+		height: 50%;
+	}
+
+	.collections-images-imgage-footer {
+		//padding: 10px;
+		text-align: center;
+	}
+
+	// End Images
+
+	// My Collections
+	.collections-my-collections {
+		position: relative;
+	}
+
+	.collections-bar-code-search {
+		// z-index: 1;
+		// position: fixed;
+		//width: 200px;
+	}
+
+	.collections-qr-search {
+		text-align: right;
+		padding-right: 20px;
+		margin: auto;
+	}
+
+	.collections-qr-search img {
+		width: 40px;
+	}
 }
-
-
-

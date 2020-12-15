@@ -1,0 +1,33 @@
+@import '../../../index';
+
+.my-collections-collection-container {
+	border: 1px solid $borderColor;
+	margin: 10px auto;
+	width: 98%;
+	height: 90px;
+	display: flex;
+	border-radius: 7px;
+}
+
+.my-collections-collection-container:hover {
+	background-color: $lightBlue;
+	cursor: pointer;
+}
+
+.my-collections-collection-container-image {
+	text-align: center;
+	margin: auto auto auto 0.4em;
+}
+
+.my-collections-collection-container-image img {
+	max-height: 4em;
+	border-radius: 3px;
+}
+
+.my-collections-collection-container-table {
+	color: black;
+	text-align: center;
+	vertical-align: baseline;
+	width: 85%;
+	margin: auto;
+}

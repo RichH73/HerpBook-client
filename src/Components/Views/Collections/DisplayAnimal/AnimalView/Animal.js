@@ -171,51 +171,6 @@ class Animal extends Component {
 		}).then((response) => {});
 	};
 
-	genderSelect = () => {
-		switch (this.props.currentAnimal.gender) {
-			case 'MALE':
-				return (
-					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option selected value="MALE">
-							Male
-						</option>
-						<option value="FEMALE">Female</option>
-						<option value="UNKNOWN">Unknown</option>
-					</select>
-				);
-			case 'FEMALE':
-				return (
-					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option value="MALE">Male</option>
-						<option selected value="FEMALE">
-							Female
-						</option>
-						<option value="UNKNOWN">Unknown</option>
-					</select>
-				);
-			case 'UNKNOWN':
-				return (
-					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option value="MALE">Male</option>
-						<option value="FEMALE">Female</option>
-						<option selected value="UNKNOWN">
-							Unknown
-						</option>
-					</select>
-				);
-			default:
-				return (
-					<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly}>
-						<option value="MALE">Male</option>
-						<option value="FEMALE">Female</option>
-						<option selected value="UNKNOWN">
-							Unknown
-						</option>
-					</select>
-				);
-		}
-	};
-
 	permissionsCheck = () => {
 		return 'readOnly';
 	};
@@ -242,6 +197,64 @@ class Animal extends Component {
 					console.log('An error has occured', error);
 				}
 			});
+	};
+
+	sireDisplay = () => {
+		const { category, sub_category } = this.props.createAnimal;
+		let collections = this.props.collections;
+		console.log('this sub', collections);
+		if (!sub_category) {
+			collections = [];
+		}
+		if (!!sub_category) {
+			collections = collections.filter((sub) => {
+				if (sub.sub_category === sub_category && sub.gender === 'MALE') {
+					return sub;
+				}
+			});
+		}
+		return (
+			<React.Fragment>
+				<label className="field-input-label">Sire:</label>
+				<div>
+					<select name="sire" onChange={this.formChangeHandler}>
+						<option>Add Sire</option>
+						{collections.map((collection) => (
+							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+						))}
+					</select>
+				</div>
+			</React.Fragment>
+		);
+	};
+
+	damDisplay = () => {
+		const { category, sub_category } = this.props.currentAnimal;
+		let collections = this.props.collections;
+		console.log('this sub', collections);
+		if (!sub_category) {
+			collections = [];
+		}
+		if (!!sub_category) {
+			collections = collections.filter((sub) => {
+				if (sub.sub_category === sub_category && sub.gender === 'FEMALE') {
+					return sub;
+				}
+			});
+			return (
+				<React.Fragment>
+					<label className="field-input-label">Sire:</label>
+					<div>
+						<select name="dam" onChange={this.formChangeHandler}>
+							<option>Add Dam</option>
+							{collections.map((collection) => (
+								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+							))}
+						</select>
+					</div>
+				</React.Fragment>
+			);
+		}
 	};
 
 	render() {
@@ -290,7 +303,7 @@ class Animal extends Component {
 								)}
 							</div>
 							<div>
-								<input type="text" name="sire" defaultValue={animal.sire} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								<input type="text" name="sire" value={animal.sire} onChange={this.onChangeHandler} readOnly={true} />
 							</div>
 						</div>
 
@@ -306,12 +319,20 @@ class Animal extends Component {
 								)}
 							</div>
 							<div>
-								<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={true} />
 							</div>
 						</div>
 						<div className="collection-animal-gender">
 							<label className="field-input-label">Gender:</label>
-							<div>{this.genderSelect()}</div>
+							<div>
+								<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly} defaultValue={this.props.currentAnimal.gender}>
+									<option selected value="MALE">
+										Male
+									</option>
+									<option value="FEMALE">Female</option>
+									<option value="UNKNOWN">Unknown</option>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -353,14 +374,17 @@ const mapStateToProps = (state) => ({
 	USERSURL: state.config.server.usersURL,
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
-	React: state.config.analytics,
+	collections: state.myCollections.collections,
 	mods: state.richText.modules,
 	currentAnimal: state.viewAnimal,
 	selectedAnimalId: state.selectedAnimal.id,
-	collectionsIds: state.wholeCollection,
-	collectionsData: state.wholeCollection.collections,
+	collectionsIds: state.myCollections,
+	collectionsData: state.myCollections.collections,
 	commentBox: state.richText.text,
+	createAnimal: state.createNewAnimal,
 	uid: state.user.uid,
+	category: state.createNewAnimal.category,
+	sub_categoryItems: state.categories.subCategories,
 	modalState: state.alertModal.modalIsOpen,
 });
 
