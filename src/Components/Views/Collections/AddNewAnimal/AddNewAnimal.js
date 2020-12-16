@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
+import './AddNewAnimal.css';
 import _ from 'lodash';
 
 import axios from 'axios';
@@ -11,7 +12,7 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import ImageDrop from '../../_services/ImageDrop';
+import ImageDrop from '../../../_services/ImageDrop';
 
 class AddNewAnimal extends Component {
 	state = {
@@ -136,24 +137,22 @@ class AddNewAnimal extends Component {
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'MALE') {
+				if (sub.sub_category === sub_category && sub.gender === 'MALE' && sub.collectionType === 'BREEDER') {
 					return sub;
 				}
 			});
-			return (
-				<React.Fragment>
-					<label className="field-input-label">Sire:</label>
-					<div>
-						<select name="sire" onChange={this.formChangeHandler}>
-							<option>Add Sire</option>
-							{collections.map((collection) => (
-								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-							))}
-						</select>
-					</div>
-				</React.Fragment>
-			);
 		}
+		return (
+			<React.Fragment>
+				<label className="field-input-label">Sire:</label>
+				<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
+					<option>Add Sire</option>
+					{collections.map((collection) => (
+						<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+					))}
+				</select>
+			</React.Fragment>
+		);
 	};
 
 	damDisplay = () => {
@@ -165,24 +164,22 @@ class AddNewAnimal extends Component {
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'FEMALE') {
+				if (sub.sub_category === sub_category && sub.gender === 'FEMALE' && sub.collectionType === 'BREEDER') {
 					return sub;
 				}
 			});
-			return (
-				<React.Fragment>
-					<label className="field-input-label">Sire:</label>
-					<div>
-						<select name="dam" onChange={this.formChangeHandler}>
-							<option>Add Dam</option>
-							{collections.map((collection) => (
-								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-							))}
-						</select>
-					</div>
-				</React.Fragment>
-			);
 		}
+		return (
+			<React.Fragment>
+				<label className="field-input-label">Dam:</label>
+				<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
+					<option>Add Dam</option>
+					{collections.map((collection) => (
+						<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+					))}
+				</select>
+			</React.Fragment>
+		);
 	};
 
 	render() {
@@ -195,15 +192,25 @@ class AddNewAnimal extends Component {
 					</p>
 				</div>
 				<div className="collections-create-new-animal">
-					<div className="collections-create-new-animal-images">
-						<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
-					</div>
 					<div className="collections-create-new-animal-form">
+						<div className="collections-create-new-animal-type">
+							<label className="field-input-label">Collection Type: </label>
+							<select name="collectionType" onChange={this.formChangeHandler}>
+								<option>Choose</option>
+								<option value="SALE">Sale</option>
+								<option value="PET">Pet</option>
+								<option value="HOLDBACK">Holdback</option>
+								<option value="BREEDER">Breeder</option>
+							</select>
+						</div>
+
+						<div className="collections-create-new-animal-user-id">
+							<label className="field-input-label">Animal ID:</label>
+							<input type="text" name="userCreatedID" onChange={this.formChangeHandler} />
+						</div>
 						<div className="collections-create-new-animal-name">
 							<label className="field-input-label">Name:</label>
-							<div>
-								<input type="text" name="name" onChange={this.formChangeHandler} />
-							</div>
+							<input type="text" name="name" onChange={this.formChangeHandler} />
 						</div>
 						<div className="collections-create-new-animal-sire">
 							{this.sireDisplay()}
@@ -212,20 +219,16 @@ class AddNewAnimal extends Component {
 						<div className="collections-create-new-animal-dam">{this.damDisplay()}</div>
 						<div className="collections-create-new-animal-dob">
 							<label className="field-input-label">DOB:</label>
-							<div>
-								<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
-							</div>
+							<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
 						</div>
 						<div className="collections-create-new-animal-gender">
 							<label className="field-input-label">Gender:</label>
-							<div>
-								<select name="gender" onChange={this.formChangeHandler}>
-									<option>Choose</option>
-									<option value="MALE">Male</option>
-									<option value="FEMALE">Female</option>
-									<option value="UNKNOWN">Unknown</option>
-								</select>
-							</div>
+							<select name="gender" onChange={this.formChangeHandler}>
+								<option>Choose</option>
+								<option value="MALE">Male</option>
+								<option value="FEMALE">Female</option>
+								<option value="UNKNOWN">Unknown</option>
+							</select>
 						</div>
 						<div className="collections-create-new-animal-category">
 							<label className="field-input-label">Category: </label>
@@ -247,13 +250,15 @@ class AddNewAnimal extends Component {
 							''
 						)}
 					</div>
+					<div className="collections-create-new-animal-images">
+						<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
+					</div>
 					<div className="collections-create-new-animal-footer">
 						<div className="collections-create-new-animal-button">
 							<button
 								className="button"
 								disabled={!this.props.sendFiles.length || !this.props.createAnimal.category || !this.props.createAnimal.sub_category}
-								onClick={this.onSubmitHandler}
-							>
+								onClick={this.onSubmitHandler}>
 								Save
 							</button>
 						</div>

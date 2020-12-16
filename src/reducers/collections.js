@@ -1,6 +1,8 @@
 const initialState = {
 	name: '',
 	_id: '',
+	userCreatedID: '',
+	collectionType: '',
 	dob: '',
 	gender: '',
 	sire: '',

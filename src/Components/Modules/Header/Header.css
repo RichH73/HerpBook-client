@@ -2,6 +2,32 @@
     Color section to define the colors used in the entire app.
 */
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
+label {
+  color: black;
+  margin: 1em auto;
+}
+
+input {
+  font-size: 1em;
+  border: 1px solid orange;
+}
+
+select {
+  font-size: 1em;
+  border: 1px solid orange;
+}
+
+.button {
+  border-radius: 7px;
+  width: 80px;
+  background: orange;
+  text-align: center;
+}
+
+.button:hover {
+  border: solid darkorange 1px;
+}
+
 @media screen and (max-width: 899px) {
   .main-navigation-header {
     display: none;

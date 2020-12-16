@@ -143,8 +143,10 @@ class Animal extends Component {
 	};
 
 	onSubmitHandler = () => {
-		const { name, dob, gender, sire, dam, isClassified, comments } = this.props.currentAnimal;
+		const { collectionType, userCreatedID, name, dob, gender, sire, dam, isClassified, comments } = this.props.currentAnimal;
 		let animalUpdate = {
+			collectionType: collectionType,
+			userCreatedID: userCreatedID,
 			name: name,
 			dob: dob,
 			gender: gender,
@@ -276,6 +278,26 @@ class Animal extends Component {
 							<label className="field-input-label">ID #:</label>
 							<div>
 								<input type="text" name="animalID" value={animal._id} />
+							</div>
+						</div>
+
+						<div className="collection-animal-user-aniaml-id">
+							<label className="field-input-label">Animal ID#:</label>
+							<div>
+								<input type="text" name="userCreatedID" value={animal.userCreatedID} onChange={this.onChangeHandler} />
+							</div>
+						</div>
+
+						<div className="collection-animal-collection-type">
+							<label className="field-input-label">Collection Type:</label>
+							<div>
+								<select name="collectionType" onChange={this.onChangeHandler} defaultValue={animal.collectionType}>
+									<option></option>
+									<option value="SALE">Sale</option>
+									<option value="PET">Pet</option>
+									<option value="HOLDBACK">Holdback</option>
+									<option value="BREEDER">Breeder</option>
+								</select>
 							</div>
 						</div>
 

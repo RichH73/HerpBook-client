@@ -71,3 +71,7 @@ export const scanBarCode = (state = barCodeInitial, data) => {
 			return state;
 	}
 };
+
+export const toolTips = () => {
+	return {};
+};

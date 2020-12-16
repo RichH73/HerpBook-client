@@ -1,8 +1,19 @@
 /*
     Color section to define the colors used in the entire app.
 */
-.application-body {
-  text-align: left;
+label {
+  color: black;
+  margin: 1em auto;
+}
+
+input {
+  font-size: 1em;
+  border: 1px solid orange;
+}
+
+select {
+  font-size: 1em;
+  border: 1px solid orange;
 }
 
 .button {
@@ -14,6 +25,10 @@
 
 .button:hover {
   border: solid darkorange 1px;
+}
+
+.application-body {
+  text-align: left;
 }
 
 @media screen and (min-width: 900px) {

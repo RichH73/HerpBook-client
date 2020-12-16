@@ -1,0 +1,363 @@
+@import '../../../../index';
+
+@media screen and (min-width: 700px) {
+	.collections-create-new-animal {
+		// display: grid;
+		// grid-template-areas:
+		// 	'new-animal-form'
+		// 	'new-animal-images'
+		// 	'footer';
+	}
+
+	.collections-create-new-animal-images {
+		margin: 3em auto;
+		grid-area: new-animal-images;
+	}
+
+	.collections-create-new-animal-form {
+		width: 75%;
+		margin: auto;
+		// grid-area: new-animal-form;
+		// display: grid;
+		// grid-template-areas:
+		// 	'create-name create-dob'
+		// 	'create-sire create-dam'
+		// 	'... create-gender'
+		// 	'category ...'
+		// 	'sub-category ...';
+	}
+
+	.collections-create-new-animal-footer {
+		margin: auto 5em 0;
+		grid-area: footer;
+		text-align: right;
+		padding-right: 5em;
+	}
+
+	.collections-create-new-animal-form input {
+		margin: 5px 0;
+		font-size: 1em;
+		border: 1px solid $borderColor;
+	}
+
+	.collections-create-new-animal-form select {
+		margin: 5px 0;
+		font-size: 1em;
+		border: 1px solid $borderColor;
+	}
+
+	.collections-create-new-animal-name {
+		margin: 1em auto;
+		grid-area: create-name;
+	}
+
+	.collections-create-new-animal-dob {
+		grid-area: create-dob;
+	}
+
+	.collections-create-new-animal-sire {
+		content: '';
+		height: 3em;
+		grid-area: create-sire;
+	}
+
+	.collections-create-new-animal-dam {
+		content: '';
+		height: 3em;
+		grid-area: create-dam;
+	}
+
+	.collections-create-new-animal-gender {
+		margin: 1em auto;
+		grid-area: create-gender;
+	}
+
+	.collections-create-new-animal-button {
+		grid-area: create-button;
+		padding: 8px;
+	}
+
+	.collections-create-new-animal-button button {
+		width: 80px;
+	}
+
+	.collections-create-new-animal-img-drop {
+	}
+
+	.collections-create-new-animal-img-drop-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+
+	.img-preview {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+	.img-preview img {
+		width: 100px;
+	}
+
+	.collections-create-new-animal-img-drop-preview {
+	}
+
+	.collections-create-new-animal-category {
+		grid-area: category;
+		margin-bottom: 8px;
+	}
+	.collections-create-new-animal-category select {
+		border: 1px solid red;
+	}
+
+	.collections-create-new-animal-sub-category {
+		content: '';
+		height: 3em;
+		grid-area: sub-category;
+	}
+
+	.collections-create-new-animal-sub-category select {
+		border: 1px solid red;
+	}
+
+	.field-input-label {
+		margin-right: 8px;
+	}
+}
+
+// @media screen and (max-width: 699px) {
+// 		// Create Animal
+
+// 		.collections-create-new-animal {
+// 			display: grid;
+// 			grid-template-areas:
+// 				'new-animal-form'
+// 				'new-animal-images'
+// 				'footer';
+// 		}
+
+// 		.collections-create-new-animal-images {
+// 			margin: 3em auto;
+// 			grid-area: new-animal-images;
+// 		}
+
+// 		.collections-create-new-animal-form {
+// 			width: 90%;
+// 			margin: auto;
+// 			grid-area: new-animal-form;
+// 			display: grid;
+// 			grid-template-areas:
+// 				'create-name create-dob'
+// 				'create-sire create-dam'
+// 				'... create-gender'
+// 				'category ...'
+// 				'sub-category ...';
+// 		}
+
+// 		.collections-create-new-animal-footer {
+// 			margin: auto 5em 0;
+// 			grid-area: footer;
+// 			text-align: right;
+// 			padding-right: 5em;
+// 		}
+
+// 		.collections-create-new-animal-form input {
+// 			margin: 15px 0;
+// 		}
+
+// 		.collections-create-new-animal-name {
+// 			grid-area: create-name;
+// 			width: 200px;
+// 		}
+
+// 		.collections-create-new-animal-dob {
+// 			grid-area: create-dob;
+// 		}
+
+// 		.collections-create-new-animal-sire {
+// 			grid-area: create-sire;
+// 		}
+
+// 		.collections-create-new-animal-dam {
+// 			grid-area: create-dam;
+// 		}
+
+// 		.collections-create-new-animal-gender {
+// 			grid-area: create-gender;
+// 		}
+
+// 		.collections-create-new-animal-button {
+// 			grid-area: create-button;
+// 			padding: 8px;
+// 		}
+
+// 		.collections-create-new-animal-button button {
+// 			width: 80px;
+// 		}
+
+// 		.collections-create-new-animal-img-drop {
+// 		}
+
+// 		.collections-create-new-animal-img-drop-dropbox {
+// 			width: 60%;
+// 			padding: 3px;
+// 			border-radius: 10px;
+// 			border: 2px solid $borderColor;
+// 			background-color: $panelBodyColor;
+// 			margin: auto;
+// 		}
+
+// 		.img-preview {
+// 			display: grid;
+// 			grid-template-columns: auto auto auto auto auto auto;
+// 		}
+// 		.img-preview img {
+// 			width: 100px;
+// 		}
+
+// 		.collections-create-new-animal-img-drop-preview {
+// 		}
+
+// 		.collections-create-new-animal-category {
+// 			grid-area: category;
+// 			margin-bottom: 8px;
+// 		}
+
+// 		.collections-create-new-animal-sub-category {
+// 			grid-area: sub-category;
+// 		}
+
+// 		// End Create Animal
+
+// }
+
+/*
+
+.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
+
+	.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
+
+		.collections-create-new-animal-img-drop-button {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 134px;
+		//width: 80px;
+	}
+
+	// Create Animal
+
+	.collections-create-new-animal {
+		display: grid;
+		grid-template-areas:
+			'new-animal-form'
+			'new-animal-images'
+			'footer';
+	}
+
+	.collections-create-new-animal-images {
+		margin: 3em auto;
+		grid-area: new-animal-images;
+	}
+
+	.collections-create-new-animal-form {
+		width: 90%;
+		margin: auto;
+		grid-area: new-animal-form;
+		display: grid;
+		grid-template-areas:
+			'create-name create-dob'
+			'create-sire create-dam'
+			'... create-gender'
+			'category ...'
+			'sub-category ...';
+	}
+
+	.collections-create-new-animal-footer {
+		margin: auto 5em 0;
+		grid-area: footer;
+		text-align: right;
+		padding-right: 5em;
+	}
+
+	.collections-create-new-animal-form input {
+		margin: 15px 0;
+	}
+
+	.collections-create-new-animal-name {
+		grid-area: create-name;
+		width: 200px;
+	}
+
+	.collections-create-new-animal-dob {
+		grid-area: create-dob;
+	}
+
+	.collections-create-new-animal-sire {
+		grid-area: create-sire;
+	}
+
+	.collections-create-new-animal-dam {
+		grid-area: create-dam;
+	}
+
+	.collections-create-new-animal-gender {
+		grid-area: create-gender;
+	}
+
+	.collections-create-new-animal-button {
+		grid-area: create-button;
+		padding: 8px;
+	}
+
+	.collections-create-new-animal-button button {
+		width: 80px;
+	}
+
+	.collections-create-new-animal-img-drop {
+	}
+
+	.collections-create-new-animal-img-drop-dropbox {
+		width: 60%;
+		padding: 3px;
+		border-radius: 10px;
+		border: 2px solid $borderColor;
+		background-color: $panelBodyColor;
+		margin: auto;
+	}
+
+	.img-preview {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+	.img-preview img {
+		width: 100px;
+	}
+
+	.collections-create-new-animal-img-drop-preview {
+	}
+
+	.collections-create-new-animal-category {
+		grid-area: category;
+		margin-bottom: 8px;
+	}
+
+	.collections-create-new-animal-sub-category {
+		grid-area: sub-category;
+	}
+
+	// End Create Animal
+
+
+*/

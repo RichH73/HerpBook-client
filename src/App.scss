@@ -4,27 +4,7 @@
 	text-align: left;
 }
 
-.button {
-	border-radius: 7px;
-	width: 80px;
-	background: $buttonColor;
-	text-align: center;
-}
 
-.button:hover {
-	border: solid $buttonBorder 1px;
-}
-
-// button {
-// 	border-radius: 7px;
-// 	width: 80px;
-// 	background: $buttonColor;
-// 	text-align: center;
-// }
-
-// button:hover {
-// 	border: solid $buttonBorder 1px;
-// }
 
 @media screen and ($minWidth) {
 	.mobile-nav-button {

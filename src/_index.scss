@@ -43,3 +43,30 @@ $baseFontSize: 1em;
 $linkFont: '';
 
 $panelBodyColor: $colorLightBlue;
+
+label {
+    color: rgb(0, 0, 0);
+    margin: 1em auto;
+}
+
+input {
+    font-size: 1em;
+    border: 1px solid $borderColor;
+}
+
+select {
+    font-size: 1em;
+    border: 1px solid $borderColor;
+}
+
+.button {
+	border-radius: 7px;
+	width: 80px;
+	background: $buttonColor;
+	text-align: center;
+}
+
+.button:hover {
+	border: solid $buttonBorder 1px;
+}
+
