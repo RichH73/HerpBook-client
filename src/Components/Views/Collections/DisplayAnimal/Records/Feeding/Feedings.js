@@ -189,12 +189,12 @@ class Feedings extends Component {
 				<div className="collections-animal-feedings-records">
 					<div className="collections-feeding-table">
 						<table>
-							<tbody>
+							<thead>
 								<th>Date</th>
 								<th>Feeder Type</th>
 								<th>Amount or weight</th>
-								{this.feedMappings()}
-							</tbody>
+							</thead>
+							<tbody>{this.feedMappings()}</tbody>
 						</table>
 					</div>
 				</div>

@@ -47,7 +47,7 @@
   }
   .my-collections-quick-filters-select-clear:hover {
     background-color: #ff8800;
-    border: .5px solid red;
+    border: 0.5px solid red;
   }
   .my-collections-quick-filters select {
     font-size: 1em;
@@ -56,7 +56,7 @@
   .collections-create-new-animal {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+        grid-template-areas: 'new-animal-form' 'new-animal-images' 'footer';
   }
   .collections-create-new-animal-images {
     margin: 3em auto;
@@ -72,7 +72,7 @@
     grid-area: new-animal-form;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+        grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
   }
   .collections-create-new-animal-footer {
     margin: auto 5em 0;
@@ -243,7 +243,7 @@
   .collections-create-new-animal {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+        grid-template-areas: 'new-animal-form' 'new-animal-images' 'footer';
   }
   .collections-create-new-animal-images {
     margin: 3em auto;
@@ -259,7 +259,7 @@
     grid-area: new-animal-form;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+        grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
   }
   .collections-create-new-animal-footer {
     margin: auto 5em 0;
@@ -445,7 +445,7 @@
   .collections-create-new-animal {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+        grid-template-areas: 'new-animal-form' 'new-animal-images' 'footer';
   }
   .collections-create-new-animal-images {
     margin: 3em auto;
@@ -461,7 +461,7 @@
     grid-area: new-animal-form;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+        grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
   }
   .collections-create-new-animal-footer {
     margin: auto 5em 0;

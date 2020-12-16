@@ -184,11 +184,11 @@ class Sheddings extends Component {
 				<div className="collections-animal-sheddings-records">
 					<div className="collections-shedding-table">
 						<table>
-							<tbody>
+							<thead>
 								<th>Date</th>
 								<th>Complete Shed</th>
-								{this.shedMappings()}
-							</tbody>
+							</thead>
+							<tbody>{this.shedMappings()}</tbody>
 						</table>
 					</div>
 				</div>

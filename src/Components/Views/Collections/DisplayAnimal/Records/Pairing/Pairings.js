@@ -184,12 +184,12 @@ class Pairings extends Component {
 				<div className="collections-animal-records-pairings">
 					<div className="collections-pairing-table">
 						<table>
-							<tbody>
+							<thead>
 								<th>Date</th>
 								<th>Mate</th>
 								<th>Whitnessed</th>
-								{this.pairMappings()}
-							</tbody>
+							</thead>
+							<tbody>{this.pairMappings()}</tbody>
 						</table>
 					</div>
 				</div>

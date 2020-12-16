@@ -123,7 +123,7 @@
   .collections-create-new-animal {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
+        grid-template-areas: 'new-animal-form' 'new-animal-images' 'footer';
   }
   .collections-create-new-animal-images {
     margin: 3em auto;
@@ -139,7 +139,7 @@
     grid-area: new-animal-form;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
+        grid-template-areas: 'create-name create-dob' 'create-sire create-dam' '... create-gender' 'category ...' 'sub-category ...';
   }
   .collections-create-new-animal-footer {
     margin: auto 5em 0;
