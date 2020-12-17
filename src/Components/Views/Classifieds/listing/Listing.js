@@ -32,9 +32,6 @@ class Listing extends React.Component {
 			if (localStorage.token) {
 				this.props.get_user({ uid: response.data.username });
 			}
-			// this.setState({
-			// 	listing: response.data,
-			// });
 			const listData = response.data;
 			this.props.classified(listData);
 		});
@@ -54,8 +51,6 @@ class Listing extends React.Component {
 				<Tabs>
 					<TabList>
 						<Tab>Animal</Tab>
-						{/* <Tab>Records</Tab>
-						<Tab>Activity</Tab> */}
 						<Tab>Gallery</Tab>
 						{!!this.props.classified_listing.records ? <Tab>Records</Tab> : ''}
 					</TabList>
@@ -63,25 +58,6 @@ class Listing extends React.Component {
 						<TabPanel>
 							<Main match={this.props.match} />
 						</TabPanel>
-						{/* <TabPanel>
-							<Tabs>
-								<TabList>
-									<Tab>Feedings</Tab>
-									<Tab>Pairings</Tab>
-									<Tab>Sheddings</Tab>
-								</TabList>
-								<TabPanel>
-									<Feedings />
-								</TabPanel>
-								<TabPanel>
-									<Pairings />
-								</TabPanel>
-								<TabPanel>Shed</TabPanel>
-							</Tabs>
-						</TabPanel>
-						<TabPanel>
-							<Activity history={this.props.history} />
-						</TabPanel> */}
 						<TabPanel>
 							<Gallery />
 						</TabPanel>

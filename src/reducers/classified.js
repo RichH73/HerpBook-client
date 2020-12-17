@@ -1,6 +1,7 @@
 const initialState = {
 	listData: {
 		_id: '',
+		userCreatedID: '',
 		category: '',
 		created: '',
 		creatorId: '',

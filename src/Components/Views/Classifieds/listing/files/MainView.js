@@ -96,9 +96,9 @@ class ClassifiedList extends React.Component {
 									<td>{list.gender}</td>
 									<td>
 										{list.weight}
-										<span>{list.weightUnit}</span>
+										{list.weightUnit}
 									</td>
-									<td>{!!list.userListId ? list.userListId : list._id}</td>
+									<td>{!!list.userCreatedID ? list.userCreatedID : list._id}</td>
 								</tr>
 							</tbody>
 						</table>
