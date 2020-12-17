@@ -166,8 +166,7 @@ class CreateListing extends React.Component {
 								className="textarea form-control"
 								required
 								id="id_description"
-								onChange={this.onChangeHandler}
-							></textarea>
+								onChange={this.onChangeHandler}></textarea>
 						</div>
 					</div>
 					<div id="div_id_price" className="form-group">

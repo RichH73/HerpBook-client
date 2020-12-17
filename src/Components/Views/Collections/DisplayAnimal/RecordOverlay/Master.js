@@ -358,8 +358,7 @@ class Master extends Component {
 														record: this.props.recordOverlay,
 														dam: this.props.currentAnimal,
 													})
-												}
-											>
+												}>
 												{' '}
 												Create new clutch?
 											</span>

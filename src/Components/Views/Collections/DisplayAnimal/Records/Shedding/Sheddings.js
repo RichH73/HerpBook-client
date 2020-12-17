@@ -175,8 +175,7 @@ class Sheddings extends Component {
 							onClick={this.onSubmitHandler}
 							// eslint-disable-next-line
 							disabled={!this.state.fullShed.length}
-							label="Save"
-						>
+							label="Save">
 							Save
 						</button>
 					</div>

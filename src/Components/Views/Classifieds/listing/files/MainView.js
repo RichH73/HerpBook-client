@@ -108,8 +108,7 @@ class ClassifiedList extends React.Component {
 								display: 'flex',
 								justifyContent: 'space-evenly',
 								margin: '.5em auto',
-							}}
-						>
+							}}>
 							{/* {localStorage.token ? (
 								<div>
 									Seller: <Link to={`/profile`}>{list.username || list.user}</Link>
