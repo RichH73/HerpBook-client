@@ -180,8 +180,7 @@ class Feedings extends Component {
 							onClick={this.onSubmitHandler}
 							// eslint-disable-next-line
 							disabled={!this.state.feederType.length || !this.state.feederWeight.length}
-							label="Save"
-						>
+							label="Save">
 							Save
 						</button>
 					</div>

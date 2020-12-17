@@ -124,8 +124,7 @@ class Contact extends React.Component {
 									required
 									id="message"
 									value={this.state.message}
-									onChange={this.handleChange}
-								></textarea>
+									onChange={this.handleChange}></textarea>
 							</div>
 							<div></div>
 						</fieldset>

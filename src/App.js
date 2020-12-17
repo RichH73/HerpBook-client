@@ -101,16 +101,14 @@ class App extends Component {
 					zIndex: '300',
 					position: 'fixed',
 					background: 'rgba(0, 0, 0, 0.2)',
-				}}
-			>
+				}}>
 				<div
 					style={{
 						color: 'white',
 						width: '200px',
 						height: '200px',
 						margin: '20% auto',
-					}}
-				>
+					}}>
 					<div style={{ textAlign: 'center', color: 'black' }}>
 						<b>Loading</b>
 					</div>
@@ -119,8 +117,7 @@ class App extends Component {
 							width: '100px',
 							height: '100px',
 							margin: '20% auto',
-						}}
-					>
+						}}>
 						<Spinner size={120} stroke={6} color={'orange'} radius={100} spinnerwidth={10} visible={true} />
 					</div>
 				</div>

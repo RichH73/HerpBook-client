@@ -191,8 +191,7 @@ class Weight extends Component {
 							onClick={this.onSubmitHandler}
 							// eslint-disable-next-line
 							disabled={!this.state.weight.length}
-							label="Save"
-						>
+							label="Save">
 							Save
 						</button>
 					</div>
