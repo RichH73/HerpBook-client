@@ -4,7 +4,6 @@
 @media screen and (min-width: 700px) {
   .collections-create-new-animal-images {
     margin: 4em auto 1em;
-    grid-area: new-animal-images;
   }
   .collections-create-new-animal-form {
     width: 100%;
@@ -88,6 +87,9 @@
   }
   .img-preview img {
     width: 100px;
+  }
+  .collections-create-new-animal-img-drop-preview {
+    text-align: center;
   }
   .collections-create-new-animal-category {
     margin-bottom: 8px;
