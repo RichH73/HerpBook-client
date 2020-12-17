@@ -146,7 +146,7 @@ class AddNewAnimal extends Component {
 			<React.Fragment>
 				<label className="field-input-label">Sire</label>
 				<div>
-					<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
+					<select name="sire" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
 						<option>Add Sire</option>
 						{collections.map((collection) => (
 							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
