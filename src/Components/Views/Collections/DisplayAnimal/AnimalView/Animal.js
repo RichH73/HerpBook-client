@@ -11,6 +11,7 @@ import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
 import AlertModal from '../../../../_services/Modal/Modal';
 import './Animal.css';
+import ReactTooltip from 'react-tooltip';
 
 class Animal extends Component {
 	state = {
@@ -47,7 +48,7 @@ class Animal extends Component {
 		if (!!_.get(records, 'feeding.date', '').length || !!_.get(records, 'pairing.date', '').length) {
 			return (
 				<div className="collections-animal-quick-records">
-					Quick Records:
+					Quick Records
 					<div className="collections-animal-quick-records-data">
 						<table>
 							<tbody>
@@ -263,59 +264,58 @@ class Animal extends Component {
 		const animal = this.props.currentAnimal;
 
 		return (
-			<div className="collections-animal-page">
-				<div className="collection-animal-img-info">
-					<div className="collection-animal-image">{this.showImage(animal.images)}</div>
-					<div className="collection-animal-common-info">
-						<div className="collection-animal-name">
-							<label className="field-input-label">Name:</label>
-							<div>
-								<input type="text" name="name" defaultValue={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+			<React.Fragment>
+				<div className="collections-animal-page">
+					<div className="collection-animal-img-info">
+						<div className="collection-animal-image">{this.showImage(animal.images)}</div>
+						<div className="collection-animal-common-info">
+							<div className="collection-animal-name">
+								<label className="field-input-label">Name</label>
+								<div>
+									<input type="text" name="name" defaultValue={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
+								</div>
 							</div>
-						</div>
-
-						<div className="collection-animal-id">
-							<label className="field-input-label">ID #:</label>
-							<div>
-								<input type="text" name="animalID" value={animal._id} />
+							<div className="collection-animal-id">
+								<label className="field-input-label">ID #</label>
+								<div>
+									<input type="text" name="animalID" value={animal._id} />
+								</div>
 							</div>
-						</div>
 
-						<div className="collection-animal-user-aniaml-id">
-							<label className="field-input-label">Animal ID#:</label>
-							<div>
-								<input type="text" name="userCreatedID" value={animal.userCreatedID} onChange={this.onChangeHandler} />
+							<div className="collection-animal-user-aniaml-id">
+								<label className="field-input-label">Animal ID#</label>
+								<div>
+									<input type="text" name="userCreatedID" value={animal.userCreatedID} onChange={this.onChangeHandler} />
+								</div>
 							</div>
-						</div>
 
-						<div className="collection-animal-collection-type">
-							<label className="field-input-label">Collection Type:</label>
-							<div>
-								<select name="collectionType" onChange={this.onChangeHandler} defaultValue={animal.collectionType}>
-									<option></option>
-									<option value="SALE">Sale</option>
-									<option value="PET">Pet</option>
-									<option value="HOLDBACK">Holdback</option>
-									<option value="BREEDER">Breeder</option>
-								</select>
+							<div className="collection-animal-collection-type">
+								<label className="field-input-label">Collection Type</label>
+								<div>
+									<select name="collectionType" onChange={this.onChangeHandler} defaultValue={animal.collectionType}>
+										<option></option>
+										<option value="SALE">Sale</option>
+										<option value="PET">Pet</option>
+										<option value="HOLDBACK">Holdback</option>
+										<option value="BREEDER">Breeder</option>
+									</select>
+								</div>
 							</div>
-						</div>
 
-						<div className="collection-animal-dob">
-							<label className="field-input-label">DOB:</label>
-							<div>
-								<DatePicker
-									showPopperArrow={false}
-									selected={!!this.props.currentAnimal.dob ? new Date(this.props.currentAnimal.dob) : ''}
-									onChange={this.dateHandler}
-									readOnly={this.state.readOnly}
-								/>
+							<div className="collection-animal-dob">
+								<label className="field-input-label">DOB</label>
+								<div>
+									<DatePicker
+										showPopperArrow={false}
+										selected={!!this.props.currentAnimal.dob ? new Date(this.props.currentAnimal.dob) : ''}
+										onChange={this.dateHandler}
+										readOnly={this.state.readOnly}
+									/>
+								</div>
 							</div>
-						</div>
 
-						<div className="collection-animal-sire">
-							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<label className="field-input-label">Sire:</label>
+							<div className="collection-animal-sire">
+								<label>Sire</label>
 								{!!animal.sire.length ? (
 									<span name="viewLink" onClick={() => this.searchId(animal.sire)}>
 										view
@@ -323,15 +323,13 @@ class Animal extends Component {
 								) : (
 									''
 								)}
+								<div>
+									<input type="text" name="sire" value={animal.sire} onChange={this.onChangeHandler} readOnly={true} />
+								</div>
 							</div>
-							<div>
-								<input type="text" name="sire" value={animal.sire} onChange={this.onChangeHandler} readOnly={true} />
-							</div>
-						</div>
 
-						<div className="collection-animal-dam">
-							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<label className="field-input-label">Dam:</label>
+							<div className="collection-animal-dam">
+								<label className="field-input-label">Dam</label>
 								{animal.dam.length ? (
 									<span name="viewLink" onClick={() => this.searchId(animal.dam)}>
 										view
@@ -339,54 +337,55 @@ class Animal extends Component {
 								) : (
 									''
 								)}
+								<div>
+									<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={true} />
+								</div>
 							</div>
-							<div>
-								<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={true} />
-							</div>
-						</div>
-						<div className="collection-animal-gender">
-							<label className="field-input-label">Gender:</label>
-							<div>
-								<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly} defaultValue={this.props.currentAnimal.gender}>
-									<option selected value="MALE">
-										Male
-									</option>
-									<option value="FEMALE">Female</option>
-									<option value="UNKNOWN">Unknown</option>
-								</select>
+							<div className="collection-animal-gender">
+								<label className="field-input-label">Gender</label>
+								<div>
+									<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly} defaultValue={this.props.currentAnimal.gender}>
+										<option selected value="MALE">
+											Male
+										</option>
+										<option value="FEMALE">Female</option>
+										<option value="UNKNOWN">Unknown</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="collection-animal-body">
-					{this.quickRecords(animal.quickRecords)}
-					<div className="collection-animal-comments">
-						<label className="field-input-label">Notes:</label>
-						<div className="collection-animal-comments-box">
-							<ReactQuill
-								style={{ backgroundColor: 'white', color: 'black' }}
-								name="comments"
-								value={animal.comments}
-								onChange={this.handleChange}
-								modules={this.props.mods.modules}
-								formats={this.props.mods.formats}
-								readOnly={this.state.readOnly}
-								theme="snow"
-							/>
-						</div>
-						{!!this.state.readOnly ? (
-							''
-						) : (
-							<div className="collection-animal-update-button">
-								<button className="button" onClick={this.onSubmitHandler}>
-									Update
-								</button>
+					<div className="collection-animal-body">
+						{this.quickRecords(animal.quickRecords)}
+						<div className="collection-animal-comments">
+							<label className="field-input-label">Notes</label>
+							<div className="collection-animal-comments-box">
+								<ReactQuill
+									style={{ backgroundColor: 'white', color: 'black' }}
+									name="comments"
+									value={animal.comments}
+									onChange={this.handleChange}
+									modules={this.props.mods.modules}
+									formats={this.props.mods.formats}
+									readOnly={this.state.readOnly}
+									theme="snow"
+								/>
 							</div>
-						)}
+							{!!this.state.readOnly ? (
+								''
+							) : (
+								<div className="collection-animal-update-button">
+									<button className="button" onClick={this.onSubmitHandler}>
+										Update
+									</button>
+								</div>
+							)}
+						</div>
 					</div>
+					<AlertModal />
 				</div>
-				<AlertModal />
-			</div>
+				<ReactTooltip />
+			</React.Fragment>
 		);
 	}
 }

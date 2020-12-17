@@ -1,32 +1,6 @@
 /*
     Color section to define the colors used in the entire app.
 */
-label {
-  color: black;
-  margin: 1em auto;
-}
-
-input {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-select {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-.button {
-  border-radius: 7px;
-  width: 80px;
-  background: orange;
-  text-align: center;
-}
-
-.button:hover {
-  border: solid darkorange 1px;
-}
-
 .message-list {
   display: -webkit-box;
   display: -ms-flexbox;

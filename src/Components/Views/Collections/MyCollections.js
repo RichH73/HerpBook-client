@@ -65,14 +65,14 @@ class MyCollections extends Component {
 				<div className="my-collections-collection-container-table">
 					<table>
 						<thead>
-							<th>ID</th>
+							{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
 							<th>Name</th>
 							<th>DOB</th>
 							<th>Gender</th>
 						</thead>
 						<tbody>
 							<tr>
-								<td>{sub._id}</td>
+								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{sub._id}</td>}
 								<td>{sub.name}</td>
 								{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
 								<td>{sub.gender}</td>
@@ -134,22 +134,26 @@ class MyCollections extends Component {
 					<h3>Quick Filters</h3>
 					<div className="my-collections-quick-filters-select">
 						<div>
-							<label>Species: </label>
-							<select name="sub_cat" onChange={changeFilter} value={this.props.filters.sub_cat}>
-								<option value="">All</option>
-								{subsList.map((sub) => (
-									<option value={sub.id}>{sub.name}</option>
-								))}
-							</select>
+							<label>Species</label>
+							<div>
+								<select name="sub_cat" onChange={changeFilter} value={this.props.filters.sub_cat}>
+									<option value="">All</option>
+									{subsList.map((sub) => (
+										<option value={sub.id}>{sub.name}</option>
+									))}
+								</select>
+							</div>
 						</div>
 						<div>
-							<label>Gender: </label>
-							<select name="gender" onChange={changeFilter} value={this.props.filters.gender}>
-								<option value="">All</option>
-								<option value="MALE">Male</option>
-								<option value="FEMALE">Female</option>
-								<option value="UNKNOWN">Unknown</option>
-							</select>
+							<label>Gender</label>
+							<div>
+								<select name="gender" onChange={changeFilter} value={this.props.filters.gender}>
+									<option value="">All</option>
+									<option value="MALE">Male</option>
+									<option value="FEMALE">Female</option>
+									<option value="UNKNOWN">Unknown</option>
+								</select>
+							</div>
 						</div>
 					</div>
 					<div className="my-collections-quick-filters-select-clear" onClick={this.clearFilters}>

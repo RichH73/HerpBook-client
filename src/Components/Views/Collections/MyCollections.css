@@ -1,32 +1,6 @@
 /*
     Color section to define the colors used in the entire app.
 */
-label {
-  color: black;
-  margin: 1em auto;
-}
-
-input {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-select {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-.button {
-  border-radius: 7px;
-  width: 80px;
-  background: orange;
-  text-align: center;
-}
-
-.button:hover {
-  border: solid darkorange 1px;
-}
-
 .my-collections-collection-container {
   border: 1px solid orange;
   margin: 10px auto;
@@ -59,5 +33,42 @@ select {
   vertical-align: baseline;
   width: 85%;
   margin: auto;
+}
+
+.my-collections-quick-filters {
+  margin: .5em auto 1em;
+  border: 1px solid orange;
+  border-radius: 7px;
+  width: 90%;
+}
+
+.my-collections-quick-filters-select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: .5em auto 2em;
+}
+
+.my-collections-quick-filters-select-clear {
+  width: 100px;
+  margin: 1em 6.5em 1em auto;
+  cursor: pointer;
+  background-color: orange;
+  border-radius: 3px;
+  text-align: center;
+  border: 0.5px solid orange;
+}
+
+.my-collections-quick-filters-select-clear:hover {
+  background-color: #ff8800;
+  border: 0.5px solid red;
+}
+
+.my-collections-quick-filters select {
+  font-size: 1em;
+  border: 1px solid orange;
 }
 /*# sourceMappingURL=MyCollections.css.map */

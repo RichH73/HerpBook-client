@@ -10,12 +10,12 @@
 	}
 
 	.collections-create-new-animal-images {
-		margin: 3em auto;
+		margin: 4em auto 1em;
 		grid-area: new-animal-images;
 	}
 
 	.collections-create-new-animal-form {
-		width: 75%;
+		width: 100%;
 		margin: auto;
 		// grid-area: new-animal-form;
 		// display: grid;
@@ -25,6 +25,34 @@
 		// 	'... create-gender'
 		// 	'category ...'
 		// 	'sub-category ...';
+	}
+
+	.collections-create-new-animal-type-ucid {
+		left: 10em;
+		display: flex;
+		margin: 0 auto 1em 15%;
+		//margin-left: 4em;
+		//justify-content: space-evenly;
+	}
+
+	.collections-create-new-animal-type {
+		padding-right: 10em;
+	}
+
+	.collections-create-name-animal-name-dob {
+		display: flex;
+		margin: 1em auto auto 6.5em;
+		//justify-content: space-evenly;
+		//width: 90%;
+		//margin: auto;
+	}
+
+	.collections-create-new-animal-gender-category {
+		display: flex;
+		margin: 1em auto auto 6.5em;
+		//justify-content: space-evenly;
+		//width: 65%;
+		//margin: auto;
 	}
 
 	.collections-create-new-animal-footer {
@@ -47,18 +75,20 @@
 	}
 
 	.collections-create-new-animal-name {
-		margin: 1em auto;
+		padding-right: 5em;
+		//margin: 1em auto;
 		grid-area: create-name;
 	}
 
 	.collections-create-new-animal-dob {
+		//margin: 1em auto;
 		grid-area: create-dob;
 	}
 
 	.collections-create-new-animal-sire {
-		content: '';
-		height: 3em;
-		grid-area: create-sire;
+		padding-right: 2em;
+		//content: '';
+		//height: 3em;
 	}
 
 	.collections-create-new-animal-dam {
@@ -68,12 +98,11 @@
 	}
 
 	.collections-create-new-animal-gender {
-		margin: 1em auto;
-		grid-area: create-gender;
+		padding-right: 12.5em;
+		//margin: 1em auto;
 	}
 
 	.collections-create-new-animal-button {
-		grid-area: create-button;
 		padding: 8px;
 	}
 
@@ -105,17 +134,22 @@
 	}
 
 	.collections-create-new-animal-category {
-		grid-area: category;
+		//margin: 1em auto;
 		margin-bottom: 8px;
 	}
+
+	.collections-create-new-animal-sire-dam {
+		display: flex;
+		margin: 1em auto auto 6.5em;
+		//justify-content: space-evenly;
+	}
+
 	.collections-create-new-animal-category select {
 		border: 1px solid red;
 	}
 
 	.collections-create-new-animal-sub-category {
 		content: '';
-		height: 3em;
-		grid-area: sub-category;
 	}
 
 	.collections-create-new-animal-sub-category select {

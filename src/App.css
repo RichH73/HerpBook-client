@@ -1,6 +1,10 @@
 /*
     Color section to define the colors used in the entire app.
 */
+.application-body {
+  text-align: left;
+}
+
 label {
   color: black;
   margin: 1em auto;
@@ -25,10 +29,6 @@ select {
 
 .button:hover {
   border: solid darkorange 1px;
-}
-
-.application-body {
-  text-align: left;
 }
 
 @media screen and (min-width: 900px) {

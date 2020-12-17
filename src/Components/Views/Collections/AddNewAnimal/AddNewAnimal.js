@@ -144,13 +144,15 @@ class AddNewAnimal extends Component {
 		}
 		return (
 			<React.Fragment>
-				<label className="field-input-label">Sire:</label>
-				<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
-					<option>Add Sire</option>
-					{collections.map((collection) => (
-						<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-					))}
-				</select>
+				<label className="field-input-label">Sire</label>
+				<div>
+					<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
+						<option>Add Sire</option>
+						{collections.map((collection) => (
+							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+						))}
+					</select>
+				</div>
 			</React.Fragment>
 		);
 	};
@@ -171,13 +173,15 @@ class AddNewAnimal extends Component {
 		}
 		return (
 			<React.Fragment>
-				<label className="field-input-label">Dam:</label>
-				<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
-					<option>Add Dam</option>
-					{collections.map((collection) => (
-						<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-					))}
-				</select>
+				<label className="field-input-label">Dam</label>
+				<div>
+					<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
+						<option>Add Dam</option>
+						{collections.map((collection) => (
+							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
+						))}
+					</select>
+				</div>
 			</React.Fragment>
 		);
 	};
@@ -193,62 +197,81 @@ class AddNewAnimal extends Component {
 				</div>
 				<div className="collections-create-new-animal">
 					<div className="collections-create-new-animal-form">
-						<div className="collections-create-new-animal-type">
-							<label className="field-input-label">Collection Type: </label>
-							<select name="collectionType" onChange={this.formChangeHandler}>
-								<option>Choose</option>
-								<option value="SALE">Sale</option>
-								<option value="PET">Pet</option>
-								<option value="HOLDBACK">Holdback</option>
-								<option value="BREEDER">Breeder</option>
-							</select>
-						</div>
-
-						<div className="collections-create-new-animal-user-id">
-							<label className="field-input-label">Animal ID:</label>
-							<input type="text" name="userCreatedID" onChange={this.formChangeHandler} />
-						</div>
-						<div className="collections-create-new-animal-name">
-							<label className="field-input-label">Name:</label>
-							<input type="text" name="name" onChange={this.formChangeHandler} />
-						</div>
-						<div className="collections-create-new-animal-sire">
-							{this.sireDisplay()}
-							{/* <input type="text" name="sire" onChange={this.formChangeHandler} /> */}
-						</div>
-						<div className="collections-create-new-animal-dam">{this.damDisplay()}</div>
-						<div className="collections-create-new-animal-dob">
-							<label className="field-input-label">DOB:</label>
-							<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
-						</div>
-						<div className="collections-create-new-animal-gender">
-							<label className="field-input-label">Gender:</label>
-							<select name="gender" onChange={this.formChangeHandler}>
-								<option>Choose</option>
-								<option value="MALE">Male</option>
-								<option value="FEMALE">Female</option>
-								<option value="UNKNOWN">Unknown</option>
-							</select>
-						</div>
-						<div className="collections-create-new-animal-category">
-							<label className="field-input-label">Category: </label>
-							<select id="category" required name="category" onChange={this.categoryChangeHandler}>
-								<option value="">Choose a category</option>
-								{this.category_menu()}
-							</select>
-						</div>
-
-						{!!this.props.createAnimal.category ? (
-							<div className="collections-create-new-animal-sub-category">
-								<label className="field-input-label">Sub category: </label>
-								<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
-									<option value="">Choose a category</option>
-									{this.sub_category_menu()}
-								</select>
+						<div className="collections-create-new-animal-type-ucid">
+							<div className="collections-create-new-animal-type">
+								<label className="field-input-label">Collection Type</label>
+								<div>
+									<select name="collectionType" onChange={this.formChangeHandler}>
+										<option>Choose</option>
+										<option value="SALE">Sale</option>
+										<option value="PET">Pet</option>
+										<option value="HOLDBACK">Holdback</option>
+										<option value="BREEDER">Breeder</option>
+									</select>
+								</div>
 							</div>
-						) : (
-							''
-						)}
+							<div className="collections-create-new-animal-user-id">
+								<label className="field-input-label">Animal ID</label>
+								<div>
+									<input type="text" name="userCreatedID" onChange={this.formChangeHandler} />
+								</div>
+							</div>
+						</div>
+
+						<div className="collections-create-name-animal-name-dob">
+							<div className="collections-create-new-animal-name">
+								<label className="field-input-label">Name</label>
+								<div>
+									<input type="text" name="name" onChange={this.formChangeHandler} />
+								</div>
+							</div>
+							<div className="collections-create-new-animal-dob">
+								<label className="field-input-label">DOB</label>
+								<div>
+									<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
+								</div>
+							</div>
+						</div>
+
+						<div className="collections-create-new-animal-gender-category">
+							<div className="collections-create-new-animal-gender">
+								<label className="field-input-label">Gender</label>
+								<div>
+									<select name="gender" onChange={this.formChangeHandler}>
+										<option>Choose</option>
+										<option value="MALE">Male</option>
+										<option value="FEMALE">Female</option>
+										<option value="UNKNOWN">Unknown</option>
+									</select>
+								</div>
+							</div>
+							<div className="collections-create-new-animal-category">
+								<label className="field-input-label">Category</label>
+								<div>
+									<select id="category" required name="category" onChange={this.categoryChangeHandler}>
+										<option value="">Choose a category</option>
+										{this.category_menu()}
+									</select>
+								</div>
+								{!!this.props.createAnimal.category ? (
+									<div className="collections-create-new-animal-sub-category">
+										<label className="field-input-label">Sub category</label>
+										<div>
+											<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
+												<option value="">Choose a category</option>
+												{this.sub_category_menu()}
+											</select>
+										</div>
+									</div>
+								) : (
+									''
+								)}
+							</div>
+						</div>
+						<div className="collections-create-new-animal-sire-dam">
+							<div className="collections-create-new-animal-sire">{this.sireDisplay()}</div>
+							<div className="collections-create-new-animal-dam">{this.damDisplay()}</div>
+						</div>
 					</div>
 					<div className="collections-create-new-animal-images">
 						<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />

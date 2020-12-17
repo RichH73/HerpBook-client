@@ -6,6 +6,10 @@
 		padding: 10px;
 	}
 
+	.collections-animal-page input {
+		margin-bottom: 1em;
+	}
+
 	.collection-animal-img-info {
 		display: grid;
 		grid-template-areas: 'img info';
@@ -97,7 +101,7 @@
 	}
 
 	.collections-animal-quick-records {
-		margin-bottom: 1em;
+		margin: 4em auto 2em;
 	}
 
 	.collections-animal-quick-records-data {

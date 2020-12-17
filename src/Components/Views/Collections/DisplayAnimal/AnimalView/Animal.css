@@ -1,35 +1,12 @@
 /*
     Color section to define the colors used in the entire app.
 */
-label {
-  color: black;
-  margin: 1em auto;
-}
-
-input {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-select {
-  font-size: 1em;
-  border: 1px solid orange;
-}
-
-.button {
-  border-radius: 7px;
-  width: 80px;
-  background: orange;
-  text-align: center;
-}
-
-.button:hover {
-  border: solid darkorange 1px;
-}
-
 @media screen and (min-width: 840px) {
   .collections-animal-page {
     padding: 10px;
+  }
+  .collections-animal-page input {
+    margin-bottom: 1em;
   }
   .collection-animal-img-info {
     display: -ms-grid;
@@ -124,7 +101,7 @@ select {
     width: 100%;
   }
   .collections-animal-quick-records {
-    margin-bottom: 1em;
+    margin: 4em auto 2em;
   }
   .collections-animal-quick-records-data {
     font-size: 0.8rem;
