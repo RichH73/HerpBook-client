@@ -25,7 +25,7 @@ import FIleShame from '../Shame/FileReport/FileReport';
 import ShameReport from '../Shame/ViewShame/ViewShame';
 import MyCollections from '../Collections/MyCollections';
 import Main from '../Collections/DisplayAnimal/Main';
-import AddNewAnimal from '../Collections/AddNewAnimal';
+import AddNewAnimal from '../Collections/AddNewAnimal/AddNewAnimal';
 import GetMail from '../Users/Mail/GetMail/GetMail';
 //TODO what is this??
 //import SearchCollections from '../Collections/DisplayAnimal/AnimalSearch';

@@ -5,6 +5,7 @@ import * as actionCreators from '../../../actions/index';
 import 'react-tabs/style/react-tabs.css';
 import _ from 'lodash';
 import './DisplayAnimal/Collections.css';
+import './MyCollections.css';
 import dayjs from 'dayjs';
 import ScanQr from '../../_services/Scan/ScanBarCode';
 
@@ -17,8 +18,6 @@ class MyCollections extends Component {
 		this.props.getMyCollections();
 		this.props.setPageTitle('Collections');
 	}
-
-	componentWillUnmount() {}
 
 	showHideScanner = () => {
 		if (!!this.state.showScanner) {
@@ -42,65 +41,127 @@ class MyCollections extends Component {
 		this.props.history.push('/view_animal');
 	};
 
-	categoryList = (id) => {
-		//const selectCategories = this.props.categories.filter((category) => category.id === id);
-		const collections = this.props.collections.map((collection) => {
-			const dob = dayjs(_.get(collection, 'dob'));
-			return (
-				<tr onClick={() => this.loadAnimal(collection._id)}>
-					<td>{collection._id}</td>
-					<td>{collection.name}</td>
-					{!!_.get(collection, 'dob') ? <td>{`${dob.$M}/${dob.$D}/${dob.$y}`}</td> : <td></td>}
-					<td>{collection.gender}</td>
-				</tr>
-			);
-		});
-
-		return collections;
-	};
-
-	sortLists = () => {
-		const { subCategory, collections } = this.props;
-		let combine = [];
-		let collection_sub = collections.map((collection) => {
-			return collection.sub_category;
-		});
-		//TODO review this. It's throwing a warning without eslint-disable
-		// eslint-disable-next-line
-		subCategory.filter((sub) => {
-			if (_.includes(collection_sub, sub.id)) {
-				combine.push({
-					header: sub.name,
-					subs: collections.filter((col) => {
-						return col.sub_category === sub.id;
-					}),
-				});
-			}
-		});
-		return combine.map((display) => (
-			//const dob = dayjs(_.get(sub, "dob"));
-			<div>
-				<h4>{display.header}</h4>
-				<table>
-					<tbody>
-						<th>ID</th>
-						<th>Name</th>
-						<th>DOB</th>
-						<th>Gender</th>
-						{display.subs.map((sub) => {
-							return (
-								<tr onClick={() => this.loadAnimal(sub._id)}>
-									<td>{sub._id}</td>
-									<td>{sub.name}</td>
-									{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
-									<td>{sub.gender}</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+	showLists = () => {
+		let { filters, collections } = this.props;
+		if (!!filters.sub_cat) {
+			collections = collections.filter((collection) => {
+				if (collection.sub_category === _.toNumber(filters.sub_cat)) {
+					return collection;
+				}
+			});
+		}
+		if (!!filters.gender) {
+			collections = collections.filter((collection) => {
+				if (collection.gender === filters.gender) {
+					return collection;
+				}
+			});
+		}
+		return collections.map((sub) => (
+			<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)}>
+				<div className="my-collections-collection-container-image">
+					<img src={`${sub.images[0].URL}/${sub.images[0].thumbnail}`} />
+				</div>
+				<div className="my-collections-collection-container-table">
+					<table>
+						<thead>
+							{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
+							<th>Name</th>
+							<th>DOB</th>
+							<th>Gender</th>
+						</thead>
+						<tbody>
+							<tr>
+								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{sub._id}</td>}
+								<td>{sub.name}</td>
+								{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
+								<td>{sub.gender}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		));
+		//   <div className='my-collections-collection-container'>
+		//     <table>
+		//       <thead>
+		//         <th>ID</th>
+		//         <th>Name</th>
+		//         <th>DOB</th>
+		//         <th>Gender</th>
+		//       </thead>
+		//       <tbody>
+		//         {collections.map((sub) => {
+		//           return (
+		//             <tr onClick={() => this.loadAnimal(sub._id)}>
+		//               <td>{sub._id}</td>
+		//               <td>{sub.name}</td>
+		//               {!!_.get(sub, "dob") ? (
+		//                 <td>{dayjs(sub.dob).format("MM/DD/YYYY")}</td>
+		//               ) : (
+		//                 <td></td>
+		//               )}
+		//               <td>{sub.gender}</td>
+		//             </tr>
+		//           );
+		//         })}
+		//       </tbody>
+		//     </table>
+		//   </div>
+	};
+
+	clearFilters = () => {
+		this.props.clearCollectionFilters();
+	};
+
+	selectFilters = () => {
+		let changeFilter = (event) => {
+			this.props.newCollectionFilter([event.target.name], event.target.value);
+		};
+		let subsFiltered = _.uniq(
+			this.props.collections.map((sub) => {
+				return sub.sub_category;
+			})
+		);
+		const subsList = this.props.subCategory.filter((newSub) => {
+			if (subsFiltered.includes(newSub.id)) {
+				return newSub;
+			}
+		});
+		return (
+			<React.Fragment>
+				<div className="my-collections-quick-filters">
+					<h3>Quick Filters</h3>
+					<div className="my-collections-quick-filters-select">
+						<div>
+							<label>Species</label>
+							<div>
+								<select name="sub_cat" onChange={changeFilter} value={this.props.filters.sub_cat}>
+									<option value="">All</option>
+									{subsList.map((sub) => (
+										<option value={sub.id}>{sub.name}</option>
+									))}
+								</select>
+							</div>
+						</div>
+						<div>
+							<label>Gender</label>
+							<div>
+								<select name="gender" onChange={changeFilter} value={this.props.filters.gender}>
+									<option value="">All</option>
+									<option value="MALE">Male</option>
+									<option value="FEMALE">Female</option>
+									<option value="UNKNOWN">Unknown</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div className="my-collections-quick-filters-select-clear" onClick={this.clearFilters}>
+						Clear Filters
+					</div>
+				</div>
+			</React.Fragment>
+		);
 	};
 
 	render() {
@@ -115,8 +176,8 @@ class MyCollections extends Component {
 						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
 						{!!this.state.showScanner ? <ScanQr /> : ''}
 					</div>
-
-					<div className="collections-my-collections-active-list">{this.sortLists()}</div>
+					<div>{this.selectFilters()}</div>
+					<div className="collections-my-collections-active-list">{this.showLists()}</div>
 				</div>
 			</React.Fragment>
 		);
@@ -125,15 +186,16 @@ class MyCollections extends Component {
 
 const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
-	USERSURL: state.config.server.usersURL,
+	category: state.categories.categories,
+	codeSearched: state.scanBarCode.id,
+	collections: state.myCollections.collections,
+	currentAnimal: state.viewAnimal,
+	filters: state.myCollectionsFilters,
+	selectedAnimalId: state.selectedAnimal.id,
+	subCategory: state.categories.subCategories,
 	URL: state.config.server.serverURL,
 	userInfo: state.user,
-	currentAnimal: state.viewAnimal,
-	selectedAnimalId: state.selectedAnimal.id,
-	collections: state.wholeCollection.collections,
-	category: state.categories.categories,
-	subCategory: state.categories.subCategories,
-	codeSearched: state.scanBarCode.id,
+	USERSURL: state.config.server.usersURL,
 });
 
 const mapDispatchToProps = (dispatch) => {

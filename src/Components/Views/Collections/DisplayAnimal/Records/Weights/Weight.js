@@ -130,7 +130,6 @@ class Weight extends Component {
 				step: 1,
 			},
 		};
-		const fd = dayjs(_.get(this, 'state.time'));
 		return (
 			<div className="collections-sheddings-list" style={{ padding: '10px' }}>
 				<div className="collections-sheddings-new-shedding-form">
@@ -147,7 +146,7 @@ class Weight extends Component {
 								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
 							</div>
 							<div className="collections-weight-date-mobile-selector">
-								<input type="text" readOnly={true} value={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} onClick={this.mobileHandleClick} />
+								<input type="text" readOnly={true} value={dayjs(_.get(this, 'state.time')).format('MM/DD/YYYY')} onClick={this.mobileHandleClick} />
 								<MDatePicker
 									dateConfig={dateConfig}
 									value={this.state.time}

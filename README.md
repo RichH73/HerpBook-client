@@ -3,7 +3,7 @@ This is the front end client for HerpBook.com.
 
 ### `Current Release`
 
-Release 3.0.1 is the current release for this application.
+Release 3.1.1 is the current release for this application.
 
 
 ## `Modules`

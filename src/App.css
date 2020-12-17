@@ -5,6 +5,21 @@
   text-align: left;
 }
 
+label {
+  color: black;
+  margin: 1em auto;
+}
+
+input {
+  font-size: 1em;
+  border: 1px solid orange;
+}
+
+select {
+  font-size: 1em;
+  border: 1px solid orange;
+}
+
 .button {
   border-radius: 7px;
   width: 80px;
@@ -25,8 +40,8 @@
 @media screen and (max-width: 899px) {
   input {
     font-size: 1em;
-    margin-top: .3em;
-    margin-bottom: .8em;
+    margin-top: 0.3em;
+    margin-bottom: 0.8em;
   }
   .mobile-nav-button {
     display: block;

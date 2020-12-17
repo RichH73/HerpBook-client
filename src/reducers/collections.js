@@ -1,6 +1,8 @@
 const initialState = {
 	name: '',
 	_id: '',
+	userCreatedID: '',
+	collectionType: '',
 	dob: '',
 	gender: '',
 	sire: '',
@@ -33,7 +35,7 @@ const initialState = {
 	readOnly: true,
 };
 
-const wholeCollectionInitialData = {
+const myCollectionsInitialData = {
 	collections: [],
 };
 const initialSelectedAnimal = {
@@ -59,7 +61,7 @@ export const viewAnimal = (state = initialState, payload) => {
 	}
 };
 
-export const wholeCollection = (state = wholeCollectionInitialData, data) => {
+export const myCollections = (state = myCollectionsInitialData, data) => {
 	switch (data.type) {
 		case 'my_collections_data':
 			return {
@@ -94,6 +96,28 @@ export const createNewAnimal = (state = createNewAnimalInitial, data) => {
 				...state,
 				...data.data,
 			};
+		case 'clear_new_animal_data':
+			return createNewAnimalInitial;
+		default:
+			return state;
+	}
+};
+
+const initialFilterState = {
+	cat: '',
+	sub_cat: '',
+	gender: '',
+};
+
+export const myCollectionsFilters = (state = initialFilterState, data) => {
+	switch (data.type) {
+		case 'NewFilter':
+			return {
+				...state,
+				[data.key]: data.value,
+			};
+		case 'ClearFilters':
+			return initialFilterState;
 		default:
 			return state;
 	}

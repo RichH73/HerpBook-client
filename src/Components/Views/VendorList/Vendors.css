@@ -44,7 +44,7 @@
     width: 100%;
   }
   .vendor-list-url {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
   }
 }
@@ -89,7 +89,7 @@
     width: 660px;
   }
   .vendor-list-url {
-    margin: .5em auto;
+    margin: 0.5em auto;
     text-align: center;
   }
 }

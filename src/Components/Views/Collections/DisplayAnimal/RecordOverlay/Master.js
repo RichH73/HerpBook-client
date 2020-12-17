@@ -458,7 +458,7 @@ const mapStateToProps = (state) => ({
 	React: state.config.analytics,
 	currentAnimal: state.viewAnimal,
 	selectedAnimalId: state.selectedAnimal.id,
-	collectionsIds: state.wholeCollection,
+	collectionsIds: state.myCollections,
 	recordOverlay: state.editRecord,
 	notesText: state.richText.text,
 	mods: state.richText,

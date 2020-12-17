@@ -50,7 +50,7 @@
     padding: 10px;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+        grid-template-areas: 'date mate' 'whitnessed successful' 'clutchId .' 'info info' 'notes notes' '. pbuttons';
   }
   .collections-pairing-records-editor-pairing-date {
     padding: 10px;
@@ -159,7 +159,7 @@
   .collections-feeding-records-editor-body {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "date type weight" "notes notes notes" "... ... fbuttons";
+        grid-template-areas: 'date type weight' 'notes notes notes' '... ... fbuttons';
   }
   .collections-feeding-records-editor-feeding-date {
     padding: 0 10px;
@@ -203,7 +203,7 @@
     padding: 10px;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+        grid-template-areas: 'date mate' 'whitnessed successful' 'clutchId .' 'info info' 'notes notes' '. pbuttons';
   }
   .collections-pairing-records-editor-pairing-date {
     padding: 10px;
@@ -316,7 +316,7 @@
     grid-area: date;
   }
   .collections-feeding-records-editor-feeding-date input {
-    margin: .5em auto;
+    margin: 0.5em auto;
     padding: 0 10px;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -328,7 +328,7 @@
     grid-area: type;
   }
   .collections-feeding-records-editor-feeding-type input {
-    margin: .5em auto;
+    margin: 0.5em auto;
     padding: 0 10px;
     grid-area: type;
   }
@@ -338,7 +338,7 @@
     grid-area: weight;
   }
   .collections-feeding-records-editor-feeding-weight input {
-    margin: .5em auto;
+    margin: 0.5em auto;
     padding: 0 10px;
     grid-area: weight;
   }
@@ -362,7 +362,7 @@
   }
   .collections-pairing-records-editor-body {
     padding: 10px;
-        grid-template-areas: "date mate" "whitnessed successful" "clutchId ." "info info" "notes notes" ". pbuttons";
+        grid-template-areas: 'date mate' 'whitnessed successful' 'clutchId .' 'info info' 'notes notes' '. pbuttons';
   }
   .collections-pairing-records-editor-pairing-date {
     padding: 10px;

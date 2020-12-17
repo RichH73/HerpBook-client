@@ -22,99 +22,6 @@
   .collection-animal-comment {
     width: 200px;
   }
-  .collections-create-new-animal {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
-  }
-  .collections-create-new-animal-images {
-    margin: 3em auto;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: new-animal-images;
-  }
-  .collections-create-new-animal-form {
-    width: 75%;
-    margin: auto;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: new-animal-form;
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
-  }
-  .collections-create-new-animal-footer {
-    margin: auto 5em 0;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-    grid-area: footer;
-    text-align: right;
-    padding-right: 5em;
-  }
-  .collections-create-new-animal-form input {
-    margin: 5px 0;
-  }
-  .collections-create-new-animal-name {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: create-name;
-    width: 200px;
-  }
-  .collections-create-new-animal-dob {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: create-dob;
-  }
-  .collections-create-new-animal-sire {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: create-sire;
-  }
-  .collections-create-new-animal-dam {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: create-dam;
-  }
-  .collections-create-new-animal-gender {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
-    grid-area: create-gender;
-  }
-  .collections-create-new-animal-button {
-    grid-area: create-button;
-    padding: 8px;
-  }
-  .collections-create-new-animal-button button {
-    width: 80px;
-  }
-  .collections-create-new-animal-img-drop-dropbox {
-    width: 60%;
-    padding: 3px;
-    border-radius: 10px;
-    border: 2px solid orange;
-    background-color: #cce2f8;
-    margin: auto;
-  }
-  .img-preview {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto auto auto auto auto;
-        grid-template-columns: auto auto auto auto auto auto;
-  }
-  .img-preview img {
-    width: 100px;
-  }
-  .collections-create-new-animal-category {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    grid-area: category;
-    margin-bottom: 8px;
-  }
-  .collections-create-new-animal-sub-category {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    grid-area: sub-category;
-  }
   .collections-tab-header {
     border-color: orange;
   }
@@ -148,11 +55,6 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-  }
-  .collections-create-new-animal-img-drop-button {
-    text-align: right;
-    margin-top: 10px;
-    padding-right: 134px;
   }
   .collections-animal-more-images img {
     width: 100px;
@@ -209,99 +111,6 @@
 }
 
 @media screen and (max-width: 699px) {
-  .collections-create-new-animal {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
-  }
-  .collections-create-new-animal-images {
-    margin: 3em auto;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: new-animal-images;
-  }
-  .collections-create-new-animal-form {
-    width: 90%;
-    margin: auto;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: new-animal-form;
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
-  }
-  .collections-create-new-animal-footer {
-    margin: auto 5em 0;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-    grid-area: footer;
-    text-align: right;
-    padding-right: 5em;
-  }
-  .collections-create-new-animal-form input {
-    margin: 15px 0;
-  }
-  .collections-create-new-animal-name {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: create-name;
-    width: 200px;
-  }
-  .collections-create-new-animal-dob {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: create-dob;
-  }
-  .collections-create-new-animal-sire {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: create-sire;
-  }
-  .collections-create-new-animal-dam {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: create-dam;
-  }
-  .collections-create-new-animal-gender {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
-    grid-area: create-gender;
-  }
-  .collections-create-new-animal-button {
-    grid-area: create-button;
-    padding: 8px;
-  }
-  .collections-create-new-animal-button button {
-    width: 80px;
-  }
-  .collections-create-new-animal-img-drop-dropbox {
-    width: 60%;
-    padding: 3px;
-    border-radius: 10px;
-    border: 2px solid orange;
-    background-color: #cce2f8;
-    margin: auto;
-  }
-  .img-preview {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto auto auto auto auto;
-        grid-template-columns: auto auto auto auto auto auto;
-  }
-  .img-preview img {
-    width: 100px;
-  }
-  .collections-create-new-animal-category {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    grid-area: category;
-    margin-bottom: 8px;
-  }
-  .collections-create-new-animal-sub-category {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    grid-area: sub-category;
-  }
   .collections-tab-header {
     border-color: orange;
   }
@@ -334,11 +143,6 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-  }
-  .collections-create-new-animal-img-drop-button {
-    text-align: right;
-    margin-top: 10px;
-    padding-right: 134px;
   }
   .collections-animal-more-images img {
     cursor: pointer;
@@ -411,99 +215,6 @@
   .collection-animal-comment {
     width: 200px;
   }
-  .collections-create-new-animal {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "new-animal-form" "new-animal-images" "footer";
-  }
-  .collections-create-new-animal-images {
-    margin: 3em auto;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: new-animal-images;
-  }
-  .collections-create-new-animal-form {
-    width: 90%;
-    margin: auto;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: new-animal-form;
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "create-name create-dob" "create-sire create-dam" "... create-gender" "category ..." "sub-category ...";
-  }
-  .collections-create-new-animal-footer {
-    margin: auto 5em 0;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-    grid-area: footer;
-    text-align: right;
-    padding-right: 5em;
-  }
-  .collections-create-new-animal-form input {
-    margin: 15px 0;
-  }
-  .collections-create-new-animal-name {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: create-name;
-    width: 200px;
-  }
-  .collections-create-new-animal-dob {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: create-dob;
-  }
-  .collections-create-new-animal-sire {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: create-sire;
-  }
-  .collections-create-new-animal-dam {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: create-dam;
-  }
-  .collections-create-new-animal-gender {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
-    grid-area: create-gender;
-  }
-  .collections-create-new-animal-button {
-    grid-area: create-button;
-    padding: 8px;
-  }
-  .collections-create-new-animal-button button {
-    width: 80px;
-  }
-  .collections-create-new-animal-img-drop-dropbox {
-    width: 60%;
-    padding: 3px;
-    border-radius: 10px;
-    border: 2px solid orange;
-    background-color: #cce2f8;
-    margin: auto;
-  }
-  .img-preview {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto auto auto auto auto;
-        grid-template-columns: auto auto auto auto auto auto;
-  }
-  .img-preview img {
-    width: 100px;
-  }
-  .collections-create-new-animal-category {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    grid-area: category;
-    margin-bottom: 8px;
-  }
-  .collections-create-new-animal-sub-category {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    grid-area: sub-category;
-  }
   .collections-tab-header {
     border-color: orange;
   }
@@ -536,11 +247,6 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-  }
-  .collections-create-new-animal-img-drop-button {
-    text-align: right;
-    margin-top: 10px;
-    padding-right: 134px;
   }
   .collections-animal-more-images img {
     cursor: pointer;
