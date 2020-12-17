@@ -11,6 +11,7 @@ import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
 import NumberFormat from 'react-number-format';
+import ReactTooltip from 'react-tooltip';
 
 class CreateListing extends React.Component {
 	state = {
@@ -196,7 +197,10 @@ class CreateListing extends React.Component {
 	};
 
 	shippingPrice = (
-		<div className="create-classified-shipping-price" style={{ margin: '1em auto' }}>
+		<div
+			data-tip="If you have a flat rate shipping price enter it here. If shipping is calculated later leave this box blank."
+			className="create-classified-shipping-price"
+			style={{ margin: '1em auto' }}>
 			<label className="field-input-label">Flat Rate Shipping Cost: </label>
 			<NumberFormat
 				thousandSeparator={true}
@@ -208,6 +212,7 @@ class CreateListing extends React.Component {
 				onChange={this.onChangeHandler}
 				name="shippingPrice"
 			/>
+			<ReactTooltip />
 		</div>
 	);
 
@@ -215,8 +220,11 @@ class CreateListing extends React.Component {
 		return (
 			<div className="create-classified-form">
 				<div className="image-drop">
-					<label className="field-input-label">* Denotes required entires</label>
-					<label className="field-input-label">*Images (at least one image required)</label>
+					<div className="create-classified-form-required-labels">
+						<label className="field-input-label">* Denotes required entires</label>
+						<br />
+						<label className="field-input-label">*Images (at least one image required)</label>
+					</div>
 					<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
 						{({ getRootProps, getInputProps }) => (
 							<section>
@@ -246,7 +254,7 @@ class CreateListing extends React.Component {
 
 				<form onSubmit={this.submitHandler}>
 					<div className="create-classified-form-inputs">
-						<div className="create-classified-title">
+						{/* <div className="create-classified-title">
 							<label className="field-input-label">* Title: </label>
 							<input
 								type="text"
@@ -256,7 +264,7 @@ class CreateListing extends React.Component {
 								required
 								onChange={this.onChangeHandler}
 							/>
-						</div>
+						</div> */}
 						<div className="create-classified-price">
 							<label className="field-input-label">*Price: </label>
 							<NumberFormat
@@ -275,17 +283,17 @@ class CreateListing extends React.Component {
 							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
 							{!!this.props.weight ? <this.weightSelect /> : ''}
 						</div>
-						<div className="create-classified-list-id">
+						<div data-tip="Your ID for this listing, or leave blank to use the system created ID." className="create-classified-list-id">
 							<label className="field-input-label">ID: </label>
 							<input type="text" name="userListId" onChange={this.onChangeHandler} />
 						</div>
 						<div className="create-classified-gender">
 							<label className="field-input-label">Gender: </label>
 							<select name="gender" onChange={this.onChangeHandler}>
-								<option value="">Choose a gender</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Unknown">Unknown</option>
+								<option value="">Choose gender</option>
+								<option value="MALE">Male</option>
+								<option value="FEMALE">Female</option>
+								<option value="UNKNOWN">Unknown</option>
 							</select>
 						</div>
 
@@ -342,6 +350,7 @@ class CreateListing extends React.Component {
 						</div>
 					</div>
 				</form>
+				<ReactTooltip />
 			</div>
 		);
 	}
