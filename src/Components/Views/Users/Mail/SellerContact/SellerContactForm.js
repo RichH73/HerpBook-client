@@ -49,7 +49,6 @@ class SellerContactForm extends React.Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		console.log('submitting form');
 		socket.emit('getMyMail', this.props.userInfo);
 		// socket.emit('mail', {
 		// 	eventType: 'createMail',
@@ -91,7 +90,6 @@ class SellerContactForm extends React.Component {
 	render() {
 		// eslint-disable-next-line
 		const { sellerData } = _.get(this, 'props.location', {});
-		console.log('seller data', this.props.userInfo.uid);
 		return (
 			<div id="contact_form">
 				<form onSubmit={this.submitHandler}>

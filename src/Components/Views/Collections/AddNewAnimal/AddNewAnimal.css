@@ -114,6 +114,44 @@
   }
 }
 
+@media screen and (max-width: 699px) {
+  .collections-create-new-animal-images {
+    margin: 3em auto;
+  }
+  .collections-create-new-animal-img-drop-dropbox {
+    width: 60%;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid orange;
+    background-color: #cce2f8;
+    margin: auto;
+  }
+  .collections-create-new-animal-user-id {
+    margin: .5em .5em;
+  }
+  .collections-create-new-animal-type {
+    margin: .5em .5em;
+  }
+  .collections-create-new-animal-name {
+    margin: .5em .5em;
+  }
+  .collections-create-new-animal-dob {
+    margin: 1em .5em;
+  }
+  .collections-create-new-animal-gender {
+    margin: .5em .5em;
+  }
+  .collections-create-new-animal-category {
+    margin: 1.5em .5em;
+  }
+  .collections-create-new-animal-sire {
+    margin: .5em .5em;
+  }
+  .collections-create-new-animal-dam {
+    margin: 1.5em .5em;
+  }
+}
+
 /*
 
 .collections-create-new-animal-img-drop-button {

@@ -131,7 +131,6 @@ class AddNewAnimal extends Component {
 	sireDisplay = () => {
 		const { category, sub_category } = this.props.createAnimal;
 		let collections = this.props.collections;
-		console.log('this sub', collections);
 		if (!sub_category) {
 			collections = [];
 		}
@@ -160,7 +159,6 @@ class AddNewAnimal extends Component {
 	damDisplay = () => {
 		const { category, sub_category } = this.props.createAnimal;
 		let collections = this.props.collections;
-		console.log('this sub', collections);
 		if (!sub_category) {
 			collections = [];
 		}

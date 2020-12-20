@@ -161,7 +161,7 @@
 	}
 }
 
-// @media screen and (max-width: 699px) {
+@media screen and (max-width: 699px) {
 // 		// Create Animal
 
 // 		.collections-create-new-animal {
@@ -172,10 +172,54 @@
 // 				'footer';
 // 		}
 
-// 		.collections-create-new-animal-images {
-// 			margin: 3em auto;
-// 			grid-area: new-animal-images;
-// 		}
+		.collections-create-new-animal-images {
+			margin: 3em auto;
+		}
+
+		.collections-create-new-animal-img-drop-dropbox {
+			width: 60%;
+			padding: 3px;
+			border-radius: 10px;
+			border: 2px solid $borderColor;
+			background-color: $panelBodyColor;
+			margin: auto;
+		}
+
+		.collections-create-new-animal-user-id {
+			margin: .5em .5em;
+		}
+
+		.collections-create-new-animal-type {
+			margin: .5em .5em;
+		}
+
+		.collections-create-new-animal-name {
+			margin: .5em .5em;
+		}
+
+		// .collections-create-name-animal-name-dob {
+		// 	margin: 1em .5em;
+		// }
+
+		.collections-create-new-animal-dob {
+			margin: 1em .5em;
+		}
+
+		.collections-create-new-animal-gender {
+			margin: .5em .5em;
+		}
+
+		.collections-create-new-animal-category {
+			margin: 1.5em .5em;
+		}
+
+		.collections-create-new-animal-sire {
+			margin: .5em .5em;
+		}
+
+		.collections-create-new-animal-dam {
+			margin: 1.5em .5em;
+		}
 
 // 		.collections-create-new-animal-form {
 // 			width: 90%;
@@ -234,14 +278,7 @@
 // 		.collections-create-new-animal-img-drop {
 // 		}
 
-// 		.collections-create-new-animal-img-drop-dropbox {
-// 			width: 60%;
-// 			padding: 3px;
-// 			border-radius: 10px;
-// 			border: 2px solid $borderColor;
-// 			background-color: $panelBodyColor;
-// 			margin: auto;
-// 		}
+
 
 // 		.img-preview {
 // 			display: grid;
@@ -265,7 +302,7 @@
 
 // 		// End Create Animal
 
-// }
+}
 
 /*
 

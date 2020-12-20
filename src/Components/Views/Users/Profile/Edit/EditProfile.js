@@ -141,69 +141,91 @@ class EditProfile extends React.Component {
 						/>
 					</div>
 					<div className="edit-profile-form-businessPhone">
-						<label className="field-input-label">Business Phone: </label>
-						<NumberFormat
-							format="+1 (###) ###-####"
-							allowEmptyFormatting
-							mask="_"
-							thousandSeparator={false}
-							defaultValue={user.businessPhone}
-							onChange={this.onChangeHandler}
-							name="businessPhone"
-						/>
+						<label className="field-input-label">Business Phone</label>
+						<div>
+							<NumberFormat
+								format="+1 (###) ###-####"
+								allowEmptyFormatting
+								mask="_"
+								thousandSeparator={false}
+								defaultValue={user.businessPhone}
+								onChange={this.onChangeHandler}
+								name="businessPhone"
+							/>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessWebsite">
-						<label className="field-input-label">Website: </label>
-						<input type="url" name="website" value={user.website} maxLength="200" className="urlinput form-control" onChange={this.onChangeHandler} />
+						<label className="field-input-label">Website</label>
+						<div>
+							<input
+								type="url"
+								name="website"
+								value={user.website}
+								maxLength="200"
+								className="urlinput form-control"
+								onChange={this.onChangeHandler}
+							/>
+						</div>
 					</div>
 					<div className="edit-profile-form-displayBusinessAddress">
-						<label className="field-input-label">Display Address? </label>
-						<select name="display_address" onChange={this.onChangeHandler} defaultValue={user.display_address}>
-							<option value={false}>No</option>
-							<option value={true}>Yes</option>
-						</select>
+						{/* <label className="field-input-label">Display Address?</label> */}
+						<p>If you would like to display a summary of business information on your classified listings set this to yes.</p>
+						<div>
+							<select name="display_address" onChange={this.onChangeHandler} defaultValue={user.display_address}>
+								<option value={false}>No</option>
+								<option value={true}>Yes</option>
+							</select>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessStreet">
 						<label className="field-input-label">Street</label>
-						<input
-							type="text"
-							name="businessStreet"
-							value={user.businessStreet}
-							maxLength="60"
-							className="textinput textInput form-control"
-							onChange={this.onChangeHandler}
-						/>
+						<div>
+							<input
+								type="text"
+								name="businessStreet"
+								value={user.businessStreet}
+								maxLength="60"
+								className="textinput textInput form-control"
+								onChange={this.onChangeHandler}
+							/>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessCity">
 						<label className="field-input-label">City</label>
-						<input
-							type="text"
-							name="businessCity"
-							value={user.businessCity}
-							maxLength="20"
-							className="textinput textInput form-control"
-							onChange={this.onChangeHandler}
-						/>
+						<div>
+							<input
+								type="text"
+								name="businessCity"
+								value={user.businessCity}
+								maxLength="20"
+								className="textinput textInput form-control"
+								onChange={this.onChangeHandler}
+							/>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessState">
-						<label className="field-input-label">State: </label>
-						<select name="businessState" onChange={this.onChangeHandler} defaultValue={user.businessState}>
-							<option></option>
-							{this.props.states.map((state) => (
-								<option value={state}>{state}</option>
-							))}
-						</select>
+						<label className="field-input-label">State</label>
+						<div>
+							<select name="businessState" onChange={this.onChangeHandler} defaultValue={user.businessState}>
+								<option></option>
+								{this.props.states.map((state) => (
+									<option value={state}>{state}</option>
+								))}
+							</select>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessZip">
-						<label className="field-input-label">Zip Code: </label>
-						<input
-							type="text"
-							name="businessZip"
-							value={user.businessZip}
-							maxLength="10"
-							className="textinput textInput form-control"
-							onChange={this.onChangeHandler}
-						/>
+						<label className="field-input-label">Zip Code</label>
+						<div>
+							<input
+								type="text"
+								name="businessZip"
+								value={user.businessZip}
+								maxLength="10"
+								className="textinput textInput form-control"
+								onChange={this.onChangeHandler}
+							/>
+						</div>
 					</div>
 					<div className="edit-profile-form-businessFooter">
 						<label className="field-input-label">Add a footer to your classified ads.</label>
@@ -225,32 +247,6 @@ class EditProfile extends React.Component {
 
 	render() {
 		const { user } = this.props;
-		const display_entity_email = () => {
-			const displayEntityEmailTrue = (
-				<select name="displayEntityEmail" onChange={this.onChangeHandler}>
-					<option value={Boolean(true)}>Yes</option>
-					<option value={Boolean(false)}>No</option>
-				</select>
-			);
-			const displayEntityEmailFalse = (
-				<select name="displayEntityEmail" onChange={this.onChangeHandler}>
-					<option value={Boolean(false)}>No</option>
-					<option value={Boolean(true)}>Yes</option>
-				</select>
-			);
-			return user.displayEntityEmail === true ? displayEntityEmailTrue : displayEntityEmailFalse;
-		};
-
-		const entityEmailType = (fieldName, entityEmailType) => {
-			return (
-				<select name={fieldName} onChange={this.onChangeHandler}>
-					<option value={entityEmailType}>{entityEmailType}</option>
-					<option value="HOME">HOME</option>
-					<option value="WORK">WORK</option>
-				</select>
-			);
-		};
-
 		return (
 			<React.Fragment>
 				<div className="edit-profile-form">
@@ -296,114 +292,143 @@ class EditProfile extends React.Component {
 						</div>
 						<div className="edit-profile-entity-info">
 							<div className="edit-profile-form-name-first">
-								<label className="field-input-label">First Name: </label>
-								<input
-									type="text"
-									name="firstName"
-									value={user.firstName}
-									maxLength="60"
-									className="textinput textInput form-control"
-									id="firstName"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">First Name</label>
+								<div>
+									<input
+										type="text"
+										name="firstName"
+										value={user.firstName}
+										maxLength="60"
+										className="textinput textInput form-control"
+										id="firstName"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-name-last">
-								<label className="field-input-label">Last Name: </label>
-								<input
-									type="text"
-									name="lastName"
-									value={user.lastName}
-									maxLength="60"
-									className="textinput textInput form-control"
-									id="lastName"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">Last Name</label>
+								<div>
+									<input
+										type="text"
+										name="lastName"
+										value={user.lastName}
+										maxLength="60"
+										className="textinput textInput form-control"
+										id="lastName"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-entityEmail">
-								<label className="field-input-label">Email: </label>
-								<input
-									type="email"
-									value={user.entityEmail}
-									name="entityEmail"
-									className="textinput textInput form-control"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">Email</label>
+								<div>
+									<input
+										type="email"
+										value={user.entityEmail}
+										name="entityEmail"
+										className="textinput textInput form-control"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-display-entity-email">
-								<label className="field-input-label">Display Email: </label>
-								{display_entity_email()}
+								<label className="field-input-label">Display Email</label>
+								<div>
+									<select name="displayEntityEmail" onChange={this.onChangeHandler} defaultValue={user.displayEntityEmail}>
+										<option value={Boolean(true)}>Yes</option>
+										<option value={Boolean(false)}>No</option>
+									</select>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-email-type">
-								<label className="field-input-label">Email Type: </label>
-								{entityEmailType('entityEmailType', user.entityEmailType)}
+								<label className="field-input-label">Email Type</label>
+								<div>
+									<select name="entityEmailType" onChange={this.onChangeHandler} defaultValue={user.entityEmailType}>
+										<option value={user.entityEmailType}>{user.entityEmailType}</option>
+										<option value="HOME">HOME</option>
+										<option value="WORK">WORK</option>
+									</select>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-phone-number">
-								<label className="field-input-label">Phone: </label>
-								<NumberFormat
-									format="+1 (###) ###-####"
-									allowEmptyFormatting
-									mask="_"
-									defaultValue={user.entityPhoneNumber}
-									onChange={this.onChangeHandler}
-									name="entityPhoneNumber"
-								/>
+								<label className="field-input-label">Phone</label>
+								<div>
+									<NumberFormat
+										format="+1 (###) ###-####"
+										allowEmptyFormatting
+										mask="_"
+										defaultValue={user.entityPhoneNumber}
+										onChange={this.onChangeHandler}
+										name="entityPhoneNumber"
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-display-entity-phone">
-								<label className="field-input-label">Display Phone: </label>
-								<select name="displayEntityPhone" defaultValue={user.displayEntityPhone} onChange={this.onChangeHandler}>
-									<option value={false}>No</option>
-									<option value={true}>Yes</option>
-								</select>
+								<label className="field-input-label">Display Phone</label>
+								<div>
+									<select name="displayEntityPhone" defaultValue={user.displayEntityPhone} onChange={this.onChangeHandler}>
+										<option value={false}>No</option>
+										<option value={true}>Yes</option>
+									</select>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-phone-type">
-								<label className="field-input-label">Phone Type: </label>
-								{/* {this.phoneTypeSelector('entityPhoneType', user.entityPhoneType)} */}
-								<select name="entityPhoneType" onChange={this.onChangeHandler} defaultValue={user.entityPhoneType}>
-									<option></option>
-									<option value="MOBILE">MOBILE</option>
-									<option value="HOME">HOME</option>
-									<option value="WORK">WORK</option>
-								</select>
+								<label className="field-input-label">Phone Type</label>
+								<div>
+									<select name="entityPhoneType" onChange={this.onChangeHandler} defaultValue={user.entityPhoneType}>
+										<option value="MOBILE">MOBILE</option>
+										<option value="HOME">HOME</option>
+										<option value="WORK">WORK</option>
+									</select>
+								</div>
 							</div>
 
 							<div className="edit-profile-form-entity-street">
-								<label className="field-input-label">Street: </label>
-								<input
-									type="text"
-									value={user.entityStreet}
-									name="entityStreet"
-									className="textinput textInput form-control"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">Street</label>
+								<div>
+									<input
+										type="text"
+										value={user.entityStreet}
+										name="entityStreet"
+										className="textinput textInput form-control"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-city">
-								<label className="field-input-label">City: </label>
-								<input
-									type="text"
-									value={user.entityCity}
-									name="entityCity"
-									className="textinput textInput form-control"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">City</label>
+								<div>
+									<input
+										type="text"
+										value={user.entityCity}
+										name="entityCity"
+										className="textinput textInput form-control"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-state">
-								<label className="field-input-label">State: </label>
-								<select name="entityState" onChange={this.onChangeHandler} defaultValue={user.entityState}>
-									<option></option>
-									{this.props.states.map((state) => (
-										<option value={state}>{state}</option>
-									))}
-								</select>
+								<label className="field-input-label">State</label>
+								<div>
+									<select name="entityState" onChange={this.onChangeHandler} defaultValue={user.entityState}>
+										{/* <option></option> */}
+										{this.props.states.map((state) => (
+											<option value={state}>{state}</option>
+										))}
+									</select>
+								</div>
 							</div>
 							<div className="edit-profile-form-entity-zip">
-								<label className="field-input-label">Zipcode: </label>
-								<input
-									type="entityZip"
-									value={user.entityZip}
-									name="entityZip"
-									className="textinput textInput form-control"
-									onChange={this.onChangeHandler}
-								/>
+								<label className="field-input-label">Zipcode</label>
+								<div>
+									<input
+										type="entityZip"
+										value={user.entityZip}
+										name="entityZip"
+										className="textinput textInput form-control"
+										onChange={this.onChangeHandler}
+									/>
+								</div>
 							</div>
 						</div>
 						{!!user.is_this_a_business ? this.businessProfile(user) : ''}

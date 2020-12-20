@@ -39,7 +39,6 @@ export const wallOfShame = (state = wallOfShameInitialState, data) => {
 				newReports: data.shames, //[ ...state.newReports, ...data.shames ]
 			};
 		case 'report_data':
-			console.log('report data', data);
 			return {
 				...state,
 				report: data.reportData,

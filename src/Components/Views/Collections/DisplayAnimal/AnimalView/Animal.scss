@@ -97,7 +97,8 @@
 	}
 
 	.collection-animal-body {
-		width: 100%;
+		margin: 1px auto;
+		width: 98%;
 	}
 
 	.collections-animal-quick-records {
@@ -161,9 +162,9 @@
 	}
 
 	.collection-animal-img-info {
-		display: grid;
-		grid-template-areas: 'img' 'info';
-		margin-bottom: 1em;
+		//display: grid;
+		//grid-template-areas: 'img' 'info';
+		//margin-bottom: 1em;
 	}
 
 	.collection-animal-image {
@@ -174,21 +175,21 @@
 	}
 
 	.collection-animal-common-info {
-		display: grid;
-		grid-template-areas:
-			'id ...'
-			'name ...'
-			'gender dob'
-			'sire ...'
-			'dam ...';
+		//display: grid;
+		// grid-template-areas:
+		// 	'id ...'
+		// 	'name ...'
+		// 	'gender dob'
+		// 	'sire ...'
+		// 	'dam ...';
 		height: 180px;
 		margin-bottom: 10em;
 		grid-area: info;
 	}
 
 	.collection-animal-name {
-		width: 200px;
-		grid-area: name;
+		//width: 200px;
+		//grid-area: name;
 	}
 	.collection-animal-name input {
 		width: 200px;
@@ -196,10 +197,19 @@
 	}
 
 	.collection-animal-id {
-		margin: 1em auto 0.5em;
-		width: 200px;
-		grid-area: id;
+		//margin: 1em auto 0.5em;
+		//width: 200px;
+		//grid-area: id;
 	}
+
+	.collection-animal-user-aniaml-id {
+		margin-top: 1em;
+	}
+
+	.collection-animal-collection-type {
+		margin-top: 1em;
+	}
+
 	.collection-animal-id input {
 		margin: 0.5em auto 0.5em;
 		width: 200px;
@@ -207,9 +217,10 @@
 	}
 
 	.collection-animal-dob {
-		margin: 1em auto 0.5em;
-		grid-area: dob;
-		width: 200px;
+		margin-top: 1em;
+		//margin: 1em auto 0.5em;
+		//grid-area: dob;
+		//width: 200px;
 	}
 	.collection-animal-dob input {
 		margin: 0.5em auto 0.5em;
@@ -218,26 +229,29 @@
 	}
 
 	.collection-animal-gender {
-		margin: 1em auto 0.5em;
-		grid-area: gender;
-		width: 200px;
+		margin-top: 1em;
+		// margin: 1em auto 0.5em;
+		// grid-area: gender;
+		// width: 200px;
 	}
 
 	.collection-animal-gender select {
-		margin: 0.5em auto 0.5em;
+		// margin: 0.5em auto 0.5em;
 		font-size: 1rem;
 	}
 
 	.collection-animal-sire {
-		margin: 1em auto 0.5em;
-		width: 200px;
-		grid-area: sire;
+		margin-top: 1em;
+		// margin: 1em auto 0.5em;
+		// width: 200px;
+		// grid-area: sire;
 	}
 
 	.collection-animal-sire input {
-		margin: 0.5em auto 0.5em;
-		width: 200px;
-		font-size: 1rem;
+		//margin-top: 1em;
+		// margin: 0.5em auto 0.5em;
+		// width: 200px;
+		// font-size: 1rem;
 	}
 
 	.collection-animal-sire span {
@@ -249,9 +263,10 @@
 	}
 
 	.collection-animal-dam {
-		margin: 1em auto 0.5em;
-		width: 200px;
-		grid-area: dam;
+		margin-top: 1em;
+		// margin: 1em auto 0.5em;
+		// width: 200px;
+		// grid-area: dam;
 	}
 
 	.collection-animal-dam input {
@@ -273,6 +288,7 @@
 	}
 
 	.collection-animal-body {
+		margin-top: 14em;
 		width: 100%;
 	}
 
@@ -447,6 +463,7 @@
 	}
 
 	.collection-animal-body {
+		margin-top: 1px;
 		width: 100%;
 	}
 

@@ -135,7 +135,6 @@ class Shame extends Component {
 	};
 
 	returnForm = () => {
-		console.log('this type', this.props.reportData.reportType);
 		switch (this.props.reportData.reportType) {
 			case 'BUSINESS':
 				return (

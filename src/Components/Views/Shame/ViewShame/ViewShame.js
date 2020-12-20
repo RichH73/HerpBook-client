@@ -138,7 +138,6 @@ class ViewShame extends Component {
 	};
 
 	commentMapper = (comments) => {
-		console.log('some comments', comments);
 		return this.props.report.shameComments.map((comment) => (
 			<React.Fragment>
 				<div className="wall-of-shame-user-report-comment">
