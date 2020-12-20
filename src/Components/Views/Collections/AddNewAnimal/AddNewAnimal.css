@@ -127,28 +127,35 @@
     margin: auto;
   }
   .collections-create-new-animal-user-id {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
   .collections-create-new-animal-type {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
   .collections-create-new-animal-name {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
   .collections-create-new-animal-dob {
-    margin: 1em .5em;
+    margin: 1em 0.5em;
   }
   .collections-create-new-animal-gender {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
   .collections-create-new-animal-category {
-    margin: 1.5em .5em;
+    margin: 1.5em 0.5em;
   }
   .collections-create-new-animal-sire {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
   .collections-create-new-animal-dam {
-    margin: 1.5em .5em;
+    margin: 1.5em 0.5em;
+  }
+  .img-preview img {
+    width: 100px;
+  }
+  .collections-create-new-animal-button {
+    margin: auto;
+    width: 80px;
   }
 }
 
