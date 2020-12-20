@@ -7,7 +7,7 @@
 	right: 3px;
 	bottom: 3px;
 	background-color: white;
-	text-align: center;
+	//text-align: center;
 	padding: 10px;
 }
 
@@ -31,7 +31,7 @@
 
 	.edit-profile-form {
 		width: 98%;
-		text-align: center;
+		////text-align: center;
 		margin: auto;
 	}
 
@@ -59,7 +59,7 @@
 	}
 	.edit-profile-entity-info select {
 		margin-bottom: 10px;
-		width: 75px;
+		// width: 75px;
 	}
 	.edit-profile-form-name-first {
 		margin: 0.5em auto;
@@ -197,7 +197,7 @@
 
 	.edit-profile-form {
 		width: 98%;
-		text-align: center;
+		//text-align: center;
 		margin: auto;
 	}
 
@@ -225,7 +225,7 @@
 	}
 	.edit-profile-entity-info select {
 		margin-bottom: 10px;
-		width: 75px;
+		// width: 75px;
 	}
 	.edit-profile-form-name-first {
 		margin: 0.5em auto;
@@ -363,7 +363,7 @@
 
 	.edit-profile-form {
 		width: 98%;
-		text-align: center;
+		//text-align: center;
 		margin: auto;
 	}
 
@@ -379,23 +379,26 @@
 		text-align: left;
 		display: grid;
 		grid-template-areas:
-			'firstName firstName lastName lastName'
-			'entityPhone entityPhone entityPhone entityPhone'
-			'entityPhoneType entityPhoneType entityPhoneType .'
-			'displayEntityPhone displayEntityPhone displayEntityPhone .'
-			'entityEmail entityEmail entityEmail .'
-			'entityEmailType entityEmailType entityEmailType .'
-			'displayEntityEmail displayEntityEmail displayEntityEmail .'
-			'entityStreet entityStreet entityStreet .'
-			'entityCity entityCity entityCity .'
-			'entityState entityZip entityZip entityZip';
+			'firstName lastName'
+			// 'lastName lastName'
+			'entityPhone entityPhone'
+			'entityPhoneType displayEntityPhone'
+			// 'entityPhoneType entityPhoneType entityPhoneType .'
+			// 'displayEntityPhone displayEntityPhone displayEntityPhone .'
+			'entityEmail entityEmail'
+			'entityEmailType displayEntityEmail'
+			// 'displayEntityEmail displayEntityEmail'
+			'entityStreet entityStreet'
+			'entityCity entityCity'
+			'entityState . '
+			'entityZip . ';
 	}
 	.edit-profile-entity-info input {
 		margin-bottom: 10px;
 	}
 	.edit-profile-entity-info select {
 		margin-bottom: 10px;
-		width: 75px;
+		// width: 75px;
 	}
 	.edit-profile-form-name-first {
 		margin: 0 auto 1em;
@@ -405,6 +408,14 @@
 		margin: 0 auto 1em;
 		grid-area: lastName;
 	}
+
+	.edit-profile-form-name-first input {
+		width: 120px;
+	}
+	.edit-profile-form-name-last input {
+		width: 120px;
+	}
+
 	.edit-profile-form-entityEmail {
 		margin: 8px auto 8px 5px;
 		text-align: left;
@@ -416,22 +427,23 @@
 		grid-area: entityPhone;
 	}
 	.edit-profile-form-entity-phone-type {
-		margin: 8px auto 8px 40px;
+		// margin: 8px auto 8px 40px;
 		text-align: left;
 		grid-area: entityPhoneType;
 	}
 	.edit-profile-form-display-entity-phone {
-		margin: 8px auto 8px 40px;
+		// margin: 8px auto 8px 40px;
 		text-align: left;
 		grid-area: displayEntityPhone;
 	}
 	.edit-profile-form-display-entity-email {
-		margin: 8px auto 8px 40px;
+		// margin: 8px auto 8px 40px;
 		text-align: left;
 		grid-area: displayEntityEmail;
 	}
+
 	.edit-profile-form-entity-email-type {
-		margin: 8px auto 8px 40px;
+		// margin: 8px auto 8px 40px;
 		text-align: left;
 		grid-area: entityEmailType;
 	}
@@ -441,17 +453,19 @@
 		grid-area: entityStreet;
 	}
 	.edit-profile-form-entity-city {
-		margin: 8px auto 8px 5px;
+		//margin: 8px auto 8px 5px;
 		text-align: left;
 		grid-area: entityCity;
 	}
 	.edit-profile-form-entity-state {
-		margin: 8px auto 8px 5px;
+		margin-top: 1em;
+		//margin: 8px auto 8px 5px;
 		text-align: left;
 		grid-area: entityState;
 	}
 	.edit-profile-form-entity-zip {
-		margin: 8px auto 8px 20px;
+		margin-top: 1em;
+		// margin: 8px auto 8px 20px;
 		text-align: left;
 		grid-area: entityZip;
 	}
@@ -467,11 +481,14 @@
 		width: 100%;
 		display: grid;
 		grid-template-areas:
-			'businessName . . businessPhone'
+			'businessName . . .'
+			'businessPhone . . .'
 			'businessWebsite . . .'
-			'displayBusinessAddress displayBusinessAddress displayBusinessAddress displayBusinessAddress'
-			'businessStreet . . businessCity'
-			'businessState . . businessZip'
+			'displayBusinessAddress . . .'
+			'businessStreet . . .'
+			'businessCity . . .'
+			'businessState . . .'
+			'businessZip . . .'
 			'businessFooter businessFooter businessFooter businessFooter';
 	}
 	.edit-profile-form-is-business {

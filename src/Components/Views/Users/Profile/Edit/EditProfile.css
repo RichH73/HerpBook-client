@@ -8,7 +8,6 @@
   right: 3px;
   bottom: 3px;
   background-color: white;
-  text-align: center;
   padding: 10px;
 }
 
@@ -32,7 +31,6 @@
   }
   .edit-profile-form {
     width: 98%;
-    text-align: center;
     margin: auto;
   }
   .edit-profile-entity-title {
@@ -52,7 +50,6 @@
   }
   .edit-profile-entity-info select {
     margin-bottom: 10px;
-    width: 75px;
   }
   .edit-profile-form-name-first {
     margin: 0.5em auto;
@@ -231,7 +228,6 @@
   }
   .edit-profile-form {
     width: 98%;
-    text-align: center;
     margin: auto;
   }
   .edit-profile-entity-title {
@@ -251,7 +247,6 @@
   }
   .edit-profile-entity-info select {
     margin-bottom: 10px;
-    width: 75px;
   }
   .edit-profile-form-name-first {
     margin: 0.5em auto;
@@ -430,7 +425,6 @@
   }
   .edit-profile-form {
     width: 98%;
-    text-align: center;
     margin: auto;
   }
   .edit-profile-entity-title {
@@ -443,35 +437,38 @@
     text-align: left;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'firstName firstName lastName lastName' 'entityPhone entityPhone entityPhone entityPhone' 'entityPhoneType entityPhoneType entityPhoneType .' 'displayEntityPhone displayEntityPhone displayEntityPhone .' 'entityEmail entityEmail entityEmail .' 'entityEmailType entityEmailType entityEmailType .' 'displayEntityEmail displayEntityEmail displayEntityEmail .' 'entityStreet entityStreet entityStreet .' 'entityCity entityCity entityCity .' 'entityState entityZip entityZip entityZip';
+        grid-template-areas: "firstName lastName" "entityPhone entityPhone" "entityPhoneType displayEntityPhone" "entityEmail entityEmail" "entityEmailType displayEntityEmail" "entityStreet entityStreet" "entityCity entityCity" "entityState . " "entityZip . ";
   }
   .edit-profile-entity-info input {
     margin-bottom: 10px;
   }
   .edit-profile-entity-info select {
     margin-bottom: 10px;
-    width: 75px;
   }
   .edit-profile-form-name-first {
     margin: 0 auto 1em;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
     grid-area: firstName;
   }
   .edit-profile-form-name-last {
     margin: 0 auto 1em;
     -ms-grid-row: 1;
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 2;
+    -ms-grid-column: 2;
     grid-area: lastName;
+  }
+  .edit-profile-form-name-first input {
+    width: 120px;
+  }
+  .edit-profile-form-name-last input {
+    width: 120px;
   }
   .edit-profile-form-entityEmail {
     margin: 8px auto 8px 5px;
     text-align: left;
-    -ms-grid-row: 5;
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-column-span: 2;
     grid-area: entityEmail;
   }
   .edit-profile-form-entity-phone-number {
@@ -479,70 +476,60 @@
     text-align: left;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 4;
+    -ms-grid-column-span: 2;
     grid-area: entityPhone;
   }
   .edit-profile-form-entity-phone-type {
-    margin: 8px auto 8px 40px;
     text-align: left;
     -ms-grid-row: 3;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
     grid-area: entityPhoneType;
   }
   .edit-profile-form-display-entity-phone {
-    margin: 8px auto 8px 40px;
     text-align: left;
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
     grid-area: displayEntityPhone;
   }
   .edit-profile-form-display-entity-email {
-    margin: 8px auto 8px 40px;
     text-align: left;
-    -ms-grid-row: 7;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-row: 5;
+    -ms-grid-column: 2;
     grid-area: displayEntityEmail;
   }
   .edit-profile-form-entity-email-type {
-    margin: 8px auto 8px 40px;
     text-align: left;
-    -ms-grid-row: 6;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
     grid-area: entityEmailType;
   }
   .edit-profile-form-entity-street {
     margin: 8px auto 8px 5px;
     text-align: left;
-    -ms-grid-row: 8;
+    -ms-grid-row: 6;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-column-span: 2;
     grid-area: entityStreet;
   }
   .edit-profile-form-entity-city {
-    margin: 8px auto 8px 5px;
     text-align: left;
-    -ms-grid-row: 9;
+    -ms-grid-row: 7;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-column-span: 2;
     grid-area: entityCity;
   }
   .edit-profile-form-entity-state {
-    margin: 8px auto 8px 5px;
+    margin-top: 1em;
     text-align: left;
-    -ms-grid-row: 10;
+    -ms-grid-row: 8;
     -ms-grid-column: 1;
     grid-area: entityState;
   }
   .edit-profile-form-entity-zip {
-    margin: 8px auto 8px 20px;
+    margin-top: 1em;
     text-align: left;
-    -ms-grid-row: 10;
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 3;
+    -ms-grid-row: 9;
+    -ms-grid-column: 1;
     grid-area: entityZip;
   }
   .edit-profile-business-title {
@@ -552,7 +539,7 @@
     width: 100%;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: 'businessName . . businessPhone' 'businessWebsite . . .' 'displayBusinessAddress displayBusinessAddress displayBusinessAddress displayBusinessAddress' 'businessStreet . . businessCity' 'businessState . . businessZip' 'businessFooter businessFooter businessFooter businessFooter';
+        grid-template-areas: 'businessName . . .' 'businessPhone . . .' 'businessWebsite . . .' 'displayBusinessAddress . . .' 'businessStreet . . .' 'businessCity . . .' 'businessState . . .' 'businessZip . . .' 'businessFooter businessFooter businessFooter businessFooter';
   }
   .edit-profile-form-is-business {
     grid-area: isBusiness;
@@ -565,49 +552,48 @@
   }
   .edit-profile-form-businessPhone {
     margin: 0.5em auto;
-    -ms-grid-row: 1;
-    -ms-grid-column: 4;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
     grid-area: businessPhone;
   }
   .edit-profile-form-businessWebsite {
     margin: 0.5em auto;
-    -ms-grid-row: 2;
+    -ms-grid-row: 3;
     -ms-grid-column: 1;
     grid-area: businessWebsite;
   }
   .edit-profile-form-displayBusinessAddress {
     margin: 0.5em auto;
-    -ms-grid-row: 3;
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
-    -ms-grid-column-span: 4;
     grid-area: displayBusinessAddress;
   }
   .edit-profile-form-businessStreet {
     margin: 0.5em auto;
-    -ms-grid-row: 4;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
     grid-area: businessStreet;
   }
   .edit-profile-form-businessCity {
     margin: 0.5em auto;
-    -ms-grid-row: 4;
-    -ms-grid-column: 4;
+    -ms-grid-row: 6;
+    -ms-grid-column: 1;
     grid-area: businessCity;
   }
   .edit-profile-form-businessState {
     margin: 0.5em auto;
-    -ms-grid-row: 5;
+    -ms-grid-row: 7;
     -ms-grid-column: 1;
     grid-area: businessState;
   }
   .edit-profile-form-businessZip {
     margin: 0.5em auto;
-    -ms-grid-row: 5;
-    -ms-grid-column: 4;
+    -ms-grid-row: 8;
+    -ms-grid-column: 1;
     grid-area: businessZip;
   }
   .edit-profile-form-businessFooter {
-    -ms-grid-row: 6;
+    -ms-grid-row: 9;
     -ms-grid-column: 1;
     -ms-grid-column-span: 4;
     grid-area: businessFooter;

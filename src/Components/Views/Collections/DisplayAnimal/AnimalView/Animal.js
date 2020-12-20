@@ -205,7 +205,6 @@ class Animal extends Component {
 	sireDisplay = () => {
 		const { category, sub_category } = this.props.createAnimal;
 		let collections = this.props.collections;
-		console.log('this sub', collections);
 		if (!sub_category) {
 			collections = [];
 		}
@@ -234,7 +233,6 @@ class Animal extends Component {
 	damDisplay = () => {
 		const { category, sub_category } = this.props.currentAnimal;
 		let collections = this.props.collections;
-		console.log('this sub', collections);
 		if (!sub_category) {
 			collections = [];
 		}
@@ -355,34 +353,33 @@ class Animal extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="collection-animal-body">
-						{this.quickRecords(animal.quickRecords)}
-						<div className="collection-animal-comments">
-							<label className="field-input-label">Notes</label>
-							<div className="collection-animal-comments-box">
-								<ReactQuill
-									style={{ backgroundColor: 'white', color: 'black' }}
-									name="comments"
-									value={animal.comments}
-									onChange={this.handleChange}
-									modules={this.props.mods.modules}
-									formats={this.props.mods.formats}
-									readOnly={this.state.readOnly}
-									theme="snow"
-								/>
-							</div>
-							{!!this.state.readOnly ? (
-								''
-							) : (
-								<div className="collection-animal-update-button">
-									<button className="button" onClick={this.onSubmitHandler}>
-										Update
-									</button>
-								</div>
-							)}
-						</div>
-					</div>
 					<AlertModal />
+				</div>
+				<div className="collection-animal-body">
+					{this.quickRecords(animal.quickRecords)}
+					<div className="collection-animal-comments">
+						<label className="field-input-label">Notes</label>
+						<div className="collection-animal-comments-box">
+							<ReactQuill
+								name="comments"
+								value={animal.comments}
+								onChange={this.handleChange}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={this.state.readOnly}
+								theme="snow"
+							/>
+						</div>
+						{!!this.state.readOnly ? (
+							''
+						) : (
+							<div className="collection-animal-update-button">
+								<button className="button" onClick={this.onSubmitHandler}>
+									Update
+								</button>
+							</div>
+						)}
+					</div>
 				</div>
 				<ReactTooltip />
 			</React.Fragment>

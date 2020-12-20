@@ -72,7 +72,7 @@ class MyCollections extends Component {
 						</thead>
 						<tbody>
 							<tr>
-								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{sub._id}</td>}
+								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
 								<td>{sub.name}</td>
 								{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
 								<td>{sub.gender}</td>

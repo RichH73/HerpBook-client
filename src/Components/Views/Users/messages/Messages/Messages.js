@@ -44,7 +44,6 @@ class Messages extends React.Component {
 		// 	console.log(`got ${event}`);
 		//   });
 		socket.on('incomingMessage', (data) => {
-			console.log('new message coming in...', data.body);
 			this.setState((prevState) => ({
 				otherMessages: [...this.state.otherMessages, data],
 			}));
@@ -103,7 +102,6 @@ class Messages extends React.Component {
 	};
 
 	onChange = (event) => {
-		console.log(event.target.value);
 		// this.setState({
 		// 	[event.target.name]: event.target.value
 		// 	// name: 'Rich',
@@ -123,7 +121,6 @@ class Messages extends React.Component {
 			},
 		};
 		socket.on('userTyping', () => {
-			console.log('user typing is being emited');
 			return (
 				<div style={styles.container}>
 					<span style={styles.span}>Someone is typing...</span>

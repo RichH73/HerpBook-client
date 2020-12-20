@@ -40,9 +40,7 @@ class App extends Component {
 			alert(message);
 		});
 		socket.emit('alertRecieved', 'OK');
-		socket.onAny((event, ...args) => {
-			console.log(`got ${event}`);
-		});
+		socket.onAny((event, ...args) => {});
 		this.props.getVendors();
 
 		socket.on('newMail', (mail) => {
