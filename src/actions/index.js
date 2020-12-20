@@ -357,6 +357,12 @@ export const clearShameText = () => {
 	};
 };
 
+export const clearNewShameReport = () => {
+	return {
+		type: 'clear_new_shame_report',
+	};
+};
+
 export const newShameComment = (data) => {
 	return {
 		type: 'SHAME_COMMENT',

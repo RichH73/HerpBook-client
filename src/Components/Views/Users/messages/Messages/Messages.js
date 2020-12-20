@@ -208,9 +208,70 @@ class Messages extends React.Component {
 		socket.emit('dm', msg);
 	};
 
+	fileChange = (img) => {
+		console.log('some image', img.target.value);
+	};
+
+	fileChangedHandler = (event) => {
+		this.setState({
+			selectedFile: event.target.files[0],
+		});
+		let reader = new FileReader();
+		reader.onloadend = () => {
+			this.setState({
+				imagePreviewUrl: reader.result,
+			});
+			this.getEmergencyFoundImg(reader.result);
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	};
+
+	getEmergencyFoundImg = async (urlImg) => {
+		console.log(urlImg);
+		var img = new Image();
+		img.src = urlImg;
+		img.crossOrigin = 'Anonymous';
+
+		var canvas = document.createElement('canvas'),
+			ctx = canvas.getContext('2d');
+
+		canvas.height = img.naturalHeight;
+		canvas.width = img.naturalWidth;
+		ctx.drawImage(img, 0, 0);
+
+		var b64 = canvas.toDataURL('image/png').replace(/^data:image.+;base64,/, '');
+		console.log('the image data', canvas.toDataURL('image/png'));
+		//return b64;
+	};
+
+	submit = () => {
+		this.getEmergencyFoundImg();
+		var fd = new FormData();
+		fd.append('file', this.state.selectedFile);
+	};
+
 	render() {
+		let $imagePreview = <div className="previewText image-container">Select and image.</div>;
+
+		if (this.state.imagePreviewUrl) {
+			$imagePreview = (
+				<div className="image-container">
+					<img src={this.state.imagePreviewUrl} alt="icon" width="200" style={{ borderRadius: '10px' }} />
+				</div>
+			);
+		}
+
 		return (
 			<div>
+				<div className="App">
+					<input className="imgUpload" type="file" name="profilePic" onChange={this.fileChangedHandler} />
+					<button className="button" type="button" onClick={this.submit}>
+						Upload
+					</button>
+					{$imagePreview}
+				</div>
+				<br />
+				<br />
 				<table>
 					<thead>
 						<tr>

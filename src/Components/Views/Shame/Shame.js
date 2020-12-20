@@ -70,7 +70,6 @@ class Shame extends Component {
 							<Link to={{ pathname: '/view_shame', reportId: report.id }}>
 								<div className="wall-of-shame-user-reports" style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
 									<h3>{report.individual_name}</h3>
-									{console.log(report)}
 									<table style={{ width: '98%', margin: '0 auto .5em' }}>
 										<thead>
 											<tr>
@@ -96,34 +95,6 @@ class Shame extends Component {
 			}
 		});
 	};
-
-	// user_reports = () => {
-	// 	return this.props.shames.map((report) => (
-	// 		<React.Fragment>
-	// 			<Link to={{ pathname: '/view_shame', reportId: report.id }}>
-	// 				<div className='wall-of-shame-user-reports' style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
-	// 					<h3>{report.business_name}</h3>
-	// 					<table style={{ width: '98%', margin: '0 auto .5em' }}>
-	// 						<thead>
-	// 							<tr>
-	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</td>
-	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</td>
-	// 								<td style={{ fontWeight: 'bold', textAlign: 'center' }}>Individual or owners name</td>
-	// 							</tr>
-	// 						</thead>
-	// 						<tbody>
-	// 							<tr>
-	// 								<td style={{ textAlign: 'center' }}>{report.business_website}</td>
-	// 								<td style={{ textAlign: 'center' }}>{report.business_phone}</td>
-	// 								<td style={{ textAlign: 'center' }}>{report.business_owner}</td>
-	// 							</tr>
-	// 						</tbody>
-	// 					</table>
-	// 				</div>
-	// 			</Link>
-	// 		</React.Fragment>
-	// 	));
-	// };
 
 	render() {
 		return (

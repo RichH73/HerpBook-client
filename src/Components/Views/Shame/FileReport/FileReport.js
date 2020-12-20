@@ -50,6 +50,7 @@ class Shame extends Component {
 
 	componentWillUnmount() {
 		this.props.clearShameText();
+		this.props.clearNewShameReport();
 	}
 
 	onChangeHandler = (event) => {
@@ -141,7 +142,7 @@ class Shame extends Component {
 					<React.Fragment>
 						<div className="shame-file-report-business-name shame-report-form-input">
 							<label className="shame-file-report-label">Business Name: </label>
-							<input className="shame-file-report-input" type="text" name="business_name" onChange={this.onChangeHandler} />
+							<input className="shame-file-report-input" type="text" name="business_name" required onChange={this.onChangeHandler} />
 						</div>
 
 						<div className="shame-file-report-business-owner shame-report-form-input">
@@ -151,12 +152,12 @@ class Shame extends Component {
 
 						<div className="shame-file-report-business-website shame-report-form-input">
 							<label className="shame-file-report-label">Website Address: </label>
-							<input className="shame-file-report-input" type="url" name="business_website" onChange={this.onChangeHandler} />
+							<input className="shame-file-report-input" type="url" name="business_website" required onChange={this.onChangeHandler} />
 						</div>
 
 						<div className="shame-file-report-business-email shame-report-form-input">
 							<label className="shame-file-report-label">Business Email: </label>
-							<input className="shame-file-report-input" type="email" name="business_email" onChange={this.onChangeHandler} />
+							<input className="shame-file-report-input" type="email" name="business_email" required onChange={this.onChangeHandler} />
 						</div>
 
 						<div className="shame-file-report-business-phone shame-report-form-input">
@@ -177,7 +178,7 @@ class Shame extends Component {
 					<React.Fragment>
 						<div className="shame-file-report-business-name shame-report-form-input">
 							<label className="shame-file-report-label">Name: </label>
-							<input className="shame-file-report-input" type="text" name="individual_name" onChange={this.onChangeHandler} />
+							<input className="shame-file-report-input" type="text" name="individual_name" required onChange={this.onChangeHandler} />
 						</div>
 
 						<div className="shame-file-report-business-website shame-report-form-input">
@@ -187,7 +188,7 @@ class Shame extends Component {
 
 						<div className="shame-file-report-business-email shame-report-form-input">
 							<label className="shame-file-report-label">Email: </label>
-							<input className="shame-file-report-input" type="email" name="individual_email" onChange={this.onChangeHandler} />
+							<input className="shame-file-report-input" type="email" name="individual_email" required onChange={this.onChangeHandler} />
 						</div>
 
 						<div className="shame-file-report-business-phone shame-report-form-input">
@@ -208,7 +209,7 @@ class Shame extends Component {
 
 	render() {
 		return !!this.props.uid.length ? (
-			<React.Fragment>
+			<form onSubmit={this.submitHandler}>
 				<div className="shame-file-report">
 					<div className="shame-file-report-opening-paragraph">
 						<p>
@@ -244,16 +245,18 @@ class Shame extends Component {
 							formats={this.formats}
 							readOnly={false}
 							theme="snow"
+							required={true}
 						/>
 					</div>
 					<div></div>
 					<div className="wall-of-shame-file-submit">
-						<button className="button" onClick={this.submitHandler}>
+						{console.log(this.props.fileReportData.incident_description.length >= 20)}
+						<button className="button" type="submit" disabled={this.props.fileReportData.incident_description.length >= 20 ? false : true}>
 							Submit
 						</button>
 					</div>
 				</div>
-			</React.Fragment>
+			</form>
 		) : (
 			<div className="shame-file-report">
 				You must be <Link to="/login">logged in</Link> to file a report.
@@ -273,6 +276,7 @@ const mapStateToProps = (state) => ({
 	reportImages: state.wallOfShame.reportImages,
 	viewImages: state.wallOfShame.reportImages,
 	shameData: state.wallOfShame,
+	fileReportData: state.fileShameReport,
 	//saveImages: state.classifiedImages.sendFiles,
 	//saveImages: state.wallOfShame.sendReportImages,
 	text: state.richText.text,
