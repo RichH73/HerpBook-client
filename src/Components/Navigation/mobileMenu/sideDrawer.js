@@ -36,6 +36,7 @@ class SideDrawer extends React.Component {
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
 							<a href="/my_classifieds">My Classifieds</a>
+							{/* <a href="/my_classifieds">My Classifieds</a> */}
 						</div>
 
 						<div className="sideDrawer-nav-link">

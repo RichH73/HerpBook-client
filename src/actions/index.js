@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../reducers/config';
+import { Base64 } from 'js-base64';
 
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
@@ -519,6 +520,7 @@ export const fileNewReport = (key, value) => {
 };
 
 export const getMyProfile = (data) => {
+	const user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 	return function (dispatch) {
 		pageLoading(true);
 		setTimeout(() => {
@@ -531,7 +533,7 @@ export const getMyProfile = (data) => {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				uid: data,
+				uid: user.uid,
 			},
 		}).then((response) => {
 			if (response.status === 200) {

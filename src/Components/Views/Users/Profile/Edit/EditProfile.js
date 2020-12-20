@@ -19,11 +19,9 @@ class EditProfile extends React.Component {
 	};
 
 	componentDidMount() {
+		const { uid } = this.props.userInfo;
 		this.props.setPageTitle('My Profile');
 		this.props.getMyProfile(this.props.uid);
-		// if(!!this.props.user.is_this_a_business) {
-		// 	axios.get(`${API}/`)
-		// }
 	}
 
 	footerChangeHandler = (text) => {
@@ -475,6 +473,7 @@ const mapStateToProps = (state) => {
 		USERSURL: state.config.server.usersURL,
 		states: state.states,
 		userObject: state.user,
+		userInfo: state.user,
 		mods: state.richText,
 	};
 };

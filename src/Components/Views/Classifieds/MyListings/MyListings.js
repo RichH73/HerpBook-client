@@ -7,24 +7,33 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import dayjs from 'dayjs';
 import ReactGA from 'react-ga';
+import { Base64 } from 'js-base64';
 class MyListings extends Component {
 	state = {
 		listings: [],
 	};
 	componentDidMount() {
-		if (!!this.props.React) {
-			ReactGA.pageview('/my_listings');
+		//TODO fix this, to use LINK instead of a. a must reload user data..
+		if (!!localStorage.token) {
+			const user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			const { uid } = user;
+			console.log('the uid is', !!uid);
+			if (!!this.props.React) {
+				ReactGA.pageview('/my_listings');
+			}
+			this.props.setPageTitle('My Classified Listings');
+			axios({
+				method: 'get',
+				url: `${this.props.API}/listings/seller/${uid}`,
+			})
+				.then((response) => {
+					this.setState({
+						listings: response.data.listings,
+					});
+					this.props.my_classifieds_data(response.data.listings);
+				})
+				.catch((error) => console.log('An error has occured, the error is:', error));
 		}
-		this.props.setPageTitle('My Classified Listings');
-		axios({
-			method: 'get',
-			url: `${this.props.API}/listings/seller/${this.props.uid}`,
-		}).then((response) => {
-			this.setState({
-				listings: response.data.listings,
-			});
-			this.props.my_classifieds_data(response.data.listings);
-		});
 	}
 
 	delete_listing = (listing) => {
@@ -123,6 +132,7 @@ const mapStateToProps = (state) => ({
 	zip_code: state.user.zip_code,
 	React: state.config.analytics,
 	myClassifieds: state.my_listings.listings,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {
