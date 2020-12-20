@@ -6,9 +6,11 @@ import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
 import _ from 'lodash';
 import './PrintRecords.css';
+import axios from 'axios';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import fs from 'fs';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -190,15 +192,16 @@ class PrintRecords extends Component {
 	};
 
 	getImage = async () => {
-		const img = _.get(this, 'props.currentAnimal.images.0');
-		const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-		const file = await fetch(`${img.URL}/${img.thumbnail}`);
-		const blob = await file.blob();
-		const fileReader = new FileReader();
-		fileReader.readAsDataURL(blob);
-		fileReader.onload = () => {
-			this.makePdf(fileReader.result);
-		};
+		const imgDat = await axios({
+			url: `${this.props.API}/collections/report_image`,
+			method: 'post',
+			data: {
+				collectionID: _.get(this, 'props.currentAnimal._id'),
+			},
+		}).then((data) => {
+			return data.data;
+		});
+		this.makePdf(`data:image/jpeg;base64, ${imgDat}`);
 	};
 
 	selectDateRange = (event) => {
@@ -219,39 +222,6 @@ class PrintRecords extends Component {
 	};
 
 	render() {
-		// const monthMap = {
-		// 	'1': 'Jan',
-		// 	'2': 'Feb',
-		// 	'3': 'Mar',
-		// 	'4': 'Apr',
-		// 	'5': 'May',
-		// 	'6': 'Jun',
-		// 	'7': 'Jul',
-		// 	'8': 'Aug',
-		// 	'9': 'Sep',
-		// 	'10': 'Oct',
-		// 	'11': 'Nov',
-		// 	'12': 'Dec',
-		// };
-
-		// const dateConfig = {
-		// 	month: {
-		// 		format: (value) => monthMap[value.getMonth() + 1],
-		// 		caption: 'Mon',
-		// 		step: 1,
-		// 	},
-		// 	date: {
-		// 		format: 'DD',
-		// 		caption: 'Day',
-		// 		step: 1,
-		// 	},
-		// 	year: {
-		// 		format: 'YYYY',
-		// 		caption: 'Year',
-		// 		step: 1,
-		// 	},
-		// };
-
 		return (
 			<div className="collections-create-report-body">
 				<div className="collections-create-report-form">
@@ -305,6 +275,7 @@ const mapStateToProps = (state) => ({
 	notesText: state.richText.text,
 	mods: state.richText,
 	imgSrc: state.bar_img.img,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

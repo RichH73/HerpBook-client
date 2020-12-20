@@ -33,7 +33,6 @@ const fileShameReportInitialState = {
 export const wallOfShame = (state = wallOfShameInitialState, data) => {
 	switch (data.type) {
 		case 'SHAMES':
-			console.log(data);
 			return {
 				...state,
 				newReports: data.shames, //[ ...state.newReports, ...data.shames ]
@@ -90,6 +89,8 @@ export const fileShameReport = (state = fileShameReportInitialState, data) => {
 			};
 		case 'Clear_Shame_Text':
 			return state;
+		case 'clear_new_shame_report':
+			return fileShameReportInitialState;
 		default:
 			return state;
 	}
