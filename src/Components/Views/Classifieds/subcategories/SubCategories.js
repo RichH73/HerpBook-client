@@ -22,9 +22,7 @@ class SubCategory extends React.Component {
 				return subCategory.id === Number(id);
 			})[0].name;
 		this.props.setPageTitle(`Classifieds Sub-Category: ${pageTitle}`);
-		if (!!this.props.ReactGA) {
-			ReactGA.pageview(pageTitle);
-		}
+		ReactGA.pageview(pageTitle);
 		axios({
 			method: 'get',
 			url: `${API}/listings/${id}`,
@@ -51,13 +49,13 @@ class SubCategory extends React.Component {
 		</div>
 	);
 	// }
-
-	nextPage = () => {
-		let totalDocs = this.props.pageData.totalDocuments;
-		let totalPages = this.props.pageData.totalPages;
-		let currentPage = Math.floor((totalPages * 10) / totalDocs);
-		let nextPage = currentPage + 1;
-	};
+	//TODO Pagination
+	// nextPage = () => {
+	// 	let totalDocs = this.props.pageData.totalDocuments;
+	// 	let totalPages = this.props.pageData.totalPages;
+	// 	let currentPage = Math.floor((totalPages * 10) / totalDocs);
+	// 	let nextPage = currentPage + 1;
+	// };
 
 	render() {
 		const Listings = () => {

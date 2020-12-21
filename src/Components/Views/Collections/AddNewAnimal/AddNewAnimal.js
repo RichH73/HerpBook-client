@@ -6,7 +6,7 @@ import './AddNewAnimal.css';
 import _ from 'lodash';
 
 import axios from 'axios';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 // import BarcodeReader from 'react-barcode-reader';
 import DatePicker from 'react-datepicker';
@@ -22,6 +22,7 @@ class AddNewAnimal extends Component {
 	componentDidMount() {
 		this.props.setPageTitle('Add a new animal');
 		this.props.getMyCollections({ uid: this.props.userInfo.uid });
+		ReactGA.pageview('/new_collection');
 	}
 
 	componentWillUnmount() {
@@ -129,7 +130,7 @@ class AddNewAnimal extends Component {
 	}
 
 	sireDisplay = () => {
-		const { category, sub_category } = this.props.createAnimal;
+		const { sub_category } = this.props.createAnimal;
 		let collections = this.props.collections;
 		if (!sub_category) {
 			collections = [];

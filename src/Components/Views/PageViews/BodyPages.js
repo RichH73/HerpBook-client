@@ -1,7 +1,8 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import Vendors from '../VendorList/Vendors';
 import Categories from '../Classifieds/Categories/Categories';
-import { Route } from 'react-router-dom';
 import SubCategories from '../Classifieds/subcategories/SubCategories';
 import Login from '../Users/Login/Login';
 import Register from '../Users/Register/Register';
@@ -10,10 +11,10 @@ import EditProfile from '../Users/Profile/Edit/EditProfile';
 import Listing from '../Classifieds/listing/Listing';
 import MyListings from '../Classifieds/MyListings/MyListings';
 import CreateListing from '../Classifieds/create/CreateListing';
-import Messages from '../Users/messages/Messages/Messages';
-import MessageDisplay from '../Users/messages/DisplayMessage/MessageDisplay';
+// import Messages from '../Users/messages/Messages/Messages';
+// import MessageDisplay from '../Users/messages/DisplayMessage/MessageDisplay';
 import MailDisplay from '../Users/Mail/DisplayMailMessage/MailDisplay';
-import MessageReply from '../Users/messages/Reply/MessageReply';
+// import MessageReply from '../Users/messages/Reply/MessageReply';
 import SellerContactForm from '../Users/Mail/SellerContact/SellerContactForm';
 // import SellerContactForm from '../Classifieds/SellerContactForm';
 import Success from '../../_functions/Success';
@@ -42,10 +43,10 @@ const Pages = (props) => {
 			<Route path="/create_classified" component={CreateListing} />
 			<Route path="/listing/:id" component={Listing} />
 			<Route path="/login" component={Login} />
-			<Route path="/message-display" component={MessageDisplay} />
-			<Route path="/message-reply" component={MessageReply} />
+			{/* <Route path="/message-display" component={MessageDisplay} /> */}
+			{/* <Route path="/message-reply" component={MessageReply} /> */}
 			<Route path="/contact_seller" component={SellerContactForm} />
-			<Route path="/messages" component={Messages} />
+			{/* <Route path="/messages" component={Messages} /> */}
 			<Route path="/my_mail" component={GetMail} />
 			<Route path="/read_mail" component={MailDisplay} />
 			<Route path="/mail_reply" component={MailReply} />

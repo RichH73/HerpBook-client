@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import socket from '../../../../_services/SocketService';
 
 //Google analytics
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 class SellerContactForm extends React.Component {
 	modules = {
@@ -25,7 +25,7 @@ class SellerContactForm extends React.Component {
 	formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video'];
 
 	componentDidMount() {
-		//ReactGA.pageview(`/message-seller/${this.props.seller}`);
+		ReactGA.pageview(`/message-seller/${this.props.seller}`);
 	}
 
 	componentWillUnmount() {

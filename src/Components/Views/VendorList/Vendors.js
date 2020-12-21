@@ -14,15 +14,11 @@ class Vendors extends Component {
 	};
 
 	componentDidMount() {
-		if (!!this.props.React) {
-			ReactGA.pageview('/vendors');
-		}
+		ReactGA.pageview('/vendors');
 		this.props.setPageTitle('Vendors');
 	}
 
-	componentWillUnmount() {
-		//ReactGA.pageview('/breeders');
-	}
+	componentWillUnmount() {}
 
 	change_handler = (event) => {
 		this.setState({

@@ -1,5 +1,3 @@
-import socket from '../Components/_services/SocketService';
-
 const initialState = {
 	uid: '',
 	socketId: '',

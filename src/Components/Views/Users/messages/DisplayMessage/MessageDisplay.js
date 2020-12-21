@@ -1,7 +1,6 @@
 import React from 'react';
 import '../Messages.css';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { first, filter } from 'lodash';

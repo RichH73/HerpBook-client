@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import Dropzone from 'react-dropzone';
-//import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 import _ from 'lodash';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
@@ -56,7 +56,7 @@ class CreateListing extends React.Component {
 
 	componentDidMount() {
 		this.props.setPageTitle('Create Classified');
-		//ReactGA.pageview('/create-classified');
+		ReactGA.pageview('/create-classified');
 	}
 
 	componentWillUnmount() {

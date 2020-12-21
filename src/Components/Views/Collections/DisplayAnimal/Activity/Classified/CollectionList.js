@@ -203,7 +203,7 @@ class CollectionList extends Component {
 						that infomation will display in the description field for this classified listing.
 					</p>
 					<ReactQuill
-						style={{ backgroundColor: 'white', color: 'black' }}
+						//style={{ backgroundColor: 'white', color: 'black' }}
 						name="description"
 						value={this.props.listDescription}
 						onChange={this.handleChange}

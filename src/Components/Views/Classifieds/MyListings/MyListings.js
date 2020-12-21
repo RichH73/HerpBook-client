@@ -13,14 +13,10 @@ class MyListings extends Component {
 		listings: [],
 	};
 	componentDidMount() {
-		//TODO fix this, to use LINK instead of a. a must reload user data..
 		if (!!localStorage.token) {
 			const user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 			const { uid } = user;
-			console.log('the uid is', !!uid);
-			if (!!this.props.React) {
-				ReactGA.pageview('/my_listings');
-			}
+			ReactGA.pageview('/my_listings');
 			this.props.setPageTitle('My Classified Listings');
 			axios({
 				method: 'get',

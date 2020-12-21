@@ -5,7 +5,7 @@ import { closeSideDrawer } from '../../../../actions';
 
 const Backdrop = (props) => {
 	const dispatch = useDispatch();
-	const drawer = useSelector((state) => state.navDrawer);
+	//const drawer = useSelector((state) => state.navDrawer);
 	return <div className="backdrop" onClick={() => dispatch(closeSideDrawer())} />;
 	// return <div className="backdrop" onClick={props.click} />;
 };

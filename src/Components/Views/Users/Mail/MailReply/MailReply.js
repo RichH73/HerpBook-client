@@ -61,7 +61,7 @@ class MailReply extends React.Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		const { fromusername, tousername, touid, subject } = this.props.data;
+		const { subject } = this.props.data;
 		socket.emit('mail', {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,

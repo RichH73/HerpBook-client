@@ -2,6 +2,7 @@ import React from 'react';
 import './Contact.css';
 import axios from 'axios';
 import Recaptcha from 'react-recaptcha';
+import ReactGA from 'react-ga';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
@@ -14,6 +15,10 @@ class Contact extends React.Component {
 		to_admin: 1,
 		isVerified: false,
 	};
+
+	componentDidMount() {
+		ReactGA.pageview('/contact');
+	}
 
 	handleChange = (event) => {
 		this.setState({

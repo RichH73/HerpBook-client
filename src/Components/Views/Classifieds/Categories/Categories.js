@@ -15,9 +15,7 @@ class Categories extends React.Component {
 	};
 
 	componentDidMount() {
-		if (!!this.props.React) {
-			ReactGA.pageview('/classifieds');
-		}
+		ReactGA.pageview('/classifieds');
 		this.props.setPageTitle('Classifieds');
 	}
 

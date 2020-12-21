@@ -7,13 +7,13 @@ import { get } from 'lodash';
 import axios from 'axios';
 //import ReactQuill from 'react-quill';
 import { Link } from 'react-router-dom';
-//import ReactGA from "react-ga";
+import ReactGA from 'react-ga';
 
 class Shame extends Component {
 	state = {};
 	componentDidMount() {
 		this.props.setPageTitle('Wall of Shame');
-		//ReactGA.pageview("/welcome");
+		ReactGA.pageview('/view_shame');
 		axios({
 			method: 'get',
 			url: `${this.props.API}/shame/`,

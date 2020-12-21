@@ -9,9 +9,9 @@ import axios from 'axios';
 // import ReactGA from 'react-ga';
 // import ReactHtmlParser from 'react-html-parser';
 import HtmlParser from 'react-html-parser';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import dayjs from 'dayjs';
-import ImageCompress from 'quill-image-compress';
+//import ImageCompress from 'quill-image-compress';
 
 // import QuillEmoji from 'quill-emoji';
 class ViewShame extends Component {
@@ -165,11 +165,11 @@ class ViewShame extends Component {
 
 	returnReport = () => {
 		const {
-			_id,
+			//_id,
 			reportType,
 			business_email,
-			business_name,
-			business_owner,
+			//business_name,
+			//business_owner,
 			individual_email,
 			business_phone,
 			individual_phone,
@@ -275,6 +275,8 @@ class ViewShame extends Component {
 						</div>
 					</div>
 				);
+			default:
+				return;
 		}
 	};
 

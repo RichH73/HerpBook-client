@@ -544,7 +544,7 @@ export const getMyProfile = (data) => {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				uid: data.uid,
+				uid: data,
 			},
 		}).then((response) => {
 			if (response.status === 200) {

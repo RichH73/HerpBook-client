@@ -83,7 +83,6 @@ class Login extends React.Component {
 					login_failed: true,
 				});
 				throw new Error('An error has occured', error);
-				console.log(error);
 			});
 	};
 

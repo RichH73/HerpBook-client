@@ -3,7 +3,7 @@ import './Gallery.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
-//import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
 
 class Gallery extends React.Component {
@@ -11,6 +11,7 @@ class Gallery extends React.Component {
 
 	componentDidMount() {
 		//this.props.setPageTitle(this.props.listTitle);
+		ReactGA.pageview('/gallery');
 	}
 
 	setTitle = (title) => {

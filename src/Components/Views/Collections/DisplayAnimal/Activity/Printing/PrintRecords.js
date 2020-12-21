@@ -10,7 +10,7 @@ import axios from 'axios';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import fs from 'fs';
+//import fs from 'fs';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -253,7 +253,7 @@ class PrintRecords extends Component {
 						</button>
 					</div>
 				</div>
-				{/* TODO check this for warning without eslint line. */}
+				{/* //TODO check this for warning without eslint line. */}
 				{/* eslint-disable-next-line */}
 				<div>{!!this.state.pdfData.length ? <object data={this.state.pdfData} width="100%" height="800px" /> : ''}</div>
 			</div>

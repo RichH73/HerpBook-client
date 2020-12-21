@@ -12,9 +12,8 @@ class Welcome extends Component {
 		news: '',
 	};
 	componentDidMount() {
-		if (!!this.props.React) {
-			ReactGA.pageview('/welcome');
-		}
+		ReactGA.pageview('/welcome');
+
 		const { uid, firstName, entityEmail } = this.props.userInfo;
 		const usersName = !!firstName ? firstName : entityEmail;
 		if (!!uid) {

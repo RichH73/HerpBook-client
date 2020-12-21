@@ -3,13 +3,15 @@ import './Records.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
-//import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
 
 class Records extends React.Component {
 	state = {};
 
-	componentDidMount() {}
+	componentDidMount() {
+		ReactGA.pageview('/records');
+	}
 
 	setTitle = (title) => {};
 

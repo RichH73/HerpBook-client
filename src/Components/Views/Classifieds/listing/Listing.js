@@ -8,6 +8,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Main from './files/MainView';
 import Gallery from './files/Gallery/Gallery';
 import Records from './files/Records/Records';
+import ReactGA from 'react-ga';
 
 class Listing extends React.Component {
 	state = {
@@ -27,6 +28,7 @@ class Listing extends React.Component {
 	};
 
 	componentDidMount() {
+		ReactGA.pageview(`/list/${this.props.match.params.id}`);
 		axios.get(`${this.props.API}/listings/list/${this.props.match.params.id}/`).then((response) => {
 			//this.props.loader(false);
 			if (localStorage.token) {
