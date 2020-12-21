@@ -79,6 +79,7 @@ class App extends Component {
 	}
 
 	drawerToggleClickHandler = () => {
+		this.props.openSideDrawer();
 		this.setState((prevState) => {
 			return { sideDrawerOpen: !prevState.sideDrawerOpen };
 		});
@@ -86,6 +87,7 @@ class App extends Component {
 
 	backdropClickHandler = () => {
 		this.setState({ sideDrawerOpen: false });
+		this.props.closeSideDrawer();
 	};
 
 	spinner = () => {
@@ -123,10 +125,14 @@ class App extends Component {
 		);
 	};
 
+	onClickHandler = () => {
+		this.props.openSideDrawer();
+	};
+
 	render() {
 		let backdrop;
 		let sideDrawer;
-		if (this.state.sideDrawerOpen) {
+		if (!!this.props.sideDrawerOpen) {
 			backdrop = <Backdrop click={this.backdropClickHandler} />;
 			sideDrawer = <SideDrawer history={this.props.history} />;
 		}
@@ -154,6 +160,7 @@ const mapStateToProps = (state) => ({
 	spinnerState: state.spinner,
 	userUid: state.user.uid,
 	userInfo: state.user,
+	sideDrawerOpen: state.navDrawer.sideDrawerOpen,
 });
 
 const mapDispatchToProps = (dispatch) => {

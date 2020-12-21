@@ -5,6 +5,18 @@ import { Base64 } from 'js-base64';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const closeSideDrawer = () => {
+	return {
+		type: 'close_side_drawer',
+	};
+};
+
+export const openSideDrawer = () => {
+	return {
+		type: 'open_side_drawer',
+	};
+};
+
 export const my_classifieds_data = (data) => {
 	return {
 		type: 'my_classifieds',
@@ -520,7 +532,6 @@ export const fileNewReport = (key, value) => {
 };
 
 export const getMyProfile = (data) => {
-	const user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 	return function (dispatch) {
 		pageLoading(true);
 		setTimeout(() => {
@@ -533,7 +544,7 @@ export const getMyProfile = (data) => {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				uid: user.uid,
+				uid: data.uid,
 			},
 		}).then((response) => {
 			if (response.status === 200) {

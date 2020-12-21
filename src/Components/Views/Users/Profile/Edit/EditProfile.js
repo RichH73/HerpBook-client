@@ -21,7 +21,7 @@ class EditProfile extends React.Component {
 	componentDidMount() {
 		const { uid } = this.props.userInfo;
 		this.props.setPageTitle('My Profile');
-		this.props.getMyProfile(this.props.uid);
+		this.props.getMyProfile(uid);
 	}
 
 	footerChangeHandler = (text) => {

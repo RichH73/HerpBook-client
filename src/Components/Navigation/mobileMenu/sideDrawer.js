@@ -3,9 +3,13 @@ import './SideDrawer.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
+import { Link } from 'react-router-dom';
 //import Backdrop from '../mobileMenu/Backdrop/Backdrop'
 
 class SideDrawer extends React.Component {
+	closeDrawerHandler = () => {
+		this.props.closeSideDrawer();
+	};
 	userNavigation = () => {
 		const { displayMailCount } = this.props;
 		return (
@@ -16,15 +20,19 @@ class SideDrawer extends React.Component {
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<a href="/my_profile">My Profile</a>
+							<Link to="/my_profile" onClick={this.closeDrawerHandler}>
+								My Profile
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
 							{!!displayMailCount ? (
-								<a href="/my_mail">
+								<Link to="/my_mail" onClick={this.closeDrawerHandler}>
 									My Mail: <small style={{ color: 'red' }}>{displayMailCount}</small>
-								</a>
+								</Link>
 							) : (
-								<a href="/my_mail">My Mail</a>
+								<Link to="/my_mail" onClick={this.closeDrawerHandler}>
+									My Mail
+								</Link>
 							)}
 						</div>
 					</div>
@@ -35,12 +43,16 @@ class SideDrawer extends React.Component {
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<a href="/my_classifieds">My Classifieds</a>
+							<Link to="/my_classifieds" onClick={this.closeDrawerHandler}>
+								My Classifieds
+							</Link>
 							{/* <a href="/my_classifieds">My Classifieds</a> */}
 						</div>
 
 						<div className="sideDrawer-nav-link">
-							<a href="/create_classified">Create Classified</a>
+							<Link to="/create_classified" onClick={this.closeDrawerHandler}>
+								Create Classified
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -50,10 +62,14 @@ class SideDrawer extends React.Component {
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<a href="/my_collections">My Collections</a>
+							<Link to="/my_collections" onClick={this.closeDrawerHandler}>
+								My Collections
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
-							<a href="/new_collection">Add new animal</a>
+							<Link to="/new_collection" onClick={this.closeDrawerHandler}>
+								Add new animal
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -76,19 +92,29 @@ class SideDrawer extends React.Component {
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<a href="/">Home</a>
+							<Link to="/" onClick={this.closeDrawerHandler}>
+								Home
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
-							<a href="/vendors">Breeders / Vendors List</a>
+							<Link to="/vendors" onClick={this.closeDrawerHandler}>
+								Breeders / Vendors List
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
-							<a href="/classifieds">Classifieds</a>
+							<Link to="/classifieds" onClick={this.closeDrawerHandler}>
+								Classifieds
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
-							<a href="/shames">Wall of Shame</a>
+							<Link to="/shames" onClick={this.closeDrawerHandler}>
+								Wall of Shame
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
-							<a href="/contact">Contact Us</a>
+							<Link to="/contact" onClick={this.closeDrawerHandler}>
+								Contact Us
+							</Link>
 						</div>
 						<div className="sideDrawer-nav-link">
 							<div>

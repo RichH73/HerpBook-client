@@ -58,7 +58,6 @@ class Login extends React.Component {
 			.then((response) => {
 				if (response.status === 200) {
 					let sock = socket.id;
-					console.log('the socket is ', sock);
 					//startSocketService()
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));

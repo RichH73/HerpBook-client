@@ -62,6 +62,10 @@ class Feedings extends Component {
 			.then((response) => {
 				if (response.status === 201) {
 					this.props.pageLoading(false);
+					this.setState({
+						feederType: '',
+						feederWeight: '',
+					});
 					this.props.currentAnimalDisplay(response.data[0]);
 				}
 			})

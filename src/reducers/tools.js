@@ -75,3 +75,21 @@ export const scanBarCode = (state = barCodeInitial, data) => {
 export const toolTips = () => {
 	return {};
 };
+
+const initialDrawerState = {
+	sideDrawerOpen: false,
+};
+export const navDrawer = (state = initialDrawerState, drawerState) => {
+	switch (drawerState.type) {
+		case 'open_side_drawer':
+			return {
+				sideDrawerOpen: true,
+			};
+		case 'close_side_drawer':
+			return {
+				sideDrawerOpen: false,
+			};
+		default:
+			return state;
+	}
+};
