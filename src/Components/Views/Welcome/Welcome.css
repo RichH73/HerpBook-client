@@ -4,8 +4,10 @@
 @media screen and (min-width: 601px) {
   .welcome-page-main {
     padding: 8px;
-    position: relative;
     color: black;
+  }
+  .ql-editor {
+    max-height: 1000px;
   }
   .welcome-page-bg {
     width: 600px;

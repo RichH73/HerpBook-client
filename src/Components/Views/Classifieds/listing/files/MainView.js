@@ -5,6 +5,8 @@ import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactHtmlParser from 'react-html-parser';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
 
@@ -138,8 +140,10 @@ class ClassifiedList extends React.Component {
 				<div className="list-info">
 					<div className="list-description">
 						<b>Sellers Description:</b>
-						{ReactHtmlParser(list.description)}
-						{ReactHtmlParser(get(list, 'businessFooter', ''))}
+						<ReactQuill name="businessFooter" value={list.description} readOnly={true} theme="bubble" />
+						<ReactQuill name="businessFooter" value={get(list, 'businessFooter', '')} readOnly={true} theme="bubble" />
+						{/* {ReactHtmlParser(list.description)}
+						{ReactHtmlParser(get(list, 'businessFooter', ''))} */}
 						{!!list.businessName ? this.businessDisplay(list) : ''}
 					</div>
 				</div>

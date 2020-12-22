@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import ReactHtmlParser from 'react-html-parser';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 import { Like } from 'react-facebook';
 class Welcome extends Component {
 	state = {
-		news: '',
+		news: [],
 	};
 	componentDidMount() {
 		ReactGA.pageview('/welcome');
@@ -27,8 +29,15 @@ class Welcome extends Component {
 			method: 'get',
 			url: `${this.props.API}/news`,
 		}).then((response) => {
+			let newsArray = [];
+			let visableFilter = response.data.map((article) => {
+				if (!!article.visable) {
+					newsArray.push(article);
+				}
+			});
+			console.log('filtered data', newsArray);
 			this.setState({
-				news: response.data[0].body,
+				news: newsArray,
 			});
 		});
 	}
@@ -37,7 +46,14 @@ class Welcome extends Component {
 		return (
 			<React.Fragment>
 				<div className="welcome-page-main">
-					<div className="welcome-page-main-text">{ReactHtmlParser(this.state.news)}</div>
+					<div className="welcome-page-main-text">
+						{this.state.news.map((ns) => (
+							<div>
+								<h4>{ns.title}</h4>
+								<ReactQuill name="businessFooter" value={ns.body} readOnly={true} theme="bubble" />
+							</div>
+						))}
+					</div>
 					<div className="welcome-page-fb-like">
 						<Like href="https://www.facebook.com/HerpBookcom-2378686682182233" colorScheme="light" share />
 					</div>

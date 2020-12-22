@@ -15,15 +15,6 @@
 }
 
 @media screen and (min-width: 900px) {
-  .ql-editor {
-    min-height: 200px !important;
-    max-height: 600px;
-    height: 360px;
-    /* background-color: white; */
-    overflow: scroll;
-    /* overflow-y: scroll;
-    overflow-x: scroll; */
-  }
   #contact_form {
     padding: 5px;
     width: 98%;
