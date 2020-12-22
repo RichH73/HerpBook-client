@@ -76,9 +76,6 @@ td {
     display: -ms-flexbox;
     display: flex;
   }
-  .my-listings-box:hover {
-    background-color: #cce2f8;
-  }
   .my-listings-box a {
     text-decoration: none;
     color: black;

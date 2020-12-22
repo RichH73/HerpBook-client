@@ -7,6 +7,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import axios from 'axios';
 
+// Bootstrap imports
+import Button from 'react-bootstrap/Button';
+
 class Settings extends Component {
 	state = {};
 
@@ -65,10 +68,13 @@ class Settings extends Component {
 				<div>
 					Remove this animal record?
 					<div className="collection-settings-buttons">
-						<button className="button collection-settings-buttons-update">Update</button>
-						<button className="button collection-settings-buttons-delete" onClick={this.submit}>
+						{/* <button className="button collection-settings-buttons-update">Update</button> */}
+						{/* <button className="button collection-settings-buttons-delete" onClick={this.submit}>
 							Delete
-						</button>
+						</button> */}
+						<Button variant="danger" size="sm" onClick={this.submit}>
+							Delete
+						</Button>
 					</div>
 				</div>
 			</div>

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "bootstrap": "^4.5.3",
     "date-and-time": "^0.13.1",
     "dayjs": "^1.9.6",
     "express": "^4.17.1",
@@ -30,6 +31,7 @@
     "rc-checkbox": "^2.3.1",
     "react": "^16.13.1",
     "react-barcode-reader": "0.0.2",
+    "react-bootstrap": "^1.4.0",
     "react-confirm-alert": "^2.6.2",
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",

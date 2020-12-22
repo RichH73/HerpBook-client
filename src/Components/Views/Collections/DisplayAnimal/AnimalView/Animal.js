@@ -13,6 +13,10 @@ import AlertModal from '../../../../_services/Modal/Modal';
 import './Animal.css';
 import ReactTooltip from 'react-tooltip';
 
+// Bootstrap imports
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class Animal extends Component {
 	state = {
 		readOnly: true,
@@ -50,7 +54,7 @@ class Animal extends Component {
 				<div className="collections-animal-quick-records">
 					Quick Records
 					<div className="collections-animal-quick-records-data">
-						<table>
+						<Table bordered size="sm">
 							<tbody>
 								{!_.isEmpty(_.get(records, 'feeding')) ? (
 									<tr>
@@ -120,7 +124,7 @@ class Animal extends Component {
 									''
 								)}
 							</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			);
@@ -374,9 +378,12 @@ class Animal extends Component {
 							''
 						) : (
 							<div className="collection-animal-update-button">
-								<button className="button" onClick={this.onSubmitHandler}>
+								{/* <button className="button" onClick={this.onSubmitHandler}>
 									Update
-								</button>
+								</button> */}
+								<Button variant="success" size="sm" onClick={this.onSubmitHandler}>
+									Update
+								</Button>
 							</div>
 						)}
 					</div>

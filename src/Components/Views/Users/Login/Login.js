@@ -11,6 +11,11 @@ import { Base64 } from 'js-base64';
 import socket from '../../../_services/SocketService';
 import _ from 'lodash';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+
 // import FacebookLogin from "react-facebook-login";
 /*
 facebook login stuff
@@ -113,7 +118,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div className="register-form">
-				<form onSubmit={this.submitHandler} autoComplete="off">
+				{/* <form onSubmit={this.submitHandler} autoComplete="off">
 					<div className="form-group">
 						<fieldset className="form-group">
 							<legend className="border-bottom form_space">Login</legend>
@@ -153,7 +158,24 @@ class Login extends React.Component {
 							''
 						)}
 					</div>
-				</form>
+				</form> */}
+				<Form onSubmit={this.submitHandler} autoComplete="off">
+					<Form.Row>
+						<Form.Group as={Col} controlId="formGridEmail">
+							<Form.Label>Username</Form.Label>
+							<Form.Control type="text" name="username" placeholder="Enter username" onChange={this.onChangeHandler} size="sm" />
+						</Form.Group>
+
+						<Form.Group as={Col} controlId="formGridPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control type="password" name="password" placeholder="Password" onChange={this.onChangeHandler} size="sm" />
+						</Form.Group>
+					</Form.Row>
+
+					<Button variant="primary" type="submit" size="sm">
+						Submit
+					</Button>
+				</Form>
 				If you do not have an account you may <Link to="/register">signup here.</Link>
 			</div>
 		);

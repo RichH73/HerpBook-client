@@ -8,6 +8,11 @@ import * as actionCreators from '../../../../actions/index';
 import dayjs from 'dayjs';
 import ReactGA from 'react-ga';
 import { Base64 } from 'js-base64';
+
+// Bootstrap imports
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class MyListings extends Component {
 	state = {
 		listings: [],
@@ -66,13 +71,16 @@ class MyListings extends Component {
 							</Link>
 						</div>
 						<div className="my-listings-delete">
-							<button onClick={() => this.delete_listing(list)} className="button">
+							{/* <button onClick={() => this.delete_listing(list)} className="button">
 								Delete
-							</button>
+							</button> */}
+							<Button variant="danger" size="sm" onClick={() => this.delete_listing(list)}>
+								Delete
+							</Button>
 						</div>
 						<div className="my-listings-box-info">
 							<Link to={`/listing/${list._id}`}>
-								<table>
+								<Table bordered size="sm">
 									<thead>
 										<tr>
 											<th>Price</th>
@@ -95,7 +103,7 @@ class MyListings extends Component {
 											</td>
 										</tr>
 									</tbody>
-								</table>
+								</Table>
 							</Link>
 						</div>
 					</div>

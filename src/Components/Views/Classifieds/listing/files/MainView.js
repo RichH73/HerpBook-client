@@ -10,6 +10,9 @@ import 'react-quill/dist/quill.bubble.css';
 import * as actionCreators from '../../../../../actions/index';
 import _ from 'lodash';
 
+// Bootstrap imports
+import Table from 'react-bootstrap/Table';
+
 class ClassifiedList extends React.Component {
 	state = {
 		listing: {},
@@ -46,7 +49,7 @@ class ClassifiedList extends React.Component {
 
 	businessDisplay = (data) => {
 		return (
-			<table>
+			<Table bordered size="sm">
 				<thead>
 					<tr>
 						<th>Business</th>
@@ -63,7 +66,7 @@ class ClassifiedList extends React.Component {
 						<td>{data.businessPhone}</td>
 					</tr>
 				</tbody>
-			</table>
+			</Table>
 		);
 	};
 
@@ -83,7 +86,7 @@ class ClassifiedList extends React.Component {
 						</div>
 					</div>
 					<div className="list-box-inner-table-data">
-						<table>
+						<Table bordered size="sm">
 							<thead>
 								<tr>
 									<th>Price</th>
@@ -103,7 +106,7 @@ class ClassifiedList extends React.Component {
 									<td>{!!list.userCreatedID ? list.userCreatedID : list._id}</td>
 								</tr>
 							</tbody>
-						</table>
+						</Table>
 						<div
 							className="classified-listing-seller-other"
 							style={{

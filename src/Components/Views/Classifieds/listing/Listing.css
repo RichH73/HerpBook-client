@@ -152,13 +152,6 @@
     max-height: 600px;
     border-radius: 3px;
   }
-  button {
-    border: 1px solid #cce2f8;
-    background-color: orange;
-    width: 300px;
-    height: 30px;
-    font-weight: bold;
-  }
   .classified-listing-seller-other {
     color: black;
   }
@@ -317,13 +310,6 @@
     margin-top: 30%;
     text-align: center;
     width: 100%;
-  }
-  button {
-    border: 1px solid #cce2f8;
-    background-color: orange;
-    width: 300px;
-    height: 30px;
-    font-weight: bold;
   }
 }
 /*# sourceMappingURL=Listing.css.map */
