@@ -49,7 +49,7 @@ class ClassifiedList extends React.Component {
 
 	businessDisplay = (data) => {
 		return (
-			<Table bordered size="sm">
+			<Table bordered size="md">
 				<thead>
 					<tr>
 						<th>Business</th>
@@ -86,7 +86,7 @@ class ClassifiedList extends React.Component {
 						</div>
 					</div>
 					<div className="list-box-inner-table-data">
-						<Table bordered size="sm">
+						<Table bordered size="md">
 							<thead>
 								<tr>
 									<th>Price</th>

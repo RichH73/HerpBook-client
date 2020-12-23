@@ -35,7 +35,6 @@ class Welcome extends Component {
 					newsArray.push(article);
 				}
 			});
-			console.log('filtered data', newsArray);
 			this.setState({
 				news: newsArray,
 			});

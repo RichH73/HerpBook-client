@@ -40,7 +40,7 @@ class SmallCard extends Component {
 								<img src={this.props.imgSrc} alt="" />
 							</div>
 							<div className="bar-code-inner-name">
-								<h3>{this.props.currentAnimal.name}</h3>
+								<h4>{this.props.currentAnimal.name}</h4>
 								<p>Gender: {this.props.currentAnimal.gender}</p>
 								<p>DOB: {`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</p>
 							</div>

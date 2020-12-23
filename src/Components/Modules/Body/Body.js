@@ -21,7 +21,7 @@ class Body extends Component {
 						<div className="body-main-outter-panel">
 							<div className="body-main-header">
 								<MainView />
-								<h3>{this.props.navPageId}</h3>
+								<h4>{this.props.navPageId}</h4>
 							</div>
 							<Pages socket={this.props.socket} />
 						</div>

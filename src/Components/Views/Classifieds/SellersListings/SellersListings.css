@@ -25,13 +25,13 @@
   }
   .other-listing-gender {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
     grid-area: gender;
   }
   .other-listing-price {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
     grid-area: price;
   }
@@ -114,11 +114,11 @@
   }
   .other-listing-gender {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .other-listing-price {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
   }
   .other-listing-img {

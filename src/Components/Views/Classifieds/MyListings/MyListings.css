@@ -53,10 +53,10 @@ td {
     font-size: 1em;
   }
   .my-listings-gender {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-price {
-    font-size: 0.7em;
+    font-size: 1em;
   }
 }
 
@@ -100,10 +100,10 @@ td {
     text-decoration: none;
   }
   .my-listings-gender {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-price {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-img {
     width: 100px;

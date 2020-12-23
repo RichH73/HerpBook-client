@@ -131,7 +131,7 @@ class MyCollections extends Component {
 		return (
 			<React.Fragment>
 				<div className="my-collections-quick-filters">
-					<h3>Quick Filters</h3>
+					<h4>Quick Filters</h4>
 					<div className="my-collections-quick-filters-select">
 						<div>
 							<label>Species</label>

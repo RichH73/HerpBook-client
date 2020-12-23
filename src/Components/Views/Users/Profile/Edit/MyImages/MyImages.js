@@ -13,7 +13,7 @@ class MyImages extends Component {
 		return (
 			<div>
 				<ImageDrop {...this.props} />
-				<h3>My Albums</h3>
+				<h4>My Albums</h4>
 				<MyAlbums />
 			</div>
 		);

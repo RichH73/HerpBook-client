@@ -37,7 +37,7 @@ class SubCategory extends React.Component {
 
 	emptyListingsResponse = (
 		<div style={{ width: '90%', margin: 'auto' }}>
-			<h3>No Listings</h3>
+			<h4>No Listings</h4>
 			<p>
 				Sorry, there were no listings in this category. If you have something that you would like to sell please feel free to create a free account.
 				Then create a classified listing here so the next person doens't see this message{' '}

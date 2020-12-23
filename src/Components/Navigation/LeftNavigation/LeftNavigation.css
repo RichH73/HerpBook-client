@@ -25,7 +25,7 @@ h3 {
 .left-main-nav {
   text-align: left;
   width: 190px;
-  padding: 1em 0 1em 0.5em;
+  padding-left: .5em;
 }
 
 .left-main-nav a {

@@ -72,7 +72,7 @@ class Settings extends Component {
 						{/* <button className="button collection-settings-buttons-delete" onClick={this.submit}>
 							Delete
 						</button> */}
-						<Button variant="danger" size="sm" onClick={this.submit}>
+						<Button variant="danger" size="md" onClick={this.submit}>
 							Delete
 						</Button>
 					</div>

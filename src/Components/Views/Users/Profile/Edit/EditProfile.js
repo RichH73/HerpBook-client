@@ -123,7 +123,7 @@ class EditProfile extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="edit-profile-business-title">
-					<h3>Edit Business Information</h3>
+					<h4>Edit Business Information</h4>
 				</div>
 				<div className="edit-profile-form-business-info">
 					<div className="edit-profile-form-businessName">
@@ -286,7 +286,7 @@ class EditProfile extends React.Component {
 					*/}
 
 						<div className="edit-profile-entity-title">
-							<h3>Edit Entity Information</h3>
+							<h4>Edit Entity Information</h4>
 						</div>
 						<div className="edit-profile-entity-info">
 							<div className="edit-profile-form-name-first">

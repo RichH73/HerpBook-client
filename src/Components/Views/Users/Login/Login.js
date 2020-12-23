@@ -163,16 +163,16 @@ class Login extends React.Component {
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>Username</Form.Label>
-							<Form.Control type="text" name="username" placeholder="Enter username" onChange={this.onChangeHandler} size="sm" />
+							<Form.Control type="text" name="username" placeholder="Enter username" onChange={this.onChangeHandler} size="md" />
 						</Form.Group>
 
 						<Form.Group as={Col} controlId="formGridPassword">
 							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" name="password" placeholder="Password" onChange={this.onChangeHandler} size="sm" />
+							<Form.Control type="password" name="password" placeholder="Password" onChange={this.onChangeHandler} size="md" />
 						</Form.Group>
 					</Form.Row>
 
-					<Button variant="primary" type="submit" size="sm">
+					<Button variant="primary" type="submit" size="md">
 						Submit
 					</Button>
 				</Form>

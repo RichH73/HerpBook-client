@@ -74,13 +74,13 @@ class MyListings extends Component {
 							{/* <button onClick={() => this.delete_listing(list)} className="button">
 								Delete
 							</button> */}
-							<Button variant="danger" size="sm" onClick={() => this.delete_listing(list)}>
+							<Button variant="danger" size="md" onClick={() => this.delete_listing(list)}>
 								Delete
 							</Button>
 						</div>
 						<div className="my-listings-box-info">
 							<Link to={`/listing/${list._id}`}>
-								<Table bordered size="sm">
+								<Table bordered size="md">
 									<thead>
 										<tr>
 											<th>Price</th>

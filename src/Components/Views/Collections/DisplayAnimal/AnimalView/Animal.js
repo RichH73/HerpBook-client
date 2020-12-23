@@ -54,7 +54,7 @@ class Animal extends Component {
 				<div className="collections-animal-quick-records">
 					Quick Records
 					<div className="collections-animal-quick-records-data">
-						<Table bordered size="sm">
+						<Table bordered size="md">
 							<tbody>
 								{!_.isEmpty(_.get(records, 'feeding')) ? (
 									<tr>
@@ -381,7 +381,7 @@ class Animal extends Component {
 								{/* <button className="button" onClick={this.onSubmitHandler}>
 									Update
 								</button> */}
-								<Button variant="success" size="sm" onClick={this.onSubmitHandler}>
+								<Button variant="success" size="md" onClick={this.onSubmitHandler}>
 									Update
 								</Button>
 							</div>

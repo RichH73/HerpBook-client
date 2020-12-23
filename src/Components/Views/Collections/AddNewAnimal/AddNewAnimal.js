@@ -14,6 +14,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import ImageDrop from '../../../_services/ImageDrop';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 class AddNewAnimal extends Component {
 	state = {
 		startDate: '',
@@ -137,24 +143,12 @@ class AddNewAnimal extends Component {
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'MALE' && sub.collectionType === 'BREEDER') {
+				if (sub.sub_category === _.toNumber(sub_category) && sub.gender === 'MALE' && sub.collectionType === 'BREEDER') {
 					return sub;
 				}
 			});
 		}
-		return (
-			<React.Fragment>
-				<label className="field-input-label">Sire</label>
-				<div>
-					<select name="sire" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
-						<option>Add Sire</option>
-						{collections.map((collection) => (
-							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-						))}
-					</select>
-				</div>
-			</React.Fragment>
-		);
+		return collections.map((collection) => <option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>);
 	};
 
 	damDisplay = () => {
@@ -165,126 +159,112 @@ class AddNewAnimal extends Component {
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'FEMALE' && sub.collectionType === 'BREEDER') {
+				if (sub.sub_category === _.toNumber(sub_category) && sub.gender === 'FEMALE' && sub.collectionType === 'BREEDER') {
 					return sub;
 				}
 			});
 		}
-		return (
-			<React.Fragment>
-				<label className="field-input-label">Dam</label>
-				<div>
-					<select name="dam" onChange={this.formChangeHandler} disabled={!!collections.length ? false : true}>
-						<option>Add Dam</option>
-						{collections.map((collection) => (
-							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-						))}
-					</select>
-				</div>
-			</React.Fragment>
-		);
+		return collections.map((collection) => <option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>);
 	};
 
 	render() {
 		return (
 			<React.Fragment>
-				<div style={{ margin: '2em auto', width: '85%' }}>
-					<p>
-						Fill in the following boxes to add a new animal to your collections. The bare minimum requirements are Category, Sub-category, and at
-						least one image of the animal to get started.
-					</p>
-				</div>
 				<div className="collections-create-new-animal">
-					<div className="collections-create-new-animal-form">
-						<div className="collections-create-new-animal-type-ucid">
-							<div className="collections-create-new-animal-type">
-								<label className="field-input-label">Collection Type</label>
-								<div>
-									<select name="collectionType" onChange={this.formChangeHandler}>
-										<option>Choose</option>
-										<option value="SALE">Sale</option>
-										<option value="PET">Pet</option>
-										<option value="HOLDBACK">Holdback</option>
-										<option value="BREEDER">Breeder</option>
-									</select>
-								</div>
-							</div>
-							<div className="collections-create-new-animal-user-id">
-								<label className="field-input-label">Animal ID</label>
-								<div>
-									<input type="text" name="userCreatedID" onChange={this.formChangeHandler} />
-								</div>
-							</div>
-						</div>
+					<Form autocomplete="off" onSubmit={this.submitHandler}>
+						<Form.Row>
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Collection Type</Form.Label>
+								<Form.Control as="select" name="collectionType" onChange={this.formChangeHandler} size="md">
+									<option>Choose</option>
+									<option value="SALE">Sale</option>
+									<option value="PET">Pet</option>
+									<option value="HOLDBACK">Holdback</option>
+									<option value="BREEDER">Breeder</option>
+								</Form.Control>
+							</Form.Group>
 
-						<div className="collections-create-name-animal-name-dob">
-							<div className="collections-create-new-animal-name">
-								<label className="field-input-label">Name</label>
-								<div>
-									<input type="text" name="name" onChange={this.formChangeHandler} />
-								</div>
-							</div>
-							<div className="collections-create-new-animal-dob">
-								<label className="field-input-label">DOB</label>
-								<div>
-									<DatePicker showPopperArrow={false} selected={this.props.createAnimal.dob} onChange={(date) => this.handleDate(date)} />
-								</div>
-							</div>
-						</div>
+							<Form.Group as={Col} controlId="formGridPassword">
+								<Form.Label>Animal ID</Form.Label>
+								<Form.Control minLength="8" type="text" name="userCreatedID" onChange={this.formChangeHandler} size="md" />
+							</Form.Group>
+						</Form.Row>
 
-						<div className="collections-create-new-animal-gender-category">
-							<div className="collections-create-new-animal-gender">
-								<label className="field-input-label">Gender</label>
-								<div>
-									<select name="gender" onChange={this.formChangeHandler}>
-										<option>Choose</option>
-										<option value="MALE">Male</option>
-										<option value="FEMALE">Female</option>
-										<option value="UNKNOWN">Unknown</option>
-									</select>
-								</div>
-							</div>
-							<div className="collections-create-new-animal-category">
-								<label className="field-input-label">Category</label>
-								<div>
-									<select id="category" required name="category" onChange={this.categoryChangeHandler}>
-										<option value="">Choose a category</option>
-										{this.category_menu()}
-									</select>
-								</div>
-								{!!this.props.createAnimal.category ? (
-									<div className="collections-create-new-animal-sub-category">
-										<label className="field-input-label">Sub category</label>
-										<div>
-											<select id="sub-category" required name="sub_category" onChange={this.categoryChangeHandler}>
-												<option value="">Choose a category</option>
-												{this.sub_category_menu()}
-											</select>
-										</div>
-									</div>
-								) : (
-									''
-								)}
-							</div>
+						<Form.Row>
+							<Form.Group as={Col} xs={8} controlId="formGridName">
+								<Form.Label>Name</Form.Label>
+								<Form.Control type="email" name="name" onChange={this.formChangeHandler} size="md" />
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Gender</Form.Label>
+								<Form.Control as="select" name="gender" onChange={this.formChangeHandler} size="md">
+									<option>Choose</option>
+									<option value="Male">Male</option>
+									<option value="FEMALE">Female</option>
+									<option value="UNKNOWN">Unknown</option>
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Category</Form.Label>
+								<Form.Control required as="select" name="category" onChange={this.formChangeHandler} size="md">
+									<option value="">Choose a category</option>
+									{this.category_menu()}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Sub Category</Form.Label>
+								<Form.Control
+									required
+									as="select"
+									name="sub_category"
+									onChange={this.formChangeHandler}
+									disabled={!this.sub_category_menu().length}
+									size="md">
+									<option value="">Choose a sub_category</option>
+									{this.sub_category_menu()}
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col} controlId="formGridDOB">
+								<Form.Label size="md">DOB</Form.Label>
+								<Form.Control size="md" type="date" name="dob" placeholder="Enter Date" onChange={this.formChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Sire</Form.Label>
+								<Form.Control as="select" name="sire" onChange={this.formChangeHandler} disabled={!this.damDisplay().length} size="md">
+									<option value="">Sire</option>
+									{this.sireDisplay()}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridType">
+								<Form.Label>Dam</Form.Label>
+								<Form.Control as="select" name="dam" onChange={this.formChangeHandler} disabled={!this.damDisplay().length} size="md">
+									<option value="">Dam</option>
+									{this.damDisplay()}
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row></Form.Row>
+						<div>
+							<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
 						</div>
-						<div className="collections-create-new-animal-sire-dam">
-							<div className="collections-create-new-animal-sire">{this.sireDisplay()}</div>
-							<div className="collections-create-new-animal-dam">{this.damDisplay()}</div>
-						</div>
-					</div>
-					<div className="collections-create-new-animal-images">
-						<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
-					</div>
-					<div className="collections-create-new-animal-footer">
 						<div className="collections-create-new-animal-button">
-							<button
-								className="button"
-								disabled={!this.props.sendFiles.length || !this.props.createAnimal.category || !this.props.createAnimal.sub_category}
-								onClick={this.onSubmitHandler}>
-								Save
-							</button>
+							<Button variant="primary" type="submit" size="md">
+								Submit
+							</Button>
 						</div>
-					</div>
+					</Form>
 				</div>
 			</React.Fragment>
 		);

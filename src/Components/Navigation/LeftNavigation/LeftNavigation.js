@@ -13,7 +13,7 @@ class LeftNav extends Component {
 			<React.Fragment>
 				<div className="left-main-navigation-outter-panel">
 					<div className="left-navigation-panel-header">
-						<h3>User Navigation</h3>
+						<h4>User Navigation</h4>
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">
@@ -32,7 +32,7 @@ class LeftNav extends Component {
 				</div>
 				<div className="left-main-navigation-outter-panel">
 					<div className="left-navigation-panel-header">
-						<h3>My Classifieds</h3>
+						<h4>My Classifieds</h4>
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">
@@ -46,7 +46,7 @@ class LeftNav extends Component {
 				</div>
 				<div className="left-main-navigation-outter-panel">
 					<div className="left-navigation-panel-header">
-						<h3>My Collections</h3>
+						<h4>My Collections</h4>
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">
@@ -80,7 +80,7 @@ class LeftNav extends Component {
 			<React.Fragment>
 				<div className="left-main-navigation-outter-panel">
 					<div className="left-navigation-panel-header">
-						<h3>Navigation</h3>
+						<h4>Navigation</h4>
 					</div>
 					<div className="left-main-nav">
 						<div className="left-nav-link">

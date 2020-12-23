@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Register.css';
 import axios from 'axios';
 // eslint-disable-next-line
@@ -27,6 +27,7 @@ class Register extends React.Component {
 		password_length_check: false,
 		password_string: '(password must be at least 8 charecters)',
 		isVerified: true,
+		validated: false,
 	};
 
 	componentDidMount() {
@@ -41,39 +42,67 @@ class Register extends React.Component {
 			id: user_id,
 		});
 	};
+
+	FormExample() {
+		const [validated, setValidated] = useState(false);
+
+		const handleSubmit = (event) => {
+			const form = event.currentTarget;
+			if (form.checkValidity() === false) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+
+			setValidated(true);
+		};
+
+		return (
+			<Form noValidate validated={validated} onSubmit={handleSubmit}>
+				....
+			</Form>
+		);
+	}
+
 	submitHandler = (event) => {
 		event.preventDefault();
+		const { password, confirm_password } = this.state;
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			this.setState({
+				validated: true,
+			});
+		}
+		if (password !== confirm_password) {
+			this.setState({
+				validated: true,
+			});
+		}
 		if (this.state.isVerified) {
-			// eslint-disable-next-line
-			if (this.state.matched === true && this.state.password_length_check === true) {
-				// axios({
-				// 	method: 'post',
-				// 	url: `${this.props.API}/login/signup`,
-				// 	responseType: 'json',
-				// 	data: {
-				// 		username: _.trim(this.state.username).replace(/ /g, ''),
-				// 		entityEmail: _.trim(this.state.entityEmail).replace(/ /g, ''),
-				// 		firstName: _.trim(this.state.firstName).replace(/ /g, ''),
-				// 		lastName: _.trim(this.state.lastName).replace(/ /g, ''),
-				// 		password: _.trim(this.state.password).replace(/ /g, ''),
-				// 	},
-				// })
-				// 	.then((response) => {
-				// 		if (response.status === 201) {
-				// 			this.props.history.push('/success/register');
-				// 		}
-				// 	})
-				// 	.catch((error) => {
-				// 		console.log(error);
-				// 	});
-			}
-			event.preventDefault();
+			axios({
+				method: 'post',
+				url: `${this.props.API}/login/signup`,
+				responseType: 'json',
+				data: {
+					username: _.trim(this.state.username).replace(/ /g, ''),
+					entityEmail: _.trim(this.state.entityEmail).replace(/ /g, ''),
+					firstName: _.trim(this.state.firstName).replace(/ /g, ''),
+					lastName: _.trim(this.state.lastName).replace(/ /g, ''),
+					password: _.trim(this.state.password).replace(/ /g, ''),
+				},
+			})
+				.then((response) => {
+					if (response.status === 201) {
+						this.props.history.push('/success/register');
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		} else {
 			alert('Please verify you are human.');
 		}
 	};
 	onChangeHandler = (event) => {
-		console.log({ [event.target.name]: event.target.value });
 		this.setState({
 			[event.target.name]: event.target.value,
 		});
@@ -104,79 +133,10 @@ class Register extends React.Component {
 	};
 
 	render() {
+		const { validated, password, confirm_password, matched } = this.state;
 		return (
-			//<div className="register-form">
-			// 	<form onSubmit={this.submitHandler}>
-			// 		<div className="form-group">
-			// 			<fieldset className="form-group">
-			// 				<legend className="border-bottom form_space">Account Register</legend>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="username" className="col-form-label  requiredField">
-			// 						Username<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input type="username" name="username" className="form-control" required id="id_username" onChange={this.onChangeHandler} />
-			// 				</div>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="username" className="col-form-label  requiredField">
-			// 						Email Address<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input type="email" name="entityEmail" className="form-control" required id="id_email" onChange={this.onChangeHandler} />
-			// 				</div>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="firstName" className="col-form-label  requiredField">
-			// 						First Name<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input type="text" name="firstName" className="form-control" required id="first_name" onChange={this.onChangeHandler} />
-			// 				</div>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="first_name" className="col-form-label  requiredField">
-			// 						Last Name<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input type="text" name="lastName" className="form-control" required id="last_name" onChange={this.onChangeHandler} />
-			// 				</div>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="id_password" className="col-form-label  requiredField">
-			// 						Password <span>{this.state.password_length_check ? 'password is good' : '(password must be at least 8 charecters)'}</span>
-			// 						<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input type="password" name="password" className="textinput form-control" required id="id_password" onChange={this.onChangeHandler} />
-			// 				</div>
-
-			// 				<div className="form-control-sm">
-			// 					<label id="id_confirm_password" className="col-form-label  requiredField">
-			// 						Confirm Password<span className="asteriskField">*</span>
-			// 					</label>
-
-			// 					<input
-			// 						type="password"
-			// 						name="confirm_password"
-			// 						className="textinput form-control"
-			// 						required
-			// 						id="id_confirm_password"
-			// 						onChange={this.confirmPassword}
-			// 					/>
-			// 					<span>{this.state.passwords_match}</span>
-			// 				</div>
-			// 			</fieldset>
-			// 			<button type="submit">Send</button>
-			// 			<div id="recaptcha">
-			// 				{/* <Recaptcha sitekey="6LcLs7IUAAAAANJD7BGAJmQ8R_sLQg_Dox8NyNA-" render="explicit" verifyCallback={this.verifyCallback} /> */}
-			// 				<br />
-			// 			</div>
-			// 		</div>
-			// 	</form>
 			<div className="register-form">
-				<Form autocomplete="off">
+				<Form autocomplete="off" noValidate validated={validated} onSubmit={this.submitHandler}>
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>Username</Form.Label>
@@ -186,28 +146,35 @@ class Register extends React.Component {
 								placeholder="Enter username"
 								onChange={this.onChangeHandler}
 								required
-								size="sm"
+								size="md"
 								value={this.state.username}
+								minLength="8"
 							/>
+							<Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
+							<Form.Control.Feedback type="invalid">Username must must not contain spaces.</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group as={Col} xs={8} controlId="formGridEmail">
-							<Form.Label>Email Address</Form.Label>
-							<InputGroup size="sm">
-								<InputGroup.Prepend>
-									<InputGroup.Text>@</InputGroup.Text>
-								</InputGroup.Prepend>
-								<Form.Control type="email" name="entityEmail" placeholder="Enter Email" onChange={this.onChangeHandler} required size="sm" />
-							</InputGroup>
+						<Form.Group as={Col} controlId="formGridPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control minLength="8" type="password" name="password" placeholder="Password" onChange={this.onChangeHandler} required size="md" />
+							<Form.Control.Feedback type="invalid">Please enter at least 8 charecters</Form.Control.Feedback>
+							<Form.Control.Feedback type="valid">Looks good</Form.Control.Feedback>
 						</Form.Group>
 					</Form.Row>
 					<Form.Row>
-						<Form.Group as={Col} controlId="formGridPassword">
-							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" name="password" placeholder="Password" onChange={this.onChangeHandler} required size="sm" />
+						<Form.Group as={Col} xs={8} controlId="formGridEmail">
+							<Form.Label>Email Address</Form.Label>
+							<InputGroup size="md">
+								<InputGroup.Prepend>
+									<InputGroup.Text>@</InputGroup.Text>
+								</InputGroup.Prepend>
+								<Form.Control type="email" name="entityEmail" placeholder="Enter Email" onChange={this.onChangeHandler} required size="md" />
+								<Form.Control.Feedback type="valid">Looks Good!</Form.Control.Feedback>
+								<Form.Control.Feedback type="invalid">Please provide a valid Email Address.</Form.Control.Feedback>
+							</InputGroup>
 						</Form.Group>
 
-						<Form.Group as={Col} controlId="formGridPassword">
+						{/* <Form.Group as={Col} controlId="formGridPassword">
 							<Form.Label>Confirm Password</Form.Label>
 							<Form.Control
 								type="password"
@@ -215,24 +182,32 @@ class Register extends React.Component {
 								placeholder="ConfirmPassword"
 								onChange={this.onChangeHandler}
 								required
-								size="sm"
+								size="md"
+								minLength='8'
+								isInvalid={password === confirm_password ? false : true}
 							/>
-						</Form.Group>
+							<Form.Control.Feedback type="invalid">Passwords do not match.</Form.Control.Feedback>
+							<Form.Control.Feedback type={password === confirm_password ? 'valid' : ''}>Passwords match.</Form.Control.Feedback>
+						</Form.Group> */}
 					</Form.Row>
 
 					<Form.Row>
 						<Form.Group as={Col}>
 							<Form.Label>First Name</Form.Label>
-							<Form.Control type="text" name="firstName" placeholder="First Name" onChange={this.onChangeHandler} reqired size="sm" />
+							<Form.Control type="text" name="firstName" placeholder="First Name" onChange={this.onChangeHandler} reqired size="md" required />
+							<Form.Control.Feedback type="invalid">Please enter your first name.</Form.Control.Feedback>
+							<Form.Control.Feedback type="valid">Looks good.</Form.Control.Feedback>
 						</Form.Group>
 
 						<Form.Group as={Col}>
 							<Form.Label>Last Name</Form.Label>
-							<Form.Control type="text" name="lastName" placeholder="Last Name" onChange={this.onChangeHandler} required size="sm" />
+							<Form.Control type="text" name="lastName" placeholder="Last Name" onChange={this.onChangeHandler} required size="md" required />
+							<Form.Control.Feedback type="invalid">Please enter your last name.</Form.Control.Feedback>
+							<Form.Control.Feedback type="valid">Looks good</Form.Control.Feedback>
 						</Form.Group>
 					</Form.Row>
 
-					<Button variant="primary" type="submit" size="sm">
+					<Button variant="primary" type="submit" size="md">
 						Submit
 					</Button>
 				</Form>
