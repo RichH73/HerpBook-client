@@ -533,7 +533,7 @@ class Master extends Component {
 					<Button variant="success" onClick={this.updateRecord}>
 						Save
 					</Button>{' '}
-					<Button varient="success" onClick={this.setState({ weightModal: false })}>
+					<Button varient="success" onClick={this.cancelEdit}>
 						Cancel
 					</Button>
 				</Modal.Footer>
