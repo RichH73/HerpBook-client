@@ -1,6 +1,6 @@
 @import '../../../index';
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
 	.vendor-list-about {
 		width: 100%;
 	}
@@ -68,7 +68,7 @@
 	}
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1081px) {
 	.breeder {
 		//background-color: $panelBodyColor;
 		border: 1px solid orange;

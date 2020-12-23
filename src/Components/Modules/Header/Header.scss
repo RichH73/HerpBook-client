@@ -1,7 +1,7 @@
 @import '../../../index';
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.main-navigation-header {
 		display: none;
 	}

@@ -18,7 +18,7 @@
   position: relative;
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 1081px) {
   .collection-animal-comment {
     width: 200px;
   }
@@ -110,111 +110,7 @@
   }
 }
 
-@media screen and (max-width: 699px) {
-  .collections-tab-header {
-    border-color: orange;
-  }
-  .react-tabs__tab--selected {
-    border-color: orange;
-  }
-  .react-tabs__tab-list {
-    border-color: orange;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.7rem;
-  }
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  .collections-animal-more-images {
-    padding: 10px;
-  }
-  .collections-animal-more-images-display {
-    margin: 2em auto;
-    width: 80%;
-    grid-gap: 20px;
-    -ms-grid-columns: auto;
-        grid-template-columns: auto;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  .collections-animal-more-images img {
-    cursor: pointer;
-  }
-  .collections-my-collections-active-list td:hover {
-    cursor: pointer;
-  }
-  .collections-my-collections-active-list {
-    padding: 10px;
-  }
-  .collections-my-collections-active-list tr:hover {
-    background-color: #cce2f8;
-  }
-  .collections-create-new-activity {
-    padding: 10px;
-  }
-  .collections-images-image-box {
-    margin: 2em auto;
-    width: 100%;
-    background-color: #cce2f8;
-    border-radius: 7px;
-    padding-bottom: 10px;
-  }
-  .collections-images-image-header {
-    width: 100%;
-    text-align: center;
-    height: 25px;
-    background-color: orange;
-    padding: 4px 0;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    margin: 0 auto 1em;
-  }
-  .collections-images-imgage-body {
-    text-align: center;
-  }
-  .collections-images-image-body img {
-    text-align: center;
-  }
-  .collections-images-imgage-body-info {
-    margin: 1em auto;
-    text-align: center;
-  }
-  .collections-images-imgage-body-info p {
-    font-size: 0.8rem;
-    margin: 0px;
-  }
-  .collections-images-image {
-    text-align: center;
-    width: 100%;
-    height: 50%;
-  }
-  .collections-images-imgage-footer {
-    text-align: center;
-  }
-  .collections-my-collections {
-    position: relative;
-  }
-  .collections-qr-search {
-    text-align: right;
-    padding-right: 20px;
-    margin: auto;
-  }
-  .collections-qr-search img {
-    width: 40px;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 839px) {
-  .collection-animal-comment {
-    width: 200px;
-  }
+@media screen and (max-width: 1080px) {
   .collections-tab-header {
     border-color: orange;
   }

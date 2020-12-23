@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   .list-info {
     display: -ms-grid;
     display: grid;
@@ -160,7 +160,7 @@
   }
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .list-box {
     width: 98%;
     color: black;

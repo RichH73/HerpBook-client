@@ -1,6 +1,6 @@
 @import '../../../index';
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1081px) {
 	.main-app-footer {
 		display: none;
 		bottom: 20px;
@@ -19,7 +19,7 @@
 	}
 }
 
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 1080px) {
 	.main-app-footer {
 		display: none;
 	}

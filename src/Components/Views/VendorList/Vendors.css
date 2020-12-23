@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .vendor-list-about {
     width: 100%;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1081px) {
   .breeder {
     border: 1px solid orange;
     border-radius: 7px;

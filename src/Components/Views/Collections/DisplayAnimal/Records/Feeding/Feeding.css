@@ -5,14 +5,16 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1081px) {
+  .collections-feedings-new-feeding-form {
+    margin-bottom: 1em;
+  }
   .collections-feedings-new-feeding {
-    margin: 1em auto;
-    width: 90%;
+    margin: auto;
   }
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .collections-feedings-new-feeding-form {
     margin-bottom: 1em;
   }

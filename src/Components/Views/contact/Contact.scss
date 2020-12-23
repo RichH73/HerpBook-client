@@ -1,6 +1,6 @@
 @import '../../../index';
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	#contact_form {
 		margin-top: 15px;
 		width: 100%;
@@ -12,7 +12,7 @@
 		width: 150px;
 	}
 }
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	// .ql-editor {
 	// 	min-height: 200px !important;
 	// 	max-height: 600px;

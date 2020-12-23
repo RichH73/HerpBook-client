@@ -10809,13 +10809,17 @@ a.text-dark:hover, a.text-dark:focus {
   text-align: left;
 }
 
-@media screen and (min-width: 900px) {
+.ql-editor {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 1081px) {
   .mobile-nav-button {
     display: none;
   }
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   input {
     font-size: 1em;
   }

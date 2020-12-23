@@ -8,7 +8,7 @@ h3 {
 	text-align: center;
 }
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.left-main-navigation-outter-panel {
 		display: none;
 	}

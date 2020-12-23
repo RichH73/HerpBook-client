@@ -10,9 +10,9 @@
         // "footer footer footer";
         // grid-area: public-profile-navbar;
 */
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .public-profile-body {
-    padding-top: .75em;
+    padding-top: 0.75em;
     width: 100%;
   }
   .public-profile-header img {
@@ -35,9 +35,9 @@
   }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 1081px) {
   .public-profile-body {
-    padding-top: .75em;
+    padding-top: 0.75em;
     width: 100%;
   }
   .public-profile-header img {
@@ -57,9 +57,6 @@
   }
   .public-profile-link {
     cursor: pointer;
-  }
-  .public-profile-link:hover {
-    background-color: limegreen;
   }
 }
 /*# sourceMappingURL=PublicProfile.css.map */

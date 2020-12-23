@@ -1,6 +1,6 @@
 @import '../../../../index';
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.list-info {
 		display: grid;
 		grid-template-areas:
@@ -161,7 +161,7 @@
 		color: blue;
 	}
 }
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
 	.list-box {
 		width: 98%;
 		color: black;

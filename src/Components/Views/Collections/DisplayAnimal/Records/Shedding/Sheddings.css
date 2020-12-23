@@ -1,20 +1,10 @@
 /*
     Color section to define the colors used in the entire app.
 */
-.collections-shedding-table-tr:hover {
-  cursor: pointer;
-  background-color: #cce2f8;
-}
-
-.collections-shedding-table th {
-  font-size: 1.2em;
-}
-
-.collections-shedding-table td {
-  font-size: 1.3em;
-}
-
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 1081px) {
+  .collections-sheddings-new-shedding-form {
+    margin: 1em auto;
+  }
   .collections-sheddings-list-button {
     margin: 0.5em auto;
     padding-right: 40px;
@@ -22,14 +12,7 @@
     position: relative;
   }
   .collections-sheddings-new-shedding {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
     margin: auto;
-    width: 80%;
   }
   .collections-sheddings-new-shedding-date-desktop-selector {
     display: block;
@@ -39,22 +22,7 @@
   }
 }
 
-@media screen and (min-width: 700px) and (max-width: 839px) {
-  .collections-sheddings-list-button {
-    margin: 1em auto 2em;
-    padding-right: 40px;
-    text-align: center;
-  }
-  .collections-sheddings-new-shedding {
-    width: 50%;
-    margin: auto;
-  }
-  .collections-sheddings-new-shedding input {
-    margin: 3px auto;
-  }
-}
-
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .collections-sheddings-new-shedding-form {
     margin-bottom: 1em;
   }

@@ -1,6 +1,6 @@
 @import '../../../index';
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.body-main-panel {
 		width: 98%;
 		// border: 1px solid orange;
@@ -27,7 +27,7 @@
 	}
 }
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.main-body-view {
 		width: 1000px;
 		margin: 0 auto 3em;

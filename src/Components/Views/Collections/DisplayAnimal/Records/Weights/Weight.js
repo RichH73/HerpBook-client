@@ -10,6 +10,14 @@ import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import './Weight.css';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 class Weight extends Component {
 	state = {
 		date: new Date(),
@@ -73,7 +81,7 @@ class Weight extends Component {
 
 	handleDate = (date) => {
 		this.setState({
-			date: date,
+			date: dayjs(date.target.value).toString(),
 		});
 	};
 
@@ -131,16 +139,58 @@ class Weight extends Component {
 			},
 		};
 		return (
-			<div className="collections-sheddings-list" style={{ padding: '10px' }}>
-				<div className="collections-sheddings-new-shedding-form">
-					<div className="collections-sheddings-new-shedding-form-para">
+			<div className="collections-weights-list" style={{ padding: '10px' }}>
+				<div className="collections-weights-new-weight-form">
+					<div className="collections-weights-new-weight-form-para">
 						<p>
 							Add a new weight record by filling in the boxes below then click the "Save" button. Or you can see more information or edit records
 							shown below by clicking on the record you want to edit.
 						</p>
 					</div>
 					<div className="collections-weight-new-weighing">
-						<div>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Date</Form.Label>
+									<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Weight</Form.Label>
+									<InputGroup>
+										{/* <Form.Control as='div'> */}
+										<NumberFormat
+											thousandSeparator={true}
+											className="form-control form-control-md"
+											//defaultValue={this.props.recordOverlay.weight}
+											allowNegative={false}
+											fixedDecimalScale={2}
+											onChange={this.onChangeHandler}
+											name="weight"
+										/>
+										{/* </Form.Control> */}
+										<Form.Control as="select" name="weightUnit" onChange={this.onChangeHandler} value={this.state.weightUnit} size="md">
+											{/* <option value=''>Unit</option> */}
+											<option value="gm">Grams</option>
+											<option value="kg">Kilograms</option>
+											<option value="oz">Ounces</option>
+											<option value="lb">Pounds</option>
+										</Form.Control>
+									</InputGroup>
+								</Form.Group>
+							</Form.Row>
+							<Button
+								disabled={this.state.readOnly}
+								onClick={this.onSubmitHandler}
+								disabled={!this.state.weight.length}
+								variant="success"
+								size="md"
+								block>
+								Save
+							</Button>
+						</Form>
+
+						{/* <div>
 							<label className="field-input-label">Date:</label>
 							<div className="collections-weight-date-desktop-selector">
 								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
@@ -158,8 +208,8 @@ class Weight extends Component {
 									theme="ios"
 								/>
 							</div>
-						</div>
-						<div>
+						</div> */}
+						{/* <div>
 							<label>Weight:</label>
 							<div>
 								<NumberFormat
@@ -182,9 +232,9 @@ class Weight extends Component {
 									<option value="lb">lb</option>
 								</select>
 							</div>
-						</div>
+						</div> */}
 					</div>
-					<div className="collections-sheddings-list-button">
+					{/* <div className="collections-sheddings-list-button">
 						<button
 							className="button"
 							disabled={this.state.readOnly}
@@ -194,18 +244,18 @@ class Weight extends Component {
 							label="Save">
 							Save
 						</button>
-					</div>
+					</div> */}
 				</div>
-				<div className="collections-animal-sheddings-records">
-					<div className="collections-shedding-table">
-						<table>
+				<div className="collections-animal-weights-records">
+					<div className="collections-weights-table">
+						<Table bordered stripped hover size="sm">
 							<tbody>
 								<th>Date</th>
 								<th>Weight</th>
 								<th>Weight Unit</th>
 								{this.weightMappings()}
 							</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			</div>

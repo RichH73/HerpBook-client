@@ -56,7 +56,7 @@ class Animal extends Component {
 				<div className="collections-animal-quick-records">
 					Quick Records
 					<div className="collections-animal-quick-records-data">
-						<Table bordered size="sm">
+						<Table bordered size={window.innerWidth < 600 ? 'sm' : 'md'}>
 							<tbody>
 								{!_.isEmpty(_.get(records, 'feeding')) ? (
 									<tr>
@@ -303,7 +303,7 @@ class Animal extends Component {
 										</Form.Control>
 									</Form.Group>
 
-									<Form.Group>
+									<Form.Group as={Col}>
 										<Form.Label size="md">DOB</Form.Label>
 										<Form.Control
 											type="date"

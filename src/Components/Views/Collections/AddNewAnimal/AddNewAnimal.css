@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1081px) {
   .collections-create-new-animal {
     padding: 20px;
   }
@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .collections-create-new-animal {
     padding: 20px;
   }

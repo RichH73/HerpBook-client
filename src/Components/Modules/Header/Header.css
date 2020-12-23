@@ -2,7 +2,7 @@
     Color section to define the colors used in the entire app.
 */
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .main-navigation-header {
     display: none;
   }

@@ -1,4 +1,4 @@
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .edit-profile-image-drop-box-body {
     color: black;
     -ms-grid-row: 4;
@@ -17,9 +17,9 @@
     display: grid;
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    -ms-grid-rows: .2fr .2fr .2fr .1fr .2fr;
-        grid-template-rows: .2fr .2fr .2fr .1fr .2fr;
-        grid-template-areas: 'opener' "name" "desc" "dropper" "button";
+    -ms-grid-rows: 0.2fr 0.2fr 0.2fr 0.1fr 0.2fr;
+        grid-template-rows: 0.2fr 0.2fr 0.2fr 0.1fr 0.2fr;
+        grid-template-areas: 'opener' 'name' 'desc' 'dropper' 'button';
   }
   #imagedrop-image-preview {
     padding: 1em;
@@ -41,14 +41,14 @@
   }
   .edit-profile-image-drop-box-name {
     height: 34px;
-    margin-bottom: .7em;
+    margin-bottom: 0.7em;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: name;
     font-size: 16px;
   }
   .edit-profile-image-drop-box-description {
-    margin-bottom: .7em;
+    margin-bottom: 0.7em;
     height: 34px;
     -ms-grid-row: 3;
     -ms-grid-column: 1;
@@ -70,14 +70,14 @@
   }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 1081px) {
   .ImageDrop-body {
     color: black;
     height: 101px;
   }
   .edit-profile-dropbox {
     height: auto;
-    background-color: #B2D7B9;
+    background-color: #b2d7b9;
   }
   .edit-profile-image-drop-box-dropper {
     width: 40%;

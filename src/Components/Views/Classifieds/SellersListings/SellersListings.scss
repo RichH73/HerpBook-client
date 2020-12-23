@@ -1,6 +1,6 @@
 @import '../../../../index';
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	table {
 		width: 100%;
 		border-collapse: collapse;
@@ -140,7 +140,7 @@
 	}
 }
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	table {
 		width: 100%;
 		border-collapse: collapse;

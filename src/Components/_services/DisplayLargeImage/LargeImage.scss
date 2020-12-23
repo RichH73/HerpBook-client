@@ -1,6 +1,6 @@
 @import '../../../index';
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 1081px) {
 	.display-larg-image {
 		z-index: 1;
 		position: fixed;
@@ -39,7 +39,7 @@
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1080px) {
 	.display-larg-image {
 		z-index: 1;
 		position: fixed;

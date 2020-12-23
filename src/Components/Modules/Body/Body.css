@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .body-main-panel {
     width: 98%;
     margin: auto;
@@ -26,7 +26,7 @@
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   .main-body-view {
     width: 1000px;
     margin: 0 auto 3em;

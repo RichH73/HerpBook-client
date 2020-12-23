@@ -1,81 +1,15 @@
 /*
     Color section to define the colors used in the entire app.
 */
-.collections-weight-table-tr:hover {
-  cursor: pointer;
-  background-color: #cce2f8;
-}
-
-.collections-weight-table th {
-  font-size: 1.2em;
-}
-
-.collections-weight-table td {
-  font-size: 1.3em;
-}
-
-@media screen and (min-width: 840px) {
-  .collections-weights-list-button {
-    margin: 0.5em auto;
-    padding-right: 40px;
-    text-align: right;
-    position: relative;
-  }
-  .collections-weight-new-weighing {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    margin: auto;
-    width: 80%;
-  }
-  .collections-weight-date-desktop-selector {
-    display: block;
-  }
-  .collections-weight-date-mobile-selector {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 839px) {
-  .collections-weights-list-button {
-    margin: 1em auto 2em;
-    padding-right: 40px;
-    text-align: center;
-  }
-  .collections-weights-new-weight {
-    width: 50%;
-    margin: auto;
-  }
-  .collections-weights-new-weight input {
-    margin: 3px auto;
-  }
-}
-
-@media screen and (max-width: 699px) {
+@media screen and (min-width: 1081px) {
   .collections-weights-new-weight-form {
-    margin-bottom: 1em;
+    margin: .5em auto 1em;
   }
-  .collections-weights-new-shed-form-para {
-    padding: 0 4px 0 0;
-    font-size: 1.2em;
-  }
-  .collections-weights-list-button {
-    margin: 0.5em auto;
-    padding-right: 40px;
-    text-align: right;
-    position: relative;
-  }
-  .collections-weights-new-weight input {
-    font-size: 1em;
-  }
-  .collections-weights-new-weight-date-desktop-selector {
-    display: none;
-  }
-  .collections-weights-new-weight-full-shed-selector select {
-    font-size: 1em;
+}
+
+@media screen and (max-width: 1080px) {
+  .collections-weights-new-weight-form {
+    margin: .5em auto 1em;
   }
 }
 /*# sourceMappingURL=Weight.css.map */

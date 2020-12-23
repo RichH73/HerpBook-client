@@ -5,7 +5,9 @@
 	text-align: left;
 }
 
-
+.ql-editor {
+	font-size: 16px;
+}
 // label {
 //     color: rgb(0, 0, 0);
 //     margin: 1em auto;
@@ -34,12 +36,12 @@
 
 
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.mobile-nav-button {
 		display: none;
 	}
 }
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	input {
 		font-size: 1em;
 		// margin-top: 0.3em;

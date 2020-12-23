@@ -9,7 +9,7 @@ td {
   text-align: center;
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .my-listings-box-info table {
     width: 100%;
     border-collapse: collapse;
@@ -60,7 +60,7 @@ td {
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   table {
     width: 100%;
     border-collapse: collapse;

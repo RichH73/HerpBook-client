@@ -1,4 +1,4 @@
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.edit-profile-image-drop-box-body {
 		color: black;
 		grid-area: dropper;
@@ -72,7 +72,7 @@
 	}
 }
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.ImageDrop-body {
 		color: black;
 		// padding: 2em;

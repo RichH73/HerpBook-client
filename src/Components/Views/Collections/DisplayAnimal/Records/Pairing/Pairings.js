@@ -3,16 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import _ from 'lodash';
 import dayjs from 'dayjs';
-import MDatePicker from 'react-mobile-datepicker';
 import './Pairing.css';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 class Pairings extends Component {
 	state = {
-		date: new Date(),
+		date: Date(),
 		isOpen: false,
 	};
 
@@ -38,7 +42,9 @@ class Pairings extends Component {
 			[event.target.name]: event.target.value,
 		});
 	};
-
+	sayState = () => {
+		console.log('I have spoken', this.state.date);
+	};
 	onSubmitHandler = (event) => {
 		event.preventDefault();
 		this.props.pageLoading(true);
@@ -52,6 +58,7 @@ class Pairings extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
+				//date: _.get(this.state, 'date', new Date()),
 				...this.state,
 				collectionId: this.props.currentAnimal._id,
 			},
@@ -69,7 +76,7 @@ class Pairings extends Component {
 
 	handleDate = (date) => {
 		this.setState({
-			date: date,
+			date: dayjs(date.target.value).toString(),
 		});
 	};
 
@@ -92,6 +99,22 @@ class Pairings extends Component {
 				</tr>
 			);
 		});
+	};
+
+	displayMate = () => {
+		const { category, sub_category, _id, gender } = this.props.currentAnimal;
+		let collections = this.props.collections;
+		if (!sub_category) {
+			collections = [];
+		}
+		if (!!sub_category) {
+			collections = collections.filter((sub) => {
+				if (sub.sub_category === _.toNumber(sub_category) && sub.gender !== gender && sub._id !== _id && sub.collectionType === 'BREEDER') {
+					return sub;
+				}
+			});
+			return collections.map((collection) => <option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>);
+		}
 	};
 
 	render() {
@@ -131,66 +154,52 @@ class Pairings extends Component {
 
 		return (
 			<div className="collections-pairings-list" style={{ padding: '10px' }}>
+				<div className="collections-parings-new-paring-form-para">
+					<p>
+						Add a new pairing record by filling in the boxes below then click the "Save" button. Or you can see more information or edit records shown
+						below by clicking on the record you want to edit.
+					</p>
+				</div>
 				<div className="collections-parings-new-paring-form">
-					<div className="collections-parings-new-paring-form-para">
-						<p>
-							Add a new pairing record by filling in the boxes below then click the "Save" button. Or you can see more information or edit records
-							shown below by clicking on the record you want to edit.
-						</p>
-					</div>
-					<div className="collections-pairings-new-pairing">
-						<div>
-							<label className="field-input-label">Date:</label>
-							<div className="collections-pairings-new-pairing-date-desktop-selector">
-								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
-							</div>
-							<div className="collections-feedings-new-feeding-date-mobile-selector">
-								<input type="text" readOnly={true} value={`${pd.$M + 1}/${pd.$D}/${pd.$y}`} onClick={this.mobileHandleClick} />
-								<MDatePicker
-									dateConfig={dateConfig}
-									value={this.state.time}
-									isOpen={this.state.isOpen}
-									confirmText="Select"
-									cancelText="Cancel"
-									onSelect={this.mobileHandleSelect}
-									onCancel={this.mobileHandleCancel}
-									theme="ios"
-								/>
-							</div>
-						</div>
-						<div>
-							<label className="field-input-label">Mate:</label>
-							<div>
-								<input type="text" name="mate" onChange={this.onChangeHandler} />
-							</div>
-						</div>
-						<div>
-							<label className="field-input-label">Whitnessed:</label>
-							<div>
-								<select name="whitnessed" onChange={this.onChangeHandler}>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Date</Form.Label>
+								<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label>Mate</Form.Label>
+								<Form.Control as="select" name="mate" onChange={this.onChangeHandler} size="md">
+									<option>Select Mate</option>
+									{this.displayMate()}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label>Whitnessed</Form.Label>
+								<Form.Control as="select" name="whitnessed" onChange={this.onChangeHandler} size="md">
 									<option></option>
 									<option value={true}>Yes</option>
 									<option value={false}>No</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div className="collections-pairings-list-button">
-						<button className="button" onClick={this.onSubmitHandler} disabled={!this.state.mate}>
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+						<Button disabled={!this.state.mate} onClick={this.onSubmitHandler} variant="success" size="md" block>
 							Save
-						</button>
-					</div>
+						</Button>
+					</Form>
 				</div>
 				<div className="collections-animal-records-pairings">
 					<div className="collections-pairing-table">
-						<table>
+						<Table bordered striped hover size="sm">
 							<thead>
 								<th>Date</th>
 								<th>Mate</th>
 								<th>Whitnessed</th>
 							</thead>
 							<tbody>{this.pairMappings()}</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			</div>
@@ -205,6 +214,7 @@ const mapStateToProps = (state) => ({
 	userInfo: state.user,
 	React: state.config.analytics,
 	currentAnimal: state.viewAnimal,
+	collections: state.myCollections.collections,
 });
 
 const mapDispatchToProps = (dispatch) => {
