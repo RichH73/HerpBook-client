@@ -9,6 +9,12 @@ import './MyCollections.css';
 import dayjs from 'dayjs';
 import ScanQr from '../../_services/Scan/ScanBarCode';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+
 class MyCollections extends Component {
 	state = {
 		showScanner: false,
@@ -63,7 +69,7 @@ class MyCollections extends Component {
 					<img src={`${sub.images[0].URL}/${sub.images[0].thumbnail}`} />
 				</div>
 				<div className="my-collections-collection-container-table">
-					<table>
+					<Table bordered size="sm">
 						<thead>
 							{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
 							<th>Name</th>
@@ -78,36 +84,10 @@ class MyCollections extends Component {
 								<td>{sub.gender}</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			</div>
 		));
-		//   <div className='my-collections-collection-container'>
-		//     <table>
-		//       <thead>
-		//         <th>ID</th>
-		//         <th>Name</th>
-		//         <th>DOB</th>
-		//         <th>Gender</th>
-		//       </thead>
-		//       <tbody>
-		//         {collections.map((sub) => {
-		//           return (
-		//             <tr onClick={() => this.loadAnimal(sub._id)}>
-		//               <td>{sub._id}</td>
-		//               <td>{sub.name}</td>
-		//               {!!_.get(sub, "dob") ? (
-		//                 <td>{dayjs(sub.dob).format("MM/DD/YYYY")}</td>
-		//               ) : (
-		//                 <td></td>
-		//               )}
-		//               <td>{sub.gender}</td>
-		//             </tr>
-		//           );
-		//         })}
-		//       </tbody>
-		//     </table>
-		//   </div>
 	};
 
 	clearFilters = () => {
@@ -133,28 +113,29 @@ class MyCollections extends Component {
 				<div className="my-collections-quick-filters">
 					<h4>Quick Filters</h4>
 					<div className="my-collections-quick-filters-select">
-						<div>
-							<label>Species</label>
-							<div>
-								<select name="sub_cat" onChange={changeFilter} value={this.props.filters.sub_cat}>
-									<option value="">All</option>
-									{subsList.map((sub) => (
-										<option value={sub.id}>{sub.name}</option>
-									))}
-								</select>
-							</div>
-						</div>
-						<div>
-							<label>Gender</label>
-							<div>
-								<select name="gender" onChange={changeFilter} value={this.props.filters.gender}>
-									<option value="">All</option>
-									<option value="MALE">Male</option>
-									<option value="FEMALE">Female</option>
-									<option value="UNKNOWN">Unknown</option>
-								</select>
-							</div>
-						</div>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label size="md">Species</Form.Label>
+									<Form.Control name="sub_cat" as="select" onChange={changeFilter} value={this.props.filters.sub_cat} size="md">
+										<option value="">All</option>
+										{subsList.map((sub) => (
+											<option value={sub.id}>{sub.name}</option>
+										))}
+									</Form.Control>
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Gender</Form.Label>
+									<Form.Control name="gender" as="select" onChange={changeFilter} value={this.props.filters.gender} size="md">
+										<option value="">All</option>
+										<option value="MALE">Male</option>
+										<option value="FEMALE">Female</option>
+										<option value="UNKNOWN">Unknown</option>
+									</Form.Control>
+								</Form.Group>
+							</Form.Row>
+						</Form>
 					</div>
 					<div className="my-collections-quick-filters-select-clear" onClick={this.clearFilters}>
 						Clear Filters

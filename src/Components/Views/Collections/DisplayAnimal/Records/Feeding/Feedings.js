@@ -9,6 +9,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import './Feeding.css';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class Feedings extends Component {
 	state = {
 		date: new Date(),
@@ -145,7 +152,32 @@ class Feedings extends Component {
 						</p>
 					</div>
 					<div className="collections-feedings-new-feeding">
-						<div>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Date</Form.Label>
+									<Form.Control type="date" name="date" onChange={this.onChangeHandler} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Type of feeder</Form.Label>
+									<Form.Control type="text" name="feederType" onChange={this.onChangeHandler} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Amount or weight</Form.Label>
+									<Form.Control type="text" name="feederWeight" onChange={this.onChangeHandler} size="md" />
+								</Form.Group>
+							</Form.Row>
+							<Button
+								disabled={this.state.readOnly}
+								onClick={this.onSubmitHandler}
+								disabled={!this.state.feederType.length || !this.state.feederWeight.length}
+								size="md">
+								Save
+							</Button>
+						</Form>
+						{/* <div>
 							<label className="field-input-label">Date:</label>
 							<div className="collections-feedings-new-feeding-date-desktop-selector">
 								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
@@ -163,42 +195,39 @@ class Feedings extends Component {
 									theme="ios"
 								/>
 							</div>
-						</div>
-						<div>
+						</div> */}
+						{/* <div>
 							<label className="field-input-label">Feeder Type:</label>
 							<div>
 								<input type="text" name="feederType" onChange={this.onChangeHandler} />
 							</div>
-						</div>
-						<div>
+						</div> */}
+						{/* <div>
 							<label className="field-input-label">Amout or weight:</label>
 							<div>
 								<input type="text" name="feederWeight" onChange={this.onChangeHandler} />
 							</div>
-						</div>
+						</div> */}
 					</div>
-					<div className="collections-feedings-list-button">
+					{/* <div className="collections-feedings-list-button">
 						<button
 							className="button"
-							disabled={this.state.readOnly}
-							onClick={this.onSubmitHandler}
-							// eslint-disable-next-line
-							disabled={!this.state.feederType.length || !this.state.feederWeight.length}
+							disabled={this.state.readOnly} onClick={this.onSubmitHandler} disabled={!this.state.feederType.length || !this.state.feederWeight.length}
 							label="Save">
 							Save
 						</button>
-					</div>
+					</div> */}
 				</div>
 				<div className="collections-animal-feedings-records">
 					<div className="collections-feeding-table">
-						<table>
+						<Table bordered striped hover size="sm">
 							<thead>
 								<th>Date</th>
 								<th>Feeder Type</th>
 								<th>Amount or weight</th>
 							</thead>
 							<tbody>{this.feedMappings()}</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			</div>

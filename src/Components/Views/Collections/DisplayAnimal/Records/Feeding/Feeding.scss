@@ -2,58 +2,13 @@
 
 .collections-feeding-table-tr:hover {
 	cursor: pointer;
-	background-color: $lightBlue;
 }
 
-.collections-feeding-table th {
-	//width: 33%;
-	font-size: 1.2em;
-}
-.collections-feeding-table td {
-	//width: 20%;
-	font-size: 1.3em;
-}
-
-@media screen and (min-width: 840px) {
-	.collections-feedings-list-button {
-		margin: 0.5em auto;
-		padding-right: 40px;
-		text-align: right;
-		position: relative;
-	}
+@media screen and (min-width: 700px) {
 
 	.collections-feedings-new-feeding {
-		display: flex;
-		justify-content: space-evenly;
-		margin: auto;
-		width: 100%;
-	}
-
-	.collections-feedings-new-feeding-date-desktop-selector {
-		display: block;
-	}
-
-	.collections-feedings-new-feeding-date-mobile-selector {
-		display: none;
-	}
-}
-
-@media screen and (min-width: 700px) and (max-width: 839px) {
-	.collections-feedings-list-button {
-		margin: 1em auto 2em;
-		padding-right: 40px;
-		text-align: center;
-	}
-
-	.collections-feedings-new-feeding {
-		width: 50%;
-		margin: auto;
-		//display: flex;
-		//justify-content: space-evenly;
-	}
-
-	.collections-feedings-new-feeding input {
-		margin: 3px auto;
+		margin: 1em auto;
+		width: 90%;
 	}
 }
 
@@ -65,20 +20,5 @@
 	.collections-feedings-new-feed-form-para {
 		padding: 0 4px 0 0;
 		font-size: 1.2em;
-	}
-
-	.collections-feedings-list-button {
-		margin: 0.5em auto;
-		padding-right: 40px;
-		text-align: right;
-		position: relative;
-	}
-
-	.collections-feedings-new-feeding input {
-		font-size: 1em;
-	}
-
-	.collections-feedings-new-feeding-date-desktop-selector {
-		display: none;
 	}
 }
