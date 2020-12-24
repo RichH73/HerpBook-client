@@ -10811,6 +10811,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .ql-editor {
   font-size: 16px;
+  min-height: 200px;
 }
 
 @media screen and (min-width: 1081px) {

@@ -12,10 +12,17 @@ import Modal from 'react-modal';
 import NumberFormat from 'react-number-format';
 //import { Base64 } from 'js-base64';
 
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Toast from 'react-bootstrap/Toast';
+
 class EditProfile extends React.Component {
 	state = {
 		pic_selected: false,
-		modalIsOpen: false,
+		updateToast: false,
 	};
 
 	componentDidMount() {
@@ -74,12 +81,13 @@ class EditProfile extends React.Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					this.setState({ modalIsOpen: true });
-					setTimeout(() => {
-						this.setState({
-							modalIsOpen: false,
-						});
-					}, 2000);
+					this.setState({ updateToast: true });
+					// this.setState({ modalIsOpen: true });
+					// setTimeout(() => {
+					// 	this.setState({
+					// 		modalIsOpen: false,
+					// 	});
+					// }, 2000);
 					//this.props.imagesUploaded();
 					//const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
@@ -119,114 +127,119 @@ class EditProfile extends React.Component {
 		//this.props.newProfilePic(get(newFile, '0.name'));
 	};
 
+	displayBusinessOnClassifieds = (event) => {
+		console.log({ [event.target.name]: event.target.value });
+		if (!!this.props.userInfo.display_address) {
+			this.props.userInfoUpdate('display_address', false);
+		}
+		if (!this.props.userInfo.display_address) {
+			this.props.userInfoUpdate('display_address', true);
+		}
+	};
+
 	businessProfile = (user) => {
 		return (
-			<React.Fragment>
-				<div className="edit-profile-business-title">
-					<h4>Edit Business Information</h4>
-				</div>
-				<div className="edit-profile-form-business-info">
-					<div className="edit-profile-form-businessName">
-						<label className="field-input-label">Business Name</label>
-						<input
-							type="text"
-							name="businessName"
-							value={user.businessName}
-							maxLength="60"
-							className="textinput textInput form-control"
-							id="id_business_name"
-							onChange={this.onChangeHandler}
-						/>
+			<div className="edit-profile-business-info">
+				<React.Fragment>
+					<div className="edit-profile-business-title">
+						<h4>Business Information</h4>
 					</div>
-					<div className="edit-profile-form-businessPhone">
-						<label className="field-input-label">Business Phone</label>
-						<div>
-							<NumberFormat
-								format="+1 (###) ###-####"
-								allowEmptyFormatting
-								mask="_"
-								thousandSeparator={false}
-								defaultValue={user.businessPhone}
-								onChange={this.onChangeHandler}
-								name="businessPhone"
+
+					<Form onSubmit={this.submitHandler}>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Business Name</Form.Label>
+								<Form.Control type="text" name="businessName" value={user.businessName} maxLength="30" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Phone</Form.Label>
+								<NumberFormat
+									format="+1 (###) ###-####"
+									className="textInput form-control"
+									allowEmptyFormatting
+									mask="_"
+									defaultValue={user.businessPhone}
+									onChange={this.onChangeHandler}
+									name="businessPhone"
+								/>
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label>Email</Form.Label>
+								<Form.Control type="email" value={user.businessEmail} name="businessEmail" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Address</Form.Label>
+								<Form.Control
+									type="text"
+									value={user.businessStreet}
+									name="businessStreet"
+									className="textinput textInput form-control"
+									onChange={this.onChangeHandler}
+								/>
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>City</Form.Label>
+								<Form.Control
+									type="text"
+									value={user.businessCity}
+									name="businessCity"
+									className="textinput textInput form-control"
+									onChange={this.onChangeHandler}
+								/>
+							</Form.Group>
+							<Form.Group as={Col}>
+								<Form.Label>State</Form.Label>
+								<Form.Control as="select" name="businessState" onChange={this.onChangeHandler} value={user.businessState}>
+									{this.props.states.map((state) => (
+										<option value={state}>{state}</option>
+									))}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label size="md">Zipcode</Form.Label>
+								{/* <Form.Control name="entityZip" value={user.entityZip} onChange={this.onChangeHandler} size='md' /> */}
+								<NumberFormat
+									maxLength="5"
+									allowEmptyFormatting
+									value={user.businessZip}
+									onChange={this.onChangeHandler}
+									className="textInput form-control"
+									name="businessZip"
+									size="md"
+								/>
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Website</Form.Label>
+								<Form.Control type="url" value={user.website} name="website" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Check
+								type="switch"
+								checked={this.props.userInfo.display_address}
+								id="custom-switch"
+								name="mySwitch"
+								label="Display business address on classified ads"
+								onChange={this.displayBusinessOnClassifieds}
 							/>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessWebsite">
-						<label className="field-input-label">Website</label>
-						<div>
-							<input
-								type="url"
-								name="website"
-								value={user.website}
-								maxLength="200"
-								className="urlinput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-					</div>
-					<div className="edit-profile-form-displayBusinessAddress">
-						{/* <label className="field-input-label">Display Address?</label> */}
-						<p>If you would like to display a summary of business information on your classified listings set this to yes.</p>
-						<div>
-							<select name="display_address" onChange={this.onChangeHandler} defaultValue={user.display_address}>
-								<option value={false}>No</option>
-								<option value={true}>Yes</option>
-							</select>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessStreet">
-						<label className="field-input-label">Street</label>
-						<div>
-							<input
-								type="text"
-								name="businessStreet"
-								value={user.businessStreet}
-								maxLength="60"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessCity">
-						<label className="field-input-label">City</label>
-						<div>
-							<input
-								type="text"
-								name="businessCity"
-								value={user.businessCity}
-								maxLength="20"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessState">
-						<label className="field-input-label">State</label>
-						<div>
-							<select name="businessState" onChange={this.onChangeHandler} defaultValue={user.businessState}>
-								<option></option>
-								{this.props.states.map((state) => (
-									<option value={state}>{state}</option>
-								))}
-							</select>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessZip">
-						<label className="field-input-label">Zip Code</label>
-						<div>
-							<input
-								type="text"
-								name="businessZip"
-								value={user.businessZip}
-								maxLength="10"
-								className="textinput textInput form-control"
-								onChange={this.onChangeHandler}
-							/>
-						</div>
-					</div>
-					<div className="edit-profile-form-businessFooter">
-						<label className="field-input-label">Add a footer to your classified ads.</label>
+						</Form.Row>
+					</Form>
+					<div className="edit-profile-business-footer">
+						<Form.Label>Add a footer to your classified ads.</Form.Label>
 						<ReactQuill
 							style={{ backgroundColor: 'white', color: 'black' }}
 							name="businessFooter"
@@ -238,206 +251,170 @@ class EditProfile extends React.Component {
 							theme="snow"
 						/>
 					</div>
-				</div>
-			</React.Fragment>
+				</React.Fragment>
+			</div>
 		);
 	};
 
 	render() {
+		const setShow = () => {
+			this.setState({ updateToast: false });
+		};
 		const { user } = this.props;
 		return (
-			<React.Fragment>
-				<div className="edit-profile-form">
-					<Modal
-						isOpen={this.state.modalIsOpen}
-						className="Modal"
-						overlayClassName="Overlay"
-						//onAfterOpen={this.afterOpenModal}
-						//onRequestClose={closeModal}
-						//style={customStyles}
-						//contentLabel="Example Modal"
-					>
-						Profile Updated
-					</Modal>
-					{/* <img src={`${this.props.USERSURL}/${user.username}/profile/${user.profile_pic}`} alt={this.props.profile_pic} /> */}
-					{/* <Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={1242880}>
-					{({ getRootProps, getInputProps }) => (
-						<section>
-							<div className="ropbox" {...getRootProps()}>
-								{this.state.pic_selected ? '' : <p style={{ textAlign: 'center' }}>Change profile pic?</p>}
-								<input {...getInputProps()} />
-							</div>
-						</section>
-					)}
-				</Dropzone> */}
-					{this.props.images.length > 0 && (
-						<div id="image-preview" style={{ textAlign: 'center' }}>
-							<p>Preview, (click to remove).</p>
-							{this.props.images.map((file) => (
-								<img alt="Preview" key={file.preview} src={file.preview} onClick={() => this.clickHandler(file.path)} />
-							))}
-						</div>
-					)}
-					{/* <div className="profile-image-edit-layer">Edit your photo</div> */}
-					<form onSubmit={this.submitHandler} className="profile-edit-form">
-						{/*
-						Form section for entity information.
+			<div className="profile-edit-form-main">
+				<Toast
+					show={this.state.updateToast}
+					onClose={() => setShow(false)}
+					delay={3000}
+					autohide
+					animation
+					style={{ position: 'sticky', zIndex: '2', top: '20%', left: '30%', border: '6px solid lime' }}>
+					<Toast.Header>
+						<strong>Success!</strong>
+					</Toast.Header>
+					<Toast.Body>Profile Successfully Updated!</Toast.Body>
+				</Toast>
+				<div className="profile-edit-personal-info">
+					<div className="edit-profile-entity-title">
+						<h4>Personal Information</h4>
+					</div>
+					<Form onSubmit={this.submitHandler}>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label size="md">First Name</Form.Label>
+								<Form.Control type="text" name="firstName" value={user.firstName} maxLength="20" onChange={this.onChangeHandler} size="md" />
+							</Form.Group>
 
-					*/}
+							<Form.Group as={Col}>
+								<Form.Label size="md">Last Name</Form.Label>
+								<Form.Control type="text" name="lastName" value={user.firstName} maxLength="20" onChange={this.onChangeHandler} size="md" />
+							</Form.Group>
+						</Form.Row>
 
-						<div className="edit-profile-entity-title">
-							<h4>Edit Entity Information</h4>
-						</div>
-						<div className="edit-profile-entity-info">
-							<div className="edit-profile-form-name-first">
-								<label className="field-input-label">First Name</label>
-								<div>
-									<input
-										type="text"
-										name="firstName"
-										value={user.firstName}
-										maxLength="60"
-										className="textinput textInput form-control"
-										id="firstName"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-name-last">
-								<label className="field-input-label">Last Name</label>
-								<div>
-									<input
-										type="text"
-										name="lastName"
-										value={user.lastName}
-										maxLength="60"
-										className="textinput textInput form-control"
-										id="lastName"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-entityEmail">
-								<label className="field-input-label">Email</label>
-								<div>
-									<input
-										type="email"
-										value={user.entityEmail}
-										name="entityEmail"
-										className="textinput textInput form-control"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-display-entity-email">
-								<label className="field-input-label">Display Email</label>
-								<div>
-									<select name="displayEntityEmail" onChange={this.onChangeHandler} defaultValue={user.displayEntityEmail}>
-										<option value={Boolean(true)}>Yes</option>
-										<option value={Boolean(false)}>No</option>
-									</select>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-email-type">
-								<label className="field-input-label">Email Type</label>
-								<div>
-									<select name="entityEmailType" onChange={this.onChangeHandler} defaultValue={user.entityEmailType}>
-										<option value={user.entityEmailType}>{user.entityEmailType}</option>
-										<option value="HOME">HOME</option>
-										<option value="WORK">WORK</option>
-									</select>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-phone-number">
-								<label className="field-input-label">Phone</label>
-								<div>
-									<NumberFormat
-										format="+1 (###) ###-####"
-										allowEmptyFormatting
-										mask="_"
-										defaultValue={user.entityPhoneNumber}
-										onChange={this.onChangeHandler}
-										name="entityPhoneNumber"
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-display-entity-phone">
-								<label className="field-input-label">Display Phone</label>
-								<div>
-									<select name="displayEntityPhone" defaultValue={user.displayEntityPhone} onChange={this.onChangeHandler}>
-										<option value={false}>No</option>
-										<option value={true}>Yes</option>
-									</select>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-phone-type">
-								<label className="field-input-label">Phone Type</label>
-								<div>
-									<select name="entityPhoneType" onChange={this.onChangeHandler} defaultValue={user.entityPhoneType}>
-										<option value="MOBILE">MOBILE</option>
-										<option value="HOME">HOME</option>
-										<option value="WORK">WORK</option>
-									</select>
-								</div>
-							</div>
+						{window.innerWidth > 800 ? (
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Phone</Form.Label>
+									<InputGroup>
+										<NumberFormat
+											format="+1 (###) ###-####"
+											className="textInput form-control"
+											allowEmptyFormatting
+											mask="_"
+											defaultValue={user.entityPhoneNumber}
+											onChange={this.onChangeHandler}
+											name="entityPhoneNumber"
+											style={{ width: '40%' }}
+										/>
+										<Form.Control as="select" name="entityPhoneType" onChange={this.onChangeHandler} value={user.entityPhoneType} size="md">
+											<option value="MOBILE">MOBILE</option>
+											<option value="HOME">HOME</option>
+											<option value="WORK">WORK</option>
+										</Form.Control>
+									</InputGroup>
+								</Form.Group>
 
-							<div className="edit-profile-form-entity-street">
-								<label className="field-input-label">Street</label>
-								<div>
-									<input
-										type="text"
-										value={user.entityStreet}
-										name="entityStreet"
-										className="textinput textInput form-control"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-city">
-								<label className="field-input-label">City</label>
-								<div>
-									<input
-										type="text"
-										value={user.entityCity}
-										name="entityCity"
-										className="textinput textInput form-control"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-state">
-								<label className="field-input-label">State</label>
-								<div>
-									<select name="entityState" onChange={this.onChangeHandler} defaultValue={user.entityState}>
-										{/* <option></option> */}
-										{this.props.states.map((state) => (
-											<option value={state}>{state}</option>
-										))}
-									</select>
-								</div>
-							</div>
-							<div className="edit-profile-form-entity-zip">
-								<label className="field-input-label">Zipcode</label>
-								<div>
-									<input
-										type="entityZip"
-										value={user.entityZip}
-										name="entityZip"
-										className="textinput textInput form-control"
-										onChange={this.onChangeHandler}
-									/>
-								</div>
-							</div>
-						</div>
-						{!!user.is_this_a_business ? this.businessProfile(user) : ''}
-						<div className="edit-profile-form-button">
-							<button type="submit" className="button">
-								Save Profile
-							</button>
-						</div>
-					</form>
+								<Form.Group as={Col}>
+									<Form.Label>Email</Form.Label>
+									<InputGroup>
+										<Form.Control type="email" value={user.entityEmail} name="entityEmail" onChange={this.onChangeHandler} style={{ width: '40%' }} />
+										<Form.Control as="select" name="entityEmailType" onChange={this.onChangeHandler} value={user.entityEmailType} size="md">
+											<option value="HOME">HOME</option>
+											<option value="WORK">WORK</option>
+										</Form.Control>
+									</InputGroup>
+								</Form.Group>
+							</Form.Row>
+						) : (
+							<React.Fragment>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Phone</Form.Label>
+										<InputGroup>
+											<NumberFormat
+												format="+1 (###) ###-####"
+												className="textInput form-control"
+												allowEmptyFormatting
+												mask="_"
+												defaultValue={user.entityPhoneNumber}
+												onChange={this.onChangeHandler}
+												name="entityPhoneNumber"
+												style={{ width: '40%' }}
+											/>
+											<Form.Control as="select" name="entityPhoneType" onChange={this.onChangeHandler} value={user.entityPhoneType} size="md">
+												<option value="MOBILE">MOBILE</option>
+												<option value="HOME">HOME</option>
+												<option value="WORK">WORK</option>
+											</Form.Control>
+										</InputGroup>
+									</Form.Group>
+								</Form.Row>
+
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Email</Form.Label>
+										<InputGroup>
+											<Form.Control
+												type="email"
+												value={user.entityEmail}
+												name="entityEmail"
+												onChange={this.onChangeHandler}
+												style={{ width: '40%' }}
+											/>
+											<Form.Control as="select" name="entityEmailType" onChange={this.onChangeHandler} value={user.entityEmailType} size="md">
+												<option value="HOME">HOME</option>
+												<option value="WORK">WORK</option>
+											</Form.Control>
+										</InputGroup>
+									</Form.Group>
+								</Form.Row>
+							</React.Fragment>
+						)}
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Address</Form.Label>
+								<Form.Control type="text" value={user.entityStreet} name="entityStreet" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>City</Form.Label>
+								<Form.Control type="text" value={user.entityCity} name="entityCity" onChange={this.onChangeHandler} />
+							</Form.Group>
+							<Form.Group as={Col}>
+								<Form.Label>State</Form.Label>
+								<Form.Control as="select" name="entityState" onChange={this.onChangeHandler} value={user.entityState}>
+									{this.props.states.map((state) => (
+										<option value={state}>{state}</option>
+									))}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label>Zipcode</Form.Label>
+								{/* <Form.Control name="entityZip" value={user.entityZip} onChange={this.onChangeHandler} size='md' /> */}
+								<NumberFormat
+									maxLength="5"
+									className="textInput form-control"
+									allowEmptyFormatting
+									value={user.entityZip}
+									onChange={this.onChangeHandler}
+									name="entityZip"
+								/>
+							</Form.Group>
+						</Form.Row>
+					</Form>
 				</div>
-			</React.Fragment>
+
+				{!!user.is_this_a_business ? this.businessProfile(user) : ''}
+				<div className="edit-profile-submit-button">
+					<Button variant="success" onClick={this.submitHandler}>
+						Save Profile
+					</Button>
+				</div>
+			</div>
 		);
 	}
 }
