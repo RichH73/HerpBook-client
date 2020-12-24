@@ -6,6 +6,9 @@ import * as actionCreators from '../../../../../../actions/index';
 import ReactGA from 'react-ga';
 import dayjs from 'dayjs';
 
+//Bootstrap imports
+import Table from 'react-bootstrap/Table';
+
 class Records extends React.Component {
 	state = {};
 
@@ -20,9 +23,9 @@ class Records extends React.Component {
 	feed = () => {
 		if (!!this.props.classified_listing.records.feedings.length) {
 			return (
-				<div>
+				<div className="classified-listing-records-table">
 					<h4>Feed Records</h4>
-					<table>
+					<Table bordered striped>
 						<thead>
 							<tr>
 								<td>Date</td>
@@ -39,7 +42,7 @@ class Records extends React.Component {
 								</tr>
 							))}
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			);
 		}
@@ -48,9 +51,9 @@ class Records extends React.Component {
 	weight = () => {
 		if (!!this.props.classified_listing.records.weights.length) {
 			return (
-				<div>
+				<div className="classified-listing-records-table">
 					<h4>Weight Records</h4>
-					<table>
+					<Table bordered striped>
 						<thead>
 							<tr>
 								<td>Date</td>
@@ -68,7 +71,7 @@ class Records extends React.Component {
 								</tr>
 							))}
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			);
 		}
@@ -77,9 +80,9 @@ class Records extends React.Component {
 	shed = () => {
 		if (!!this.props.classified_listing.records.sheddings.length) {
 			return (
-				<div>
+				<div className="classified-listing-records-table">
 					<h4>Shed Records</h4>
-					<table>
+					<Table borded striped>
 						<thead>
 							<tr>
 								<td>Date</td>
@@ -94,7 +97,7 @@ class Records extends React.Component {
 								</tr>
 							))}
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			);
 		}
@@ -103,14 +106,13 @@ class Records extends React.Component {
 	pair = () => {
 		if (!!this.props.classified_listing.records.pairings.length) {
 			return (
-				<div>
+				<div className="classified-listing-records-table">
 					<h4>Pair Records</h4>
-					<table>
+					<Table borded striped>
 						<thead>
 							<tr>
 								<td>Date</td>
 								<td>Mate</td>
-								<td>Whitnessed</td>
 								<td>Successfull</td>
 							</tr>
 						</thead>
@@ -119,12 +121,11 @@ class Records extends React.Component {
 								<tr>
 									<td>{dayjs(pair.date).format('MM/DD/YYYY')}</td>
 									<td>{pair.mate}</td>
-									{!!pair.whitnessed ? <td>Yes</td> : <td>No</td>}
 									{!!pair.successful ? <td>Yes</td> : <td>No</td>}
 								</tr>
 							))}
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			);
 		}

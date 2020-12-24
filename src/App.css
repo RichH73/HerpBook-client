@@ -10828,8 +10828,15 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .mobile-nav-button {
     display: block;
+    top: 25px;
+    left: -60px;
     text-align: right;
-    margin: 1em 2em 0;
+    position: relative;
+    z-index: 1;
+  }
+  .mobile-nav-button img {
+    width: 60px;
+    height: 35px;
   }
 }
 /*# sourceMappingURL=App.css.map */

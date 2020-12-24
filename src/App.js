@@ -6,8 +6,6 @@ import * as actionCreators from './actions/index';
 import Header from './Components/Modules/Header/Header';
 import Body from './Components/Modules/Body/Body';
 import Spinner from 'react-spinner-material';
-import SideDrawer from './Components/Navigation/mobileMenu/sideDrawer';
-import Backdrop from './Components/Navigation/mobileMenu/Backdrop/Backdrop';
 import { Base64 } from 'js-base64';
 import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
@@ -78,18 +76,6 @@ class App extends Component {
 		});
 	}
 
-	drawerToggleClickHandler = () => {
-		this.props.openSideDrawer();
-		this.setState((prevState) => {
-			return { sideDrawerOpen: !prevState.sideDrawerOpen };
-		});
-	};
-
-	backdropClickHandler = () => {
-		this.setState({ sideDrawerOpen: false });
-		this.props.closeSideDrawer();
-	};
-
 	spinner = () => {
 		const { spinnerState } = this.props;
 		return (
@@ -130,21 +116,9 @@ class App extends Component {
 	};
 
 	render() {
-		let backdrop;
-		let sideDrawer;
-		if (!!this.props.sideDrawerOpen) {
-			backdrop = <Backdrop click={this.backdropClickHandler} />;
-			sideDrawer = <SideDrawer history={this.props.history} />;
-		}
-
 		return (
 			<React.Fragment>
 				<div className="application-body">
-					{sideDrawer}
-					{backdrop}
-					<div className="mobile-nav-button" onClick={this.drawerToggleClickHandler}>
-						<img src="/images/hamburger_button.png" alt="nav" />
-					</div>
 					<this.spinner />
 					<Header />
 					<Body />

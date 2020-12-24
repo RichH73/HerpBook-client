@@ -1,8 +1,24 @@
 @import '../../../index';
 
 @media screen and (max-width: 1080px) {
+
+	.mobile-nav-button-menu {
+		margin: 1em 1em 1em auto;
+    	width: 80px;
+		// vertical-align: middle;
+		// border-style: none;
+		// z-index: 300;
+		// position: fixed;
+		// top: 40px;
+		// left: 80%;
+	}
+
+	.mobile-nav-button-menu img {
+		width: 40px;
+	}
+
 	.body-main-panel {
-		width: 98%;
+		width: 100%;
 		// border: 1px solid orange;
 		margin: auto;
 		border-radius: 10px;
@@ -28,6 +44,9 @@
 }
 
 @media screen and (min-width: 1081px) {
+	.mobile-nav-button-menu {
+		display: none;
+	}
 	.main-body-view {
 		width: 1000px;
 		margin: 0 auto 3em;

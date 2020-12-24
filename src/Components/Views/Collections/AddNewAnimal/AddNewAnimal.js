@@ -260,7 +260,7 @@ class AddNewAnimal extends Component {
 							<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
 						</div>
 						<div className="collections-create-new-animal-button">
-							<Button variant="primary" type="submit" size="md">
+							<Button variant="success" type="submit" size="md">
 								Submit
 							</Button>
 						</div>

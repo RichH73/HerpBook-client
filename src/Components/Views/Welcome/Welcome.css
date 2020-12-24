@@ -25,6 +25,9 @@
   .welcome-page-main {
     padding: 8px;
   }
+  .welcome-page-main-text-article {
+    margin: 2em auto;
+  }
   .welcome-page-fb-like {
     display: none;
     width: 100%;

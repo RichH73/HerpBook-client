@@ -60,7 +60,7 @@ class Welcome extends Component {
 				<div className="welcome-page-main">
 					<div className="welcome-page-main-text">
 						{this.state.news.map((ns) => (
-							<div>
+							<div className="welcome-page-main-text-article">
 								<h4>{ns.title}</h4>
 								<ReactQuill name="businessFooter" value={ns.body} readOnly={true} theme="bubble" />
 							</div>

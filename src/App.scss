@@ -52,11 +52,15 @@
 	}
 	.mobile-nav-button {
 		display: block;
-		//   top: 20px;
-		//   left: 20px;
+		  top: 25px;
+		  left: -60px;
 		text-align: right;
-		//position: relative;
-		//   z-index: 50;
-		margin: 1em 2em 0;
+		position: relative;
+		  z-index: 1;
+		//margin: 1em 2em 0;
+	}
+	.mobile-nav-button img {
+		width: 60px;
+		height: 35px;
 	}
 }
