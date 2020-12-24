@@ -23,6 +23,7 @@ export const new_clutch = (state = initialState, data) => {
 export const current_clutch = (state = initialClutches, data) => {
 	switch (data.type) {
 		case 'view_clutch':
+			console.log('now the reducer', data);
 			return {
 				...state,
 				...data.data,

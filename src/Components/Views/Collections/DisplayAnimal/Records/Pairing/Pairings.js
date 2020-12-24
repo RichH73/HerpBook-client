@@ -58,7 +58,6 @@ class Pairings extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				//date: _.get(this.state, 'date', new Date()),
 				...this.state,
 				collectionId: this.props.currentAnimal._id,
 			},
@@ -83,17 +82,16 @@ class Pairings extends Component {
 	editingRecord = (pairRecord) => {
 		this.props.loadrecordsEditor({
 			recordType: 'pairings',
-			display: 'block',
+			editModal: true,
 			...pairRecord,
 		});
 	};
 
 	pairMappings = () => {
 		return this.props.currentAnimal.pairings.map((pair) => {
-			let pd = dayjs(_.get(pair, 'date'));
 			return (
 				<tr className="collections-feeding-table-tr" onClick={() => this.editingRecord(pair)}>
-					<td>{`${pd.$M + 1}/${pd.$D}/${pd.$y}`}</td>
+					<td>{dayjs(_.get(pair, 'date')).format('MM/DD/YYYY')}</td>
 					<td>{pair.mate}</td>
 					<td>{!!pair.whitnessed ? 'Yes' : 'No'}</td>
 				</tr>
@@ -118,40 +116,6 @@ class Pairings extends Component {
 	};
 
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
-
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
-		const pd = dayjs(_.get(this, 'state.time'));
-
 		return (
 			<div className="collections-pairings-list" style={{ padding: '10px' }}>
 				<div className="collections-parings-new-paring-form-para">
@@ -192,7 +156,7 @@ class Pairings extends Component {
 				</div>
 				<div className="collections-animal-records-pairings">
 					<div className="collections-pairing-table">
-						<Table bordered striped hover size="sm">
+						<Table bordered striped hover size="md">
 							<thead>
 								<th>Date</th>
 								<th>Mate</th>

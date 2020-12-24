@@ -88,9 +88,11 @@ class Weight extends Component {
 	editingRecord = (weightRecord) => {
 		this.props.loadrecordsEditor({
 			recordType: 'weights',
-			display: 'block',
+			//display: 'block',
+			editModal: true,
 			...weightRecord,
 		});
+		this.setState({ editModal: false });
 	};
 
 	weightMappings = () => {
@@ -106,38 +108,6 @@ class Weight extends Component {
 	};
 
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
-
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
 		return (
 			<div className="collections-weights-list" style={{ padding: '10px' }}>
 				<div className="collections-weights-new-weight-form">
@@ -189,66 +159,11 @@ class Weight extends Component {
 								Save
 							</Button>
 						</Form>
-
-						{/* <div>
-							<label className="field-input-label">Date:</label>
-							<div className="collections-weight-date-desktop-selector">
-								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
-							</div>
-							<div className="collections-weight-date-mobile-selector">
-								<input type="text" readOnly={true} value={dayjs(_.get(this, 'state.time')).format('MM/DD/YYYY')} onClick={this.mobileHandleClick} />
-								<MDatePicker
-									dateConfig={dateConfig}
-									value={this.state.time}
-									isOpen={this.state.isOpen}
-									confirmText="Select"
-									cancelText="Cancel"
-									onSelect={this.mobileHandleSelect}
-									onCancel={this.mobileHandleCancel}
-									theme="ios"
-								/>
-							</div>
-						</div> */}
-						{/* <div>
-							<label>Weight:</label>
-							<div>
-								<NumberFormat
-									thousandSeparator={true}
-									//defaultValue={animal.classifiedData.price}
-									allowNegative={false}
-									//prefix={"$"}
-									//decimalScale={2}
-									fixedDecimalScale={2}
-									onChange={this.onChangeHandler}
-									name="weight"
-								/>
-								<select name="weightUnit" onChange={this.onChangeHandler}>
-									<option>Unit</option>
-									<option selected value="gm">
-										gm
-									</option>
-									<option value="kg">kg</option>
-									<option value="oz">oz</option>
-									<option value="lb">lb</option>
-								</select>
-							</div>
-						</div> */}
 					</div>
-					{/* <div className="collections-sheddings-list-button">
-						<button
-							className="button"
-							disabled={this.state.readOnly}
-							onClick={this.onSubmitHandler}
-							// eslint-disable-next-line
-							disabled={!this.state.weight.length}
-							label="Save">
-							Save
-						</button>
-					</div> */}
 				</div>
 				<div className="collections-animal-weights-records">
 					<div className="collections-weights-table">
-						<Table bordered stripped hover size="sm">
+						<Table bordered stripped hover size="md">
 							<tbody>
 								<th>Date</th>
 								<th>Weight</th>

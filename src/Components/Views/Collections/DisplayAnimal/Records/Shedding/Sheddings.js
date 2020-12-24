@@ -83,7 +83,8 @@ class Sheddings extends Component {
 	editingRecord = (shedRecord) => {
 		this.props.loadrecordsEditor({
 			recordType: 'sheddings',
-			display: 'block',
+			editModal: true,
+			//display: 'block',
 			...shedRecord,
 		});
 	};
@@ -100,39 +101,6 @@ class Sheddings extends Component {
 	};
 
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
-
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
-		const fd = dayjs(_.get(this, 'state.time'));
 		return (
 			<div className="collections-sheddings-list" style={{ padding: '10px' }}>
 				<div className="collections-sheddings-new-shedding-form">
@@ -173,7 +141,7 @@ class Sheddings extends Component {
 				</div>
 				<div className="collections-animal-sheddings-records">
 					<div className="collections-shedding-table">
-						<Table striped bordered hover size="sm">
+						<Table striped bordered hover size="md">
 							<thead>
 								<th>Date</th>
 								<th>Complete Shed</th>

@@ -8,7 +8,6 @@ class SearchCollections extends Component {
 	state = {};
 
 	componentDidMount() {
-		//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 		if (!!this.props.match.params.id) {
 			axios({
 				method: 'post',
@@ -23,7 +22,6 @@ class SearchCollections extends Component {
 				.then((response) => {
 					if (response.status === 201) {
 						this.props.currentAnimalDisplay(response.data[0]);
-						//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 						this.props.history.push('/view_animal');
 					}
 				})

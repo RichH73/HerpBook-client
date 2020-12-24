@@ -13,6 +13,7 @@ import Animal from './AnimalView/Animal';
 import Photos from './Photos';
 import Activity from './Activity/Activity';
 import axios from 'axios';
+import ScanQr from '../../../_services/Scan/ScanBarCode';
 
 class Main extends Component {
 	state = {};
@@ -52,9 +53,26 @@ class Main extends Component {
 		this.props.clearRecordsEditor();
 	}
 
+	showHideScanner = () => {
+		if (!!this.state.showScanner) {
+			this.setState({
+				showScanner: false,
+			});
+		}
+		if (!this.state.showScanner) {
+			this.setState({
+				showScanner: true,
+			});
+		}
+	};
+
 	tabs = () => {
 		return (
 			<div className="collections-tab-header">
+				<div className="my-collections-qr-search">
+					<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
+					{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
+				</div>
 				<Tabs>
 					<TabList>
 						<Tab>Animal</Tab>

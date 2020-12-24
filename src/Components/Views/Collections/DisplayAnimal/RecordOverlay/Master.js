@@ -10,6 +10,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import './Forms.css';
+import { get } from 'lodash';
 
 // Bootstrap imports
 import Form from 'react-bootstrap/Form';
@@ -25,6 +26,7 @@ class Master extends Component {
 		modalOpen: false,
 		weightModal: false,
 		feedModal: false,
+		editModal: false,
 	};
 
 	cancelEdit = (event) => {
@@ -39,7 +41,7 @@ class Master extends Component {
 
 	handleDate = (date) => {
 		this.props.recordsEditor({
-			date: date,
+			date: dayjs(date.target.value).toString(),
 		});
 	};
 
@@ -126,6 +128,33 @@ class Master extends Component {
 			});
 	};
 
+	successfulBreedingCheck = () => {
+		let successful = this.props.recordOverlay.successful;
+		if (!successful) {
+			this.props.recordsEditor({
+				successful: true,
+			});
+		}
+		if (!!successful) {
+			this.props.recordsEditor({
+				successful: false,
+			});
+		}
+	};
+	whitnessedBreedingCheck = () => {
+		let whitnessed = this.props.recordOverlay.whitnessed;
+		if (!whitnessed) {
+			this.props.recordsEditor({
+				whitnessed: true,
+			});
+		}
+		if (!!whitnessed) {
+			this.props.recordsEditor({
+				whitnessed: false,
+			});
+		}
+	};
+
 	ReturnRecord = () => {
 		const { recordOverlay } = this.props;
 		const date = this.props.recordOverlay.date;
@@ -134,294 +163,235 @@ class Master extends Component {
 		switch (this.props.recordOverlay.recordType) {
 			case 'feedings':
 				return (
-					<React.Fragment>
-						<div className="collections-feeding-records-editor-body">
-							<div className="collections-feeding-records-editor-feeding-date">
-								<label className="field-input-label">Date:</label>
-								{/* defaultValue={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} */}
-								<div>
-									<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
-								</div>
-							</div>
-							<div className="collections-feeding-records-editor-feeding-type">
-								<label className="field-input-label">Type of feeder:</label>
-								<div>
-									<input type="text" name="feederType" defaultValue={data.feederType} onChange={this.onChangeHandler} />
-								</div>
-							</div>
-							<div className="collections-feeding-records-editor-feeding-weight">
-								<label className="field-input-label">Weight or amount:</label>
-								<div>
-									<input type="text" name="feederWeight" defaultValue={data.feederWeight} onChange={this.onChangeHandler} />
-								</div>
-							</div>
-							<div className="collections-feeding-records-editor-feeding-notes">
-								<label className="field-input-label">Notes:</label>
-								<div>
-									<ReactQuill
-										style={{ backgroundColor: 'white', color: 'black' }}
-										name="comments"
-										value={this.props.recordOverlay.notes}
-										onChange={this.noteHandler}
-										modules={this.props.mods.modules}
-										formats={this.props.mods.formats}
-										readOnly={this.state.readOnly}
-										theme="snow"
-									/>
-								</div>
-							</div>
-							<div className="collections-feeding-records-editor-feeding-buttons">
-								<Button variant="warning" onClick={this.openModal}>
-									Delete
-								</Button>{' '}
-								<Button variant="success" onClick={this.updateRecord}>
-									Save
-								</Button>{' '}
-								<Button varient="success" onClick={this.cancelEdit}>
-									Cancel
-								</Button>{' '}
-							</div>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Date</Form.Label>
+								<Form.Control type="date" value={dayjs(data.date).format('YYYY-MM-DD')} onChange={this.handleDate} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Type of feeder</Form.Label>
+								<Form.Control type="text" name="feederType" value={data.feederType} onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Weight or amount</Form.Label>
+								<Form.Control type="text" name="feederWeight" value={data.feederWeight} onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<div className="collections-feeding-records-editor-feeding-notes">
+							<Form.Label>Notes</Form.Label>
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="comments"
+								value={this.props.recordOverlay.notes}
+								onChange={this.noteHandler}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={this.state.readOnly}
+								theme="snow"
+							/>
 						</div>
-					</React.Fragment>
+					</Form>
 				);
 			case 'weights':
 				return (
-					<React.Fragment>
-						<Form>
-							<Form.Row>
-								<Form.Group as={Col}>
-									<Form.Label>Date</Form.Label>
-									<Form.Control type="date" name="date" onChange={this.handleDate} value={dayjs(recordOverlay.date).format('YYYY-MM-DD')} size="md" />
-								</Form.Group>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Date</Form.Label>
+								<Form.Control type="date" name="date" onChange={this.handleDate} value={dayjs(recordOverlay.date).format('YYYY-MM-DD')} size="md" />
+							</Form.Group>
 
-								<Form.Group as={Col}>
-									<Form.Label>Weight</Form.Label>
-									<InputGroup>
-										{/* <Form.Control as='div'> */}
-										<NumberFormat
-											thousandSeparator={true}
-											className="form-control form-control-md"
-											defaultValue={recordOverlay.weight}
-											allowNegative={false}
-											fixedDecimalScale={2}
-											onChange={this.onChangeHandler}
-											name="weight"
-										/>
-										{/* </Form.Control> */}
-										<Form.Control as="select" name="weightUnit" onChange={this.onChangeHandler} value={recordOverlay.weightUnit} size="md">
-											{/* <option value=''>Unit</option> */}
-											<option value="gm">Grams</option>
-											<option value="kg">Kilograms</option>
-											<option value="oz">Ounces</option>
-											<option value="lb">Pounds</option>
-										</Form.Control>
-									</InputGroup>
-								</Form.Group>
-							</Form.Row>
-						</Form>
-						<div className="collections-weight-records-editor-body">
-							<div className="collections-weight-records-editor-weight-notes">
-								<label className="field-input-label">Notes:</label>
-								<div>
-									<ReactQuill
-										style={{ backgroundColor: 'white', color: 'black' }}
-										name="notes"
-										value={this.props.recordOverlay.notes}
-										onChange={this.noteHandler}
-										modules={this.props.mods.modules}
-										formats={this.props.mods.formats}
-										readOnly={this.state.readOnly}
-										theme="snow"
+							<Form.Group as={Col}>
+								<Form.Label>Weight</Form.Label>
+								<InputGroup>
+									<NumberFormat
+										thousandSeparator={true}
+										className="form-control form-control-md"
+										defaultValue={recordOverlay.weight}
+										allowNegative={false}
+										fixedDecimalScale={2}
+										onChange={this.onChangeHandler}
+										name="weight"
 									/>
-								</div>
-							</div>
-							<div className="collections-weight-records-editor-weight-buttons">
-								<Button variant="warning" onClick={this.openModal}>
-									Delete
-								</Button>{' '}
-								<Button variant="success" onClick={this.updateRecord}>
-									Save
-								</Button>{' '}
-								<Button varient="success" onClick={this.cancelEdit}>
-									Cancel
-								</Button>{' '}
-							</div>
+									<Form.Control as="select" name="weightUnit" onChange={this.onChangeHandler} value={recordOverlay.weightUnit} size="md">
+										<option value="gm">Grams</option>
+										<option value="kg">Kilograms</option>
+										<option value="oz">Ounces</option>
+										<option value="lb">Pounds</option>
+									</Form.Control>
+								</InputGroup>
+							</Form.Group>
+						</Form.Row>
+						<div className="collections-weight-records-editor-weight-notes">
+							<Form.Label>Notes</Form.Label>
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="notes"
+								value={this.props.recordOverlay.notes}
+								onChange={this.noteHandler}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={this.state.readOnly}
+								theme="snow"
+							/>
 						</div>
-					</React.Fragment>
+					</Form>
 				);
 			case 'sheddings':
 				return (
-					<React.Fragment>
-						<div className="collections-shedding-records-editor-body">
-							<div className="collections-shedding-records-editor-shedding-date">
-								<label className="field-input-label">Date:</label>
-								<div>
-									<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
-								</div>
-							</div>
-							<div className="collections-shedding-records-editor-shedding-type">
-								<label className="field-input-label">Complete Shed:</label>
-								<div>
-									<select name="fullShed" defaultValue={data.fullShed} onChange={this.onChangeHandler}>
-										<option value={true}>Yes</option>
-										<option value={false}>No</option>
-									</select>
-								</div>
-							</div>
-							<div className="collections-shedding-records-editor-shedding-notes">
-								<label className="field-input-label">Notes:</label>
-								<div>
-									<ReactQuill
-										style={{ backgroundColor: 'white', color: 'black' }}
-										name="comments"
-										value={this.props.recordOverlay.notes}
-										onChange={this.noteHandler}
-										modules={this.props.mods.modules}
-										formats={this.props.mods.formats}
-										readOnly={this.state.readOnly}
-										theme="snow"
-									/>
-								</div>
-							</div>
-							<div className="collections-shedding-records-editor-shedding-buttons">
-								<Button variant="warning" onClick={this.openModal}>
-									Delete
-								</Button>{' '}
-								<Button variant="success" onClick={this.updateRecord}>
-									Save
-								</Button>{' '}
-								<Button varient="success" onClick={this.cancelEdit}>
-									Cancel
-								</Button>{' '}
-							</div>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Date</Form.Label>
+								<Form.Control type="date" value={dayjs(data.date).format('YYYY-MM-DD')} onChange={this.handleDate} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Complete Shed</Form.Label>
+								<Form.Control as="select" name="fullShed" value={data.fullShed} onChange={this.onChangeHandler}>
+									<option value={true}>Yes</option>
+									<option value={false}>No</option>
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+						<div className="collections-shedding-records-editor-shedding-notes">
+							<Form.Label>Notes:</Form.Label>
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="comments"
+								value={this.props.recordOverlay.notes}
+								onChange={this.noteHandler}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={this.state.readOnly}
+								theme="snow"
+							/>
 						</div>
-					</React.Fragment>
+					</Form>
 				);
 			case 'pairings':
 				return (
-					<React.Fragment>
-						<div className="collections-pairing-records-editor-body">
-							<div className="collections-pairing-records-editor-pairing-date">
-								<label className="field-input-label">Date: </label>
-								<DatePicker showPopperArrow={false} selected={!!date ? new Date(date) : ''} onChange={this.handleDate} />
-							</div>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Breeding Record ID</Form.Label>
+								<Form.Control type="text" value={data._id} readOnly />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Date</Form.Label>
+								<Form.Control type="date" value={dayjs(data.date).format('YYYY-MM-DD')} onChange={this.handleDate} />
+							</Form.Group>
 
-							<div className="collections-pairing-records-editor-pairing-mate">
-								<label className="field-input-label">Mate: </label>
-								<input type="text" name="mate" defaultValue={data.mate} onChange={this.onChangeHandler} />
-							</div>
+							<Form.Group as={Col}>
+								<Form.Label>Mate</Form.Label>
+								<Form.Control type="text" name="mate" value={data.mate} onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Check label="Whitnessed" name="whitnessed" checked={data.whitnessed} onChange={this.whitnessedBreedingCheck} />
+							</Form.Group>
+							<Form.Group as={Col}>
+								<Form.Check label="Successful" name="successful" checked={data.successful} onChange={this.successfulBreedingCheck} />
+							</Form.Group>
+						</Form.Row>
+						{/* Hide if male */}
+						{gender === 'FEMALE' && !!data.successful ? (
+							<Form>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Clutch total</Form.Label>
+										<NumberFormat
+											className="form-control form-control-md"
+											thousandSeparator={false}
+											value={data.clutchSize}
+											allowNegative={false}
+											onChange={this.onChangeHandler}
+											name="clutchSize"
+										/>
+									</Form.Group>
 
-							<div className="collections-pairing-records-editor-pairing-whitnessed">
-								<label className="field-input-label">Whitnessed: </label>
-								<select name="whitnessed" defaultValue={data.whitnessed} onChange={this.onChangeHandler}>
-									<option></option>
-									<option value={true}>Yes</option>
-									<option value={false}>No</option>
-								</select>
-							</div>
+									<Form.Group as={Col}>
+										<Form.Label>Infertile total</Form.Label>
+										<NumberFormat
+											className="form-control form-control-md"
+											thousandSeparator={false}
+											value={data.infertile}
+											allowNegative={false}
+											onChange={this.onChangeHandler}
+											name="infertile"
+										/>
+									</Form.Group>
 
-							<div className="collections-pairing-records-editor-pairing-successful">
-								<label className="field-input-label">Successful: </label>
-								<select name="successful" defaultValue={data.successful} onChange={this.onChangeHandler}>
-									<option></option>
-									<option value={true}>Yes</option>
-									<option value={false}>No</option>
-								</select>
-							</div>
-							{/* Hide if male */}
-							{gender === 'FEMALE' ? (
-								<React.Fragment>
-									<div className="collections-pairing-records-editor-pairing-clutch-info">
-										<div className="collections-pairing-records-editor-pairing-clutch-size">
-											<label className="field-input-label">Clutch Size: </label>
-											<NumberFormat
-												thousandSeparator={false}
-												defaultValue={data.clutchSize}
-												allowNegative={false}
-												onChange={this.onChangeHandler}
-												name="clutchSize"
-											/>
-										</div>
-
-										<div className="collections-pairing-records-editor-pairing-clutch-infertile">
-											<label className="field-input-label">Infertile Amount: </label>
-											<NumberFormat
-												thousandSeparator={false}
-												defaultValue={data.infertile}
-												allowNegative={false}
-												onChange={this.onChangeHandler}
-												name="infertile"
-											/>
-										</div>
-
-										<div className="collections-pairing-records-editor-pairing-clutch-fertile">
-											<label className="field-input-label">Fertile Amount: </label>
-											<NumberFormat
-												thousandSeparator={false}
-												defaultValue={data.fertile}
-												allowNegative={false}
-												onChange={this.onChangeHandler}
-												name="fertile"
-											/>
-										</div>
-									</div>
-
-									<div className="collections-pairing-records-editor-pairing-clutch-id">
-										<label className="field-input-label">Clutch ID: </label>
-										<input type="text" name="clutchId" defaultValue={data.clutchId} readOnly={true} onChange={this.onChangeHandler} />
-										{!data.clutchId ? (
-											<span
-												onClick={() =>
-													this.new_clutch({
-														record: this.props.recordOverlay,
-														dam: this.props.currentAnimal,
-													})
-												}>
-												{' '}
-												Create new clutch?
-											</span>
-										) : (
-											''
-										)}
-									</div>
-								</React.Fragment>
-							) : (
-								''
-							)}
-							{/* Finish Hiding */}
-							<div className="collections-pairing-records-editor-pairing-notes">
-								<label className="field-input-label">Notes: </label>
-								<div>
-									<ReactQuill
-										style={{ backgroundColor: 'white', color: 'black' }}
-										name="comments"
-										value={this.props.recordOverlay.notes}
-										onChange={this.noteHandler}
-										modules={this.props.mods.modules}
-										formats={this.props.mods.formats}
-										readOnly={this.state.readOnly}
-										theme="snow"
-									/>
-								</div>
-							</div>
-
-							<div className="collections-pairing-records-editor-pairing-buttons">
-								<Button variant="warning" onClick={this.openModal}>
-									Delete
-								</Button>{' '}
-								<Button variant="success" onClick={this.updateRecord}>
-									Save
-								</Button>{' '}
-								<Button varient="success" onClick={this.cancelEdit}>
-									Cancel
-								</Button>{' '}
+									<Form.Group as={Col}>
+										<Form.Label>Fertile total</Form.Label>
+										<NumberFormat
+											className="form-control form-control-md"
+											thousandSeparator={false}
+											value={data.fertile}
+											allowNegative={false}
+											onChange={this.onChangeHandler}
+											name="fertile"
+										/>
+									</Form.Group>
+								</Form.Row>
+								<Form.Row>
+									<Form.Label>Clutch ID: </Form.Label>
+									<Form.Control type="text" name="clutchId" value={get(data, 'clutchId', ' ')} readOnly={true} onChange={this.onChangeHandler} />
+									{!data.clutchId ? (
+										<span
+											onClick={() =>
+												this.new_clutch({
+													record: this.props.recordOverlay,
+													dam: this.props.currentAnimal,
+												})
+											}>
+											{' '}
+											Create new clutch?
+										</span>
+									) : (
+										''
+									)}
+								</Form.Row>
+							</Form>
+						) : (
+							''
+						)}
+						{/* Finish Hiding */}
+						<div className="collections-pairing-records-editor-pairing-notes">
+							<label className="field-input-label">Notes: </label>
+							<div>
+								<ReactQuill
+									style={{ backgroundColor: 'white', color: 'black' }}
+									name="comments"
+									value={this.props.recordOverlay.notes}
+									onChange={this.noteHandler}
+									modules={this.props.mods.modules}
+									formats={this.props.mods.formats}
+									readOnly={this.state.readOnly}
+									theme="snow"
+								/>
 							</div>
 						</div>
-					</React.Fragment>
+					</Form>
 				);
 			default:
 				return <div>No record selected</div>;
 		}
+	};
+
+	updateCurrentRecordEdit = async (data) => {
+		console.log('running with data: ', data);
+		await this.props.recordsEditor({ clutchId: data._.id });
+		//await this.porps.current_clutch_data(data);
 	};
 
 	new_clutch = (clutch_data) => {
@@ -438,10 +408,9 @@ class Master extends Component {
 		})
 			.then((response) => {
 				if (response.status === 201) {
+					let dataObj = Object.assign({}, get(response, 'data.new_clutch'));
 					this.props.pageLoading(false);
-					//TODO correct error for next line.
-					this.porps.current_clutch_data(response.new_clutch);
-					this.porps.all_clutch_data(response.clutches);
+					this.props.recordsEditor({ clutchId: get(response, 'data.new_clutch._id') });
 				}
 			})
 			.catch((error) => {
@@ -450,7 +419,6 @@ class Master extends Component {
 	};
 
 	closeModal = (event) => {
-		console.log(event);
 		this.setState({
 			modalOpen: false,
 		});
@@ -462,163 +430,19 @@ class Master extends Component {
 	};
 	confirmDelete = () => {
 		this.deleteRecord();
+		this.props.clearRecordsEditor();
 		this.setState({
 			modalOpen: false,
 		});
 	};
 
-	weightModal = () => {
-		const { recordOverlay } = this.props;
-		return (
-			<Modal show={this.state.weightModal} onHide={this.closeModal}>
-				<Modal.Header>
-					<Modal.Title>Edit Weight Record</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<React.Fragment>
-						<Form>
-							<Form.Row>
-								<Form.Group as={Col}>
-									<Form.Label>Date</Form.Label>
-									<Form.Control type="date" name="date" onChange={this.handleDate} value={dayjs(recordOverlay.date).format('YYYY-MM-DD')} size="md" />
-								</Form.Group>
-								<Form.Group as={Col}>
-									<Form.Label>Weight</Form.Label>
-									<InputGroup>
-										{/* <Form.Control as='div'> */}
-										<NumberFormat
-											thousandSeparator={true}
-											className="form-control form-control-md"
-											defaultValue={recordOverlay.weight}
-											allowNegative={false}
-											fixedDecimalScale={2}
-											onChange={this.onChangeHandler}
-											name="weight"
-										/>
-										{/* </Form.Control> */}
-										<Form.Control as="select" name="weightUnit" onChange={this.onChangeHandler} value={recordOverlay.weightUnit} size="md">
-											{/* <option value=''>Unit</option> */}
-											<option value="gm">Grams</option>
-											<option value="kg">Kilograms</option>
-											<option value="oz">Ounces</option>
-											<option value="lb">Pounds</option>
-										</Form.Control>
-									</InputGroup>
-								</Form.Group>
-							</Form.Row>
-						</Form>
-						<div className="collections-weight-records-editor-body">
-							<div className="collections-weight-records-editor-weight-notes">
-								<label className="field-input-label">Notes:</label>
-								<div>
-									<ReactQuill
-										style={{ backgroundColor: 'white', color: 'black' }}
-										name="notes"
-										value={recordOverlay.notes}
-										onChange={this.noteHandler}
-										modules={this.props.mods.modules}
-										formats={this.props.mods.formats}
-										readOnly={this.state.readOnly}
-										theme="snow"
-									/>
-								</div>
-							</div>
-						</div>
-					</React.Fragment>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="warning" onClick={this.openModal}>
-						Delete
-					</Button>{' '}
-					<Button variant="success" onClick={this.updateRecord}>
-						Save
-					</Button>{' '}
-					<Button varient="success" onClick={this.cancelEdit}>
-						Cancel
-					</Button>
-				</Modal.Footer>
-			</Modal>
-		);
-	};
-
-	feedModal = () => {
-		const { recordOverlay } = this.props;
-		return (
-			<Modal show={this.state.feedModal} onHide={this.closeModal}>
-				<Modal.Header>
-					<Modal.Title>Edit Feed Record</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<Form>
-						<Form.Row>
-							<Form.Group as={Col}>
-								<Form.Label>Date</Form.Label>
-								<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
-							</Form.Group>
-
-							<Form.Group as={Col}>
-								<Form.Label>Type of feeder</Form.Label>
-								<Form.Control type="text" name="feederType" onChange={this.onChangeHandler} size="md" />
-							</Form.Group>
-
-							<Form.Group as={Col}>
-								<Form.Label>Amount/wt.</Form.Label>
-								<Form.Control type="text" name="feederWeight" onChange={this.onChangeHandler} size="md" />
-							</Form.Group>
-						</Form.Row>
-						<Button
-							disabled={this.state.readOnly}
-							onClick={this.onSubmitHandler}
-							variant="success"
-							//disabled={!recordOverlay.feederType.length || !recordOverlay.feederWeight.length}
-							size="md"
-							block>
-							Save
-						</Button>
-					</Form>
-					<div>
-						<ReactQuill
-							style={{ backgroundColor: 'white', color: 'black' }}
-							name="comments"
-							value={this.props.recordOverlay.notes}
-							onChange={this.noteHandler}
-							modules={this.props.mods.modules}
-							formats={this.props.mods.formats}
-							readOnly={this.state.readOnly}
-							theme="snow"
-						/>
-					</div>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="success" onClick={this.closeModal}>
-						Cancel
-					</Button>{' '}
-					<Button variant="danger" onClick={this.confirmDelete}>
-						Delete
-					</Button>{' '}
-				</Modal.Footer>
-			</Modal>
-		);
-	};
-
 	render() {
 		const { display } = this.props.recordOverlay;
-		if (this.props.recordOverlay.recordType === 'weights') {
-			if (!this.state.weightModal) {
-				this.setState({ weightModal: true });
-			}
-		}
-		// switch(this.props.recordOverlay.recordType) {
-		// 	case 'weights':
-		// 		this.setState({ weightModal: true })
-		// 		break;
-		// 	}
+		const { recordOverlay } = this.props;
 		return (
 			<React.Fragment>
-				{this.weightModal()}
-				{/* {this.feedModal()} */}
 				<div className="collection-edit-record-main-panel" style={{ display: display }}>
-					<div className="collection-edit-record-modal">
+					<div className="collection-delete-record">
 						<Modal show={this.state.modalOpen} onHide={this.closeModal}>
 							<Modal.Header>
 								<Modal.Title>Record Delete</Modal.Title>
@@ -634,12 +458,30 @@ class Master extends Component {
 							</Modal.Footer>
 						</Modal>
 					</div>
+					<div className="collection-edit-record-modal">
+						<Modal show={recordOverlay.editModal} onHide={this.closeModal}>
+							<Modal.Header>
+								<Modal.Title>Edit Record</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>{this.ReturnRecord()}</Modal.Body>
+							<Modal.Footer>
+								<Button variant="warning" onClick={this.openModal}>
+									Delete
+								</Button>{' '}
+								<Button variant="success" onClick={this.updateRecord}>
+									Save
+								</Button>{' '}
+								<Button variant="light" onClick={this.cancelEdit}>
+									Cancel
+								</Button>
+							</Modal.Footer>
+						</Modal>
+					</div>
 					<div className="collection-edit-record-header">
 						<h4>Edit record</h4>
 					</div>
 					<div className="collection-edit-record-body">
 						<p>You can edit this record then click save to save all data, or click delete to remove.</p>
-						{/* {this.ReturnRecord()} */}
 					</div>
 				</div>
 			</React.Fragment>
@@ -666,3 +508,51 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Master);
+
+/*
+<React.Fragment>
+				<div className="collection-edit-record-main-panel" style={{ display: display }}>
+					<div className="collection-edit-record-modal">
+						<Modal show={this.state.modalOpen} onHide={this.closeModal}>
+							<Modal.Header>
+								<Modal.Title>Record Delete</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>Are you sure you want to delete this record? Once deleted this information will be lost forever.</Modal.Body>
+							<Modal.Footer>
+								<Button variant="success" onClick={this.closeModal}>
+									Cancel
+								</Button>{' '}
+								<Button variant="danger" onClick={this.confirmDelete}>
+									Delete
+								</Button>{' '}
+							</Modal.Footer>
+						</Modal>
+					</div>
+					<div>
+						<Modal show={recordOverlay.editModal} onHide={this.closeModal}>
+							<Modal.Header>
+								<Modal.Title>Edit Feed Record</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>{this.ReturnRecord()}</Modal.Body>
+							<Modal.Footer>
+								<Button variant="warning" onClick={this.openModal}>
+									Delete
+								</Button>{' '}
+								<Button variant="success" onClick={this.updateRecord}>
+									Save
+								</Button>{' '}
+								<Button varient="success" onClick={this.cancelEdit}>
+									Cancel
+								</Button>
+							</Modal.Footer>
+						</Modal>
+					</div>
+					<div className="collection-edit-record-header">
+						<h4>Edit record</h4>
+					</div>
+					<div className="collection-edit-record-body">
+						<p>You can edit this record then click save to save all data, or click delete to remove.</p>
+					</div>
+				</div>
+			</React.Fragment>
+*/

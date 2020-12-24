@@ -41,6 +41,19 @@ class Welcome extends Component {
 		});
 	}
 
+	showHideScanner = () => {
+		if (!!this.state.showScanner) {
+			this.setState({
+				showScanner: false,
+			});
+		}
+		if (!this.state.showScanner) {
+			this.setState({
+				showScanner: true,
+			});
+		}
+	};
+
 	render() {
 		return (
 			<React.Fragment>

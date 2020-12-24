@@ -1,6 +1,18 @@
 /*
     Color section to define the colors used in the entire app.
 */
+/*
+## Current classNames
+my-collections-collection-container
+my-collections-collection-container-image
+my-collections-collection-container-table
+my-collections-quick-filters
+my-collections-quick-filters-select
+my-collections-quick-filters-select-clear
+my-collections-collections
+my-collections-qr-search
+my-collections-collections-active-list
+*/
 @media screen and (max-width: 1080px) {
   .my-collections-collection-container {
     border: 1px solid orange;
@@ -31,11 +43,8 @@
     width: 85%;
     margin: auto;
   }
-  .my-collections-collection-container-table th {
-    width: 80px;
-  }
   .my-collections-quick-filters {
-    margin: .5em auto 1em;
+    margin: 0.5em auto 1em;
     width: 90%;
   }
   .my-collections-quick-filters-select-clear {
@@ -50,6 +59,14 @@
   .my-collections-quick-filters-select-clear:hover {
     background-color: #ff8800;
     border: 0.5px solid red;
+  }
+  .my-collections-qr-search img {
+    width: 40px;
+  }
+  .my-collections-qr-search {
+    text-align: right;
+    padding-right: 20px;
+    margin: auto;
   }
 }
 
@@ -95,6 +112,9 @@
   .my-collections-quick-filters-select-clear:hover {
     background-color: #ff8800;
     border: 0.5px solid red;
+  }
+  .my-collections-qr-search {
+    display: none;
   }
 }
 /*# sourceMappingURL=MyCollections.css.map */

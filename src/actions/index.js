@@ -32,6 +32,7 @@ export const new_clutch_data = (data) => {
 };
 
 export const current_clutch_data = (data) => {
+	console.log('some data from actions', data);
 	return {
 		type: 'view_clutch',
 		data,

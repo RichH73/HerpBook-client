@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import 'react-tabs/style/react-tabs.css';
-import _ from 'lodash';
+import { get, first, toNumber, uniq } from 'lodash';
 import './DisplayAnimal/Collections.css';
 import './MyCollections.css';
 import dayjs from 'dayjs';
@@ -11,7 +11,6 @@ import ScanQr from '../../_services/Scan/ScanBarCode';
 
 //Bootstrap imports
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 
@@ -43,7 +42,7 @@ class MyCollections extends Component {
 			return collection._id === id;
 		});
 		this.props.newBarCode('');
-		this.props.currentAnimalDisplay(_.first(newId));
+		this.props.currentAnimalDisplay(first(newId));
 		this.props.history.push('/view_animal');
 	};
 
@@ -51,7 +50,7 @@ class MyCollections extends Component {
 		let { filters, collections } = this.props;
 		if (!!filters.sub_cat) {
 			collections = collections.filter((collection) => {
-				if (collection.sub_category === _.toNumber(filters.sub_cat)) {
+				if (collection.sub_category === toNumber(filters.sub_cat)) {
 					return collection;
 				}
 			});
@@ -80,7 +79,7 @@ class MyCollections extends Component {
 							<tr>
 								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
 								<td>{sub.name}</td>
-								{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
+								{!!get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
 								<td>{sub.gender}</td>
 							</tr>
 						</tbody>
@@ -98,7 +97,7 @@ class MyCollections extends Component {
 		let changeFilter = (event) => {
 			this.props.newCollectionFilter([event.target.name], event.target.value);
 		};
-		let subsFiltered = _.uniq(
+		let subsFiltered = uniq(
 			this.props.collections.map((sub) => {
 				return sub.sub_category;
 			})
@@ -152,13 +151,13 @@ class MyCollections extends Component {
 		}
 		return (
 			<React.Fragment>
-				<div className="collections-my-collections">
-					<div className="collections-qr-search">
+				<div className="my-collections-collections">
+					<div className="my-collections-qr-search">
 						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
-						{!!this.state.showScanner ? <ScanQr /> : ''}
+						{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
 					</div>
 					<div>{this.selectFilters()}</div>
-					<div className="collections-my-collections-active-list">{this.showLists()}</div>
+					<div className="my-collections-collections-active-list">{this.showLists()}</div>
 				</div>
 			</React.Fragment>
 		);
