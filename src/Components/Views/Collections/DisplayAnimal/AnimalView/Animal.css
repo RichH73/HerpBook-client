@@ -183,7 +183,8 @@
     width: 200px;
   }
   .collection-animal-body {
-    width: 100%;
+    margin: auto;
+    width: 96%;
   }
   .collections-animal-quick-records {
     margin: 1em auto 3em;

@@ -193,7 +193,7 @@ class AddNewAnimal extends Component {
 						<Form.Row>
 							<Form.Group as={Col} xs={8} controlId="formGridName">
 								<Form.Label>Name</Form.Label>
-								<Form.Control type="email" name="name" onChange={this.formChangeHandler} size="md" />
+								<Form.Control type="text" name="name" onChange={this.formChangeHandler} size="md" />
 							</Form.Group>
 
 							<Form.Group as={Col} controlId="formGridType">

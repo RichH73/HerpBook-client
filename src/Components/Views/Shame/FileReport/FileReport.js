@@ -66,14 +66,7 @@ class Shame extends Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		//let imageNames = []
-		//let images = [];
 		let fileData = new FormData();
-		// const files = this.props.saveImages
-		// files.forEach(file => {
-		//   fileData.append("files", file);
-		//   //imageNames.push(file.name)
-		// });
 		let reportData = {
 			business_name: this.props.business_name,
 			business_email: this.props.business_email,
@@ -165,7 +158,10 @@ class Shame extends Component {
 					/>
 				</Form.Group>
 				<div className="wall-of-shame-file-submit">
-					<Button variant="success" disabled={this.props.fileReportData.incident_description.length >= 20 ? false : true}>
+					<Button
+						variant="success"
+						onClick={this.submitHandler}
+						disabled={this.props.fileReportData.incident_description.length >= 20 ? false : true}>
 						Submit
 					</Button>
 				</div>

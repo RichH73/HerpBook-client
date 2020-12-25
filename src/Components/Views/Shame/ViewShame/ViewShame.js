@@ -19,6 +19,8 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 // import QuillEmoji from 'quill-emoji';
 class ViewShame extends Component {
@@ -216,9 +218,9 @@ class ViewShame extends Component {
 								/>
 							</div>
 							<div className="wall-of-shame-user-report-comment-button">
-								<button className="button" onClick={() => this.submitHandler(this.props.report)}>
+								<Button variant="success" onClick={() => this.submitHandler(this.props.report)}>
 									Submit
-								</button>
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -278,7 +280,15 @@ class ViewShame extends Component {
 	};
 
 	render() {
-		return <React.Fragment>{this.returnReport()}</React.Fragment>;
+		return (
+			<React.Fragment>
+				<Container fluid="md">
+					<Row>
+						<Col>{this.returnReport()}</Col>
+					</Row>
+				</Container>
+			</React.Fragment>
+		);
 	}
 }
 
