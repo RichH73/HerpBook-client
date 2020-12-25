@@ -1,6 +1,10 @@
 /*
     Color section to define the colors used in the entire app.
 */
+.edit-profile-switch-input {
+  margin: 1em auto 1em 2em;
+}
+
 .Modal {
   position: absolute;
   top: 3px;

@@ -10,7 +10,10 @@ import axios from 'axios';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-//import fs from 'fs';
+
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -238,19 +241,21 @@ class PrintRecords extends Component {
 						</div>
 					</div>
 					<div className="collections-create-report-form-method">
-						<label>View or print: </label>
-						<select onChange={this.setMode}>
-							<option value="DL">Download</option>
-							<option value="PR">Print</option>
-							<option selected value="VW">
-								View
-							</option>
-						</select>
-					</div>
-					<div className="collections-create-report-form-buttons">
-						<button className="button" onClick={() => this.getImage()}>
-							Generate
-						</button>
+						<Form>
+							<Form.Row>
+								<Form.Group>
+									<Form.Label>View or print</Form.Label>
+									<Form.Control as="select" onChange={this.setMode}>
+										<option value="DL">Download</option>
+										<option value="PR">Print</option>
+										<option selected value="VW">
+											View
+										</option>
+									</Form.Control>
+								</Form.Group>
+							</Form.Row>
+							<Button onClick={() => this.getImage()}>Generate</Button>
+						</Form>
 					</div>
 				</div>
 				{/* //TODO check this for warning without eslint line. */}

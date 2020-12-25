@@ -1,5 +1,9 @@
 @import '../../../../../index';
 
+.collection-edit-record-main-panel-switch {
+	margin: auto 1em;
+}
+
 @media screen and (min-width: 1081px) {
 	.collection-edit-record-header {
 		background-color: $borderColor;

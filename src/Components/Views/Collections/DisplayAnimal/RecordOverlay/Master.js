@@ -297,10 +297,22 @@ class Master extends Component {
 						</Form.Row>
 						<Form.Row>
 							<Form.Group as={Col}>
-								<Form.Check label="Whitnessed" name="whitnessed" checked={data.whitnessed} onChange={this.whitnessedBreedingCheck} />
+								<Form.Check
+									label="Whitnessed"
+									name="whitnessed"
+									checked={data.whitnessed}
+									onChange={this.whitnessedBreedingCheck}
+									className="collection-edit-record-main-panel-switch"
+								/>
 							</Form.Group>
 							<Form.Group as={Col}>
-								<Form.Check label="Successful" name="successful" checked={data.successful} onChange={this.successfulBreedingCheck} />
+								<Form.Check
+									label="Successful"
+									name="successful"
+									checked={data.successful}
+									onChange={this.successfulBreedingCheck}
+									className="collection-edit-record-main-panel-switch"
+								/>
 							</Form.Group>
 						</Form.Row>
 						{/* Hide if male */}

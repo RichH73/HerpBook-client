@@ -231,6 +231,7 @@ class EditProfile extends React.Component {
 							<Form.Check
 								type="switch"
 								checked={this.props.userInfo.display_address}
+								className="edit-profile-switch-input"
 								id="custom-switch"
 								name="mySwitch"
 								label="Display business address on classified ads"

@@ -12,6 +12,10 @@ import Settings from './Settings/Settings';
 import PrintRecords from './Printing/PrintRecords';
 import CollectionList from './Classified/CollectionList';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 class Activity extends Component {
 	state = {
 		data: 'Not Found',
@@ -46,9 +50,9 @@ class Activity extends Component {
 										//TODO review this a href ref
 										// eslint-disable-next-line
 										<a href="#">
-											<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+											<Button className="button" style={{ width: '120px', marginLeft: '20px' }}>
 												Print ID Card
-											</button>
+											</Button>
 										</a>
 									);
 								}}
