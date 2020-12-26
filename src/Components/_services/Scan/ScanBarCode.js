@@ -34,7 +34,7 @@ class ScanQr extends Component {
 				delay={300}
 				onError={this.handleError}
 				onScan={this.handleScan}
-				style={{ width: '100%', margin: 'auto', position: 'absolute', zIndex: '1' }}
+				style={{ width: '50%', margin: '3em', position: 'fixed', zIndex: '1' }}
 			/>
 			// </div>
 		);
