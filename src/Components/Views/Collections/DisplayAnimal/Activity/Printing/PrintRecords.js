@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import dayjs from 'dayjs';
-import DatePicker from 'react-datepicker';
 import _ from 'lodash';
 import './PrintRecords.css';
 import axios from 'axios';
@@ -14,18 +13,87 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 //Bootstrap imports
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 class PrintRecords extends Component {
 	state = {
 		date: new Date(),
-		startIsOpen: false,
-		endIsOpen: false,
 		pdfData: {},
-		method: '',
-		beginDate: '',
-		endDate: '',
+		method: 'VW',
+		recordsAmount: '',
+		startDate: '',
+		stopDate: '',
+		displayFeed: true,
+		displayPair: true,
+		displayShed: true,
+		displayWeight: true,
+	};
+
+	feedSwitch = () => {
+		if (!!this.state.displayFeed) {
+			this.setState({
+				displayFeed: false,
+			});
+		}
+		if (!this.state.displayFeed) {
+			this.setState({
+				displayFeed: true,
+			});
+		}
+	};
+
+	pairSwitch = () => {
+		if (!!this.state.displayPair) {
+			this.setState({
+				displayPair: false,
+			});
+		}
+		if (!this.state.displayPair) {
+			this.setState({
+				displayPair: true,
+			});
+		}
+	};
+
+	shedSwitch = () => {
+		if (!!this.state.displayShed) {
+			this.setState({
+				displayShed: false,
+			});
+		}
+		if (!this.state.displayShed) {
+			this.setState({
+				displayShed: true,
+			});
+		}
+	};
+
+	weightSwitch = () => {
+		if (!!this.state.displayWeight) {
+			this.setState({
+				displayWeight: false,
+			});
+		}
+		if (!this.state.displayWeight) {
+			this.setState({
+				displayWeight: true,
+			});
+		}
+	};
+
+	resetFilters = () => {
+		this.setState({
+			recordsAmount: '',
+			startDate: '',
+			stopDate: '',
+			method: 'VW',
+			displayFeed: true,
+			displayPair: true,
+			displayShed: true,
+			displayWeight: true,
+		});
 	};
 
 	componentDidMount() {}
@@ -36,47 +104,8 @@ class PrintRecords extends Component {
 		});
 	};
 
-	filterData = (data) => {
-		data.filter((d) => {
-			return d[0] === '11/19/2020';
-		});
-		return data;
-	};
-
 	makePdf = (image) => {
-		const { beginDate, endDate, method } = this.state;
-		const pairData = _.get(this, 'props.currentAnimal.pairings')
-			.map((p) => {
-				return [
-					dayjs(p.date).format('MM/DD/YYYY'),
-					_.get(p, 'mate', ''),
-					_.get(p, 'whitnessed', '') === true ? 'Yes' : 'No',
-					_.get(p, 'successful', '') === true ? 'Yes' : 'No',
-					_.get(p, 'clutchSize', ''),
-					_.get(p, 'infertile', ''),
-					_.get(p, 'fertile', ''),
-				];
-			})
-			.filter((p) => {
-				return !!beginDate.length ? p[0] === dayjs(beginDate).format('MM/DD/YYYY') : p[0];
-			})
-			.filter((p) => {
-				return !!endDate.length ? p[0] > dayjs(endDate).format('MM/DD/YYYY') : p[0];
-			});
-
-		const feedData = _.get(this, 'props.currentAnimal.feedings')
-			.map((f) => {
-				return [dayjs(f.date).format('MM/DD/YYYY'), _.get(f, 'feederType'), _.get(f, 'feederWeight')];
-			})
-			.filter((f) => {
-				return !!beginDate.length ? f[0] < dayjs(beginDate).format('MM/DD/YYYY') : f;
-			})
-			.filter((f) => {
-				return !!endDate.length ? f[0] < dayjs(endDate).format('MM/DD/YYYY') : f;
-			});
-
-		feedData.unshift(['Date', 'Feeder Type', 'Feeder Amount or Weight']);
-		pairData.unshift(['Date', 'Mate ID', 'Whitenessed', 'Successful?', 'Clutch Size', 'Infertile#', 'Fertile#']);
+		const { method } = this.state;
 		var dd = {
 			info: {
 				title: 'Feeding Report',
@@ -125,26 +154,17 @@ class PrintRecords extends Component {
 						},
 					],
 				},
-				{
-					text: `Feeding Records`,
-					style: 'subheader',
-				},
-				{
-					style: 'table',
-					table: {
-						body: feedData,
-					},
-				},
-				{
-					text: `Pairing Records`,
-					style: 'subheader',
-				},
-				{
-					style: 'table',
-					table: {
-						body: this.filterData(pairData),
-					},
-				},
+				!!this.props.currentAnimal.feedings.length && this.state.displayFeed ? { text: `Feeding Records`, style: 'subheader' } : '',
+				!!this.props.currentAnimal.feedings.length && this.state.displayFeed ? { style: 'table', table: { body: this.getFeedData() } } : '',
+
+				!!this.props.currentAnimal.pairings.length && this.state.displayPair ? { text: `Pairing Records`, style: 'subheader' } : '',
+				!!this.props.currentAnimal.pairings.length && this.state.displayPair ? { style: 'table', table: { body: this.getPairData() } } : '',
+
+				!!this.props.currentAnimal.sheddings.length && this.state.displayShed ? { text: `Shed Records`, style: 'subheader' } : '',
+				!!this.props.currentAnimal.sheddings.length && this.state.displayShed ? { style: 'table', table: { body: this.getShedData() } } : '',
+
+				!!this.props.currentAnimal.weights.length && this.state.displayWeight ? { text: `Weight Records`, style: 'subheader' } : '',
+				!!this.props.currentAnimal.weights.length && this.state.displayWeight ? { style: 'table', table: { body: this.getWeightData() } } : '',
 			],
 			styles: {
 				header: {
@@ -166,9 +186,7 @@ class PrintRecords extends Component {
 					color: 'black',
 				},
 			},
-			defaultStyle: {
-				// alignment: 'justify'
-			},
+			defaultStyle: {},
 		};
 
 		switch (method) {
@@ -191,7 +209,6 @@ class PrintRecords extends Component {
 				});
 				return;
 		}
-		//   pdfMake.createPdf(dd).open({}, window.open('', '_blank'));
 	};
 
 	getImage = async () => {
@@ -207,46 +224,214 @@ class PrintRecords extends Component {
 		this.makePdf(`data:image/jpeg;base64, ${imgDat}`);
 	};
 
-	selectDateRange = (event) => {
-		this.setState({
-			viewByDateRange: event.target.value === 'true' ? true : false,
-		});
+	dateHandler = (event) => {
+		this.setState({ [event.target.name]: dayjs(event.target.value).format('YYYY-MM-DD') });
 	};
 
-	startDateHandleDate = (date) => {
-		this.setState({
-			beginDate: date,
+	getFeedData = () => {
+		console.log(!!this.state.startDate, this.state.startDate);
+		let animal = this.props.currentAnimal;
+		const recordTypes = ['feedings', 'pairings', 'weights', 'sheddings'];
+		let feedRecords = animal.feedings;
+		if (!!this.state.recordsAmount) {
+			let totalFeedings = feedRecords.length;
+			let getLastRecords = totalFeedings - this.state.recordsAmount;
+			if (getLastRecords < 0) {
+				getLastRecords = 0;
+			}
+			feedRecords = feedRecords.slice(getLastRecords, totalFeedings);
+		}
+
+		if (!!this.state.startDate) {
+			feedRecords = feedRecords.filter((record) => {
+				console.log(dayjs(record.date).format('YYYY-MM-DD'), dayjs(this.state.startDate).format('YYYY-MM-DD'));
+				if (dayjs(record.date).format('YYYY-MM-DD') > dayjs(this.state.startDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		if (!!this.state.stopDate) {
+			feedRecords = feedRecords.filter((record) => {
+				console.log(dayjs(record.date).format('YYYY-MM-DD'), dayjs(this.state.stopDate).format('YYYY-MM-DD'));
+				if (dayjs(record.date).format('YYYY-MM-DD') < dayjs(this.state.stopDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		let feedMap = feedRecords.map((f) => {
+			return [dayjs(f.date).format('MM/DD/YYYY'), _.get(f, 'feederType'), _.get(f, 'feederWeight')];
 		});
+
+		feedMap.unshift(['Date', 'Feeder Type', 'Feeder Amount or Weight']);
+
+		return feedMap;
 	};
-	endDateHandleDate = (date) => {
+
+	getPairData = () => {
+		let animal = this.props.currentAnimal;
+		let pairRecords = animal.pairings;
+		if (!!this.state.recordsAmount) {
+			let totalPairings = pairRecords.length;
+			let getLastRecords = totalPairings - this.state.recordsAmount;
+			if (getLastRecords < 0) {
+				getLastRecords = 0;
+			}
+			pairRecords = pairRecords.slice(getLastRecords, totalPairings);
+		}
+
+		if (!!this.state.startDate) {
+			pairRecords = pairRecords.filter((record) => {
+				if (dayjs(record.date).format('YYYY-MM-DD') > dayjs(this.state.startDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		if (!!this.state.stopDate) {
+			pairRecords = pairRecords.filter((record) => {
+				if (dayjs(record.date).format('YYYY-MM-DD') < dayjs(this.state.stopDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		let pairMap = pairRecords.map((p) => {
+			return [
+				dayjs(p.date).format('MM/DD/YYYY'),
+				_.get(p, 'mate', ''),
+				_.get(p, 'whitnessed', '') === true ? 'Yes' : 'No',
+				_.get(p, 'successful', '') === true ? 'Yes' : 'No',
+				_.get(p, 'clutchSize', ''),
+				_.get(p, 'infertile', ''),
+				_.get(p, 'fertile', ''),
+			];
+		});
+
+		pairMap.unshift(['Date', 'Mate ID', 'Whitenessed', 'Successful?', 'Clutch Size', 'Infertile#', 'Fertile#']);
+
+		return pairMap;
+	};
+
+	getShedData = () => {
+		let animal = this.props.currentAnimal;
+		let shedRecords = animal.sheddings;
+		if (!!this.state.recordsAmount) {
+			let totalSheddings = shedRecords.length;
+			let getLastRecords = totalSheddings - this.state.recordsAmount;
+			if (getLastRecords < 0) {
+				getLastRecords = 0;
+			}
+			shedRecords = shedRecords.slice(getLastRecords, totalSheddings);
+		}
+
+		if (!!this.state.startDate) {
+			shedRecords = shedRecords.filter((record) => {
+				console.log(dayjs(record.date).format('YYYY-MM-DD'), dayjs(this.state.startDate).format('YYYY-MM-DD'));
+				if (dayjs(record.date).format('YYYY-MM-DD') > dayjs(this.state.startDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		if (!!this.state.stopDate) {
+			shedRecords = shedRecords.filter((record) => {
+				console.log(dayjs(record.date).format('YYYY-MM-DD'), dayjs(this.state.stopDate).format('YYYY-MM-DD'));
+				if (dayjs(record.date).format('YYYY-MM-DD') < dayjs(this.state.stopDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		let shedMap = shedRecords.map((s) => {
+			return [dayjs(s.date).format('MM/DD/YYYY'), _.get(s, 'fullShed') === true ? 'Yes' : 'No'];
+		});
+
+		shedMap.unshift(['Date', 'Complete Shed']);
+
+		return shedMap;
+	};
+
+	getWeightData = () => {
+		let animal = this.props.currentAnimal;
+		let weightRecords = animal.weights;
+		if (!!this.state.recordsAmount) {
+			let totalWeights = weightRecords.length;
+			let getLastRecords = totalWeights - this.state.recordsAmount;
+			if (getLastRecords < 0) {
+				getLastRecords = 0;
+			}
+			weightRecords = weightRecords.slice(getLastRecords, totalWeights);
+		}
+
+		if (!!this.state.startDate) {
+			weightRecords = weightRecords.filter((record) => {
+				console.log(dayjs(record.date).format('YYYY-MM-DD'), dayjs(this.state.startDate).format('YYYY-MM-DD'));
+				if (dayjs(record.date).format('YYYY-MM-DD') > dayjs(this.state.startDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		if (!!this.state.stopDate) {
+			weightRecords = weightRecords.filter((record) => {
+				if (dayjs(record.date).format('YYYY-MM-DD') < dayjs(this.state.stopDate).format('YYYY-MM-DD')) {
+					return record;
+				}
+			});
+		}
+
+		let weightMap = weightRecords.map((w) => {
+			return [dayjs(w.date).format('MM/DD/YYYY'), `${_.get(w, 'weight')}${_.get(w, 'weightUnit')}`];
+		});
+
+		weightMap.unshift(['Date', 'Weight']);
+
+		return weightMap;
+	};
+
+	onChangeHandler = (event) => {
 		this.setState({
-			endDate: date,
+			[event.target.name]: event.target.value,
 		});
 	};
 
 	render() {
+		const styles = {
+			margin: 'auto 2em',
+		};
 		return (
 			<div className="collections-create-report-body">
 				<div className="collections-create-report-form">
-					<div className="collections-create-report-date-range-start">
-						<label>Start Date: </label>
-						<div className="collections-feedings-new-feeding-date-desktop-selector">
-							<DatePicker showPopperArrow={false} selected={this.state.beginDate} onChange={(date) => this.startDateHandleDate(date)} />
-						</div>
-					</div>
-					<div className="collections-create-report-date-range-end">
-						<label>End Date: </label>
-						<div className="collections-feedings-new-feeding-date-desktop-selector">
-							<DatePicker showPopperArrow={false} selected={this.state.endDate} onChange={(date) => this.endDateHandleDate(date)} />
-						</div>
-					</div>
-					<p>You can view, print or download a pdf copy of this animals records by selecting an option from the dropdown menu then click Generate.</p>
+					<p>
+						You can view, print or download a pdf copy of this animals records by selecting an option from the dropdown menu then click Generate. You
+						can also filter the records printed by selecting from any of the filters.
+					</p>
 					<div className="collections-create-report-form-method">
 						<Form>
+							<p>Which records would you like to include?</p>
 							<Form.Row>
-								{/* <Form.Label>View or print</Form.Label> */}
-								<Form.Group>
-									<Form.Control as="select" onChange={this.setMode}>
+								<Form.Group as={Col}>
+									<Form.Check name="displayFeed" checked={this.state.displayFeed} label="Feeding" onChange={this.feedSwitch} style={styles} />
+								</Form.Group>
+								<Form.Group as={Col}>
+									<Form.Check name="displayPair" checked={this.state.displayPair} label="Pairing" onChange={this.pairSwitch} style={styles} />
+								</Form.Group>
+							</Form.Row>
+
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Check name="displayShed" checked={this.state.displayShed} label="Shedding" onChange={this.shedSwitch} style={styles} />
+								</Form.Group>
+								<Form.Group as={Col}>
+									<Form.Check name="displayWeight" checked={this.state.displayWeight} label="Weight" onChange={this.weightSwitch} style={styles} />
+								</Form.Group>
+							</Form.Row>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>View, print or download</Form.Label>
+									<Form.Control as="select" value={this.state.method} onChange={this.setMode}>
 										<option value="DL">Download</option>
 										<option value="PR">Print</option>
 										<option selected value="VW">
@@ -254,10 +439,30 @@ class PrintRecords extends Component {
 										</option>
 									</Form.Control>
 								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Amount of records to print</Form.Label>
+									<Form.Control type="number" name="recordsAmount" value={this.state.recordsAmount} onChange={this.onChangeHandler} />
+								</Form.Group>
+							</Form.Row>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Start Date</Form.Label>
+									<Form.Control type="date" name="startDate" value={this.state.startDate} onChange={this.dateHandler} />
+								</Form.Group>
+								<Form.Group as={Col}>
+									<Form.Label>Start Date</Form.Label>
+									<Form.Control type="date" name="stopDate" value={this.state.stopDate} onChange={this.dateHandler} />
+								</Form.Group>
 							</Form.Row>
 						</Form>
 						<div>
-							<Button onClick={() => this.getImage()}>Generate</Button>
+							<Button name="generate" onClick={() => this.getImage()}>
+								Generate
+							</Button>{' '}
+							<Button name="reset" variant="success" onClick={this.resetFilters}>
+								Reset
+							</Button>
 						</div>
 					</div>
 				</div>

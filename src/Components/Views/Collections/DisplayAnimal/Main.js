@@ -138,15 +138,18 @@ class Main extends Component {
 					<ToPrint ref={(el) => (this.componentRef = el)} />
 				</div>
 				<ReactToPrint
+					copyStyles={false}
 					trigger={() => {
 						return (
 							//TODO review this a href ref
 							// eslint-disable-next-line
-							<a href="#">
-								<Button className="button" style={{ width: '120px', marginLeft: '20px' }}>
-									Print ID Card
-								</Button>
-							</a>
+							<div style={{ textAlign: 'center', width: '50%' }}>
+								<a href="#">
+									<Button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+										Print ID Card
+									</Button>
+								</a>
+							</div>
 						);
 					}}
 					content={() => this.componentRef}

@@ -289,7 +289,7 @@ class EditProfile extends React.Component {
 
 							<Form.Group as={Col}>
 								<Form.Label size="md">Last Name</Form.Label>
-								<Form.Control type="text" name="lastName" value={user.firstName} maxLength="20" onChange={this.onChangeHandler} size="md" />
+								<Form.Control type="text" name="lastName" value={user.lastName} maxLength="20" onChange={this.onChangeHandler} size="md" />
 							</Form.Group>
 						</Form.Row>
 

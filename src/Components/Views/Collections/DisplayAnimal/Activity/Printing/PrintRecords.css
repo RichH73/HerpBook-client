@@ -25,17 +25,6 @@
   grid-area: endDate;
 }
 
-.collections-create-report-form-method {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1em auto;
-  width: 209px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
 .collections-create-report-form-buttons {
   margin: 1em auto;
   text-align: right;
