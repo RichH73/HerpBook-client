@@ -181,6 +181,10 @@ class Main extends Component {
 				return <CollectionList />;
 			case 'SETTINGS':
 				return <Settings history={this.props.history} />;
+			case 'GALLERY':
+				return <Photos />;
+			default:
+				return <Animal />;
 		}
 	};
 
@@ -214,6 +218,9 @@ class Main extends Component {
 							<NavDropdown.Item onClick={() => this.componentSelector('CLASSIFIEDLIST')}>Classified Listing</NavDropdown.Item>
 							<NavDropdown.Item onClick={() => this.componentSelector('SETTINGS')}>Collection Settings</NavDropdown.Item>
 						</NavDropdown>
+						<Nav.Link onClick={() => this.componentSelector('GALLERY')} style={navStyles}>
+							Gallery
+						</Nav.Link>
 					</Nav>
 					<Navbar.Brand onClick={() => this.showHideScanner()}>
 						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} style={{ width: '40px' }} />
