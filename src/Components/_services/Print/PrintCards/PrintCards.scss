@@ -1,4 +1,9 @@
-@import '../../../../../../index';
+@import '../../../../index';
+
+.collections-small-card-body {
+	width: 450px;
+	
+}
 
 @media screen and (max-width: 1080px) {
 	.card-body {
@@ -16,9 +21,8 @@
 		height: 258px;
 		//border: 2px solid orange;
 		//display: flex;
-		display: grid;
-		grid-template-areas: 'mainImg info';
-		//padding: 20px 8px 8px 22px;
+		// display: grid;
+		// grid-template-areas: 'mainImg info';
 	}
 
 	.bar-code-img {
@@ -33,7 +37,7 @@
 	}
 
 	.bar-code img {
-		width: 7em;
+		width: 5em;
 	}
 
 	.bar-code-name {
@@ -48,7 +52,7 @@
 	.bar-code-inner-name {
 		margin-left: 60px;
 	}
-	.bar-code-inner-name h3 {
+	.bar-code-inner-name h4 {
 		margin-left: 0px;
 		text-align: left;
 	}

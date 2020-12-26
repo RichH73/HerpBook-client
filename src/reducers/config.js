@@ -35,10 +35,10 @@ const analytics = () => {
 };
 
 export const store_config = () => {
-	// if (!!server_state || origins.includes(window.origin)) {
-	// 	// return applyMiddleware(thunk);
-	// 	return composeWithDevTools(applyMiddleware(thunk));
-	// }
+	if (!!server_state || origins.includes(window.origin)) {
+		// return applyMiddleware(thunk);
+		return composeWithDevTools(applyMiddleware(thunk));
+	}
 	return applyMiddleware(thunk);
 };
 
