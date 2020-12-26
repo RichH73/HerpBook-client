@@ -240,11 +240,12 @@ class PrintRecords extends Component {
 							<DatePicker showPopperArrow={false} selected={this.state.endDate} onChange={(date) => this.endDateHandleDate(date)} />
 						</div>
 					</div>
+					<p>You can view, print or download a pdf copy of this animals records by selecting an option from the dropdown menu then click Generate.</p>
 					<div className="collections-create-report-form-method">
 						<Form>
 							<Form.Row>
+								{/* <Form.Label>View or print</Form.Label> */}
 								<Form.Group>
-									<Form.Label>View or print</Form.Label>
 									<Form.Control as="select" onChange={this.setMode}>
 										<option value="DL">Download</option>
 										<option value="PR">Print</option>
@@ -254,8 +255,10 @@ class PrintRecords extends Component {
 									</Form.Control>
 								</Form.Group>
 							</Form.Row>
-							<Button onClick={() => this.getImage()}>Generate</Button>
 						</Form>
+						<div>
+							<Button onClick={() => this.getImage()}>Generate</Button>
+						</div>
 					</div>
 				</div>
 				{/* //TODO check this for warning without eslint line. */}

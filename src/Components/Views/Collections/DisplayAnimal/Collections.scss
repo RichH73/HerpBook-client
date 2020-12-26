@@ -19,11 +19,18 @@
 	padding: 0px;
 }
 
-.collection-edit-record-header {
+.nav-link {
+	color: black;
+	font-weight: bold;
 }
 
 .body-main-header {
 	position: relative;
+	// margin-bottom: 0;
+}
+
+.body-main-header h4 {
+	margin-bottom: 0;
 }
 
 @media screen and (min-width: 1081px) {

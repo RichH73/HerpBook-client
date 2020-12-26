@@ -4,19 +4,32 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-//import './Collections.css';
+import './Collections.css';
 import Pairings from './Records/Pairing/Pairings';
 import Feedings from './Records/Feeding/Feedings';
 import Sheddings from './Records/Shedding/Sheddings';
 import Weight from './Records/Weights/Weight';
 import Animal from './AnimalView/Animal';
 import Photos from './Photos';
+import PrintRecords from './Activity/Printing/PrintRecords';
+import CollectionList from './Activity/Classified/CollectionList';
 import Activity from './Activity/Activity';
 import axios from 'axios';
 import ScanQr from '../../../_services/Scan/ScanBarCode';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import ToPrint from '../../../_services/Print/PrintCards/ToPrint';
+import Settings from './Activity/Settings/Settings';
+
+import Button from 'react-bootstrap/Button';
+import ReactToPrint from 'react-to-print';
+import { NavItem } from 'react-bootstrap';
 
 class Main extends Component {
-	state = {};
+	state = {
+		viewing: 'ANIMAL',
+	};
 
 	componentDidMount() {
 		if (this.props.location.searchString) {
@@ -118,11 +131,98 @@ class Main extends Component {
 		);
 	};
 
+	printIdCard = () => {
+		return (
+			<React.Fragment>
+				<div className="id-card-preview">
+					<ToPrint ref={(el) => (this.componentRef = el)} />
+				</div>
+				<ReactToPrint
+					trigger={() => {
+						return (
+							//TODO review this a href ref
+							// eslint-disable-next-line
+							<a href="#">
+								<Button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+									Print ID Card
+								</Button>
+							</a>
+						);
+					}}
+					content={() => this.componentRef}
+				/>
+			</React.Fragment>
+		);
+	};
+
+	componentSelector = (viewtype) => {
+		this.setState({
+			viewing: viewtype,
+		});
+	};
+
+	componentView = () => {
+		switch (this.state.viewing) {
+			case 'ANIMAL':
+				return <Animal />;
+			case 'FEEDINGS':
+				return <Feedings />;
+			case 'PRINTRECORDS':
+				return <PrintRecords />;
+			case 'SHEDDING':
+				return <Sheddings />;
+			case 'WEIGHT':
+				return <Weight />;
+			case 'PAIRINGS':
+				return <Pairings />;
+			case 'IDCARD':
+				return <this.printIdCard />;
+			case 'CLASSIFIEDLIST':
+				return <CollectionList />;
+			case 'SETTINGS':
+				return <Settings history={this.props.history} />;
+		}
+	};
+
 	render() {
 		if (!this.props.currentAnimal._id.length) {
 			return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
 		}
-		return this.tabs();
+		const navStyles = { color: 'black', fontWeight: 'bold', cursor: 'pointer' };
+		return (
+			<React.Fragment>
+				<Navbar style={{ backgroundColor: 'orange' }} variant="light" collapseOnSelect expand="sm">
+					{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
+					<Nav className="mr-auto">
+						<Nav.Link onClick={() => this.componentSelector('ANIMAL')} style={navStyles}>
+							Animal
+						</Nav.Link>
+
+						<NavDropdown title="Records" variant="light" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('FEEDINGS')}>Feeding</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('PAIRINGS')}>Pairing</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('SHEDDING')}>Sheds</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('WEIGHT')}>Weights</NavDropdown.Item>
+						</NavDropdown>
+
+						<NavDropdown title="Printing" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('PRINTRECORDS')}>Print Records</NavDropdown.Item>
+						</NavDropdown>
+
+						<NavDropdown title="Activity" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('CLASSIFIEDLIST')}>Classified Listing</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('SETTINGS')}>Collection Settings</NavDropdown.Item>
+						</NavDropdown>
+					</Nav>
+					<Navbar.Brand onClick={() => this.showHideScanner()}>
+						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} style={{ width: '40px' }} />
+					</Navbar.Brand>
+				</Navbar>
+				{this.componentView()}
+			</React.Fragment>
+		);
+		//this.tabs();
 	}
 }
 

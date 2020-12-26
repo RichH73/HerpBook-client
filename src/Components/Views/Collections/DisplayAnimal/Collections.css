@@ -14,8 +14,17 @@
   padding: 0px;
 }
 
+.nav-link {
+  color: black;
+  font-weight: bold;
+}
+
 .body-main-header {
   position: relative;
+}
+
+.body-main-header h4 {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 1081px) {
