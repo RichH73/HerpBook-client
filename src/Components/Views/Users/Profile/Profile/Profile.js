@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Profile.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
+import * as actionCreators from '../../../../../actions/index';
 import ReactQuill from 'react-quill';
 
 class About extends Component {

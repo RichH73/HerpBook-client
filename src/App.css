@@ -10816,6 +10816,10 @@ a.text-dark:hover, a.text-dark:focus {
   min-height: 200px;
 }
 
+a :hover {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1081px) {
   .mobile-nav-button {
     display: none;

@@ -5,9 +5,29 @@ h3 {
   text-align: center;
 }
 
+a:hover {
+  text-decoration: none;
+  color: orange;
+}
+
 @media screen and (max-width: 1080px) {
   .left-main-navigation-outter-panel {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1081px) {
+  .left-main-nav a {
+    color: black;
+    text-decoration: none;
+  }
+  .left-main-nav a:active {
+    font-weight: bold;
+    color: orange;
+  }
+  .left-main-nav-selected {
+    font-weight: bold;
+    color: orange;
   }
 }
 
@@ -26,10 +46,6 @@ h3 {
   text-align: left;
   width: 190px;
   padding-left: .5em;
-}
-
-.left-main-nav a {
-  color: black;
 }
 
 .left-navigation-panel-header {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Vendors from '../VendorList/Vendors';
 import Categories from '../Classifieds/Categories/Categories';
@@ -33,9 +34,15 @@ import GetMail from '../Users/Mail/GetMail/GetMail';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
 import MailReply from '../Users/Mail/MailReply/MailReply';
+import PublicProfile from '../Users/Profile/Public/PublicProfile';
+
 const Pages = (props) => {
+	const userInfo = useSelector((state) => state.user);
+	console.log('this user', userInfo);
+	console.log('logged in?', !!userInfo.uid);
+	const loggedIn = userInfo.uid;
 	return (
-		<React.Fragment>
+		<Switch>
 			<Route exact path="/" render={(props) => <Welcome {...props} title={`Props through render`} />} />
 			<Route path="/add_vendor" component={NewVendor} />
 			<Route path="/classifieds" component={Categories} />
@@ -47,7 +54,9 @@ const Pages = (props) => {
 			{/* <Route path="/message-reply" component={MessageReply} /> */}
 			<Route path="/contact_seller" component={SellerContactForm} />
 			{/* <Route path="/messages" component={Messages} /> */}
-			<Route path="/my_mail" component={GetMail} />
+			<Route path="/my_mail" component={GetMail}>
+				{!!loggedIn ? <GetMail /> : <Redirect to="/login" />}
+			</Route>
 			<Route path="/read_mail" component={MailDisplay} />
 			<Route path="/mail_reply" component={MailReply} />
 			<Route path="/my_classifieds" component={MyListings} />
@@ -65,7 +74,9 @@ const Pages = (props) => {
 			<Route path="/new_collection" component={AddNewAnimal} />
 			<Route path="/search_collections/:id" component={AnimalSearch} />
 			<Route path="/new_clutch" component={NewClutch} />
-		</React.Fragment>
+			{/* <Route Path="/profile/:id">{!!loggedIn ? <PublicProfile /> : <Redirect to='/login' />}</Route> */}
+			<Route Path="/profile/:id" component={PublicProfile} />
+		</Switch>
 	);
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './PublicProfile.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../actions/index';
+import * as actionCreators from '../../../../actions/index';
 import About from './About/About';
 import Profile from './Profile/Profile';
 import Images from './Images/Images';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './About.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
+import * as actionCreators from '../../../../../actions/index';
 
 class About extends Component {
 	render() {
