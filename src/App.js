@@ -10,6 +10,7 @@ import { Base64 } from 'js-base64';
 import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
+// import { SocketService } from './Components/_services/SocketService'
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {

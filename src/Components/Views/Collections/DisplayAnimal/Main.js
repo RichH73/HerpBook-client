@@ -225,8 +225,8 @@ class Main extends Component {
 							Gallery
 						</Nav.Link>
 					</Nav>
-					<Navbar.Brand onClick={() => this.showHideScanner()}>
-						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} style={{ width: '40px' }} />
+					<Navbar.Brand onClick={() => this.showHideScanner()} style={{ show: 'none' }}>
+						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} className="my-collections-nav-brand-scanner" />
 					</Navbar.Brand>
 				</Navbar>
 				{this.componentView()}

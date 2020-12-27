@@ -28,6 +28,9 @@
 }
 
 @media screen and (min-width: 1081px) {
+  .my-collections-nav-brand-scanner {
+    display: none;
+  }
   .collection-animal-comment {
     width: 200px;
   }
@@ -117,6 +120,10 @@
 }
 
 @media screen and (max-width: 1080px) {
+  .my-collections-nav-brand-scanner {
+    display: black;
+    width: 40px;
+  }
   .collections-tab-header {
     border-color: orange;
   }

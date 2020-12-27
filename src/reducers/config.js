@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 // Using Test Environment?
 const server_state = false;
+const show_redux = false;
 
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
@@ -35,7 +36,7 @@ const analytics = () => {
 };
 
 export const store_config = () => {
-	if (!!server_state || origins.includes(window.origin)) {
+	if (!!server_state || !!show_redux) {
 		// return applyMiddleware(thunk);
 		return composeWithDevTools(applyMiddleware(thunk));
 	}
