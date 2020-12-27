@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Images.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../../../../actions/index';
+import * as actionCreators from '../../../../../../actions/index';
 //import Spinner from 'react-spinner-material';
 //Google analytics
 //import ReactGA from "react-ga";

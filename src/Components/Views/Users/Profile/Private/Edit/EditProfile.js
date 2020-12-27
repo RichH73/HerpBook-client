@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../../actions/index';
+import * as actionCreators from '../../../../../../actions/index';
 import './EditProfile.css';
 import 'react-quill/dist/quill.snow.css';
 //import Dropzone from 'react-dropzone';

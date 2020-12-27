@@ -10,6 +10,14 @@
         // "footer footer footer";
         // grid-area: public-profile-navbar;
 */
+.mr-auto a {
+	color: white;
+}
+
+.profile-toolbar {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
 
 @media screen and (max-width: 1080px) {
 	.public-profile-body {

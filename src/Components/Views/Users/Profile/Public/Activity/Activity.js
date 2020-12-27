@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Activity.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
+import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
 import _ from 'lodash';
 //TODO remvoe date-and-time
