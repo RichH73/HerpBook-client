@@ -1,8 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+/*
+import React from 'react'
+import Canvas from '../../../_services/Canvas'
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import QRCode from 'qrcode';
 import axios from 'axios';
+
+
+
+
 
 const SmallCard = () => {
 	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
@@ -10,7 +16,45 @@ const SmallCard = () => {
 
 	let code;
 	let animalImage;
-	console.log('this name?', !!name);
+	const animalName = !!name ? `Name: ${name}` : '';
+	const animalGender = !!gender ? `Gender: ${gender}` : '';
+	const animalDob = !!dob ? `DOB: ${dayjs(dob).format('MMM DD, YYYY')}` : '';
+	const qr = QRCode.toDataURL(`https://www.herpbook.com/view_animal?id=${_id}`).then((url) => (code = url));
+
+
+	
+
+
+	const draw = context => {
+		// Insert your code to draw an image
+	  };
+
+
+
+
+
+	  return <Canvas draw={draw} height={100} width={100} />
+
+}
+
+
+export default SmallCard
+
+*/
+
+import React, { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import dayjs from 'dayjs';
+import QRCode from 'qrcode';
+import axios from 'axios';
+import ReactToPrint from 'react-to-print';
+
+const SmallCard = () => {
+	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
+	const firstImageThumb = `${images[0].URL}/${images[0].thumbnail}`;
+
+	let code;
+	let animalImage;
 	const animalName = !!name ? `Name: ${name}` : '';
 	const animalGender = !!gender ? `Gender: ${gender}` : '';
 	const animalDob = !!dob ? `DOB: ${dayjs(dob).format('MMM DD, YYYY')}` : '';
@@ -90,9 +134,31 @@ const SmallCard = () => {
 		},
 	};
 	return (
-		<div>
-			<canvas ref={canvas} width={400} height={200} />
-		</div>
+		<React.Fragment>
+			<div className="id-card-preview">
+				<canvas ref={canvas} width={400} height={200} />
+			</div>
+			<ReactToPrint
+				//copyStyles={false}
+				trigger={() => {
+					return (
+						//TODO review this a href ref
+						// eslint-disable-next-line
+						<div style={{ textAlign: 'center', width: '50%' }}>
+							<a href="#">
+								<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+									Print ID Card
+								</button>
+							</a>
+						</div>
+					);
+				}}
+				content={() => this.componentRef}
+			/>
+			<div>
+				<canvas ref={canvas} width={400} height={200} />
+			</div>
+		</React.Fragment>
 	);
 };
 

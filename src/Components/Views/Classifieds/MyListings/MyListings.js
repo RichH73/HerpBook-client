@@ -63,8 +63,8 @@ class MyListings extends Component {
 	render() {
 		const SellerListings = () => {
 			return this.props.myClassifieds.map((list) => (
-				<React.Fragment>
-					<div className="my-listings-box" key={list._id}>
+				<React.Fragment key={list._id}>
+					<div className="my-listings-box">
 						<div className="my-listings-box-image">
 							<Link to={`/listing/${list._id}`}>
 								<img src={`${list.URL}/${list.image}`} alt={list.image} />

@@ -34,7 +34,7 @@ class GetMail extends React.Component {
 			return <div>No mail</div>;
 		} else {
 			return get(this, 'props.inbox', []).map((mail) => (
-				<tr style={!!mail.seen ? { backgroundColor: 'lightgray' } : { fontWeight: 'bold' }}>
+				<tr style={!!mail.seen ? { backgroundColor: 'lightgray' } : { fontWeight: 'bold' }} key={mail._id}>
 					<td>
 						<Link to={{ pathname: '/read_mail', mailID: mail._id }}>{dayjs(mail.created).format('MM/DD/YYYY')}</Link>
 					</td>

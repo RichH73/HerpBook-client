@@ -63,17 +63,19 @@ class MyCollections extends Component {
 			});
 		}
 		return collections.map((sub) => (
-			<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)}>
+			<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)} key={sub._id}>
 				<div className="my-collections-collection-container-image">
 					<img src={`${sub.images[0].URL}/${sub.images[0].thumbnail}`} />
 				</div>
 				<div className="my-collections-collection-container-table">
 					<Table bordered size="sm">
 						<thead>
-							{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
-							<th>Name</th>
-							<th>DOB</th>
-							<th>Gender</th>
+							<tr>
+								{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
+								<th>Name</th>
+								<th>DOB</th>
+								<th>Gender</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
@@ -119,7 +121,9 @@ class MyCollections extends Component {
 									<Form.Control name="sub_cat" as="select" onChange={changeFilter} value={this.props.filters.sub_cat} size="md">
 										<option value="">All</option>
 										{subsList.map((sub) => (
-											<option value={sub.id}>{sub.name}</option>
+											<option key={sub.id} value={sub.id}>
+												{sub.name}
+											</option>
 										))}
 									</Form.Control>
 								</Form.Group>

@@ -138,7 +138,7 @@ class Main extends Component {
 					<ToPrint ref={(el) => (this.componentRef = el)} />
 				</div>
 				<ReactToPrint
-					copyStyles={false}
+					//copyStyles={false}
 					trigger={() => {
 						return (
 							//TODO review this a href ref
@@ -213,7 +213,7 @@ class Main extends Component {
 						</NavDropdown>
 
 						<NavDropdown title="Printing" id="collasible-nav-dropdown">
-							<NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item>
+							{/* <NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item> */}
 							<NavDropdown.Item onClick={() => this.componentSelector('PRINTRECORDS')}>Print Records</NavDropdown.Item>
 						</NavDropdown>
 

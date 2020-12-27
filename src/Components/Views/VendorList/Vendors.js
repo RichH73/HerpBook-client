@@ -78,7 +78,7 @@ class Vendors extends Component {
 						{breeder.projects.length > 0 ? <b>Projects/Supplies:</b> : ''}
 						<ul>
 							{_.get(breeder, 'projects').map((project) => (
-								<li>{project}</li>
+								<li key={project}>{project}</li>
 							))}
 						</ul>
 					</div>
@@ -102,7 +102,9 @@ class Vendors extends Component {
 				<select name="state" onChange={this.change_handler}>
 					<option></option>
 					{this.props.states.map((state) => (
-						<option value={state}>{state}</option>
+						<option value={state} key={state}>
+							{state}
+						</option>
 					))}
 				</select>
 				<this.breeders_search />

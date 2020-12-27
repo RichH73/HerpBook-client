@@ -229,7 +229,6 @@ class PrintRecords extends Component {
 	};
 
 	getFeedData = () => {
-		console.log(!!this.state.startDate, this.state.startDate);
 		let animal = this.props.currentAnimal;
 		const recordTypes = ['feedings', 'pairings', 'weights', 'sheddings'];
 		let feedRecords = animal.feedings;

@@ -201,7 +201,9 @@ class EditProfile extends React.Component {
 								<Form.Label>State</Form.Label>
 								<Form.Control as="select" name="businessState" onChange={this.onChangeHandler} value={user.businessState}>
 									{this.props.states.map((state) => (
-										<option value={state}>{state}</option>
+										<option key={state} value={state}>
+											{state}
+										</option>
 									))}
 								</Form.Control>
 							</Form.Group>
@@ -388,7 +390,9 @@ class EditProfile extends React.Component {
 								<Form.Label>State</Form.Label>
 								<Form.Control as="select" name="entityState" onChange={this.onChangeHandler} value={user.entityState}>
 									{this.props.states.map((state) => (
-										<option value={state}>{state}</option>
+										<option key={state} value={state}>
+											{state}
+										</option>
 									))}
 								</Form.Control>
 							</Form.Group>

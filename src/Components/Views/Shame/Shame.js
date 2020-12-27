@@ -40,7 +40,7 @@ class Shame extends Component {
 			switch (report.reportType) {
 				case 'BUSINESS':
 					return (
-						<React.Fragment>
+						<React.Fragment key={report.id}>
 							<Link to={{ pathname: '/view_shame', reportId: report.id }}>
 								<div className="wall-of-shame-user-reports" style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
 									<h4>{report.business_name}</h4>
@@ -66,7 +66,7 @@ class Shame extends Component {
 					);
 				case 'INDIVIDUAL':
 					return (
-						<React.Fragment>
+						<React.Fragment key={report.id}>
 							<Link to={{ pathname: '/view_shame', reportId: report.id }}>
 								<div className="wall-of-shame-user-reports" style={{ width: '98%', margin: 'auto', border: '1px solid orange', borderRadius: '7px' }}>
 									<h4>{report.individual_name}</h4>
