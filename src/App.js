@@ -17,8 +17,14 @@ class App extends Component {
 	state = {
 		sideDrawerOpen: false,
 		user: this.props.userInfo,
+		userSocket: false,
 	};
 	componentDidMount() {
+		socket.on('socketSet', (socket) => {
+			this.setState({
+				userSocket: true,
+			});
+		});
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 			this.props.user_login(user);
@@ -55,11 +61,18 @@ class App extends Component {
 		let socketID = this.props.userInfo.socketId;
 		let newSocket = socket.id;
 		let userID = this.props.userInfo.uid;
+		socket.on('socketSet', (socketID) => {
+			console.log('new socket set ', socketID);
+		});
 		if (!!userID) {
-			socket.emit('setSocketID', {
-				uid: userID,
-				socketID: newSocket,
-			});
+			if (!this.state.userSocket) {
+				console.log('No socket?', socketID);
+				console.log('this state socket', !!this.state.userSocket);
+				socket.emit('setSocketID', {
+					uid: userID,
+					socketID: newSocket,
+				});
+			}
 			const mySocketID = socket.id;
 		}
 		if (socketID) {
