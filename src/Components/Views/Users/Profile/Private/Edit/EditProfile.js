@@ -34,6 +34,11 @@ class EditProfile extends React.Component {
 	footerChangeHandler = (text) => {
 		this.props.userInfoUpdate('businessFooter', text);
 	};
+
+	aboutChangeHandler = (text) => {
+		this.props.userInfoUpdate('about', text);
+	};
+
 	pic_selected = () => {
 		if (this.state.pic_selected === true) {
 			this.setState({ pic_selected: false });
@@ -240,20 +245,20 @@ class EditProfile extends React.Component {
 								onChange={this.displayBusinessOnClassifieds}
 							/>
 						</Form.Row>
+						<Form.Group>
+							<Form.Label>Add a footer to your classified ads.</Form.Label>
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="businessFooter"
+								value={user.businessFooter}
+								onChange={this.footerChangeHandler}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={false}
+								theme="snow"
+							/>
+						</Form.Group>
 					</Form>
-					<div className="edit-profile-business-footer">
-						<Form.Label>Add a footer to your classified ads.</Form.Label>
-						<ReactQuill
-							style={{ backgroundColor: 'white', color: 'black' }}
-							name="businessFooter"
-							value={user.businessFooter}
-							onChange={this.footerChangeHandler}
-							modules={this.props.mods.modules}
-							formats={this.props.mods.formats}
-							readOnly={false}
-							theme="snow"
-						/>
-					</div>
 				</React.Fragment>
 			</div>
 		);
@@ -410,6 +415,19 @@ class EditProfile extends React.Component {
 								/>
 							</Form.Group>
 						</Form.Row>
+						<Form.Group>
+							<Form.Label>Enter something about you for your profile views.</Form.Label>
+							<ReactQuill
+								style={{ backgroundColor: 'white', color: 'black' }}
+								name="about"
+								value={user.about}
+								onChange={this.aboutChangeHandler}
+								modules={this.props.mods.modules}
+								formats={this.props.mods.formats}
+								readOnly={false}
+								theme="snow"
+							/>
+						</Form.Group>
 					</Form>
 				</div>
 

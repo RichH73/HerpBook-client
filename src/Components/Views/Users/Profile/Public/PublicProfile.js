@@ -43,7 +43,7 @@ class PublicProfile extends Component {
 	};
 
 	componentDidMount() {
-		console.log('opening...', this.props.match.params.id);
+		//console.log('opening...', this.props.match.params.id);
 		this.props.setPageTitle(``);
 
 		socket.emit('viewUserProfile', {
@@ -58,7 +58,7 @@ class PublicProfile extends Component {
 			this.setState({
 				User: data,
 			});
-			console.log('this state: ', this.state);
+			//console.log('this state: ', this.state);
 		});
 	}
 
@@ -76,7 +76,6 @@ class PublicProfile extends Component {
 				this.setState({
 					User: data,
 				});
-				console.log('this state: ', this.state);
 			});
 		}
 	}
@@ -170,12 +169,12 @@ class PublicProfile extends Component {
 						<Navbar.Brand>
 							<Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link>
 						</Navbar.Brand>
-						{/* <Nav.Link>
-								<Link to={`/user/${id}/friends`}>Friends</Link>
-							</Nav.Link> */}
-						{/* <Nav.Link>
-								<Link to={`/user/${id}/activity`}>Activity</Link>
-							</Nav.Link> */}
+						<Nav.Link>
+							<Link to={`/user/${id}/friends`}>Friends</Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to={`/user/${id}/activity`}>Activity</Link>
+						</Nav.Link>
 					</Nav>
 					{/* </Navbar> */}
 				</div>

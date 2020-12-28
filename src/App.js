@@ -22,7 +22,7 @@ class App extends Component {
 	};
 	componentDidMount() {
 		let value = this.context;
-		console.log(value);
+		// console.log(value);
 
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));

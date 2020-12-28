@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 import { first, filter } from 'lodash';
 import ReactHtmlParser from 'react-html-parser';
-import _ from 'lodash';
+import { get } from 'lodash';
 import dayjs from 'dayjs';
 import socket from '../../../../_services/SocketService';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ class MailDisplay extends React.Component {
 		const { mailID } = this.props.location;
 		const message = first(filter(mail, { _id: mailID }));
 		this.messageSeen(message);
-		this.props.setPageTitle(_.get(message, 'subject', 'No Message'));
+		this.props.setPageTitle(get(message, 'subject', 'No Message'));
 	}
 
 	deleteMessage = (id) => {
@@ -71,9 +71,7 @@ class MailDisplay extends React.Component {
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								<Link to={`/user/${message.from.username}`}>{message.from.username}</Link>
-							</td>
+							<td>{!!get(message, 'username', '') ? 'No User Found' : <Link to={`/user/${message.from.username}`}>{message.from.username}</Link>}</td>
 							<td>{message.subject}</td>
 							<td>{dayjs(message.created).format('MM/DD/YYYY @h:mm A')}</td>
 						</tr>
@@ -82,7 +80,7 @@ class MailDisplay extends React.Component {
 				<table>
 					<thead>
 						<tr>
-							<th>{message.from.username} wrote:</th>
+							<th>{get(message, 'from.username', 'No User Found')} wrote:</th>
 						</tr>
 					</thead>
 					<tbody>
