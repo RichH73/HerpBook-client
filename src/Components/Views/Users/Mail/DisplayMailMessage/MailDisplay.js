@@ -8,6 +8,7 @@ import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import socket from '../../../../_services/SocketService';
+import { Link } from 'react-router-dom';
 
 class MailDisplay extends React.Component {
 	messageReply = (message) => {
@@ -69,7 +70,9 @@ class MailDisplay extends React.Component {
 					</thead>
 					<tbody>
 						<tr>
-							<td>{message.from.username}</td>
+							<td>
+								<Link to={`/user/${message.from.username}`}>{message.from.username}</Link>
+							</td>
 							<td>{message.subject}</td>
 							<td>{dayjs(message.created).format('MM/DD/YYYY @h:mm A')}</td>
 						</tr>

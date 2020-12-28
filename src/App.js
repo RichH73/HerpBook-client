@@ -10,7 +10,7 @@ import { Base64 } from 'js-base64';
 import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
-// import { SocketService } from './Components/_services/SocketService'
+import { SocketService } from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {
@@ -20,11 +20,14 @@ class App extends Component {
 		userSocket: false,
 	};
 	componentDidMount() {
-		socket.on('socketSet', (socket) => {
-			this.setState({
-				userSocket: true,
-			});
-		});
+		let value = this.context;
+		console.log(value);
+		// socket.on('socketSet', (socket) => {
+		// 	console.log('socketSet recieved')
+		// 	this.props.userInfoUpdate(
+		// 		'userSocket', true,
+		// 	);
+		// });
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 			this.props.user_login(user);
@@ -61,11 +64,11 @@ class App extends Component {
 		let socketID = this.props.userInfo.socketId;
 		let newSocket = socket.id;
 		let userID = this.props.userInfo.uid;
-		socket.on('socketSet', (socketID) => {
-			console.log('new socket set ', socketID);
-		});
+		let sockState = this.props.userInfo.userSocket;
 		if (!!userID) {
-			if (!this.state.userSocket) {
+			console.log('Found uid');
+			if (!sockState) {
+				console.log('No userSocket in app state');
 				console.log('No socket?', socketID);
 				console.log('this state socket', !!this.state.userSocket);
 				socket.emit('setSocketID', {
@@ -73,16 +76,15 @@ class App extends Component {
 					socketID: newSocket,
 				});
 			}
-			const mySocketID = socket.id;
 		}
-		if (socketID) {
-			socket.emit('mail', {
-				eventType: 'checkMail',
-				uid: this.props.userInfo.uid,
-				authToken: localStorage.token,
-				socketID: this.props.userInfo.socketID,
-			});
-		}
+		// if (socketID) {
+		// 	socket.emit('mail', {
+		// 		eventType: 'checkMail',
+		// 		uid: this.props.userInfo.uid,
+		// 		authToken: localStorage.token,
+		// 		socketID: this.props.userInfo.socketID,
+		// 	});
+		// }
 		socket.on('disconnect', () => {
 			socket.emit('removeSocketID', {
 				uid: this.props.userInfo.uid,
@@ -138,6 +140,7 @@ class App extends Component {
 					<Body />
 					<Footer />
 				</div>
+				{/* <SocketService /> */}
 			</React.Fragment>
 		);
 	}
@@ -154,5 +157,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
-
+console.log('context', (SocketService.contextType = 'UserContext'));
+SocketService.contextType = 'UserContext';
 export default connect(mapStateToProps, mapDispatchToProps)(App);

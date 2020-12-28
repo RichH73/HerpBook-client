@@ -89,7 +89,9 @@ class SubCategory extends React.Component {
 											<td>
 												<div>
 													{list.username || list.user}{' '}
-													{!!list.online ? <span style={{ color: 'green', fontStyle: 'bold' }}> (Online)</span> : <React.Fragment></React.Fragment>}
+													<Link to={`/user/${list.username}`}>
+														{!!list.online ? <span style={{ color: 'green', fontStyle: 'bold' }}> (Online)</span> : <React.Fragment></React.Fragment>}
+													</Link>
 												</div>
 											</td>
 										</tr>

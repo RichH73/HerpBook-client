@@ -13,24 +13,105 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Modal from 'react-bootstrap/Modal';
 
 class PublicProfile extends Component {
-	state = {};
+	state = {
+		User: {},
+		contactModal: false,
+		subject: '',
+		messageBody: '',
+	};
+
+	showContactModal = () => {
+		this.setState({
+			contactModal: true,
+		});
+	};
+
+	hideContactModal = () => {
+		this.setState({
+			contactModal: false,
+		});
+	};
+
 	componentDidMount() {
 		socket.emit('viewUserProfile', {
-			data: {
-				username: this.props.match.params.id,
-				type: 'publicView',
+			username: this.props.match.params.id,
+			type: 'publicView',
+			sock: socket.id,
+		});
+
+		socket.on('displayUserData', (data) => {
+			console.log('this is the user', data);
+			this.setState({
+				User: data,
+			});
+			console.log('this state: ', this.state);
+		});
+	}
+
+	onChangeHandler = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
+	};
+
+	sendContact = () => {
+		const user = this.state.User;
+		socket.emit('mail', {
+			eventType: 'createMail',
+			uid: this.props.userInfo.uid,
+			authToken: localStorage.token,
+			socketID: socket.id,
+			headers: {
+				recipient: user._id,
+				from: this.props.userInfo.uid,
+			},
+			newMailMessage: {
+				from: this.props.userInfo.uid,
+				sent: new Date(),
+				subject: this.state.subject,
+				body: this.props.text,
 			},
 		});
-		console.log(!!this.props.match.params.id);
-	}
+		this.setState({ contactModal: false });
+	};
+
+	contactModalForm = () => {
+		return (
+			<Modal show={this.state.contactModal} onHide={this.hideContactModal} backdrop="static" keyboard={false}>
+				<Modal.Header closeButton>
+					<Modal.Title>Modal title</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Form>
+						<Form.Row>
+							<Form.Label>Subject</Form.Label>
+							<Form.Control type="text" name="subject" onChange={this.onChangeHandler} />
+						</Form.Row>
+					</Form>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={this.hideContactModal}>
+						Cancel
+					</Button>
+					<Button variant="success" onClick={this.sendContact}>
+						Send
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+	};
 
 	render() {
 		const id = this.props.match.params.id;
 		return (
 			<React.Fragment>
 				Users page with id of: {id}
+				<br />
+				The User:
+				<p>{this.state.User._id}</p>
 				<div>
 					<Navbar
 						style={{ backgroundColor: 'orange', borderTopLeftRadius: '7px', borderTopRightRadius: '7px' }}
@@ -51,19 +132,17 @@ class PublicProfile extends Component {
 							<Button variant="outline-info">Search</Button>
 						</Form>
 					</Navbar>
-					<div>
-						<Link to={`/user/${id}/about`}>About</Link>
-					</div>
-					<div>
-						<Link to={`/user/${id}/activity`}>Activity</Link>
-					</div>
 				</div>
+				<p onClick={this.showContactModal}>Contact me</p>
+				{this.contactModalForm()}
 			</React.Fragment>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+	userInfo: state.user,
+});
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
