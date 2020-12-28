@@ -22,18 +22,22 @@ class App extends Component {
 	componentDidMount() {
 		let value = this.context;
 		console.log(value);
-		// socket.on('socketSet', (socket) => {
-		// 	console.log('socketSet recieved')
-		// 	this.props.userInfoUpdate(
-		// 		'userSocket', true,
-		// 	);
-		// });
+
 		if (localStorage.token) {
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
 			this.props.user_login(user);
+			console.log('new user', user);
 			socket.on('connect', () => {
 				socket.emit('newUser', {
 					uid: this.props.userInfo.uid,
+				});
+				socket.emit('setSocketID', {
+					uid: user.uid,
+					socketID: socket.id,
+				});
+				socket.on('socketSet', (socket) => {
+					console.log('socketSet recieved');
+					this.props.userInfoUpdate('userSocket', true);
 				});
 				this.props.setSocketID(socket.id);
 				socket.emit('mail', {
@@ -66,15 +70,15 @@ class App extends Component {
 		let userID = this.props.userInfo.uid;
 		let sockState = this.props.userInfo.userSocket;
 		if (!!userID) {
-			console.log('Found uid');
+			// console.log('Found uid');
 			if (!sockState) {
-				console.log('No userSocket in app state');
-				console.log('No socket?', socketID);
-				console.log('this state socket', !!this.state.userSocket);
-				socket.emit('setSocketID', {
-					uid: userID,
-					socketID: newSocket,
-				});
+				// console.log('No userSocket in app state');
+				// console.log('No socket?', socketID);
+				// console.log('this state socket', !!this.state.userSocket);
+				// socket.emit('setSocketID', {
+				// 	uid: userID,
+				// 	socketID: newSocket,
+				// });
 			}
 		}
 		// if (socketID) {
