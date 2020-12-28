@@ -44,14 +44,6 @@
   margin: 3px 0 1em 3px;
 }
 
-.display-message-buttons {
-  width: 40%;
-}
-
-.display-message-buttons button {
-  width: 60px;
-}
-
 .message-reply-form-group {
   width: 100%;
   overflow: hidden;

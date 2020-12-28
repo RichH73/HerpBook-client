@@ -1,67 +1,20 @@
-/*
-  Grid Templates
-        // display: grid;
-        // grid-template-columns: .1fr 1fr .1fr;
-        // grid-template-rows: 1fr 0.11fr 4fr 0.25fr;
-        // grid-template-areas:
-        // "head head head"
-        // "toolbar toolbar toolbar"
-        // "body body body"
-        // "footer footer footer";
-        // grid-area: public-profile-navbar;
-*/
-.mr-auto a {
-	color: white;
+@import '../../../../../index';
+
+.my-profile-main {
+	margin-bottom: 2rem;
 }
 
-.profile-toolbar {
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+.my-profile-main-profile-image {
+	max-width: 160px;
+	cursor: pointer;
 }
 
-@media screen and (max-width: 1080px) {
-	.public-profile-body {
-		padding-top: 0.75em;
-		width: 100%;
-	}
-
-	.public-profile-header img {
-		border-radius: 50%;
-		width: 150px;
-	}
-
-	.public-profile-navbar {
-		margin-top: 1.5em;
-		display: flex;
-		background-color: green;
-		color: white;
-		justify-content: space-evenly;
-	}
-
-	.public-profile-link {
-		cursor: pointer;
-	}
+.my-profile-main-nav {
+	background-color: $themeColor;
+	padding: 0 10px;
+	color: black;
 }
-@media screen and (min-width: 1081px) {
-	.public-profile-body {
-		padding-top: 0.75em;
-		width: 100%;
-	}
 
-	.public-profile-header img {
-		border-radius: 50%;
-		width: 150px;
-	}
-
-	.public-profile-navbar {
-		margin-top: 1.5em;
-		display: flex;
-		background-color: green;
-		color: white;
-		justify-content: space-evenly;
-	}
-
-	.public-profile-link {
-		cursor: pointer;
-	}
+.my-profile-main-nav a {
+	color: black;
 }

@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
-import './About.css';
+import './Friends.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import CardColumns from 'react-bootstrap/CardColumns';
+import { Link } from 'react-router-dom';
 
-class About extends Component {
+class Friends extends Component {
 	render() {
-		return <div className="profile-about">Ello</div>;
+		const { User } = this.props;
+		return (
+			<div className="my-profile-friends-main">
+				<CardColumns>
+					{User.friends.map((friend) => (
+						<Link to={`/user/${friend.username}`}>
+							<Card style={{ width: '150px' }}>
+								<Card.Img variant="top" src={`${friend.baseURL}/profile/${friend.profile_pic}`} style={{ maxWidth: '150px' }} />
+								<Card.Body>
+									<Card.Title>{`${friend.firstName} ${friend.lastName}`}</Card.Title>
+								</Card.Body>
+							</Card>
+						</Link>
+					))}
+				</CardColumns>
+			</div>
+		);
 	}
 }
 
@@ -25,10 +45,11 @@ const mapStateToProps = (state) => ({
 	zip_code: state.user_profile.zip_code,
 	website: state.user_profile.website,
 	business_name: state.user_profile.business_name,
+	User: state.PublicProfile.User,
 });
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default connect(mapStateToProps, mapDispatchToProps)(Friends);

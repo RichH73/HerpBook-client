@@ -254,6 +254,13 @@ export const userLogOut = () => {
 	};
 };
 
+export const viewUserProfileData = (data) => {
+	return {
+		type: 'New_Profile',
+		data,
+	};
+};
+
 export const token_login = () => {
 	return function (dispatch) {
 		axios({

@@ -57,7 +57,8 @@ class Main extends Component {
 				});
 		}
 
-		this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		// this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		this.props.setPageTitle(``);
 	}
 
 	componentWillUnmount() {
@@ -198,7 +199,11 @@ class Main extends Component {
 		const navStyles = { color: 'black', fontWeight: 'bold', cursor: 'pointer' };
 		return (
 			<React.Fragment>
-				<Navbar style={{ backgroundColor: 'orange' }} variant="light" collapseOnSelect expand="sm">
+				<Navbar
+					style={{ backgroundColor: 'orange', borderTopLeftRadius: '7px', borderTopRightRadius: '7px' }}
+					variant="light"
+					collapseOnSelect
+					expand="sm">
 					{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
 					<Nav className="mr-auto">
 						<Nav.Link onClick={() => this.componentSelector('ANIMAL')} style={navStyles}>

@@ -3,10 +3,11 @@ import './PublicProfile.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
-import About from './About/About';
+//import Friends from './Friends/Friends';
 import Images from './Images/Images';
 import { Route, useParams, Link } from 'react-router-dom';
 import socket from '../../../../_services/SocketService';
+import ReactQuill from 'react-quill';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -14,6 +15,10 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 
 class PublicProfile extends Component {
 	state = {
@@ -21,6 +26,8 @@ class PublicProfile extends Component {
 		contactModal: false,
 		subject: '',
 		messageBody: '',
+		firstName: '',
+		lastName: '',
 	};
 
 	showContactModal = () => {
@@ -36,6 +43,9 @@ class PublicProfile extends Component {
 	};
 
 	componentDidMount() {
+		console.log('opening...', this.props.match.params.id);
+		this.props.setPageTitle(``);
+
 		socket.emit('viewUserProfile', {
 			username: this.props.match.params.id,
 			type: 'publicView',
@@ -43,7 +53,8 @@ class PublicProfile extends Component {
 		});
 
 		socket.on('displayUserData', (data) => {
-			console.log('this is the user', data);
+			//console.log('this is the user', data);
+			this.props.viewUserProfileData(data);
 			this.setState({
 				User: data,
 			});
@@ -51,9 +62,34 @@ class PublicProfile extends Component {
 		});
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			socket.emit('viewUserProfile', {
+				username: this.props.match.params.id,
+				type: 'publicView',
+				sock: socket.id,
+			});
+
+			socket.on('displayUserData', (data) => {
+				console.log('this is the user', data);
+				this.props.viewUserProfileData(data);
+				this.setState({
+					User: data,
+				});
+				console.log('this state: ', this.state);
+			});
+		}
+	}
+
 	onChangeHandler = (event) => {
 		this.setState({
 			[event.target.name]: event.target.value,
+		});
+	};
+
+	setMessageBody = (text) => {
+		this.setState({
+			messageBody: text,
 		});
 	};
 
@@ -65,14 +101,14 @@ class PublicProfile extends Component {
 			authToken: localStorage.token,
 			socketID: socket.id,
 			headers: {
-				recipient: user._id,
+				recipient: user.uid,
 				from: this.props.userInfo.uid,
 			},
 			newMailMessage: {
 				from: this.props.userInfo.uid,
 				sent: new Date(),
 				subject: this.state.subject,
-				body: this.props.text,
+				body: this.state.messageBody,
 			},
 		});
 		this.setState({ contactModal: false });
@@ -82,13 +118,28 @@ class PublicProfile extends Component {
 		return (
 			<Modal show={this.state.contactModal} onHide={this.hideContactModal} backdrop="static" keyboard={false}>
 				<Modal.Header closeButton>
-					<Modal.Title>Modal title</Modal.Title>
+					<Modal.Title>Messaging {`${this.props.User.firstName} ${this.props.User.lastName}`}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form>
 						<Form.Row>
 							<Form.Label>Subject</Form.Label>
 							<Form.Control type="text" name="subject" onChange={this.onChangeHandler} />
+						</Form.Row>
+						<Form.Row>
+							<Form.Group>
+								<Form.Label>Message</Form.Label>
+								<ReactQuill
+									style={{ backgroundColor: 'white', color: 'black' }}
+									name="messageBody"
+									value={this.state.messageBody}
+									onChange={this.setMessageBody}
+									modules={this.props.mods.modules}
+									formats={this.props.mods.formats}
+									readOnly={false}
+									theme="snow"
+								/>
+							</Form.Group>
 						</Form.Row>
 					</Form>
 				</Modal.Body>
@@ -106,42 +157,48 @@ class PublicProfile extends Component {
 
 	render() {
 		const id = this.props.match.params.id;
+		const { User } = this.props;
 		return (
-			<React.Fragment>
-				Users page with id of: {id}
-				<br />
-				The User:
-				<p>{this.state.User._id}</p>
+			<div className="my-profile-main">
 				<div>
-					<Navbar
+					{/* <Navbar
 						style={{ backgroundColor: 'orange', borderTopLeftRadius: '7px', borderTopRightRadius: '7px' }}
 						variant="light"
 						collapseOnSelect
-						expand="sm">
-						<Navbar.Brand>{id}</Navbar.Brand>
-						<Nav className="mr-auto">
-							<Nav.Link>
-								<Link to={`/user/${id}/about`}>About</Link>
-							</Nav.Link>
-							<Nav.Link>
+						expand="sm"> */}
+					<Nav className="my-profile-main-nav">
+						<Navbar.Brand>
+							<Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link>
+						</Navbar.Brand>
+						{/* <Nav.Link>
+								<Link to={`/user/${id}/friends`}>Friends</Link>
+							</Nav.Link> */}
+						{/* <Nav.Link>
 								<Link to={`/user/${id}/activity`}>Activity</Link>
-							</Nav.Link>
-						</Nav>
-						<Form inline>
-							<Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-							<Button variant="outline-info">Search</Button>
-						</Form>
-					</Navbar>
+							</Nav.Link> */}
+					</Nav>
+					{/* </Navbar> */}
 				</div>
-				<p onClick={this.showContactModal}>Contact me</p>
+				<Container fluid style={{ marginTop: '1rem' }}>
+					<Row>
+						<Col>
+							<Image onClick={this.showContactModal} src={User.profileImage} roundedCircle thumbnail className="my-profile-main-profile-image" />
+						</Col>
+						<Col>
+							<ReactQuill name="view-shame-incident-description" value={User.about} readOnly={true} theme="bubble" />
+						</Col>
+					</Row>
+				</Container>
 				{this.contactModalForm()}
-			</React.Fragment>
+			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
 	userInfo: state.user,
+	mods: state.richText,
+	User: state.PublicProfile.User,
 });
 
 const mapDispatchToProps = (dispatch) => {

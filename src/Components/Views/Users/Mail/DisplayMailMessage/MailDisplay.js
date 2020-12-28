@@ -9,6 +9,7 @@ import _ from 'lodash';
 import dayjs from 'dayjs';
 import socket from '../../../../_services/SocketService';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 class MailDisplay extends React.Component {
 	messageReply = (message) => {
@@ -91,12 +92,12 @@ class MailDisplay extends React.Component {
 					</tbody>
 				</table>
 				<div className="display-message-buttons">
-					<button type="button" className="btn btn-success display-message-button button" onClick={() => this.messageReply(message)}>
+					<Button type="button" variant="success" onClick={() => this.messageReply(message)}>
 						Reply
-					</button>
-					<button onClick={() => this.deleteMessage(message._id)} className="btn btn-danger display-message-button button">
+					</Button>{' '}
+					<Button variant="danger" onClick={() => this.deleteMessage(message._id)}>
 						Delete
-					</button>
+					</Button>
 				</div>
 			</div>
 		);

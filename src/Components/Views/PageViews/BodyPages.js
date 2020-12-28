@@ -28,7 +28,7 @@ import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
 import MailReply from '../Users/Mail/MailReply/MailReply';
 import PublicProfile from '../Users/Profile/Public/PublicProfile';
-import About from '../Users/Profile/Public/About/About';
+import Friends from '../Users/Profile/Public/Friends/Friends';
 import Activity from '../Users/Profile/Public/Activity/Activity';
 
 const Pages = () => {
@@ -61,7 +61,7 @@ const Pages = () => {
 			<Route path="/search_collections/:id" component={AnimalSearch} />
 			<Route path="/new_clutch" component={NewClutch} />
 			<Route path="/user/:id" component={PublicProfile} />
-			<Route path="/user/:id/about" component={About} />
+			<Route path="/user/:id/friends" component={Friends} />
 			<Route path="/user/:id/activity" component={Activity} />
 		</React.Fragment>
 	);

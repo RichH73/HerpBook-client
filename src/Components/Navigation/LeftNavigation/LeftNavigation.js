@@ -22,7 +22,7 @@ class LeftNav extends Component {
 						<div className="left-nav-link">
 							{!!displayMailCount ? (
 								<Link to="/my_mail">
-									My Mail: <small style={{ color: 'red' }}>{displayMailCount}</small>
+									My Mail <small style={{ color: 'red' }}>{displayMailCount}</small>
 								</Link>
 							) : (
 								<Link to="/my_mail">My Mail</Link>
