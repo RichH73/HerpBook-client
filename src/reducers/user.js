@@ -1,7 +1,6 @@
 const initialState = {
 	uid: '',
 	socketId: '',
-	socketID: '',
 	userSocket: false,
 };
 

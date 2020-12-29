@@ -11,7 +11,6 @@ import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
 import { SocketService } from './Components/_services/SocketService';
-import { toLower } from 'lodash';
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {
@@ -21,68 +20,68 @@ class App extends Component {
 		userSocket: false,
 	};
 	componentDidMount() {
-		let value = this.context;
-		// console.log(value);
-
+		let sock = socket.id;
 		if (localStorage.token) {
+			// console.log('Sending token to be checked')
+			socket.emit('checkLogin', localStorage.token);
+		}
+
+		socket.on('tokenResponse', (newToken) => {
+			localStorage.setItem('token', newToken);
+			// console.log('Got a token response, ', newToken)
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			// console.log('made it here', user)
+
 			this.props.user_login(user);
-			//console.log('new user', user);
+
 			socket.on('connect', () => {
-				socket.emit('checkLogin', localStorage.token);
-				// socket.emit('newUser', {
-				// 	uid: this.props.userInfo.uid,
-				// });
-
-				// socket.emit('setSocketID', {
-				// 	uid: user.uid,
-				// 	socketID: socket.id,
-				// });
-
-				// socket.on('socketSet', (socket) => {
-				// 	console.log('socketSet recieved');
-				// 	this.props.userInfoUpdate('userSocket', true);
-				// });
-
-				// this.props.setSocketID(socket.id);
+				socket.emit('newUser', {
+					uid: this.props.userInfo.uid,
+				});
 
 				// socket.emit('mail', {
 				// 	eventType: 'checkMail',
-				// 	uid: this.props.userInfo.uid,
+				// 	uid: user.uid,
 				// 	authToken: localStorage.token,
-				// 	socketID: this.props.userInfo.socketId,
-				// });
+				// 	socketID: sock,
+				// }, console.log('checking some mail', sock));
 			});
-			socket.on('tokenResponse', (data) => {
-				// console.log('tokenResponse', data.name)
-				if (toLower(data.name) === 'tokenexpirederror') {
-					this.props.userLogOut();
-				}
-				if (toLower(data.name) === 'tokengood') {
-					//console.log(toLower(data.name) === 'tokengood')
-					socket.emit('newUser', {
-						uid: this.props.userInfo.uid,
-					});
 
-					socket.emit('setSocketID', {
-						uid: user.uid,
-						socketID: socket.id,
-					});
+			socket.on('newMail', (mail) => {
+				this.props.newUserMail({
+					mailCount: mail.inbox.filter((count) => !count.seen).length,
+					inbox: mail.inbox,
+					sentItmes: mail.sentItems,
+				});
+			});
+		});
 
-					socket.on('socketSet', (socket) => {
-						//console.log('socketSet recieved');
-						this.props.userInfoUpdate('userSocket', true);
-					});
+		//g
 
-					this.props.setSocketID(socket.id);
-
-					socket.emit('mail', {
-						eventType: 'checkMail',
-						uid: this.props.userInfo.uid,
-						authToken: localStorage.token,
-						socketID: this.props.userInfo.socketId,
-					});
-				}
+		/*
+		if (localStorage.token) {
+			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			this.props.user_login(user);
+			console.log('new user', user);
+			socket.on('connect', () => {
+				socket.emit('newUser', {
+					uid: this.props.userInfo.uid,
+				});
+				socket.emit('setSocketID', {
+					uid: user.uid,
+					socketID: socket.id,
+				});
+				socket.on('socketSet', (socket) => {
+					console.log('socketSet recieved');
+					this.props.userInfoUpdate('userSocket', true);
+				});
+				this.props.setSocketID(socket.id);
+				socket.emit('mail', {
+					eventType: 'checkMail',
+					uid: this.props.userInfo.uid,
+					authToken: localStorage.token,
+					socketID: this.props.userInfo.socketId,
+				});
 			});
 		}
 		socket.on('alertMessage', (message) => {
@@ -92,16 +91,62 @@ class App extends Component {
 		socket.onAny((event, ...args) => {});
 		this.props.getVendors();
 
-		socket.on('newMail', (mail) => {
-			this.props.newUserMail({
-				mailCount: mail.inbox.filter((count) => !count.seen).length,
-				inbox: mail.inbox,
-				sentItmes: mail.sentItems,
-			});
+		
 		});
+
+		*/
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
+		if (prevProps.userInfo.uid !== this.props.userInfo.uid) {
+			// console.log('~~~~~~~~~~~~~Props Changed~~~~~~~~~~~')
+			socket.emit('setSocketID', {
+				uid: this.props.userInfo.uid,
+				socketID: socket.id,
+			});
+			socket.emit('mail', {
+				eventType: 'checkMail',
+				uid: this.props.userInfo.uid,
+				authToken: localStorage.token,
+				socketID: socket.id,
+			});
+		}
+
+		// 	socket.on('connect', () => {
+		// 		socket.emit('newUser', {
+		// 			uid: this.props.userInfo.uid,
+		// 		});
+		// 		socket.emit('setSocketID', {
+		// 			uid: this.props.userInfo.uid,
+		// 			socketID: socket.id,
+		// 		});
+		// 		socket.on('socketSet', (socket) => {
+		// 			console.log('socketSet recieved');
+		// 			this.props.userInfoUpdate('userSocket', true);
+		// 		});
+		// 		socket.emit('mail', {
+		// 			eventType: 'checkMail',
+		// 			uid: this.props.userInfo.uid,
+		// 			authToken: localStorage.token,
+		// 			socketID: this.props.userInfo.socketId,
+		// 		});
+		// 	});
+		// }
+
+		/*
+
+
+
+
+
+			
+			this.props.setSocketID(socket.id);
+
+
+
+
+*/
+
 		let socketID = this.props.userInfo.socketId;
 		let newSocket = socket.id;
 		let userID = this.props.userInfo.uid;

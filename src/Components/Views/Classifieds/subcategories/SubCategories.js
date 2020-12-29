@@ -60,7 +60,7 @@ class SubCategory extends React.Component {
 	render() {
 		const Listings = () => {
 			let page = this.props.listingsData.map((list) => (
-				<React.Fragment>
+				<React.Fragment key={list._id}>
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
 							<div className="listing-box-image">
