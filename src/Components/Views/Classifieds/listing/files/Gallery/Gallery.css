@@ -20,13 +20,12 @@
 
 @media screen and (min-width: 1081px) {
   .classifieds-images-gallery {
-    padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     margin-top: 2em;
-    display: -ms-grid;
-    display: grid;
-    grid-gap: 20px;
-    -ms-grid-columns: auto auto auto;
-        grid-template-columns: auto auto auto;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
@@ -36,6 +35,7 @@
     background-color: #cce2f8;
     border-radius: 7px;
     padding-bottom: 10px;
+    margin: 1rem auto;
   }
   .classifieds-images-image-header {
     text-align: center;
@@ -68,19 +68,22 @@
 
 @media screen and (max-width: 1080px) {
   .classifieds-images-gallery {
-    width: 100%;
-    display: -ms-grid;
-    display: grid;
-    margin: auto;
-    -ms-grid-columns: 50% 50%;
-        grid-template-columns: 50% 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 2em;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
   .classifieds-images-image-box {
-    margin: 2em auto;
-    width: 90%;
+    width: 200px;
     background-color: #cce2f8;
     border-radius: 7px;
     padding-bottom: 10px;
+    margin: 1rem auto;
   }
   .classifieds-images-image-header {
     width: 100%;

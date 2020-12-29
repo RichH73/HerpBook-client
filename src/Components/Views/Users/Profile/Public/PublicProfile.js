@@ -19,6 +19,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import Table from 'react-bootstrap/Table';
 
 class PublicProfile extends Component {
 	state = {
@@ -43,7 +44,7 @@ class PublicProfile extends Component {
 	};
 
 	componentDidMount() {
-		//console.log('opening...', this.props.match.params.id);
+		console.log('opening...', this.props.match.params.id);
 		this.props.setPageTitle(``);
 
 		socket.emit('viewUserProfile', {
@@ -180,12 +181,22 @@ class PublicProfile extends Component {
 				</div>
 				<Container fluid style={{ marginTop: '1rem' }}>
 					<Row>
-						<Col>
+						<Col xl={'auto'}>
 							<Image onClick={this.showContactModal} src={User.profileImage} roundedCircle thumbnail className="my-profile-main-profile-image" />
 						</Col>
-						<Col>
-							<ReactQuill name="view-shame-incident-description" value={User.about} readOnly={true} theme="bubble" />
+
+						<Col xl={'auto'}>
+							<Table>
+								<tr>
+									<td>
+										<Image src="/images/envelop.svg" onClick={this.showContactModal} style={{ cursor: 'pointer', maxWidth: '2rem' }} /> Message me
+									</td>
+								</tr>
+							</Table>
 						</Col>
+					</Row>
+					<Row>
+						<ReactQuill name="view-shame-incident-description" value={User.about} readOnly={true} theme="bubble" />
 					</Row>
 				</Container>
 				{this.contactModalForm()}

@@ -47,13 +47,13 @@ class App extends Component {
 				// }, console.log('checking some mail', sock));
 			});
 
-			socket.on('newMail', (mail) => {
-				this.props.newUserMail({
-					mailCount: mail.inbox.filter((count) => !count.seen).length,
-					inbox: mail.inbox,
-					sentItmes: mail.sentItems,
-				});
-			});
+			// socket.on('newMail', (mail) => {
+			// 	this.props.newUserMail({
+			// 		mailCount: mail.inbox.filter((count) => !count.seen).length,
+			// 		inbox: mail.inbox,
+			// 		sentItmes: mail.sentItems,
+			// 	});
+			// });
 		});
 
 		//g
@@ -98,18 +98,27 @@ class App extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
+		socket.on('newMail', (mail) => {
+			this.props.newUserMail({
+				mailCount: mail.inbox.filter((count) => !count.seen).length,
+				inbox: mail.inbox,
+				sentItmes: mail.sentItems,
+			});
+		});
 		if (prevProps.userInfo.uid !== this.props.userInfo.uid) {
-			// console.log('~~~~~~~~~~~~~Props Changed~~~~~~~~~~~')
-			socket.emit('setSocketID', {
-				uid: this.props.userInfo.uid,
-				socketID: socket.id,
-			});
-			socket.emit('mail', {
-				eventType: 'checkMail',
-				uid: this.props.userInfo.uid,
-				authToken: localStorage.token,
-				socketID: socket.id,
-			});
+			if (!!this.props.userInfo.uid) {
+				socket.emit('setSocketID', {
+					uid: this.props.userInfo.uid,
+					socketID: socket.id,
+				});
+				console.log('this is checking mail');
+				socket.emit('mail', {
+					eventType: 'checkMail',
+					uid: this.props.userInfo.uid,
+					authToken: localStorage.token,
+					socketID: socket.id,
+				});
+			}
 		}
 
 		// 	socket.on('connect', () => {

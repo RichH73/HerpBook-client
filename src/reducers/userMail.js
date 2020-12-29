@@ -2,6 +2,7 @@ const initialState = {
 	mailCount: 0,
 	inbox: [],
 	sentItems: [],
+	mailData: {},
 };
 
 const userMail = (state = initialState, data) => {
@@ -12,6 +13,19 @@ const userMail = (state = initialState, data) => {
 				mailCount: data.mailData.mailCount,
 				inbox: data.mailData.inbox,
 				sentItems: data.mailData.sentItems,
+			};
+		case 'View_Mail_Message':
+			return {
+				...state,
+				mailData: data.data,
+			};
+		case 'Editing_Mail_Message':
+			return {
+				...state,
+				mailData: {
+					...state.mailData,
+					[data.key]: data.value,
+				},
 			};
 
 		// case 'DELETE_MESSAGE':

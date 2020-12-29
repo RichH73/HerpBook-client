@@ -6,7 +6,14 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import socket from '../../_services/SocketService';
 
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 class LeftNav extends Component {
+	state = {
+		searchText: '',
+	};
 	userNavigation = () => {
 		const { displayMailCount } = this.props;
 		return (
@@ -74,6 +81,14 @@ class LeftNav extends Component {
 		this.props.userLogOut();
 	};
 
+	siteSearch = () => {};
+
+	searchChangeHandler = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
+	};
+
 	render() {
 		const { userCheck } = this.props;
 		return (
@@ -108,6 +123,22 @@ class LeftNav extends Component {
 							)}
 						</div>
 					</div>
+					<InputGroup className="mb-3" size="sm">
+						<Form.Control
+							placeholder="User"
+							name="searchText"
+							aria-label="Recipient's username"
+							aria-describedby="basic-addon2"
+							onChange={this.searchChangeHandler}
+						/>
+						<InputGroup.Append>
+							<Link to={`/search?${this.state.searchText}`}>
+								<Button size="sm" variant="outline-warning" onClick={this.searchUser}>
+									Search
+								</Button>
+							</Link>
+						</InputGroup.Append>
+					</InputGroup>
 				</div>
 				{!!userCheck ? <this.userNavigation /> : ''}
 			</React.Fragment>

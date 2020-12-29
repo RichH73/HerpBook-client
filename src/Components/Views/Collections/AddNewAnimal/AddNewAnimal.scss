@@ -6,8 +6,8 @@
 	}
 
 	.img-preview {
-		display: grid;
-		grid-template-columns: auto auto auto auto auto auto;
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.img-preview img {

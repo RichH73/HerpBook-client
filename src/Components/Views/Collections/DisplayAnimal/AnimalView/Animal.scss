@@ -141,22 +141,6 @@
 	// 	padding: 8px;
 	// }
 
-	.collections-animal-more-images {
-		padding: 10px;
-	}
-
-	.collections-animal-more-images-display {
-		margin-top: 2em;
-		display: grid;
-		grid-gap: 20px;
-		grid-template-columns: auto auto auto;
-		justify-content: space-evenly;
-	}
-
-	.collections-animal-more-images img {
-		width: 100px;
-		cursor: pointer;
-	}
 }
 
 @media screen and (max-width: 1080px) {
@@ -341,24 +325,7 @@
 		padding: 8px;
 	}
 
-	.collections-animal-more-images {
-		padding: 10px;
-	}
 
-	.collections-animal-more-images-display {
-		//width: 100%;
-		margin: 2em auto;
-		//display: grid;
-		width: 80%;
-		grid-gap: 20px;
-		grid-template-columns: auto;
-		justify-content: space-evenly;
-	}
-
-	.collections-animal-more-images img {
-		//width: 100px;
-		cursor: pointer;
-	}
 
 	.collections-my-collections-active-list td:hover {
 		cursor: pointer;

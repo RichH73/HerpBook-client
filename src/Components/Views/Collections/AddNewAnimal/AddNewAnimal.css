@@ -6,10 +6,11 @@
     padding: 20px;
   }
   .img-preview {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto auto auto auto auto;
-        grid-template-columns: auto auto auto auto auto auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .img-preview img {
     width: 100px;

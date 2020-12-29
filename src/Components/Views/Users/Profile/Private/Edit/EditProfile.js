@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import './EditProfile.css';
-import 'react-quill/dist/quill.snow.css';
 //import Dropzone from 'react-dropzone';
 import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
-import Modal from 'react-modal';
 import NumberFormat from 'react-number-format';
-//import { Base64 } from 'js-base64';
+import { Link } from 'react-router-dom';
 
 // Bootstrap imports
 import Form from 'react-bootstrap/Form';
@@ -24,6 +22,13 @@ class EditProfile extends React.Component {
 		pic_selected: false,
 		updateToast: false,
 	};
+
+	componentDidCatch(error, info) {
+		// Display fallback UI
+		this.setState({ hasError: true });
+		// You can also log the error to an error reporting service
+		console.log(error, info);
+	}
 
 	componentDidMount() {
 		const { uid } = this.props.userInfo;
@@ -87,20 +92,8 @@ class EditProfile extends React.Component {
 			.then((response) => {
 				if (response.status === 201) {
 					this.setState({ updateToast: true });
-					// this.setState({ modalIsOpen: true });
-					// setTimeout(() => {
-					// 	this.setState({
-					// 		modalIsOpen: false,
-					// 	});
-					// }, 2000);
-					//this.props.imagesUploaded();
-					//const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
-					//this.props.clear_profile();
 					this.props.user_login(response.data.user);
-					// this.props.history.push({
-					// 	pathname: '/success/profileUpdate',
-					// });
 				}
 			})
 			.catch((err) => {
@@ -247,6 +240,7 @@ class EditProfile extends React.Component {
 						</Form.Row>
 						<Form.Group>
 							<Form.Label>Add a footer to your classified ads.</Form.Label>
+
 							<ReactQuill
 								style={{ backgroundColor: 'white', color: 'black' }}
 								name="businessFooter"
@@ -284,6 +278,11 @@ class EditProfile extends React.Component {
 					<Toast.Body>Profile Successfully Updated!</Toast.Body>
 				</Toast>
 				<div className="profile-edit-personal-info">
+					<span>
+						<small>
+							<Link to={`/user/${this.props.userInfo.username}`}>View Public Profile</Link>
+						</small>
+					</span>
 					<div className="edit-profile-entity-title">
 						<h4>Personal Information</h4>
 					</div>

@@ -1,3 +1,9 @@
+import ReactQuill, { Quill } from 'react-quill';
+//import Quill from 'quill'
+import ImageCompress from 'quill-image-compress';
+
+Quill.register('modules/imageCompress', ImageCompress);
+
 const initial_state = {
 	text: '',
 	modules: {

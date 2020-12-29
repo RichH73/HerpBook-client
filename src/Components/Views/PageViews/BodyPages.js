@@ -11,7 +11,6 @@ import EditProfile from '../Users/Profile/Private/Edit/EditProfile';
 import Listing from '../Classifieds/listing/Listing';
 import MyListings from '../Classifieds/MyListings/MyListings';
 import CreateListing from '../Classifieds/create/CreateListing';
-import MailDisplay from '../Users/Mail/DisplayMailMessage/MailDisplay';
 import SellerContactForm from '../Users/Mail/SellerContact/SellerContactForm';
 import Success from '../../_functions/Success';
 import Contact from '../contact/Contact';
@@ -26,10 +25,10 @@ import AddNewAnimal from '../Collections/AddNewAnimal/AddNewAnimal';
 import GetMail from '../Users/Mail/GetMail/GetMail';
 import AnimalSearch from '../Collections/DisplayAnimal/AnimalSearch';
 import NewClutch from '../Clutches/NewClutch/NewClutch';
-import MailReply from '../Users/Mail/MailReply/MailReply';
 import PublicProfile from '../Users/Profile/Public/PublicProfile';
 import Friends from '../Users/Profile/Public/Friends/Friends';
 import Activity from '../Users/Profile/Public/Activity/Activity';
+import Search from '../SiteSearch/SiteSearch';
 
 const Pages = () => {
 	return (
@@ -43,8 +42,6 @@ const Pages = () => {
 			<Route path="/login" component={Login} />
 			<Route path="/contact_seller" component={SellerContactForm} />
 			<Route path="/my_mail" component={GetMail} />
-			<Route path="/read_mail" component={MailDisplay} />
-			<Route path="/mail_reply" component={MailReply} />
 			<Route path="/my_classifieds" component={MyListings} />
 			<Route path="/my_profile" component={EditProfile} />
 			<Route path="/register" component={Register} />
@@ -63,6 +60,7 @@ const Pages = () => {
 			<Route path="/user/:id" component={PublicProfile} />
 			<Route path="/user/:id/friends" component={Friends} />
 			<Route path="/user/:id/activity" component={Activity} />
+			<Route path="/search" component={Search} />
 		</React.Fragment>
 	);
 };

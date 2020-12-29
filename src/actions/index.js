@@ -5,6 +5,21 @@ import { Base64 } from 'js-base64';
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
 
+export const viewMailMessage = (data) => {
+	return {
+		type: 'View_Mail_Message',
+		data,
+	};
+};
+
+export const editMailMessage = (key, value) => {
+	return {
+		type: 'Editing_Mail_Message',
+		key,
+		value,
+	};
+};
+
 export const testError = () => {
 	console.log('some shit went down');
 };
