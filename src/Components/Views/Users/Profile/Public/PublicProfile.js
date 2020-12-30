@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
 //import Friends from './Friends/Friends';
-import Images from './Images/Images';
+import envelop from '../../../../../images/envelop.svg';
+import { FaFacebookSquare, FaTwitter, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import { Route, useParams, Link } from 'react-router-dom';
 import socket from '../../../../_services/SocketService';
 import ReactQuill from 'react-quill';
+import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -20,6 +23,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
+
+let noUser;
 
 class PublicProfile extends Component {
 	state = {
@@ -46,38 +51,86 @@ class PublicProfile extends Component {
 	componentDidMount() {
 		console.log('opening...', this.props.match.params.id);
 		this.props.setPageTitle(``);
+		if (!!this.props.match.params.id) {
+			axios({
+				url: `${this.props.API}/users/profile`,
+				method: 'POST',
+				headers: {
+					Authorization: !!localStorage.token ? `Bearer ${localStorage.token}` : '',
+				},
+				data: {
+					username: this.props.match.params.id,
+				},
+			})
+				.then((response) => {
+					if (response.status === 404) {
+						this.setState({ noUser: 'holy shit...' });
+						this.props.viewUserProfileData({ username: 'no user' });
+					}
+					if (response.status === 200) {
+						const decryptProfile = CryptoJS.AES.decrypt(response.data, 'secret key 123');
+						const originalProfile = decryptProfile.toString(CryptoJS.enc.Utf8);
+						this.props.viewUserProfileData(JSON.parse(originalProfile));
+					}
+				})
+				.catch((error) => console.log(error));
+		}
 
-		socket.emit('viewUserProfile', {
-			username: this.props.match.params.id,
-			type: 'publicView',
-			sock: socket.id,
-		});
+		// socket.emit('viewUserProfile', {
+		// 	username: this.props.match.params.id,
+		// 	type: 'publicView',
+		// 	sock: socket.id,
+		// });
 
-		socket.on('displayUserData', (data) => {
-			//console.log('this is the user', data);
-			this.props.viewUserProfileData(data);
-			this.setState({
-				User: data,
-			});
-			//console.log('this state: ', this.state);
-		});
+		// socket.on('displayUserData', (data) => {
+		// 	//console.log('this is the user', data);
+		// 	this.props.viewUserProfileData(data);
+		// 	this.setState({
+		// 		User: data,
+		// 	});
+		// 	//console.log('this state: ', this.state);
+		// });
 	}
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.match.params.id !== this.props.match.params.id) {
-			socket.emit('viewUserProfile', {
-				username: this.props.match.params.id,
-				type: 'publicView',
-				sock: socket.id,
-			});
+	componentDidUpdate(prevProps, prevState) {
+		// if (prevProps.match.params.id !== this.props.match.params.id) {
+		// 	socket.emit('viewUserProfile', {
+		// 		username: this.props.match.params.id,
+		// 		type: 'publicView',
+		// 		sock: socket.id,
+		// 	});
 
-			socket.on('displayUserData', (data) => {
-				console.log('this is the user', data);
-				this.props.viewUserProfileData(data);
-				this.setState({
-					User: data,
-				});
-			});
+		// 	socket.on('displayUserData', (data) => {
+		// 		console.log('this is the user', data);
+		// 		this.props.viewUserProfileData(data);
+		// 		this.setState({
+		// 			User: data,
+		// 		});
+		// 	});
+		// }
+
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			axios({
+				url: `${this.props.API}/users/profile`,
+				method: 'POST',
+				headers: {
+					Authorization: !!localStorage.token ? `Bearer ${localStorage.token}` : '',
+				},
+				data: {
+					username: this.props.match.params.id,
+				},
+			})
+				.then((response) => {
+					if (response.status === 404) {
+						this.props.viewUserProfileData({ username: 'no user' });
+					}
+					if (response.status === 200) {
+						const decryptProfile = CryptoJS.AES.decrypt(response.data, 'secret key 123');
+						const originalProfile = decryptProfile.toString(CryptoJS.enc.Utf8);
+						this.props.viewUserProfileData(JSON.parse(originalProfile));
+					}
+				})
+				.catch((error) => console.log(error));
 		}
 	}
 
@@ -158,6 +211,22 @@ class PublicProfile extends Component {
 	render() {
 		const id = this.props.match.params.id;
 		const { User } = this.props;
+		if (!User.profile) {
+			return (
+				<React.Fragment>
+					<div className="my-profile-main">
+						<Nav className="my-profile-main-nav">
+							<Navbar.Brand>
+								No User Found
+								{/* <Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link> */}
+							</Navbar.Brand>
+						</Nav>
+					</div>
+					<div style={{ padding: '1rem' }}>Oops! Couldn't find profile matching that user :(</div>
+				</React.Fragment>
+			);
+		}
+
 		return (
 			<div className="my-profile-main">
 				<div>
@@ -170,29 +239,60 @@ class PublicProfile extends Component {
 						<Navbar.Brand>
 							<Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link>
 						</Navbar.Brand>
-						<Nav.Link>
-							<Link to={`/user/${id}/friends`}>Friends</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to={`/user/${id}/activity`}>Activity</Link>
-						</Nav.Link>
+						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : ''}</Nav.Link>
+						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/activity`}>Activity</Link> : ''}</Nav.Link>
 					</Nav>
 					{/* </Navbar> */}
 				</div>
 				<Container fluid style={{ marginTop: '1rem' }}>
-					<Row>
-						<Col xl={'auto'}>
+					<Row sm={2} md={2} lg={2}>
+						<Col>
 							<Image onClick={this.showContactModal} src={User.profileImage} roundedCircle thumbnail className="my-profile-main-profile-image" />
 						</Col>
 
-						<Col xl={'auto'}>
-							<Table>
-								<tr>
-									<td>
-										<Image src="/images/envelop.svg" onClick={this.showContactModal} style={{ cursor: 'pointer', maxWidth: '2rem' }} /> Message me
-									</td>
-								</tr>
-							</Table>
+						<Col>
+							<div className="my-profile-main-profile-grid">
+								<div className="my-profile-main-profile-grid-message" onClick={this.showContactModal}>
+									<div>
+										<FaEnvelope className="my-profile-main-profile-grid-message-icon" />
+									</div>
+									<div>
+										<span>
+											<Link>Message me</Link>
+										</span>
+									</div>
+								</div>
+								<div className="my-profile-main-profile-grid-fb">
+									<div>
+										<FaFacebookSquare className="my-profile-main-profile-grid-message-icon" />
+									</div>
+									<div>
+										<a href={User.socialMedia.faceBook} target="new">
+											FaceBook
+										</a>
+									</div>
+								</div>
+								<div className="my-profile-main-profile-grid-fb">
+									<div>
+										<FaTwitter className="my-profile-main-profile-grid-message-icon" />
+									</div>
+									<div>
+										<a href={User.socialMedia.twitter} target="new">
+											Twitter
+										</a>
+									</div>
+								</div>
+								<div className="my-profile-main-profile-grid-fb">
+									<div>
+										<FaYoutube className="my-profile-main-profile-grid-message-icon" />
+									</div>
+									<div>
+										<a href={User.socialMedia.youTube} target="new">
+											YouTube
+										</a>
+									</div>
+								</div>
+							</div>
 						</Col>
 					</Row>
 					<Row>
@@ -209,6 +309,7 @@ const mapStateToProps = (state) => ({
 	userInfo: state.user,
 	mods: state.richText,
 	User: state.PublicProfile.User,
+	API: state.config.server.serverAPI,
 });
 
 const mapDispatchToProps = (dispatch) => {

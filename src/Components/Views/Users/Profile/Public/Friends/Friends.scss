@@ -1,6 +1,57 @@
 @media screen and (min-width: 1081px) {
   .my-profile-friends-main {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .my-profile-friends-main {
+    display: flex;
+    flex-wrap: wrap;
     padding: 10px;
   }
 }
 
+
+
+
+.my-profile-friends-card {
+  width: 220px;
+  height: 75px;
+  // margin-bottom: 0.75rem;
+  margin: 5px;
+  
+  position: relative;
+  display: flex;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.my-profile-friends-card-image {
+  width: 100px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.my-profile-friends-card-body {
+  width: 100px;
+  flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.5rem .25rem;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    text-align: center;
+}

@@ -123,7 +123,7 @@ class LeftNav extends Component {
 							)}
 						</div>
 					</div>
-					<InputGroup className="mb-3" size="sm">
+					{/* <InputGroup className="mb-3" size="sm">
 						<Form.Control
 							placeholder="User"
 							name="searchText"
@@ -138,7 +138,7 @@ class LeftNav extends Component {
 								</Button>
 							</Link>
 						</InputGroup.Append>
-					</InputGroup>
+					</InputGroup> */}
 				</div>
 				{!!userCheck ? <this.userNavigation /> : ''}
 			</React.Fragment>
