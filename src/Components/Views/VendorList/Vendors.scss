@@ -11,9 +11,9 @@
 		padding-left: 0.5em;
 	}
 
-	.breeder {
+	.vendor-list-breeder {
 		//background-color: $panelBodyColor;
-		border: 1px solid orange;
+		border: 1px solid $themeColor;
 		border-radius: 7px;
 		//margin-top: 2em;
 		margin: 1em auto 2em;
@@ -24,7 +24,7 @@
 
 	.vendor-list-header {
 		//height: 22px;
-		background-color: orange;
+		background-color: $themeColor;
 		top: 0;
 		margin-top: 0px;
 	}
@@ -69,9 +69,9 @@
 }
 
 @media screen and (min-width: 1081px) {
-	.breeder {
+	.vendor-list-breeder {
 		//background-color: $panelBodyColor;
-		border: 1px solid orange;
+		border: 1px solid $themeColor;
 		border-radius: 7px;
 		//margin-top: 2em;
 		margin: 1em auto 2em;
@@ -82,7 +82,7 @@
 
 	.vendor-list-header {
 		//height: 22px;
-		background-color: orange;
+		background-color: $themeColor;
 		top: 0;
 		margin-top: 0px;
 	}

@@ -5,103 +5,52 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
 import _ from 'lodash';
-//TODO remvoe date-and-time
-import date from 'date-and-time';
+import dayjs from 'dayjs';
+import Table from 'react-bootstrap/Table';
 
-const date_format = 'ddd, MMM DD YYYY h:mm:ss A';
 class Activity extends Component {
-	state = {};
-
-	onChangeHandler = (event) => {
-		this.setState({
-			[event.target.name]: event.target.value,
-		});
-	};
-
-	commentBoxSubmit = (event) => {
-		if (event.key === 'Enter') {
-		}
-	};
-
-	onSubmitHandler = (event) => {
-		axios({
-			method: 'post',
-			url: `${this.props.server_address}/posts/post`,
-			headers: {
-				uid: localStorage.uid,
-				token: localStorage.token,
+	state = {
+		activities: [
+			{
+				date: dayjs(Date()).format('MMM DD, YYYY'),
+				activityType: 'Reptile Show',
+				activityLocation: 'Orlando',
 			},
-			data: {
-				post: this.state.body,
-				uid: localStorage.uid,
-				username: this.props.username,
-				title: 'A new post',
-				date: new Date(),
-			},
-		});
-		//this.props.get_user_posts({uid: this.props.uid})
+		],
 	};
 
-	componentDidMount() {
-		//this.props.get_user_posts({uid: this.props.uid})
-	}
+	componentDidMount() {}
 
 	render() {
+		const { activities } = this.state;
 		return (
-			<div className="profile-activity">
-				<p>{this.state.comment_box}</p>
-				<p>Post</p>
-				<textarea className="post-message-box" name="body" onChange={this.onChangeHandler}></textarea>
-				<div className="btn-box">
-					<button onClick={this.onSubmitHandler} className="btn btn-success">
-						Send
-					</button>
-				</div>
-
-				{_.get(this, 'props.posts').map((post) => (
-					<div className="user-posts">
-						<div className="post-date">{date.format(new Date(post.date), date_format)}</div>
-						<div className="post-body">{_.get(post, 'body')}</div>
-						<div className="post-image">
-							<img src={_.get(this, 'props.image')} alt="" />
-						</div>
-						<div className="post-toolbar" onClick={this.commentChanger}>
-							Comments
-						</div>
-						<div className="post-comment">
-							<input
-								type="text"
-								autoComplete="off"
-								name={`user-comment-box-${post._id}`}
-								placeholder="Leave a comment"
-								onKeyDown={this.commentBoxSubmit}
-							/>
-						</div>
-						<div className="post-linesaver"></div>
-						<div className="post-user">{`${_.get(this, 'props.first_name')} ${_.get(this, 'props.last_name')}`}</div>
-					</div>
-				))}
+			<div className="my-profile-activity">
+				<Table boreded>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Location</th>
+						</tr>
+					</thead>
+					<tbody>
+						{activities.map((activity) => (
+							<tr>
+								<td>{activity.date}</td>
+								<td>{activity.activityType}</td>
+								<td>Location: {activity.activityLocation}</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
 			</div>
 		);
 	}
 }
-//TODO if this is used, add API and SERVER adresses
+
 const mapStateToProps = (state) => ({
-	uid: state.user_profile.uid,
-	about: state.user_profile.about,
-	profileImage: state.user_profile.image,
-	image: state.user_profile.image,
-	username: state.user_profile.username,
-	email: state.user_profile.email,
-	first_name: state.user_profile.first_name,
-	last_name: state.user_profile.last_name,
-	street: state.user_profile.street,
-	city: state.user_profile.city,
-	state: state.user_profile.state,
-	zip_code: state.user_profile.zip_code,
-	website: state.user_profile.website,
-	business_name: state.user_profile.business_name,
-	posts: state.user_posts.posts || [],
+	API: state.config.server.serverAPI,
+	userInfo: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

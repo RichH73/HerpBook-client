@@ -15,7 +15,7 @@
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
-  --orange: orange;
+  --orange: #fd7e14;
   --yellow: #ffc107;
   --green: #28a745;
   --teal: #20c997;
@@ -10813,11 +10813,15 @@ a.text-dark:hover, a.text-dark:focus {
 
 .ql-editor {
   font-size: 16px;
-  min-height: 200px;
+  min-height: 100px;
 }
 
 a :hover {
   text-decoration: none;
+}
+
+.left-main-nav a:hover {
+  color: orange;
 }
 
 @media screen and (min-width: 1081px) {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from '../reducers/config';
 import { Base64 } from 'js-base64';
+import { Decrypt } from '../Components/_services/encryptionService';
 
 //import { Base64 } from 'js-base64';
 const API = config().server.serverAPI;
@@ -293,7 +294,7 @@ export const token_login = () => {
 	};
 };
 
-export const setSocketID = (data) => {
+export const setsocketId = (data) => {
 	return {
 		type: 'updatingsocket',
 		data,
@@ -576,7 +577,7 @@ export const getMyProfile = (data) => {
 		}).then((response) => {
 			if (response.status === 200) {
 				dispatch(pageLoading(false));
-				dispatch(user_login(response.data));
+				dispatch(user_login(Decrypt(response.data)));
 			}
 		});
 	};

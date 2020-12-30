@@ -9,6 +9,7 @@ import { get, forEach, first, flatten } from 'lodash';
 import ReactQuill from 'react-quill';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
+import { Decrypt, Encrypt } from '../../../../../_services/encryptionService';
 
 // Bootstrap imports
 import Form from 'react-bootstrap/Form';
@@ -71,13 +72,15 @@ class EditProfile extends React.Component {
 		event.preventDefault();
 		let fileData = new FormData();
 		//const newUser = this.props.userObject;
-		fileData.append('user', JSON.stringify(this.props.userObject));
+		// fileData.append('user', JSON.stringify(this.props.userObject));
+		fileData.append('user', Encrypt(this.props.userObject));
 
 		let imgFiles = this.props.sendFiles;
 		forEach(imgFiles, function (file) {
 			fileData.append('file', file);
 		});
-
+		const en = Encrypt(this.props.userObject);
+		console.log('can I encrypt', Decrypt(en));
 		//this.props.liveProfileUpdate(fileData, this.props.history);
 		axios({
 			method: 'post',

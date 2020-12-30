@@ -53,7 +53,7 @@ class SellerContactForm extends React.Component {
 		// socket.emit('mail', {
 		// 	eventType: 'createMail',
 		// 	uid: this.props.userInfo.uid,
-		// 	socketID: socket.id,
+		// 	socketId: socket.id,
 		// 	authToken: localStorage.token,
 		// 	headers: {
 		// 		recipient: this.props.location.userToUid,
@@ -70,7 +70,7 @@ class SellerContactForm extends React.Component {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,
 			authToken: localStorage.token,
-			socketID: socket.id,
+			socketId: socket.id,
 			headers: {
 				recipient: this.props.location.userToUid,
 				from: this.props.userInfo.uid,

@@ -62,15 +62,15 @@ class Login extends React.Component {
 					const user = JSON.parse(Base64.decode(response.data.token.split('.')[1]));
 					localStorage.setItem('token', get(response, 'data.token'));
 					this.props.user_login(user);
-					socket.emit('setSocketID', {
+					socket.emit('setsocketId', {
 						uid: user.uid,
-						socketID: socket.id,
+						socketId: socket.id,
 					});
 					socket.emit('mail', {
 						eventType: 'checkMail',
 						uid: user.uid,
 						authToken: localStorage.token,
-						socketID: sock,
+						socketId: sock,
 					});
 					this.props.history.push({
 						pathname: '/',

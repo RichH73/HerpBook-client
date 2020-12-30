@@ -1,10 +1,6 @@
 /*
     Color section to define the colors used in the entire app.
 */
-h3 {
-  text-align: center;
-}
-
 a:hover {
   text-decoration: none;
   color: orange;

@@ -42,7 +42,7 @@ class Vendors extends Component {
 		}
 
 		return list.map((breeder) => (
-			<div className="breeder" key={breeder._id}>
+			<div className="vendor-list-breeder" key={breeder._id}>
 				<div className="vendor-list-header">
 					<h4>{breeder.business_name}</h4>
 				</div>

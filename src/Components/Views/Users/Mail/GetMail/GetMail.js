@@ -28,7 +28,7 @@ class GetMail extends React.Component {
 				eventType: 'checkMail',
 				uid: this.props.userInfo.uid,
 				authToken: localStorage.token,
-				socketID: socket.id,
+				socketId: socket.id,
 			});
 		}
 	}
@@ -181,7 +181,7 @@ class GetMail extends React.Component {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,
 			authToken: localStorage.token,
-			socketID: socket.id,
+			socketId: socket.id,
 			headers: {
 				recipient: mailData.from._id,
 				from: this.props.userInfo.uid,

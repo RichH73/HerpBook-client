@@ -7,7 +7,7 @@ const initialState = {
 const clear_state = {
 	uid: '',
 	socketId: '',
-	socketID: '',
+	socketId: '',
 };
 
 const user = (state = initialState, user) => {

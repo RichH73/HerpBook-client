@@ -3,26 +3,23 @@ import './PublicProfile.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
-//import Friends from './Friends/Friends';
-import envelop from '../../../../../images/envelop.svg';
 import { FaFacebookSquare, FaTwitter, FaYoutube, FaEnvelope } from 'react-icons/fa';
-import { Route, useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import socket from '../../../../_services/SocketService';
 import ReactQuill from 'react-quill';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
+import { Decrypt } from '../../../../_services/encryptionService';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Table from 'react-bootstrap/Table';
 
 let noUser;
 
@@ -68,47 +65,14 @@ class PublicProfile extends Component {
 						this.props.viewUserProfileData({ username: 'no user' });
 					}
 					if (response.status === 200) {
-						const decryptProfile = CryptoJS.AES.decrypt(response.data, 'secret key 123');
-						const originalProfile = decryptProfile.toString(CryptoJS.enc.Utf8);
-						this.props.viewUserProfileData(JSON.parse(originalProfile));
+						this.props.viewUserProfileData(Decrypt(response.data));
 					}
 				})
 				.catch((error) => console.log(error));
 		}
-
-		// socket.emit('viewUserProfile', {
-		// 	username: this.props.match.params.id,
-		// 	type: 'publicView',
-		// 	sock: socket.id,
-		// });
-
-		// socket.on('displayUserData', (data) => {
-		// 	//console.log('this is the user', data);
-		// 	this.props.viewUserProfileData(data);
-		// 	this.setState({
-		// 		User: data,
-		// 	});
-		// 	//console.log('this state: ', this.state);
-		// });
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		// if (prevProps.match.params.id !== this.props.match.params.id) {
-		// 	socket.emit('viewUserProfile', {
-		// 		username: this.props.match.params.id,
-		// 		type: 'publicView',
-		// 		sock: socket.id,
-		// 	});
-
-		// 	socket.on('displayUserData', (data) => {
-		// 		console.log('this is the user', data);
-		// 		this.props.viewUserProfileData(data);
-		// 		this.setState({
-		// 			User: data,
-		// 		});
-		// 	});
-		// }
-
+	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.id !== this.props.match.params.id) {
 			axios({
 				url: `${this.props.API}/users/profile`,
@@ -125,9 +89,7 @@ class PublicProfile extends Component {
 						this.props.viewUserProfileData({ username: 'no user' });
 					}
 					if (response.status === 200) {
-						const decryptProfile = CryptoJS.AES.decrypt(response.data, 'secret key 123');
-						const originalProfile = decryptProfile.toString(CryptoJS.enc.Utf8);
-						this.props.viewUserProfileData(JSON.parse(originalProfile));
+						this.props.viewUserProfileData(Decrypt(response.data));
 					}
 				})
 				.catch((error) => console.log(error));
@@ -152,7 +114,7 @@ class PublicProfile extends Component {
 			eventType: 'createMail',
 			uid: this.props.userInfo.uid,
 			authToken: localStorage.token,
-			socketID: socket.id,
+			socketId: socket.id,
 			headers: {
 				recipient: user.uid,
 				from: this.props.userInfo.uid,
@@ -220,6 +182,7 @@ class PublicProfile extends Component {
 								No User Found
 								{/* <Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link> */}
 							</Navbar.Brand>
+							<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : <Link to={`/login`}>Friends</Link>}</Nav.Link>
 						</Nav>
 					</div>
 					<div style={{ padding: '1rem' }}>Oops! Couldn't find profile matching that user :(</div>
@@ -239,7 +202,8 @@ class PublicProfile extends Component {
 						<Navbar.Brand>
 							<Link to={`/user/${id}`}>{`${User.firstName} ${User.lastName}`}</Link>
 						</Navbar.Brand>
-						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : ''}</Nav.Link>
+						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : <Link to={`/login`}>Friends</Link>}</Nav.Link>
+						{/* <Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : ''}</Nav.Link> */}
 						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/activity`}>Activity</Link> : ''}</Nav.Link>
 					</Nav>
 					{/* </Navbar> */}
