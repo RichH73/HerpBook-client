@@ -17,13 +17,21 @@ import Toast from 'react-bootstrap/Toast';
 import socket from '../../_services/SocketService';
 
 class Search extends React.Component {
-	state = {};
+	state = {
+		searchResults: {
+			user: [],
+			list: [],
+		},
+	};
 
 	componentDidMount() {
 		console.log(socket.id);
 		console.log(this.props);
 		socket.on('searchResults', (data) => {
-			console.log('return data', data);
+			console.log('return data', data[0]);
+			this.setState({
+				searchResults: data[0],
+			});
 		});
 	}
 
@@ -38,7 +46,13 @@ class Search extends React.Component {
 	}
 
 	render() {
-		return <React.Fragment></React.Fragment>;
+		return (
+			<React.Fragment>
+				{!!this.state.searchResults.user.length ? this.state.searchResults.user.map((s) => <div>{s.username}</div>) : ''}
+
+				{!!this.state.searchResults.list.length ? this.state.searchResults.list.map((s) => <div>{s.description}</div>) : ''}
+			</React.Fragment>
+		);
 	}
 }
 

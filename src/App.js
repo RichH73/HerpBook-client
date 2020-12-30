@@ -89,12 +89,12 @@ class App extends Component {
 		});
 		socket.emit('alertRecieved', 'OK');
 		socket.onAny((event, ...args) => {});
-		this.props.getVendors();
-
 		
-		});
-
-		*/
+		
+	});
+	
+	*/
+		this.props.getVendors();
 	}
 
 	componentDidUpdate(prevProps) {
