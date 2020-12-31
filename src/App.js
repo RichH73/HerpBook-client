@@ -111,6 +111,11 @@ class App extends Component {
 					uid: this.props.userInfo.uid,
 					socketId: socket.id,
 				});
+				socket.on('socketSet', (socket) => {
+					console.log('socketSet recieved');
+					this.props.userInfoUpdate('userSocket', true);
+					this.props.userInfoUpdate('socketId', socket);
+				});
 				console.log('this is checking mail');
 				socket.emit('mail', {
 					eventType: 'checkMail',

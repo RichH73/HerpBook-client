@@ -3,10 +3,13 @@ const initialState = {
 };
 
 const initialClutches = {
-	_id: '',
+	cluthes: [],
 };
 
-const initialAllClutches = [];
+const initialAllClutches = {
+	clutchData: [],
+	editClutch: {},
+};
 
 export const new_clutch = (state = initialState, data) => {
 	switch (data.type) {
@@ -36,9 +39,15 @@ export const current_clutch = (state = initialClutches, data) => {
 export const my_clutches = (state = initialAllClutches, data) => {
 	switch (data.type) {
 		case 'all_clutches':
+			console.log(data);
 			return {
 				...state,
-				...data.data,
+				clutchData: data.data,
+			};
+		case 'Clutch_Edit_Data':
+			return {
+				...state,
+				editClutch: data.data,
 			};
 		default:
 			return state;

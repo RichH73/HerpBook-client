@@ -13,6 +13,13 @@ export const viewMailMessage = (data) => {
 	};
 };
 
+export const loadClutch = (data) => {
+	return {
+		type: 'Clutch_Edit_Data',
+		data,
+	};
+};
+
 export const editMailMessage = (key, value) => {
 	return {
 		type: 'Editing_Mail_Message',

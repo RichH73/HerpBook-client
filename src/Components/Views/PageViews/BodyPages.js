@@ -29,6 +29,7 @@ import PublicProfile from '../Users/Profile/Public/PublicProfile';
 import Friends from '../Users/Profile/Public/Friends/Friends';
 import Activity from '../Users/Profile/Public/Activity/Activity';
 import Search from '../SiteSearch/SiteSearch';
+import Clutches from '../Clutches/Clutches';
 
 const Pages = () => {
 	return (
@@ -61,6 +62,7 @@ const Pages = () => {
 			<Route path="/user/:id/friends" component={Friends} />
 			<Route path="/user/:id/activity" component={Activity} />
 			<Route path="/search" component={Search} />
+			<Route path="/clutches" component={Clutches} />
 		</React.Fragment>
 	);
 };
