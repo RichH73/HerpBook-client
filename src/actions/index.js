@@ -2,20 +2,32 @@ import axios from 'axios';
 import config from '../reducers/config';
 import { Base64 } from 'js-base64';
 import { Decrypt } from '../Components/_services/encryptionService';
+export * from './clutches';
 
 //import { Base64 } from 'js-base64';
-const API = config().server.serverAPI;
+export const API = config().server.serverAPI;
+
+export const loadPairingRecord = (record) => {
+	return {
+		type: 'View_Pairing_Record',
+		record,
+	};
+};
+
+export const closePairingModal = () => {
+	return {
+		type: 'Close_Pairing_Modal',
+	};
+};
+export const openPairingModal = () => {
+	return {
+		type: 'Open_Pairing_Modal',
+	};
+};
 
 export const viewMailMessage = (data) => {
 	return {
 		type: 'View_Mail_Message',
-		data,
-	};
-};
-
-export const loadClutch = (data) => {
-	return {
-		type: 'Clutch_Edit_Data',
 		data,
 	};
 };
@@ -47,13 +59,6 @@ export const openSideDrawer = () => {
 export const my_classifieds_data = (data) => {
 	return {
 		type: 'my_classifieds',
-		data,
-	};
-};
-
-export const new_clutch_data = (data) => {
-	return {
-		type: 'create_new_clutch',
 		data,
 	};
 };
@@ -185,7 +190,7 @@ export const clearAnimalData = (data) => {
 	};
 };
 
-const loadMyCollections = (data) => {
+export const loadMyCollections = (data) => {
 	return {
 		type: 'my_collections_data',
 		data,

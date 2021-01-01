@@ -296,10 +296,9 @@ class Animal extends Component {
 										<Form.Label size="md">Collection Type</Form.Label>
 										<Form.Control as="select" name="collectionType" onChange={this.onChangeHandler} value={animal.collectionType} size="md">
 											<option></option>
-											<option value="SALE">Sale</option>
-											<option value="PET">Pet</option>
-											<option value="HOLDBACK">Holdback</option>
-											<option value="BREEDER">Breeder</option>
+											{animal.typeCollections.map((type) => (
+												<option value={type}>{type}</option>
+											))}
 										</Form.Control>
 									</Form.Group>
 

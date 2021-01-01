@@ -30,6 +30,7 @@ import Friends from '../Users/Profile/Public/Friends/Friends';
 import Activity from '../Users/Profile/Public/Activity/Activity';
 import Search from '../SiteSearch/SiteSearch';
 import Clutches from '../Clutches/Clutches';
+import EditClutch from '../Clutches/EditClutches/EditClutch';
 
 const Pages = () => {
 	return (
@@ -63,6 +64,8 @@ const Pages = () => {
 			<Route path="/user/:id/activity" component={Activity} />
 			<Route path="/search" component={Search} />
 			<Route path="/clutches" component={Clutches} />
+			{/* <Route path="/edit_clutch" component={EditClutch} /> */}
+			<Route path="/edit_clutch/:id" component={EditClutch} />
 		</React.Fragment>
 	);
 };

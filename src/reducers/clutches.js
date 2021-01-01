@@ -8,7 +8,15 @@ const initialClutches = {
 
 const initialAllClutches = {
 	clutchData: [],
-	editClutch: {},
+	editClutch: {
+		hatchlings: [],
+	},
+	pairingRecord: {},
+	pairingModal: false,
+	filters: {
+		sire: '',
+		dam: '',
+	},
 };
 
 export const new_clutch = (state = initialState, data) => {
@@ -39,7 +47,6 @@ export const current_clutch = (state = initialClutches, data) => {
 export const my_clutches = (state = initialAllClutches, data) => {
 	switch (data.type) {
 		case 'all_clutches':
-			console.log(data);
 			return {
 				...state,
 				clutchData: data.data,
@@ -48,6 +55,45 @@ export const my_clutches = (state = initialAllClutches, data) => {
 			return {
 				...state,
 				editClutch: data.data,
+			};
+		case 'View_Pairing_Record':
+			return {
+				...state,
+				pairingRecord: data.record,
+			};
+		case 'Close_Pairing_Modal':
+			return {
+				...state,
+				pairingModal: false,
+			};
+		case 'Open_Pairing_Modal':
+			return {
+				...state,
+				pairingModal: true,
+			};
+		case 'New_Collection_Filter':
+			return {
+				...state,
+				filters: {
+					...state.filters,
+					...data.filter,
+				},
+			};
+		case 'Pairing_Record_Value':
+			return {
+				...state,
+				pairingRecord: {
+					...state.pairingRecord,
+					...data.data,
+				},
+			};
+		case 'Clutch_Record_Value':
+			return {
+				...state,
+				editClutch: {
+					...state.editClutch,
+					...data.data,
+				},
 			};
 		default:
 			return state;

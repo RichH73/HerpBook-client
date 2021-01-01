@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
-import _ from 'lodash';
+import './Clutches.css';
+import { toNumber, uniq } from 'lodash';
+import dayjs from 'dayjs';
 
 import axios from 'axios';
 // import ReactGA from 'react-ga';
 
 import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 class Clutches extends Component {
 	state = {
 		startDate: '',
 	};
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.props.getMyClutches();
+	}
 
 	componentWillUnmount() {}
 
@@ -43,80 +49,136 @@ class Clutches extends Component {
 			});
 	};
 
-	category_menu = () => {
-		const filteredItems = [5, 11];
-		if (this.props.categoryItems.length > 0) {
-			let filterCategories = this.props.categoryItems.filter((cat) => {
-				return !_.includes(filteredItems, cat.id);
-			});
-			return filterCategories.map((category) => (
-				<option key={category.name} value={category.id}>
-					{category.name}
-				</option>
-			));
-		}
-	};
-
-	sub_category_menu = () => {
-		return _.filter(this.props.sub_categoryItems, ['category_id', _.toNumber(this.props.category)]).map((sub) => (
-			<option key={sub.name} value={sub.id}>
-				{sub.name}
-			</option>
-		));
-	};
-
-	handleScan(data) {
-		this.setState({
-			result: data,
-		});
-	}
-
 	handleDate = (date) => {
 		this.props.createAnimalData({
 			dob: date,
 		});
 	};
 
-	formChangeHandler = (event) => {
-		this.props.createAnimalData({
+	filterBySire = () => {
+		const { clutches } = this.props;
+		const options = uniq(
+			clutches.map((clutch) => {
+				return clutch.sire;
+			})
+		);
+		return uniq(options.map((option) => <option value={option}>{`${option}`}</option>));
+	};
+
+	filterByDam = () => {
+		const { clutches } = this.props;
+		const options = uniq(
+			clutches.map((clutch) => {
+				return clutch.dam;
+			})
+		);
+		return uniq(options.map((option) => <option value={option}>{`${option}`}</option>));
+	};
+
+	collectionsFilter = (event) => {
+		this.props.newCollectionsFilter({
 			[event.target.name]: event.target.value,
 		});
 	};
 
-	categoryChangeHandler = (event) => {
-		this.props.createAnimalData({
-			[event.target.name]: _.toNumber(event.target.value),
+	onClickHandler = (clutch) => {
+		this.props.loadClutch(clutch);
+		this.props.history.push({
+			pathname: `/edit_clutch/${clutch._id}`,
 		});
 	};
 
-	handleError(err) {
-		console.error(err);
-	}
-
-	onClickHandler = (clutch) => {
-		this.props.loadClutch(clutch);
+	clutchRecords = () => {
+		let { clutches, filters } = this.props;
+		if (!!filters.sire) {
+			clutches = clutches.filter((clutch) => {
+				if (clutch.sire === filters.sire) {
+					return clutch;
+				}
+			});
+		}
+		if (!!filters.dam) {
+			clutches = clutches.filter((clutch) => {
+				if (clutch.dam === filters.dam) {
+					return clutch;
+				}
+			});
+		}
+		if (!!filters.species) {
+			clutches = clutches.filter((clutch) => {
+				if (clutch.sub_category === toNumber(filters.species)) {
+					return clutch;
+				}
+			});
+		}
+		return clutches.map((clutch) => (
+			<tr onClick={() => this.onClickHandler(clutch)}>
+				<td>{dayjs(clutch.layDate).format('MMM DD, YYYY')}</td>
+				<td>{clutch.dam}</td>
+				<td>{clutch.sire}</td>
+			</tr>
+		));
 	};
 
 	render() {
+		let subsFiltered = uniq(
+			this.props.clutches.map((sub) => {
+				return sub.sub_category;
+			})
+		);
+		const subsList = this.props.subCategory.filter((newSub) => {
+			if (subsFiltered.includes(newSub.id)) {
+				return newSub;
+			}
+		});
 		return (
 			<React.Fragment>
+				<div className="clutches-list-filter">
+					<h4>Quick Filters</h4>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Filter by Dam</Form.Label>
+								<Form.Control as="select" name="dam" onChange={this.collectionsFilter} value={this.props.filters.dam}>
+									<option value="">All</option>
+									{this.filterByDam()}
+								</Form.Control>
+							</Form.Group>
+
+							<Form.Group as={Col}>
+								<Form.Label>Filter by Sire</Form.Label>
+								<Form.Control as="select" name="sire" onChange={this.collectionsFilter} value={this.props.filters.sire}>
+									<option value="">All</option>
+									{this.filterBySire()}
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label size="md">Species</Form.Label>
+								<Form.Control name="species" as="select" onChange={this.collectionsFilter} value={this.props.filters.species} size="md">
+									<option value="">All</option>
+									{subsList.map((sub) => (
+										<option key={sub.id} value={sub.id}>
+											{sub.name}
+										</option>
+									))}
+								</Form.Control>
+							</Form.Group>
+						</Form.Row>
+					</Form>
+				</div>
 				<div>
-					{this.props.clutches.map((clutch) => (
-						<Table bordered stripped hover>
-							<thead>
-								<tr>
-									<th>Lay Date</th>
-									<th>Dam</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr onClick={() => this.onClickHandler(clutch)}>
-									<td>{clutch.layDate}</td>
-									<td>{clutch.dam}</td>
-								</tr>
-							</tbody>
-						</Table>
-					))}
+					<Table bordered striped hover size="sm">
+						<thead>
+							<tr>
+								<th>Lay Date</th>
+								<th>Dam</th>
+								<th>Sire</th>
+							</tr>
+						</thead>
+						<tbody>{this.clutchRecords()}</tbody>
+					</Table>
 				</div>
 			</React.Fragment>
 		);
@@ -127,6 +189,8 @@ const mapStateToProps = (state) => ({
 	API: state.config.server.serverAPI,
 	userInfo: state.user,
 	clutches: state.my_clutches.clutchData,
+	subCategory: state.categories.subCategories,
+	filters: state.my_clutches.filters,
 });
 
 const mapDispatchToProps = (dispatch) => {
