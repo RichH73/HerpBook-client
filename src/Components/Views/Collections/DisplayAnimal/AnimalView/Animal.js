@@ -303,7 +303,7 @@ class Animal extends Component {
 									</Form.Group>
 
 									<Form.Group as={Col}>
-										<Form.Label size="md">DOB</Form.Label>
+										<Form.Label size="md">DOH</Form.Label>
 										<Form.Control
 											type="date"
 											name="dob"

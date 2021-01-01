@@ -55,7 +55,7 @@ const Pages = () => {
 			<Route path="/file_report" component={FIleShame} />
 			<Route path="/view_shame" component={ShameReport} />
 			<Route path="/my_collections" component={MyCollections} />
-			<Route path="/view_animal" component={Main} />
+			<Route path="/view_animal/:id" component={Main} />
 			<Route path="/new_collection" component={AddNewAnimal} />
 			<Route path="/search_collections/:id" component={AnimalSearch} />
 			<Route path="/new_clutch" component={NewClutch} />

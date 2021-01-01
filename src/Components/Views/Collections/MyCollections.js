@@ -43,7 +43,7 @@ class MyCollections extends Component {
 		});
 		this.props.newBarCode('');
 		this.props.currentAnimalDisplay(first(newId));
-		this.props.history.push('/view_animal');
+		this.props.history.push(`/view_animal/${id}`);
 	};
 
 	showLists = () => {
@@ -73,7 +73,7 @@ class MyCollections extends Component {
 							<tr>
 								{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
 								<th>Name</th>
-								<th>DOB</th>
+								<th>DOH</th>
 								<th>Gender</th>
 							</tr>
 						</thead>

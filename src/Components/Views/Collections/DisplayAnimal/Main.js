@@ -32,7 +32,8 @@ class Main extends Component {
 	};
 
 	componentDidMount() {
-		if (this.props.location.searchString) {
+		console.log('view props', this.props);
+		if (this.props.match.params.id) {
 			axios({
 				method: 'post',
 				url: `${this.props.API}/collections/search`,
@@ -40,11 +41,11 @@ class Main extends Component {
 					Authorization: `Bearer ${localStorage.token}`,
 				},
 				data: {
-					id: this.props.location.searchString, //query.parse(this.props.location.search).id,
+					id: this.props.match.params.id, //this.props.location.searchString, //query.parse(this.props.location.search).id,
 				},
 			})
 				.then((response) => {
-					if (response.status === 201) {
+					if (response.status === 200) {
 						this.props.currentAnimalDisplay(response.data[0]);
 						//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 						//this.props.history.push('/view_animal')
