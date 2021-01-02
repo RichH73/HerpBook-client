@@ -73,11 +73,11 @@ class AddNewAnimal extends Component {
 		})
 			.then((response) => {
 				this.props.pageLoading(false);
-				if (response.status === 200) {
+				if (response.status === 201) {
 					this.props.imagesUploaded();
 					this.props.currentAnimalDisplay(response.data);
 					this.props.pageLoading(false);
-					this.props.history.push('/view_animal');
+					this.props.history.push(`/view_animal/${response.data._id}`);
 				}
 			})
 			.catch((error) => {
@@ -171,7 +171,7 @@ class AddNewAnimal extends Component {
 		return (
 			<React.Fragment>
 				<div className="collections-create-new-animal">
-					<Form autocomplete="off" onSubmit={this.submitHandler}>
+					<Form autocomplete="off">
 						<Form.Row>
 							<Form.Group as={Col} controlId="formGridType">
 								<Form.Label>Collection Type</Form.Label>
@@ -210,7 +210,7 @@ class AddNewAnimal extends Component {
 						<Form.Row>
 							<Form.Group as={Col} controlId="formGridType">
 								<Form.Label>Category</Form.Label>
-								<Form.Control required as="select" name="category" onChange={this.formChangeHandler} size="md">
+								<Form.Control required as="select" name="category" onChange={this.formChangeHandler} size="md" required>
 									<option value="">Choose a category</option>
 									{this.category_menu()}
 								</Form.Control>
@@ -259,12 +259,12 @@ class AddNewAnimal extends Component {
 						<div>
 							<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
 						</div>
-						<div className="collections-create-new-animal-button">
-							<Button variant="success" type="submit" size="md">
-								Submit
-							</Button>
-						</div>
 					</Form>
+					<div className="collections-create-new-animal-button">
+						<Button variant="success" type="submit" size="md" onClick={this.onSubmitHandler}>
+							Submit
+						</Button>
+					</div>
 				</div>
 			</React.Fragment>
 		);

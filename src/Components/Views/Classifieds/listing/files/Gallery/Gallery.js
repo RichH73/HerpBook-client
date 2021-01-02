@@ -52,7 +52,12 @@ class Gallery extends React.Component {
 						<span>Uploaded: {dayjs(image.date).format('MM/DD/YYYY')}</span>
 					</div>
 					<div className="classifieds-images-imgage-body">
-						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
+						{!image._id ? (
+							<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} />
+						) : (
+							<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
+						)}
+						{/* <img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} /> */}
 					</div>
 					<div className="classifieds-images-imgage-body-info">
 						<p>Name: {image.large}</p>

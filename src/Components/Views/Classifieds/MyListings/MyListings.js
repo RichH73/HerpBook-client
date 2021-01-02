@@ -67,7 +67,11 @@ class MyListings extends Component {
 					<div className="my-listings-box">
 						<div className="my-listings-box-image">
 							<Link to={`/listing/${list._id}`}>
-								<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								{!list.image ? (
+									<img src="https://users.herpbook.com/default_images/thumb_stork.png" alt="no image" />
+								) : (
+									<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								)}
 							</Link>
 						</div>
 						<div className="my-listings-delete">

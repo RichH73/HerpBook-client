@@ -107,6 +107,7 @@ class App extends Component {
 		});
 		if (prevProps.userInfo.uid !== this.props.userInfo.uid) {
 			if (!!this.props.userInfo.uid) {
+				this.props.getMyProfile(this.props.userInfo.uid);
 				socket.emit('setsocketId', {
 					uid: this.props.userInfo.uid,
 					socketId: socket.id,

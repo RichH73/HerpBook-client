@@ -8,7 +8,6 @@ import ReactHtmlParser from 'react-html-parser';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import * as actionCreators from '../../../../../actions/index';
-import _ from 'lodash';
 
 // Bootstrap imports
 import Table from 'react-bootstrap/Table';
@@ -72,17 +71,27 @@ class ClassifiedList extends React.Component {
 
 	render() {
 		const { images } = this.props.classifiedData.listData;
+		console.log('the imeages', images);
 		let list = this.props.classified_listing;
 		return (
 			<div className="list-box">
 				<div className="list-box-inner">
 					<div className="list-images">
 						<div className="classified-listing-thumbnail-images">
-							<img
-								src={`${list.URL}/${_.get(images, '0.thumbnail')}`}
-								alt={_.get(images, '0.thumbnail')}
-								onClick={() => this.largImage(_.get(list, 'images.0'))}
-							/>
+							{!get(images, '0._id') ? (
+								<img src="https://users.herpbook.com/default_images/thumb_stork.png" alt="no image" />
+							) : (
+								<img
+									src={`${list.URL}/${get(images, '0.thumbnail')}`}
+									alt={get(images, '0.thumbnail')}
+									onClick={() => this.largImage(get(list, 'images.0'))}
+								/>
+							)}
+							{/* <img
+								src={`${list.URL}/${get(images, '0.thumbnail')}`}
+								alt={get(images, '0.thumbnail')}
+								onClick={() => this.largImage(get(list, 'images.0'))}
+							/> */}
 						</div>
 					</div>
 					<div className="list-box-inner-table-data">

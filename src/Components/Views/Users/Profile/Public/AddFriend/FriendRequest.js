@@ -31,6 +31,21 @@ class FriendRequest extends Component {
 
 	sendRequest = () => {};
 
+	requestFriend = () => {
+		console.log('requesting');
+		axios({
+			url: `${this.props.API}/friends/friend_request`,
+			method: 'post',
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				user: this.props.userInfo,
+				profile: this.props.userProfile,
+			},
+		});
+	};
+
 	render() {
 		console.log(!!this.props.userInfo.my_friends.includes(this.props.User.uid));
 		return (
@@ -38,7 +53,13 @@ class FriendRequest extends Component {
 				<div>
 					<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
 				</div>
-				{this.props.userInfo.my_friends.includes(this.props.User.uid) ? <div>Friend</div> : <div className="web-link">Add Friend</div>}
+				{this.props.userInfo.my_friends.includes(this.props.User.uid) ? (
+					<div>Friend</div>
+				) : (
+					<div className="web-link" onClick={this.requestFriend}>
+						Add Friend
+					</div>
+				)}
 			</div>
 		);
 	}
@@ -49,6 +70,7 @@ const mapStateToProps = (state) => ({
 	mods: state.richText,
 	User: state.PublicProfile.User,
 	API: state.config.server.serverAPI,
+	userProfile: state.PublicProfile.User,
 });
 
 const mapDispatchToProps = (dispatch) => {

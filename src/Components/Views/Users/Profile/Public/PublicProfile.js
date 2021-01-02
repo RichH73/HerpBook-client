@@ -289,6 +289,7 @@ const mapStateToProps = (state) => ({
 	mods: state.richText,
 	User: state.PublicProfile.User,
 	API: state.config.server.serverAPI,
+	userProfile: state.PublicProfile.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

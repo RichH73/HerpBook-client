@@ -64,7 +64,12 @@ class SubCategory extends React.Component {
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
 							<div className="listing-box-image">
-								<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								{!!list.image ? (
+									<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								) : (
+									<img src="https://users.herpbook.com/default_images/thumb_stork.png" />
+								)}
+								{/* <img src={`${list.URL}/${list.image}`} alt={list.image} /> */}
 							</div>
 							<div className="listing-box-info">
 								<table>

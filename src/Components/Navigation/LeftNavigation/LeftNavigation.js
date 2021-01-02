@@ -9,11 +9,36 @@ import socket from '../../_services/SocketService';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 
 class LeftNav extends Component {
 	state = {
 		searchText: '',
 	};
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.userInfo.friends.requests.length !== this.props.userInfo.friends.requests.length) {
+			this.props.getMyProfile(this.props.userInfo.uid);
+		}
+	}
+
+	friendRequests = () => {
+		const requests = this.props.userInfo.friends.requests;
+		if (!!requests.length) {
+			return (
+				<React.Fragment>
+					<div>
+						New Friend Request{' '}
+						<Badge variant="danger" pill>
+							{requests.length}
+						</Badge>
+					</div>
+				</React.Fragment>
+			);
+		}
+		console.log('my requests', requests);
+	};
+
 	userNavigation = () => {
 		const { displayMailCount } = this.props;
 		return (
@@ -27,14 +52,25 @@ class LeftNav extends Component {
 							<Link to="/my_profile">My Profile</Link>
 						</div>
 						<div className="left-nav-link">
-							{!!displayMailCount ? (
+							<Link to="/my_mail">
+								My Mail{' '}
+								{!!displayMailCount ? (
+									<Badge variant="danger" pill>
+										{displayMailCount}
+									</Badge>
+								) : (
+									''
+								)}
+							</Link>
+							{/* {!!displayMailCount ? (
 								<Link to="/my_mail">
 									My Mail <small style={{ color: 'red' }}>{displayMailCount}</small>
 								</Link>
 							) : (
 								<Link to="/my_mail">My Mail</Link>
-							)}
+							)} */}
 						</div>
+						<div className="left-nav-link">{this.friendRequests()}</div>
 					</div>
 				</div>
 				<div className="left-main-navigation-outter-panel">

@@ -62,33 +62,41 @@ class MyCollections extends Component {
 				}
 			});
 		}
-		return collections.map((sub) => (
-			<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)} key={sub._id}>
-				<div className="my-collections-collection-container-image">
-					<img src={`${sub.images[0].URL}/${sub.images[0].thumbnail}`} />
+		const collectionsTable = collections.map((sub) => {
+			const thumbImg = sub.images[0];
+			return (
+				<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)} key={sub._id}>
+					<div className="my-collections-collection-container-image">
+						{!thumbImg._id ? (
+							<img src="https://users.herpbook.com/default_images//thumb_stork.png" />
+						) : (
+							<img src={`${thumbImg.URL}/${thumbImg.thumbnail}`} />
+						)}
+					</div>
+					<div className="my-collections-collection-container-table">
+						<Table bordered size="sm">
+							<thead>
+								<tr>
+									{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
+									<th>Name</th>
+									<th>DOH</th>
+									<th>Gender</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
+									<td>{sub.name}</td>
+									{!!get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
+									<td>{sub.gender}</td>
+								</tr>
+							</tbody>
+						</Table>
+					</div>
 				</div>
-				<div className="my-collections-collection-container-table">
-					<Table bordered size="sm">
-						<thead>
-							<tr>
-								{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
-								<th>Name</th>
-								<th>DOH</th>
-								<th>Gender</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
-								<td>{sub.name}</td>
-								{!!get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
-								<td>{sub.gender}</td>
-							</tr>
-						</tbody>
-					</Table>
-				</div>
-			</div>
-		));
+			);
+		});
+		return collectionsTable;
 	};
 
 	clearFilters = () => {

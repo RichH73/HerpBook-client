@@ -110,14 +110,20 @@ class Photos extends Component {
 					<div className="collections-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
-					<div className="collections-images-imgage-body-info">
-						<p>Image Name: {image.large}</p>
-					</div>
-					<div className="collections-images-imgage-footer">
-						<Button variant="danger" onClick={() => this.deleteImage(image)}>
-							Delete
-						</Button>
-					</div>
+					{!!image._id ? (
+						<React.Fragment>
+							<div className="collections-images-imgage-body-info">
+								<p>Image Name: {image.large}</p>
+							</div>
+							<div className="collections-images-imgage-footer">
+								<Button variant="danger" onClick={() => this.deleteImage(image)}>
+									Delete
+								</Button>
+							</div>
+						</React.Fragment>
+					) : (
+						''
+					)}
 				</div>
 			);
 		});

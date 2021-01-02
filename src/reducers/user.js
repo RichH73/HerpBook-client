@@ -4,6 +4,11 @@ const initialState = {
 	userSocket: false,
 	socialMedia: {},
 	my_friends: [],
+	friends: {
+		requests: [],
+		friends: [],
+		pending: [],
+	},
 };
 
 const clear_state = {
@@ -12,6 +17,11 @@ const clear_state = {
 	socketId: '',
 	socialMedia: {},
 	my_friends: [],
+	friends: {
+		requests: [],
+		friends: [],
+		pending: [],
+	},
 };
 
 const user = (state = initialState, user) => {
