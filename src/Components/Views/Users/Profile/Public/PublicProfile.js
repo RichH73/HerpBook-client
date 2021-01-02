@@ -3,13 +3,14 @@ import './PublicProfile.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../actions/index';
-import { FaFacebookSquare, FaTwitter, FaYoutube, FaEnvelope } from 'react-icons/fa';
+import { FaFacebookSquare, FaTwitter, FaYoutube, FaEnvelope, FaUserFriends } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import socket from '../../../../_services/SocketService';
 import ReactQuill from 'react-quill';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import { Decrypt } from '../../../../_services/encryptionService';
+import FriendRequest from './AddFriend/FriendRequest';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -170,6 +171,19 @@ class PublicProfile extends Component {
 		);
 	};
 
+	friendStatus = () => {
+		const { User } = this.props;
+		console.log(this.props.userInfo.my_friends);
+		return (
+			<div className="my-profile-main-profile-grid-fb">
+				<div>
+					<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
+				</div>
+				{this.props.userInfo.my_friends.includes(this.props.User.uid) ? <div>Add Friend</div> : <div>Friend</div>}
+			</div>
+		);
+	};
+
 	render() {
 		const id = this.props.match.params.id;
 		const { User } = this.props;
@@ -256,6 +270,7 @@ class PublicProfile extends Component {
 										</a>
 									</div>
 								</div>
+								<FriendRequest />
 							</div>
 						</Col>
 					</Row>

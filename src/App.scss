@@ -16,6 +16,18 @@ a :hover {
 	text-decoration: none;
 }
 
+.web-link {
+	text-decoration: none;
+	color: blue;
+}
+
+.web-link:hover {
+	text-decoration: none;
+	color: $themeColor;
+	cursor: pointer;
+}
+
+
 .left-main-nav a:hover {
 	color: $themeColor;
 }

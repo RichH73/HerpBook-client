@@ -7,8 +7,8 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(/Users/rhowell/mycode/HerpBook-client/node_modules/react-quill/dist/quill.bubble.css);
-@import url(/Users/rhowell/mycode/HerpBook-client/node_modules/react-quill/dist/quill.snow.css);
+@import url(/home/rich/websites/HerpBook-client/node_modules/react-quill/dist/quill.bubble.css);
+@import url(/home/rich/websites/HerpBook-client/node_modules/react-quill/dist/quill.snow.css);
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -10818,6 +10818,17 @@ a.text-dark:hover, a.text-dark:focus {
 
 a :hover {
   text-decoration: none;
+}
+
+.web-link {
+  text-decoration: none;
+  color: blue;
+}
+
+.web-link:hover {
+  text-decoration: none;
+  color: orange;
+  cursor: pointer;
 }
 
 .left-main-nav a:hover {

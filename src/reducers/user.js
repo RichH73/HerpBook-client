@@ -2,12 +2,16 @@ const initialState = {
 	uid: '',
 	socketId: '',
 	userSocket: false,
+	socialMedia: {},
+	my_friends: [],
 };
 
 const clear_state = {
 	uid: '',
 	socketId: '',
 	socketId: '',
+	socialMedia: {},
+	my_friends: [],
 };
 
 const user = (state = initialState, user) => {
