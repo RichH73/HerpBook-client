@@ -36,7 +36,6 @@ class LeftNav extends Component {
 				</React.Fragment>
 			);
 		}
-		console.log('my requests', requests);
 	};
 
 	userNavigation = () => {

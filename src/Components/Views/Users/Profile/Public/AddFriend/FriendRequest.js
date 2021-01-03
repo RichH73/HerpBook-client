@@ -2,23 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
-import { FaFacebookSquare, FaTwitter, FaYoutube, FaEnvelope, FaUserFriends } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaUserFriends } from 'react-icons/fa';
 // import socket from '../../../../_services/SocketService';
-import ReactQuill from 'react-quill';
 import axios from 'axios';
-import CryptoJS from 'crypto-js';
-//import { Decrypt } from '../../../../../_services/encryptionService';
-
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Modal from 'react-bootstrap/Modal';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+import { Encrypt } from '../../../../../_services/encryptionService';
 
 class FriendRequest extends Component {
 	state = {};
@@ -40,28 +27,59 @@ class FriendRequest extends Component {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
 			data: {
-				user: this.props.userInfo,
-				profile: this.props.userProfile,
+				requestFrom: Encrypt(this.props.userInfo),
+				requestTo: Encrypt(this.props.userProfile),
 			},
 		});
 	};
 
-	render() {
-		console.log(!!this.props.userInfo.my_friends.includes(this.props.User.uid));
-		return (
-			<div className="my-profile-main-profile-grid-fb">
-				<div>
-					<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
-				</div>
-				{this.props.userInfo.my_friends.includes(this.props.User.uid) ? (
+	friendStatus = () => {
+		const friends = this.props.userInfo.friends.friends.map((friend) => {
+			return friend.friendId._id;
+		});
+		const pending = this.props.userInfo.friends.pending.map((pend) => {
+			return pend.friendId._id;
+		});
+		if (!!friends.includes(this.props.User.uid)) {
+			return (
+				<div className="my-profile-main-profile-grid-fb">
+					<div>
+						<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
+					</div>
 					<div>Friend</div>
-				) : (
+				</div>
+			);
+		}
+		if (!!pending.includes(this.props.User.uid)) {
+			return (
+				<div className="my-profile-main-profile-grid-fb">
+					<div>
+						<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
+					</div>
+					<div>Request Pending</div>
+				</div>
+			);
+		}
+		if (!friends.includes(this.props.User.uid) && !pending.includes(this.props.User.uid)) {
+			return (
+				<div className="my-profile-main-profile-grid-fb">
+					<div>
+						<FaUserFriends className="my-profile-main-profile-grid-message-icon" />
+					</div>
 					<div className="web-link" onClick={this.requestFriend}>
 						Add Friend
 					</div>
-				)}
-			</div>
-		);
+				</div>
+			);
+		}
+	};
+
+	render() {
+		const { userInfo, userProfile } = this.props;
+		if (userInfo.username != userProfile.username) {
+			return this.friendStatus();
+		}
+		return <React.Fragment></React.Fragment>;
 	}
 }
 
