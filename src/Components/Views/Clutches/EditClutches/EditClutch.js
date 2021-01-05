@@ -193,8 +193,8 @@ class EditClutch extends Component {
 								value={hatchling._id}
 								onClick={() =>
 									this.props.history.push({
-										pathname: `/view_animal`,
-										id: hatchling._id,
+										pathname: `/edit_animal/${hatchling._id}`,
+										// id: hatchling._id,
 									})
 								}
 								readOnly

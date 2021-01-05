@@ -43,7 +43,7 @@ class MyCollections extends Component {
 		});
 		this.props.newBarCode('');
 		this.props.currentAnimalDisplay(first(newId));
-		this.props.history.push(`/view_animal/${id}`);
+		this.props.history.push(`/edit_animal/${id}`);
 	};
 
 	showLists = () => {

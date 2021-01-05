@@ -31,6 +31,7 @@ import Activity from '../Users/Profile/Public/Activity/Activity';
 import Search from '../SiteSearch/SiteSearch';
 import Clutches from '../Clutches/Clutches';
 import EditClutch from '../Clutches/EditClutches/EditClutch';
+import CollectionPublicView from '../Collections/PublicView/DisplayAnimal/CollectionPublicView';
 
 const Pages = () => {
 	return (
@@ -55,7 +56,7 @@ const Pages = () => {
 			<Route path="/file_report" component={FIleShame} />
 			<Route path="/view_shame" component={ShameReport} />
 			<Route path="/my_collections" component={MyCollections} />
-			<Route path="/view_animal/:id" component={Main} />
+			<Route path="/edit_animal/:id" component={Main} />
 			<Route path="/new_collection" component={AddNewAnimal} />
 			<Route path="/search_collections/:id" component={AnimalSearch} />
 			<Route path="/new_clutch" component={NewClutch} />
@@ -64,6 +65,7 @@ const Pages = () => {
 			<Route path="/user/:id/activity" component={Activity} />
 			<Route path="/search" component={Search} />
 			<Route path="/clutches" component={Clutches} />
+			<Route path="/view_animal/:id" component={CollectionPublicView} />
 			{/* <Route path="/edit_clutch" component={EditClutch} /> */}
 			<Route path="/edit_clutch/:id" component={EditClutch} />
 		</React.Fragment>

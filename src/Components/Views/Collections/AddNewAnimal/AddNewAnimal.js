@@ -77,7 +77,7 @@ class AddNewAnimal extends Component {
 					this.props.imagesUploaded();
 					this.props.currentAnimalDisplay(response.data);
 					this.props.pageLoading(false);
-					this.props.history.push(`/view_animal/${response.data._id}`);
+					this.props.history.push(`/edit_animal/${response.data._id}`);
 				}
 			})
 			.catch((error) => {

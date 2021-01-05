@@ -3,27 +3,10 @@ import config from '../reducers/config';
 import { Base64 } from 'js-base64';
 import { Decrypt } from '../Components/_services/encryptionService';
 export * from './clutches';
+export * from './collections';
 
 //import { Base64 } from 'js-base64';
 export const API = config().server.serverAPI;
-
-export const loadPairingRecord = (record) => {
-	return {
-		type: 'View_Pairing_Record',
-		record,
-	};
-};
-
-export const closePairingModal = () => {
-	return {
-		type: 'Close_Pairing_Modal',
-	};
-};
-export const openPairingModal = () => {
-	return {
-		type: 'Open_Pairing_Modal',
-	};
-};
 
 export const viewMailMessage = (data) => {
 	return {
@@ -523,38 +506,6 @@ export const reloadProfile = () => {
 		type: 'RELOAD_PROFILE',
 	};
 };
-
-// const newUserData = (user) => {
-// 	return {
-// 		type: 'NEW_USER_DATA',
-// 		user,
-// 	};
-// };
-
-// export const liveProfileUpdate = (user, history) => {
-// 	return function (dispatch) {
-// 		axios({
-// 			method: 'post',
-// 			url: `${API}/users/update_profile`,
-// 			headers: {
-// 				Authorization: `Bearer ${localStorage.token}`,
-// 				//uid: localStorage.uid,
-// 				//username: this.props.username,
-// 				//enctype: "mylipart/form-data"
-// 			},
-// 			data: user,
-// 		}).then((userResponse) => {
-// 			// dispatch(vendorList(userResponse.data));
-// 			dispatch(imagesUploaded());
-// 			const user = JSON.parse(Base64.decode(userResponse.data.token.split('.')[1]));
-// 			localStorage.setItem('token', _.get(userResponse, 'data.token'));
-// 			dispatch(reloadProfile());
-// 			dispatch(newUserData(userResponse.data.user));
-// 			dispatch(user_login(userResponse.data.user));
-// 			return history.push('/success/profileUpdate');
-// 		});
-// 	};
-// };
 
 export const newProfilePic = (imageName) => {
 	return {
