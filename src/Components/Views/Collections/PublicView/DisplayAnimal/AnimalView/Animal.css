@@ -5,10 +5,13 @@
   .collections-animal-page {
     padding: 10px;
   }
+  .collection-view-animal-image {
+    width: 90px;
+  }
   .collections-animal-page input {
     margin-bottom: 1em;
   }
-  .collection-animal-img-info {
+  .collection-view-animal-img-info {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

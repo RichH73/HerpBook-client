@@ -133,7 +133,7 @@ class Animal extends Component {
 	showImage = (images) => {
 		const firstImg = _.first(images);
 		return (
-			<img src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} onClick={() => this.largImage(firstImg)} />
+			<img className="collection-view-animal-image" src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} />
 		);
 	};
 
@@ -166,12 +166,33 @@ class Animal extends Component {
 
 		return (
 			<React.Fragment>
+				<Container style={{ padding: '10px' }}>
+					<Row>
+						<Col xs={3}>
+							<div style={{ backgroundColor: 'lightblue' }}>{this.showImage(animal.images)}</div>
+						</Col>
+						<Col>
+							<Row>
+								<Form.Group as={Col}>
+									<Form.Label size="md">ID #</Form.Label>
+									<Form.Control type="text" name="animalID" value={animal._id} size="md" disabled={true} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label size="md">Animal ID#</Form.Label>
+									<Form.Control type="text" name="userCreatedID" value={animal.userCreatedID} size="md" disabled={true} />
+								</Form.Group>
+							</Row>
+							<div style={{ backgroundColor: 'red' }}>red</div>
+						</Col>
+					</Row>
+				</Container>
 				<div className="collections-animal-page">
 					<div className="collection-animal-img-info">
-						<div className="collection-animal-image">{this.showImage(animal.images)}</div>
+						<div className="collection-view-animal-image-box">{this.showImage(animal.images)}</div>
 						<div className="collection-animal-common-info">
-							<Form>
-								<Form.Row>
+							<Container fluid>
+								<Row>
 									<Form.Group as={Col}>
 										<Form.Label size="md">ID #</Form.Label>
 										<Form.Control type="text" name="animalID" value={animal._id} size="md" disabled={true} size="md" />
@@ -181,7 +202,7 @@ class Animal extends Component {
 										<Form.Label size="md">Animal ID#</Form.Label>
 										<Form.Control type="text" name="userCreatedID" value={animal.userCreatedID} size="md" disabled={true} />
 									</Form.Group>
-								</Form.Row>
+								</Row>
 
 								<Form.Row>
 									<Form.Group as={Col}>
@@ -225,7 +246,7 @@ class Animal extends Component {
 										<Form.Control type="text" name="dam" onChange={this.onChangeHandler} value={animal.dam} size="md" disabled={true} />
 									</Form.Group>
 								</Form.Row>
-							</Form>
+							</Container>
 						</div>
 					</div>
 					<AlertModal />

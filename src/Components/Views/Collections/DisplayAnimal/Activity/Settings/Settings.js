@@ -22,9 +22,7 @@ class Settings extends Component {
 			headers: {
 				Authorization: `Bearer ${localStorage.token}`,
 			},
-			data: {
-				_id: this.props.currentAnimal._id,
-			},
+			data: this.props.currentAnimal,
 		})
 			.then((response) => {
 				if (response.status === 200) {

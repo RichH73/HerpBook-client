@@ -7,8 +7,8 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(/home/rich/websites/HerpBook-client/node_modules/react-quill/dist/quill.bubble.css);
-@import url(/home/rich/websites/HerpBook-client/node_modules/react-quill/dist/quill.snow.css);
+@import url(/Users/rhowell/mycode/HerpBook-client/node_modules/react-quill/dist/quill.bubble.css);
+@import url(/Users/rhowell/mycode/HerpBook-client/node_modules/react-quill/dist/quill.snow.css);
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

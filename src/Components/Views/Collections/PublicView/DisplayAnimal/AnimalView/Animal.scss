@@ -1,4 +1,4 @@
-@import '../../../../../index';
+@import '../../../../../../index';
 
 @media screen and (min-width: 1081px) {
 	// Start Animal
@@ -6,11 +6,15 @@
 		padding: 10px;
 	}
 
+	.collection-view-animal-image {
+		width: 90px;
+	}
+
 	.collections-animal-page input {
 		margin-bottom: 1em;
 	}
 
-	.collection-animal-img-info {
+	.collection-view-animal-img-info {
 		display: flex;
 		justify-content: space-evenly;
 		// display: grid;
