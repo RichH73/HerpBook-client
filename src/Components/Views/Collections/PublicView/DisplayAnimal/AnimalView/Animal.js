@@ -7,6 +7,7 @@ import axios from 'axios';
 import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 import AlertModal from '../../../../../_services/Modal/Modal';
 import './Animal.css';
 
@@ -15,8 +16,6 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 
 class Animal extends Component {
 	state = {
@@ -24,11 +23,12 @@ class Animal extends Component {
 		modalIsOpen: true,
 	};
 	componentDidMount() {
-		if (_.get(this.props, 'location.searchString')) {
-			this.searchId(this.props.location.searchString);
-		}
-		if (this.props.uid === this.props.currentAnimal.owner) {
-			this.setState({ readOnly: false });
+		this.searchId(this.props.match.params.id);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			this.searchId(this.props.match.params.id);
 		}
 	}
 
@@ -133,7 +133,7 @@ class Animal extends Component {
 	showImage = (images) => {
 		const firstImg = _.first(images);
 		return (
-			<img className="collection-view-animal-image" src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} />
+			<img src={`${_.get(firstImg, 'URL')}/${_.get(firstImg, 'thumbnail')}`} alt={_.get(firstImg, 'name')} onClick={() => this.largImage(firstImg)} />
 		);
 	};
 
@@ -149,9 +149,10 @@ class Animal extends Component {
 			},
 		})
 			.then((response) => {
-				if (response.status === 201) {
+				if (response.status === 200) {
 					this.props.currentAnimalDisplay(response.data[0]);
-					this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+					this.props.setPageTitle('');
+					// this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 				}
 			})
 			.catch((error) => {
@@ -166,33 +167,12 @@ class Animal extends Component {
 
 		return (
 			<React.Fragment>
-				<Container style={{ padding: '10px' }}>
-					<Row>
-						<Col xs={3}>
-							<div style={{ backgroundColor: 'lightblue' }}>{this.showImage(animal.images)}</div>
-						</Col>
-						<Col>
-							<Row>
-								<Form.Group as={Col}>
-									<Form.Label size="md">ID #</Form.Label>
-									<Form.Control type="text" name="animalID" value={animal._id} size="md" disabled={true} size="md" />
-								</Form.Group>
-
-								<Form.Group as={Col}>
-									<Form.Label size="md">Animal ID#</Form.Label>
-									<Form.Control type="text" name="userCreatedID" value={animal.userCreatedID} size="md" disabled={true} />
-								</Form.Group>
-							</Row>
-							<div style={{ backgroundColor: 'red' }}>red</div>
-						</Col>
-					</Row>
-				</Container>
 				<div className="collections-animal-page">
 					<div className="collection-animal-img-info">
-						<div className="collection-view-animal-image-box">{this.showImage(animal.images)}</div>
+						<div className="collection-animal-image">{this.showImage(animal.images)}</div>
 						<div className="collection-animal-common-info">
-							<Container fluid>
-								<Row>
+							<Form>
+								<Form.Row>
 									<Form.Group as={Col}>
 										<Form.Label size="md">ID #</Form.Label>
 										<Form.Control type="text" name="animalID" value={animal._id} size="md" disabled={true} size="md" />
@@ -202,7 +182,7 @@ class Animal extends Component {
 										<Form.Label size="md">Animal ID#</Form.Label>
 										<Form.Control type="text" name="userCreatedID" value={animal.userCreatedID} size="md" disabled={true} />
 									</Form.Group>
-								</Row>
+								</Form.Row>
 
 								<Form.Row>
 									<Form.Group as={Col}>
@@ -227,7 +207,7 @@ class Animal extends Component {
 										<Form.Control
 											type="text"
 											name="dob"
-											value={dayjs(this.props.currentAnimal.dob).format('MMM DD, YYYY')}
+											value={!!animal.dob ? dayjs(this.props.currentAnimal.dob).format('MMM DD, YYYY') : 'UNKOWN'}
 											onChange={this.onChangeHandler}
 											readOnly={true}
 											size="md"
@@ -236,17 +216,33 @@ class Animal extends Component {
 								</Form.Row>
 
 								<Form.Row>
-									<Form.Group as={Col}>
-										<Form.Label size="md">Sire</Form.Label>
-										<Form.Control type="text" name="sire" onChange={this.onChangeHandler} value={animal.sire} size="md" disabled={true} />
-									</Form.Group>
+									{!!animal.sire ? (
+										<Form.Group as={Col}>
+											<Form.Label size="md">
+												Sire <small>(click to see sire)</small>
+											</Form.Label>
+											<Link to={`/view_animal/${animal.sire}`}>
+												<Form.Control type="text" name="sire" onChange={this.onChangeHandler} value={animal.sire} size="md" disabled={true} />
+											</Link>
+										</Form.Group>
+									) : (
+										''
+									)}
 
-									<Form.Group as={Col}>
-										<Form.Label>Dam</Form.Label>
-										<Form.Control type="text" name="dam" onChange={this.onChangeHandler} value={animal.dam} size="md" disabled={true} />
-									</Form.Group>
+									{!!animal.dam ? (
+										<Form.Group as={Col}>
+											<Form.Label>
+												Dam <small>(click to see dam)</small>
+											</Form.Label>
+											<Link to={`/view_animal/${animal.dam}`}>
+												<Form.Control type="text" name="dam" onChange={this.onChangeHandler} value={animal.dam} size="md" disabled={true} />
+											</Link>
+										</Form.Group>
+									) : (
+										''
+									)}
 								</Form.Row>
-							</Container>
+							</Form>
 						</div>
 					</div>
 					<AlertModal />

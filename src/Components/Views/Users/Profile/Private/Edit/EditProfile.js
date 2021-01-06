@@ -281,11 +281,11 @@ class EditProfile extends React.Component {
 					<Toast.Body>Profile Successfully Updated!</Toast.Body>
 				</Toast>
 				<div className="profile-edit-personal-info">
-					<span>
+					{/* <span>
 						<small>
 							<Link to={`/user/${this.props.userInfo.username}`}>View Public Profile</Link>
 						</small>
-					</span>
+					</span> */}
 					<div className="edit-profile-entity-title">
 						<h4>Personal Information</h4>
 					</div>

@@ -58,7 +58,7 @@ class CollectionPublicView extends Component {
 	componentView = () => {
 		switch (this.state.viewing) {
 			case 'ANIMAL':
-				return <Animal />;
+				return <Animal match={this.props.match} />;
 			case 'RECORDS':
 				return <Records />;
 			case 'GALLERY':

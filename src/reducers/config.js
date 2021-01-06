@@ -4,8 +4,8 @@ import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 // Using Test Environment?
-const server_state = true;
-const show_redux = true;
+const server_state = false;
+const show_redux = false;
 
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 

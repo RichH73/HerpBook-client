@@ -32,7 +32,6 @@ class Main extends Component {
 	};
 
 	componentDidMount() {
-		console.log('view props', this.props);
 		if (this.props.match.params.id) {
 			axios({
 				method: 'post',
