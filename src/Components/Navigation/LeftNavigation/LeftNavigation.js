@@ -136,9 +136,7 @@ class LeftNav extends Component {
 						<h4>Navigation</h4>
 					</div>
 					<div className="left-main-nav">
-						<div className="left-nav-link">
-							<Link to="/">Home</Link>
-						</div>
+						<div className="left-nav-link">{!!localStorage.token ? <Link to="/home">Home</Link> : <Link to="/">Home</Link>}</div>
 						<div className="left-nav-link">
 							<Link to="/vendors">Breeders / Vendors</Link>
 						</div>

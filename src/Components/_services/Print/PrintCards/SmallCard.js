@@ -1,53 +1,9 @@
-/*
-import React from 'react'
-import Canvas from '../../../_services/Canvas'
-import { useSelector } from 'react-redux';
-import dayjs from 'dayjs';
-import QRCode from 'qrcode';
-import axios from 'axios';
-
-
-
-
-
-const SmallCard = () => {
-	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
-	const firstImageThumb = `${images[0].URL}/${images[0].thumbnail}`;
-
-	let code;
-	let animalImage;
-	const animalName = !!name ? `Name: ${name}` : '';
-	const animalGender = !!gender ? `Gender: ${gender}` : '';
-	const animalDob = !!dob ? `DOB: ${dayjs(dob).format('MMM DD, YYYY')}` : '';
-	const qr = QRCode.toDataURL(`https://www.herpbook.com/view_animal?id=${_id}`).then((url) => (code = url));
-
-
-	
-
-
-	const draw = context => {
-		// Insert your code to draw an image
-	  };
-
-
-
-
-
-	  return <Canvas draw={draw} height={100} width={100} />
-
-}
-
-
-export default SmallCard
-
-*/
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import QRCode from 'qrcode';
 import axios from 'axios';
-import ReactToPrint from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 
 const SmallCard = () => {
 	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
@@ -72,7 +28,7 @@ const SmallCard = () => {
 
 	const [image, setImage] = useState(null);
 	const [qrImg, setQr] = useState(null);
-	const canvas = useRef('testing');
+	const canvas = useRef();
 
 	useEffect(() => {
 		const animalImg = new Image();
@@ -133,9 +89,14 @@ const SmallCard = () => {
 			textAlign: 'center',
 		},
 	};
-	return (
-		<React.Fragment>
-			<div className="id-card-preview">
+
+	console.log(canvas.current);
+	//console.log('ref stuff', canvas.current)
+	return <canvas ref={canvas} width={400} height={200} />;
+	// (
+	// <React.Fragment>
+	{
+		/* <div className="id-card-preview">
 				<canvas ref={canvas} width={400} height={200} />
 			</div>
 			<ReactToPrint
@@ -154,12 +115,20 @@ const SmallCard = () => {
 					);
 				}}
 				content={() => this.componentRef}
-			/>
-			<div>
-				<canvas ref={canvas} width={400} height={200} />
-			</div>
-		</React.Fragment>
-	);
+			/> */
+	}
+	{
+		/* <div>
+				
+				<button onClick={Printcard}>Print</button>
+			</div> */
+	}
+	{
+		/* </React.Fragment> */
+	}
+	{
+		/* ); */
+	}
 };
 
 export default SmallCard;

@@ -1,0 +1,32 @@
+/*
+    Color section to define the colors used in the entire app.
+*/
+.visitor-new-section {
+  margin-top: 3rem;
+}
+
+.visitor-welcome-image {
+  text-align: center;
+}
+
+.visitor-welcome-page {
+  padding: 10px;
+}
+
+.visitor-welcome-page h1 {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.visitor-welcome-page h5 {
+  margin-top: 1em;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.visitor-welcome-wall-of-shame h5 {
+  margin-top: 1em;
+  text-align: center;
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=MainPage.css.map */

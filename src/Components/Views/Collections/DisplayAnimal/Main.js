@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
@@ -21,9 +21,10 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ToPrint from '../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Activity/Settings/Settings';
+import SmallCard from '../../../_services/Print/PrintCards/SmallCard';
 
 import Button from 'react-bootstrap/Button';
-import ReactToPrint from 'react-to-print';
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import { NavItem } from 'react-bootstrap';
 
 class Main extends Component {
@@ -135,26 +136,18 @@ class Main extends Component {
 	printIdCard = () => {
 		return (
 			<React.Fragment>
-				<div className="id-card-preview">
-					<ToPrint ref={(el) => (this.componentRef = el)} />
+				<div>
+					<ReactToPrint
+						trigger={() => {
+							// NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+							// to the root node of the returned component as it will be overwritten.
+							return <a href="#">Print this out!</a>;
+						}}
+						content={() => this.componentRef}
+					/>
+					<ToPrint ref={(canvas) => (this.componentRef = canvas)} />
+					{console.log(this)}
 				</div>
-				<ReactToPrint
-					//copyStyles={false}
-					trigger={() => {
-						return (
-							//TODO review this a href ref
-							// eslint-disable-next-line
-							<div style={{ textAlign: 'center', width: '50%' }}>
-								<a href="#">
-									<Button className="button" style={{ width: '120px', marginLeft: '20px' }}>
-										Print ID Card
-									</Button>
-								</a>
-							</div>
-						);
-					}}
-					content={() => this.componentRef}
-				/>
 			</React.Fragment>
 		);
 	};
@@ -165,7 +158,11 @@ class Main extends Component {
 		});
 	};
 
+	printRef = React.createRef();
 	componentView = () => {
+		// const PrintSmallCard = React.forwardRef((props, ref) => (
+		// <SmallCard ref={(el) => (this.printRef = el)} />
+		// ))
 		switch (this.state.viewing) {
 			case 'ANIMAL':
 				return <Animal />;
@@ -181,6 +178,7 @@ class Main extends Component {
 				return <Pairings />;
 			case 'IDCARD':
 				return <this.printIdCard />;
+			// return <ToPrint />;
 			case 'CLASSIFIEDLIST':
 				return <CollectionList />;
 			case 'SETTINGS':
@@ -218,6 +216,7 @@ class Main extends Component {
 						</NavDropdown>
 
 						<NavDropdown title="Printing" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item>
 							{/* <NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item> */}
 							<NavDropdown.Item onClick={() => this.componentSelector('PRINTRECORDS')}>Print Records</NavDropdown.Item>
 						</NavDropdown>

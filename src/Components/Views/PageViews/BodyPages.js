@@ -30,13 +30,15 @@ import Friends from '../Users/Profile/Public/Friends/Friends';
 import Activity from '../Users/Profile/Public/Activity/Activity';
 import Search from '../SiteSearch/SiteSearch';
 import Clutches from '../Clutches/Clutches';
+import VisitorWelcome from '../VisitorWelcomePage/MainPage';
 import EditClutch from '../Clutches/EditClutches/EditClutch';
 import CollectionPublicView from '../Collections/PublicView/DisplayAnimal/CollectionPublicView';
 
 const Pages = () => {
 	return (
 		<React.Fragment>
-			<Route exact path="/" component={Welcome} />
+			<Route exact path="/" component={VisitorWelcome} />
+			<Route path="/home" component={Welcome} />
 			<Route path="/add_vendor" component={NewVendor} />
 			<Route path="/classifieds" component={Categories} />
 			<Route path="/contact" component={Contact} />

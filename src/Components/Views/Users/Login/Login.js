@@ -73,7 +73,7 @@ class Login extends React.Component {
 						socketId: sock,
 					});
 					this.props.history.push({
-						pathname: '/',
+						pathname: '/home',
 					});
 				}
 			})

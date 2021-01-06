@@ -71,6 +71,11 @@ class SideDrawer extends React.Component {
 								Add new animal
 							</Link>
 						</div>
+						<div className="sideDrawer-nav-link">
+							<Link to="/clutches" onClick={this.closeDrawerHandler}>
+								My Clutches
+							</Link>
+						</div>
 					</div>
 				</div>
 			</React.Fragment>
@@ -92,9 +97,15 @@ class SideDrawer extends React.Component {
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<Link to="/" onClick={this.closeDrawerHandler}>
-								Home
-							</Link>
+							{!!localStorage.token ? (
+								<Link to="/home" onClick={this.closeDrawerHandler}>
+									Home
+								</Link>
+							) : (
+								<Link to="/" onClick={this.closeDrawerHandler}>
+									Home
+								</Link>
+							)}
 						</div>
 						<div className="sideDrawer-nav-link">
 							<Link to="/vendors" onClick={this.closeDrawerHandler}>
