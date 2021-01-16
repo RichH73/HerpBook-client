@@ -1,83 +1,12 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 899px) {
-  #contact_form {
-    margin-top: 15px;
-    width: 100%;
-  }
-  .form_space {
-    margin: 0;
-  }
-  #contact_form img {
-    width: 150px;
-  }
+.contact-us-form {
+  width: 95%;
+  margin: 1em auto;
 }
 
-@media screen and (min-width: 900px) {
-  #contact_form {
-    padding: 5px;
-    width: 98%;
-    height: 800px;
-  }
-  .form_space {
-    margin: 0;
-  }
-  #recaptcha {
-    margin-left: 7px;
-  }
-  #id_message_box {
-    margin: auto;
-  }
-  #id_message {
-    max-width: 100%;
-  }
-  #contact_form img {
-    max-width: 250px;
-  }
-  .contact-form {
-    width: 784px;
-    height: 606px;
-    background: rgba(104, 168, 107, 0.17);
-    padding-left: 70px;
-    border: solid 1px limegreen;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-  }
-  .contact-form h1 {
-    color: black;
-    text-align: center;
-  }
-  .contact-form-label {
-    color: green;
-    font-size: 80px;
-  }
-  .contact-form-message {
-    width: 608px;
-    height: 227px;
-    font-size: 22px;
-  }
-  .contact-form input {
-    margin: 10px 0;
-  }
-  .contact-form input,
-  text {
-    width: 186px;
-    height: 33px;
-    font-size: 28px;
-  }
-  .contact-form textarea {
-    margin-top: 10px;
-    resize: none;
-  }
-  #contact-form-send-button {
-    width: 150px;
-    height: 48px;
-    margin: 1em 1.5em 1em auto;
-    border-radius: 0.25rem;
-  }
-  #message-button {
-    margin: 1em 1em 1em auto;
-  }
+.contact-us-legend {
+  margin-bottom: 2em;
 }
 /*# sourceMappingURL=Contact.css.map */

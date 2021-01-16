@@ -35,12 +35,24 @@ class Welcome extends Component {
 					newsArray.push(article);
 				}
 			});
-			console.log('filtered data', newsArray);
 			this.setState({
 				news: newsArray,
 			});
 		});
 	}
+
+	showHideScanner = () => {
+		if (!!this.state.showScanner) {
+			this.setState({
+				showScanner: false,
+			});
+		}
+		if (!this.state.showScanner) {
+			this.setState({
+				showScanner: true,
+			});
+		}
+	};
 
 	render() {
 		return (
@@ -48,7 +60,7 @@ class Welcome extends Component {
 				<div className="welcome-page-main">
 					<div className="welcome-page-main-text">
 						{this.state.news.map((ns) => (
-							<div>
+							<div className="welcome-page-main-text-article" key={ns._id}>
 								<h4>{ns.title}</h4>
 								<ReactQuill name="businessFooter" value={ns.body} readOnly={true} theme="bubble" />
 							</div>

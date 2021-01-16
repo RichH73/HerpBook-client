@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACAA;;EAEE;ADAF,AAAA,kCAAkC,CAAC;EAClC,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,aAAa;CACrB",
+    "mappings": "ACAA;;EAEE;ADAF,AAAA,kCAAkC,CAAC;EAClC,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,aAAa;CACrB;;AAED,AAAA,iCAAiC,CAAC;EACjC,MAAM,EAAE,QAAQ;CAChB",
     "sources": [
         "Records.scss",
         "../../../../../../_index.scss"

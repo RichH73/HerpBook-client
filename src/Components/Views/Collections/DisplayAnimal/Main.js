@@ -1,24 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../actions/index';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-//import './Collections.css';
+import './Collections.css';
 import Pairings from './Records/Pairing/Pairings';
 import Feedings from './Records/Feeding/Feedings';
 import Sheddings from './Records/Shedding/Sheddings';
 import Weight from './Records/Weights/Weight';
 import Animal from './AnimalView/Animal';
 import Photos from './Photos';
+import PrintRecords from './Activity/Printing/PrintRecords';
+import CollectionList from './Activity/Classified/CollectionList';
 import Activity from './Activity/Activity';
 import axios from 'axios';
+import ScanQr from '../../../_services/Scan/ScanBarCode';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import ToPrint from '../../../_services/Print/PrintCards/ToPrint';
+import Settings from './Activity/Settings/Settings';
+import SmallCard from '../../../_services/Print/PrintCards/SmallCard';
+
+import Button from 'react-bootstrap/Button';
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import { NavItem } from 'react-bootstrap';
 
 class Main extends Component {
-	state = {};
+	state = {
+		viewing: 'ANIMAL',
+	};
 
 	componentDidMount() {
-		if (this.props.location.searchString) {
+		if (this.props.match.params.id) {
 			axios({
 				method: 'post',
 				url: `${this.props.API}/collections/search`,
@@ -26,11 +41,11 @@ class Main extends Component {
 					Authorization: `Bearer ${localStorage.token}`,
 				},
 				data: {
-					id: this.props.location.searchString, //query.parse(this.props.location.search).id,
+					id: this.props.match.params.id, //this.props.location.searchString, //query.parse(this.props.location.search).id,
 				},
 			})
 				.then((response) => {
-					if (response.status === 201) {
+					if (response.status === 200) {
 						this.props.currentAnimalDisplay(response.data[0]);
 						//this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
 						//this.props.history.push('/view_animal')
@@ -43,7 +58,8 @@ class Main extends Component {
 				});
 		}
 
-		this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		// this.props.setPageTitle(`Viewing Collection: ${this.props.currentAnimal._id}`);
+		this.props.setPageTitle(``);
 	}
 
 	componentWillUnmount() {
@@ -52,9 +68,26 @@ class Main extends Component {
 		this.props.clearRecordsEditor();
 	}
 
+	showHideScanner = () => {
+		if (!!this.state.showScanner) {
+			this.setState({
+				showScanner: false,
+			});
+		}
+		if (!this.state.showScanner) {
+			this.setState({
+				showScanner: true,
+			});
+		}
+	};
+
 	tabs = () => {
 		return (
 			<div className="collections-tab-header">
+				<div className="my-collections-qr-search">
+					<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
+					{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
+				</div>
 				<Tabs>
 					<TabList>
 						<Tab>Animal</Tab>
@@ -100,11 +133,110 @@ class Main extends Component {
 		);
 	};
 
+	printIdCard = () => {
+		return (
+			<React.Fragment>
+				<div>
+					<ReactToPrint
+						trigger={() => {
+							// NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+							// to the root node of the returned component as it will be overwritten.
+							return <a href="#">Print this out!</a>;
+						}}
+						content={() => this.componentRef}
+					/>
+					<ToPrint ref={(canvas) => (this.componentRef = canvas)} />
+					{console.log(this)}
+				</div>
+			</React.Fragment>
+		);
+	};
+
+	componentSelector = (viewtype) => {
+		this.setState({
+			viewing: viewtype,
+		});
+	};
+
+	printRef = React.createRef();
+	componentView = () => {
+		// const PrintSmallCard = React.forwardRef((props, ref) => (
+		// <SmallCard ref={(el) => (this.printRef = el)} />
+		// ))
+		switch (this.state.viewing) {
+			case 'ANIMAL':
+				return <Animal />;
+			case 'FEEDINGS':
+				return <Feedings />;
+			case 'PRINTRECORDS':
+				return <PrintRecords />;
+			case 'SHEDDING':
+				return <Sheddings />;
+			case 'WEIGHT':
+				return <Weight />;
+			case 'PAIRINGS':
+				return <Pairings />;
+			case 'IDCARD':
+				return <this.printIdCard />;
+			// return <ToPrint />;
+			case 'CLASSIFIEDLIST':
+				return <CollectionList />;
+			case 'SETTINGS':
+				return <Settings history={this.props.history} />;
+			case 'GALLERY':
+				return <Photos />;
+			default:
+				return <Animal />;
+		}
+	};
+
 	render() {
 		if (!this.props.currentAnimal._id.length) {
 			return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
 		}
-		return this.tabs();
+		const navStyles = { color: 'black', fontWeight: 'bold', cursor: 'pointer' };
+		return (
+			<React.Fragment>
+				<Navbar
+					style={{ backgroundColor: 'orange', borderTopLeftRadius: '7px', borderTopRightRadius: '7px' }}
+					variant="light"
+					collapseOnSelect
+					expand="sm">
+					{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
+					<Nav className="mr-auto">
+						<Nav.Link onClick={() => this.componentSelector('ANIMAL')} style={navStyles}>
+							Animal
+						</Nav.Link>
+
+						<NavDropdown title="Records" variant="light" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('FEEDINGS')}>Feeding</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('PAIRINGS')}>Pairing</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('SHEDDING')}>Sheds</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('WEIGHT')}>Weights</NavDropdown.Item>
+						</NavDropdown>
+
+						<NavDropdown title="Printing" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item>
+							{/* <NavDropdown.Item onClick={() => this.componentSelector('IDCARD')}>Collection Card</NavDropdown.Item> */}
+							<NavDropdown.Item onClick={() => this.componentSelector('PRINTRECORDS')}>Print Records</NavDropdown.Item>
+						</NavDropdown>
+
+						<NavDropdown title="Activity" id="collasible-nav-dropdown">
+							<NavDropdown.Item onClick={() => this.componentSelector('CLASSIFIEDLIST')}>Classified Listing</NavDropdown.Item>
+							<NavDropdown.Item onClick={() => this.componentSelector('SETTINGS')}>Collection Settings</NavDropdown.Item>
+						</NavDropdown>
+						<Nav.Link onClick={() => this.componentSelector('GALLERY')} style={navStyles}>
+							Gallery
+						</Nav.Link>
+					</Nav>
+					<Navbar.Brand onClick={() => this.showHideScanner()} style={{ show: 'none' }}>
+						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} className="my-collections-nav-brand-scanner" />
+					</Navbar.Brand>
+				</Navbar>
+				{this.componentView()}
+			</React.Fragment>
+		);
+		//this.tabs();
 	}
 }
 

@@ -23,6 +23,7 @@ import editRecord from './editRecords';
 import { new_clutch, current_clutch, my_clutches } from './clutches';
 import my_listings from './my_listings';
 import userMail from './userMail';
+import { PublicProfile } from './viewProfile';
 
 const allReducers = combineReducers({
 	alertModal,
@@ -46,6 +47,7 @@ const allReducers = combineReducers({
 	new_clutch,
 	pageId,
 	pictures,
+	PublicProfile,
 	richText,
 	scanBarCode,
 	selectedAnimal,

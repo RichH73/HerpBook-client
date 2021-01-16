@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import 'react-tabs/style/react-tabs.css';
-import _ from 'lodash';
+import { get, first, toNumber, uniq } from 'lodash';
 import './DisplayAnimal/Collections.css';
 import './MyCollections.css';
 import dayjs from 'dayjs';
 import ScanQr from '../../_services/Scan/ScanBarCode';
+
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 
 class MyCollections extends Component {
 	state = {
@@ -37,15 +42,15 @@ class MyCollections extends Component {
 			return collection._id === id;
 		});
 		this.props.newBarCode('');
-		this.props.currentAnimalDisplay(_.first(newId));
-		this.props.history.push('/view_animal');
+		this.props.currentAnimalDisplay(first(newId));
+		this.props.history.push(`/edit_animal/${id}`);
 	};
 
 	showLists = () => {
 		let { filters, collections } = this.props;
 		if (!!filters.sub_cat) {
 			collections = collections.filter((collection) => {
-				if (collection.sub_category === _.toNumber(filters.sub_cat)) {
+				if (collection.sub_category === toNumber(filters.sub_cat)) {
 					return collection;
 				}
 			});
@@ -57,57 +62,41 @@ class MyCollections extends Component {
 				}
 			});
 		}
-		return collections.map((sub) => (
-			<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)}>
-				<div className="my-collections-collection-container-image">
-					<img src={`${sub.images[0].URL}/${sub.images[0].thumbnail}`} />
+		const collectionsTable = collections.map((sub) => {
+			const thumbImg = sub.images[0];
+			return (
+				<div className="my-collections-collection-container" onClick={() => this.loadAnimal(sub._id)} key={sub._id}>
+					<div className="my-collections-collection-container-image">
+						{!thumbImg._id ? (
+							<img src="https://users.herpbook.com/default_images//thumb_stork.png" />
+						) : (
+							<img src={`${thumbImg.URL}/${thumbImg.thumbnail}`} />
+						)}
+					</div>
+					<div className="my-collections-collection-container-table">
+						<Table bordered size="sm">
+							<thead>
+								<tr>
+									{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
+									<th>Name</th>
+									<th>DOH</th>
+									<th>Gender</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
+									<td>{sub.name}</td>
+									{!!get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
+									<td>{sub.gender}</td>
+								</tr>
+							</tbody>
+						</Table>
+					</div>
 				</div>
-				<div className="my-collections-collection-container-table">
-					<table>
-						<thead>
-							{sub.userCreatedID ? <th>Animal ID</th> : <th>ID</th>}
-							<th>Name</th>
-							<th>DOB</th>
-							<th>Gender</th>
-						</thead>
-						<tbody>
-							<tr>
-								{sub.userCreatedID ? <td>{sub.userCreatedID}</td> : <td>{window.innerWidth < 700 ? sub._id.substr(0, 6) : sub._id}</td>}
-								<td>{sub.name}</td>
-								{!!_.get(sub, 'dob') ? <td>{dayjs(sub.dob).format('MM/DD/YYYY')}</td> : <td></td>}
-								<td>{sub.gender}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		));
-		//   <div className='my-collections-collection-container'>
-		//     <table>
-		//       <thead>
-		//         <th>ID</th>
-		//         <th>Name</th>
-		//         <th>DOB</th>
-		//         <th>Gender</th>
-		//       </thead>
-		//       <tbody>
-		//         {collections.map((sub) => {
-		//           return (
-		//             <tr onClick={() => this.loadAnimal(sub._id)}>
-		//               <td>{sub._id}</td>
-		//               <td>{sub.name}</td>
-		//               {!!_.get(sub, "dob") ? (
-		//                 <td>{dayjs(sub.dob).format("MM/DD/YYYY")}</td>
-		//               ) : (
-		//                 <td></td>
-		//               )}
-		//               <td>{sub.gender}</td>
-		//             </tr>
-		//           );
-		//         })}
-		//       </tbody>
-		//     </table>
-		//   </div>
+			);
+		});
+		return collectionsTable;
 	};
 
 	clearFilters = () => {
@@ -118,7 +107,7 @@ class MyCollections extends Component {
 		let changeFilter = (event) => {
 			this.props.newCollectionFilter([event.target.name], event.target.value);
 		};
-		let subsFiltered = _.uniq(
+		let subsFiltered = uniq(
 			this.props.collections.map((sub) => {
 				return sub.sub_category;
 			})
@@ -131,30 +120,33 @@ class MyCollections extends Component {
 		return (
 			<React.Fragment>
 				<div className="my-collections-quick-filters">
-					<h3>Quick Filters</h3>
+					<h4>Quick Filters</h4>
 					<div className="my-collections-quick-filters-select">
-						<div>
-							<label>Species</label>
-							<div>
-								<select name="sub_cat" onChange={changeFilter} value={this.props.filters.sub_cat}>
-									<option value="">All</option>
-									{subsList.map((sub) => (
-										<option value={sub.id}>{sub.name}</option>
-									))}
-								</select>
-							</div>
-						</div>
-						<div>
-							<label>Gender</label>
-							<div>
-								<select name="gender" onChange={changeFilter} value={this.props.filters.gender}>
-									<option value="">All</option>
-									<option value="MALE">Male</option>
-									<option value="FEMALE">Female</option>
-									<option value="UNKNOWN">Unknown</option>
-								</select>
-							</div>
-						</div>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label size="md">Species</Form.Label>
+									<Form.Control name="sub_cat" as="select" onChange={changeFilter} value={this.props.filters.sub_cat} size="md">
+										<option value="">All</option>
+										{subsList.map((sub) => (
+											<option key={sub.id} value={sub.id}>
+												{sub.name}
+											</option>
+										))}
+									</Form.Control>
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Gender</Form.Label>
+									<Form.Control name="gender" as="select" onChange={changeFilter} value={this.props.filters.gender} size="md">
+										<option value="">All</option>
+										<option value="MALE">Male</option>
+										<option value="FEMALE">Female</option>
+										<option value="UNKNOWN">Unknown</option>
+									</Form.Control>
+								</Form.Group>
+							</Form.Row>
+						</Form>
 					</div>
 					<div className="my-collections-quick-filters-select-clear" onClick={this.clearFilters}>
 						Clear Filters
@@ -171,13 +163,13 @@ class MyCollections extends Component {
 		}
 		return (
 			<React.Fragment>
-				<div className="collections-my-collections">
-					<div className="collections-qr-search">
+				<div className="my-collections-collections">
+					<div className="my-collections-qr-search">
 						<img src="/images/scan_100.png" alt="scan" onClick={this.showHideScanner} />
-						{!!this.state.showScanner ? <ScanQr /> : ''}
+						{!!this.state.showScanner ? <ScanQr history={this.props.history} /> : ''}
 					</div>
 					<div>{this.selectFilters()}</div>
-					<div className="collections-my-collections-active-list">{this.showLists()}</div>
+					<div className="my-collections-collections-active-list">{this.showLists()}</div>
 				</div>
 			</React.Fragment>
 		);

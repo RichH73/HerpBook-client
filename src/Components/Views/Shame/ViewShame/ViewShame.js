@@ -13,6 +13,15 @@ import ReactQuill from 'react-quill';
 import dayjs from 'dayjs';
 //import ImageCompress from 'quill-image-compress';
 
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 // import QuillEmoji from 'quill-emoji';
 class ViewShame extends Component {
 	state = {
@@ -31,20 +40,6 @@ class ViewShame extends Component {
 			address: '',
 		},
 	};
-
-	// quill = new Quill('.editor', {
-	// 	// ...
-	// 	modules: {
-	// 		// ...
-	// 		imageCompress: {
-	// 			quality: 0.7, // default
-	// 			maxWidth: 600, // default
-	// 			maxHeight: 600, // default
-	// 			imageType: 'image/jpeg', // default
-	// 			debug: false, // default
-	// 		},
-	// 	},
-	// });
 
 	modules = {
 		imageCompress: {
@@ -137,6 +132,7 @@ class ViewShame extends Component {
 		});
 	};
 
+	//TODO fix the min-height on read-only quill editor
 	commentMapper = (comments) => {
 		return this.props.report.shameComments.map((comment) => (
 			<React.Fragment>
@@ -145,7 +141,7 @@ class ViewShame extends Component {
 					<br />
 					<small>{dayjs(comment.date).format('MM/DD/YYYY h:mmA')}</small>
 					<br />
-					{HtmlParser(comment.comment)}
+					<ReactQuill name="view-shame-incident-description" style={{ minHeight: '50px' }} value={comment.comment} readOnly={true} theme="bubble" />
 				</div>
 			</React.Fragment>
 		));
@@ -182,7 +178,7 @@ class ViewShame extends Component {
 			case 'INDIVIDUAL':
 				return (
 					<div className="wall-of-shame-report">
-						<table>
+						<Table bordered size="md">
 							<thead>
 								<tr>
 									<td>Email</td>
@@ -201,8 +197,9 @@ class ViewShame extends Component {
 									</td>
 								</tr>
 							</tbody>
-						</table>
-						<div className="view-shame-incident-description">{HtmlParser(incident_description)}</div>
+						</Table>
+						<ReactQuill name="view-shame-incident-description" value={incident_description} readOnly={true} theme="bubble" />
+						{/* <div className="view-shame-incident-description">{HtmlParser(incident_description)}</div> */}
 						{shameComments ? <div className="wall-of-shame-user-report-comments">{this.commentMapper()}</div> : ''}
 						<div className="wall-of-shame-user-report-leave-comment">
 							<label className="field-input-label">Leave a comment:</label>
@@ -217,12 +214,13 @@ class ViewShame extends Component {
 									formats={this.formats}
 									readOnly={false}
 									theme="snow"
+									className="ql-input-editor"
 								/>
 							</div>
 							<div className="wall-of-shame-user-report-comment-button">
-								<button className="button" onClick={() => this.submitHandler(this.props.report)}>
+								<Button variant="success" onClick={() => this.submitHandler(this.props.report)}>
 									Submit
-								</button>
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -250,7 +248,8 @@ class ViewShame extends Component {
 								</tr>
 							</tbody>
 						</table>
-						<div className="view-shame-incident-description">{HtmlParser(incident_description)}</div>
+						<ReactQuill name="view-shame-incident-description" value={incident_description} readOnly={true} theme="bubble" />
+						{/* <div className="view-shame-incident-description">{HtmlParser(incident_description)}</div> */}
 						{shameComments ? <div className="wall-of-shame-user-report-comments">{this.commentMapper()}</div> : ''}
 						<div className="wall-of-shame-user-report-leave-comment">
 							<label className="field-input-label">Leave a comment:</label>
@@ -268,9 +267,9 @@ class ViewShame extends Component {
 								/>
 							</div>
 							<div className="wall-of-shame-user-report-comment-button">
-								<button className="button" onClick={() => this.submitHandler(this.props.report)}>
+								<Button variant="success" onClick={() => this.submitHandler(this.props.report)}>
 									Submit
-								</button>
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -281,7 +280,15 @@ class ViewShame extends Component {
 	};
 
 	render() {
-		return <React.Fragment>{this.returnReport()}</React.Fragment>;
+		return (
+			<React.Fragment>
+				<Container fluid="md">
+					<Row>
+						<Col>{this.returnReport()}</Col>
+					</Row>
+				</Container>
+			</React.Fragment>
+		);
 	}
 }
 

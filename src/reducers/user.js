@@ -1,10 +1,28 @@
 const initialState = {
 	uid: '',
 	socketId: '',
-	socketID: '',
+	userSocket: false,
+	socialMedia: {},
+	my_friends: [],
+	friends: {
+		requests: [],
+		friends: [],
+		pending: [],
+	},
 };
 
-const clear_state = initialState;
+const clear_state = {
+	uid: '',
+	socketId: '',
+	socketId: '',
+	socialMedia: {},
+	my_friends: [],
+	friends: {
+		requests: [],
+		friends: [],
+		pending: [],
+	},
+};
 
 const user = (state = initialState, user) => {
 	switch (user.type) {
@@ -28,7 +46,7 @@ const user = (state = initialState, user) => {
 
 		case 'LOG_OUT':
 			return {
-				initialState,
+				...initialState,
 			};
 
 		case 'updateProfile':

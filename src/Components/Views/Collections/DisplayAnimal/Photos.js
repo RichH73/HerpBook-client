@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import _ from 'lodash';
 import axios from 'axios';
 import ImageDrop from '../../../_services/ImageDrop';
+import Button from 'react-bootstrap/Button';
 class Photos extends Component {
 	state = {};
 
@@ -109,14 +110,20 @@ class Photos extends Component {
 					<div className="collections-images-imgage-body">
 						<img src={`${image.URL}/${image.thumbnail}`} alt={image.thumbnail} onClick={() => this.largImage(image)} />
 					</div>
-					<div className="collections-images-imgage-body-info">
-						<p>Image Name: {image.large}</p>
-					</div>
-					<div className="collections-images-imgage-footer">
-						<button className="button" onClick={() => this.deleteImage(image)}>
-							Delete
-						</button>
-					</div>
+					{!!image._id ? (
+						<React.Fragment>
+							<div className="collections-images-imgage-body-info">
+								<p>Image Name: {image.large}</p>
+							</div>
+							<div className="collections-images-imgage-footer">
+								<Button variant="danger" onClick={() => this.deleteImage(image)}>
+									Delete
+								</Button>
+							</div>
+						</React.Fragment>
+					) : (
+						''
+					)}
 				</div>
 			);
 		});
@@ -135,9 +142,9 @@ class Photos extends Component {
 					<ImageDrop imgDrop={{ className: 'collections-create-new-animal-img-drop' }} />
 				</div>
 				<div className="collections-create-new-animal-img-drop-button">
-					<button className="button" disabled={!this.props.sendFiles.length} onClick={this.addImages}>
+					<Button variant="success" disabled={!this.props.sendFiles.length} onClick={this.addImages}>
 						Save
-					</button>
+					</Button>
 				</div>
 				<div className="collections-animal-more-images-display">{this.imageMap()}</div>
 			</div>

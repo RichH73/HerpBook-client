@@ -9,7 +9,7 @@ td {
   text-align: center;
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   .my-listings-box-info table {
     width: 100%;
     border-collapse: collapse;
@@ -53,14 +53,14 @@ td {
     font-size: 1em;
   }
   .my-listings-gender {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-price {
-    font-size: 0.7em;
+    font-size: 1em;
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -75,9 +75,6 @@ td {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-  }
-  .my-listings-box:hover {
-    background-color: #cce2f8;
   }
   .my-listings-box a {
     text-decoration: none;
@@ -103,10 +100,10 @@ td {
     text-decoration: none;
   }
   .my-listings-gender {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-price {
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .my-listings-img {
     width: 100px;

@@ -1,6 +1,6 @@
 @import '../../../../index';
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.categories {
 		font-size: 18px;
 	}
@@ -48,7 +48,7 @@
 	}
 }
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.categories {
 		font-size: 18px;
 	}

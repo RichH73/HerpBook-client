@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 class Contact extends React.Component {
 	state = {
 		email: '',
@@ -18,6 +22,7 @@ class Contact extends React.Component {
 
 	componentDidMount() {
 		ReactGA.pageview('/contact');
+		this.props.setPageTitle('Contact Us');
 	}
 
 	handleChange = (event) => {
@@ -80,69 +85,54 @@ class Contact extends React.Component {
 	};
 	render() {
 		return (
-			<div id="contact_form">
-				<form onSubmit={this.submitHandler}>
-					<div className="form-group form-group-sm">
-						<fieldset className="form-group">
-							<legend className="border-bottom form_space">Contact Us</legend>
+			<div className="contact-us-form">
+				<Form onSubmit={this.submitHandler}>
+					<legend className="border-bottom form_space contact-us-legend">Contact Us</legend>
 
-							<div id="div_id_from_email" className="form-group">
-								<label id="id_from_email" className="col-form-label  requiredField">
-									Email Address<span className="asteriskField">*</span>
-								</label>
-							</div>
+					<Form.Group>
+						<Form.Label>Email Address</Form.Label>
+						<Form.Control type="email" name="email" required onChange={this.handleChange} />
+					</Form.Group>
 
-							<div className="form-group">
-								<input type="email" name="email" className="emailinput form-control" required id="id_from_email" onChange={this.handleChange} />
-							</div>
+					<Form.Label>Subject</Form.Label>
 
-							<div id="div_id_subject" className="form-group">
-								<label id="id_subject" className="col-form-label  requiredField">
-									Subject<span className="asteriskField">*</span>
-								</label>
-							</div>
+					<Form.Group>
+						<input
+							type="text"
+							name="subject"
+							className="textinput form-control"
+							required
+							id="subject"
+							value={this.state.subject}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
 
-							<div className="form-group">
-								<input
-									type="text"
-									name="subject"
-									className="textinput form-control"
-									required
-									id="subject"
-									value={this.state.subject}
-									onChange={this.handleChange}
-								/>
-							</div>
+					<Form.Group>
+						<Form.Label>Message</Form.Label>
+						<Form.Control
+							as="textarea"
+							name="message"
+							cols="45"
+							rows="5"
+							className="textarea form-control form-group-sm"
+							required
+							id="message"
+							value={this.state.message}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group>
+						{/* <div id="recaptcha"> */}
+						<Recaptcha sitekey="6LcLs7IUAAAAANJD7BGAJmQ8R_sLQg_Dox8NyNA-" render="explicit" verifyCallback={this.verifyCallback} />
+						{/* <br /> */}
+						{/* </div> */}
+					</Form.Group>
 
-							<div id="div_id_message" className="form-group">
-								<label id="id_message" className="col-form-label  requiredField">
-									Message<span className="asteriskField">*</span>
-								</label>
-							</div>
-
-							<div className="">
-								<textarea
-									name="message"
-									cols="45"
-									rows="5"
-									className="textarea form-control form-group-sm"
-									required
-									id="message"
-									value={this.state.message}
-									onChange={this.handleChange}></textarea>
-							</div>
-							<div></div>
-						</fieldset>
-						<div id="recaptcha">
-							<Recaptcha sitekey="6LcLs7IUAAAAANJD7BGAJmQ8R_sLQg_Dox8NyNA-" render="explicit" verifyCallback={this.verifyCallback} />
-							<br />
-						</div>
-
-						<button type="submit" disabled={!!this.state.isVerified ? false : true} className="button">
-							Send
-						</button>
-					</div>
-				</form>
+					<Button type="submit" disabled={!!this.state.isVerified ? false : true}>
+						Send
+					</Button>
+				</Form>
 			</div>
 		);
 	}

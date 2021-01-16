@@ -1,0 +1,47 @@
+@import '../../../../../index';
+
+.my-profile-main {
+	margin-bottom: 1rem;
+}
+
+.my-profile-main-profile-image {
+	margin-bottom: 1rem;
+	max-width: 160px;
+	cursor: pointer;
+}
+
+.my-profile-main-nav {
+	background-color: $themeColor;
+	padding: 0 10px;
+	color: black;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.my-profile-main-nav a {
+	color: black;
+}
+
+.my-profile-main-profile-grid-message {
+	display: flex;
+}
+
+.my-profile-main-profile-grid-fb {
+	display: flex;
+}
+
+
+@media screen and (min-width: 1081px) {
+	.my-profile-main-profile-grid-message-icon {
+		width: 2vmin;
+		height: 2vmin;
+		margin-right: 10px;
+	}
+}
+@media screen and (max-width: 1080px) {
+	.my-profile-main-profile-grid-message-icon {
+		width: 4vmin;
+		height: 4vmin;
+		margin-right: 10px;
+	}
+}

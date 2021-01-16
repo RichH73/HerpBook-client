@@ -6,7 +6,7 @@ a {
 td {
 	text-align: center;
 }
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.my-listings-box-info table {
 		width: 100%;
 		border-collapse: collapse;
@@ -52,15 +52,15 @@ td {
 	}
 
 	.my-listings-gender {
-		font-size: 0.7em;
+		font-size: 1em;
 	}
 
 	.my-listings-price {
-		font-size: 0.7em;
+		font-size: 1em;
 	}
 }
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	table {
 		width: 100%;
 		border-collapse: collapse;
@@ -84,9 +84,9 @@ td {
 		display: flex;
 	}
 
-	.my-listings-box:hover {
-		background-color: $lightBlue;
-	}
+	// .my-listings-box:hover {
+	// 	background-color: $lightBlue;
+	// }
 
 	.my-listings-box a {
 		text-decoration: none;
@@ -125,12 +125,12 @@ td {
 
 	.my-listings-gender {
 		//font-weight: bold;
-		font-size: 0.7em;
+		font-size: 1em;
 	}
 
 	.my-listings-price {
 		//font-weight: bold;
-		font-size: 0.7em;
+		font-size: 1em;
 		//text-align: left;
 	}
 

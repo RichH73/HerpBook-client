@@ -21,7 +21,7 @@ class SellersOtherListings extends Component {
 	render() {
 		const SellerListings = () => {
 			return this.state.listings.map((list) => (
-				<React.Fragment>
+				<React.Fragment key={list._id}>
 					<Link to={`/listing/${list._id}`}>
 						<div className="my-listings-box" key={list._id}>
 							<div style={{ textAlign: 'center', margin: 'auto' }}>
@@ -29,41 +29,26 @@ class SellersOtherListings extends Component {
 							</div>
 							<div className="listing-box-info" style={{ width: '80%', margin: 'auto' }}>
 								<table>
-									<th>Price</th>
-									<th>Gender</th>
-									<th>Price</th>
-									<th>Seller</th>
-									<tr>
-										<td>
-											<div className="listing-title">{list.price}</div>
-										</td>
-										<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
-										<td>
-											{' '}
-											<div className="listing-price">${list.price}</div>
-										</td>
-										<td>
-											<div>{get(list, 'username', get(list, 'user'))}</div>
-										</td>
-									</tr>
+									<thead>
+										<tr>
+											<th>Price</th>
+											<th>Gender</th>
+											<th>Seller</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div className="listing-title">{list.price}</div>
+											</td>
+											<td>{!!list.gender ? <div className="listing-gender">{list.gender}</div> : ''}</td>
+											<td>
+												<div>{get(list, 'username', get(list, 'user'))}</div>
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
-							{/* <table>
-								<tr>
-									<td>
-										<img src={`${list.URL}/${list.image}`} alt={list.image} />
-									</td>
-									<td>
-										<div className="my-listings-title">{list.title}</div>
-									</td>
-									<td>
-										<div className="my-listings-gender">Gender: {list.gender}</div>
-									</td>
-									<td>
-										<div className="my-listings-price">Price: ${list.price}</div>
-									</td>
-								</tr>
-							</table> */}
 						</div>
 					</Link>
 				</React.Fragment>

@@ -15,7 +15,7 @@ const wallOfShameInitialState = {
 };
 
 const fileShameReportInitialState = {
-	reportType: 'BUSINESS',
+	reportType: '',
 	business_name: '',
 	business_website: '',
 	business_email: '',

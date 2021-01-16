@@ -13,6 +13,12 @@ import ReactQuill from 'react-quill';
 import NumberFormat from 'react-number-format';
 import ReactTooltip from 'react-tooltip';
 
+//Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 class CreateListing extends React.Component {
 	state = {
 		modal: 'none',
@@ -197,11 +203,8 @@ class CreateListing extends React.Component {
 	};
 
 	shippingPrice = (
-		<div
-			data-tip="If you have a flat rate shipping price enter it here. If shipping is calculated later leave this box blank."
-			className="create-classified-shipping-price"
-			style={{ margin: '1em auto' }}>
-			<label className="field-input-label">Flat Rate Shipping Cost: </label>
+		<Form.Group>
+			<Form.Label>Flat Rate Shipping Cost</Form.Label>
 			<NumberFormat
 				thousandSeparator={true}
 				placeholder={'Leave blank if calculated'}
@@ -211,146 +214,160 @@ class CreateListing extends React.Component {
 				fixedDecimalScale={2}
 				onChange={this.onChangeHandler}
 				name="shippingPrice"
+				className="numberinput form-control"
+				data-tip="If you have a flat rate shipping price enter it here. If shipping is calculated later leave this box blank."
 			/>
 			<ReactTooltip />
-		</div>
+		</Form.Group>
 	);
 
 	render() {
+		const { listing } = this.props;
 		return (
 			<div className="create-classified-form">
-				<div className="image-drop">
-					<div className="create-classified-form-required-labels">
-						<label className="field-input-label">* Denotes required entires</label>
-						<br />
-						<label className="field-input-label">*Images (at least one image required)</label>
-					</div>
-					<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
-						{({ getRootProps, getInputProps }) => (
-							<section>
-								<div className="create-classified-dropbox" {...getRootProps()}>
-									<span>Please drag and drop your images into this box, or click the box to and them.</span>
-									<input {...getInputProps()} />
-								</div>
-							</section>
-						)}
-					</Dropzone>
-					{this.props.images.length > 0 && (
-						<div id="image-preview">
-							<h5>Image Preview</h5>
-							<label className="field-input-label">Click on an image to remove it.</label>
-							<br />
-							<div className="img-preview">
-								{this.props.images.map((file) => (
-									<div>
-										<br />
-										<img alt="Preview" key={file.preview} src={file.preview} onClick={() => this.clickHandler(file.path)} />
-									</div>
-								))}
-							</div>
-						</div>
-					)}
-				</div>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>ID</Form.Label>
+						<Form.Control
+							type="text"
+							name="userListId"
+							value={listing.userListId}
+							onChange={this.onChangeHandler}
+							data-tip="Your ID for this listing, or leave blank to use the system created ID."
+						/>
+					</Form.Group>
 
-				<form onSubmit={this.submitHandler}>
-					<div className="create-classified-form-inputs">
-						{/* <div className="create-classified-title">
-							<label className="field-input-label">* Title: </label>
-							<input
-								type="text"
-								name="title"
-								maxLength="80"
-								className="textinput textInput form-control create-classified-title"
-								required
-								onChange={this.onChangeHandler}
-							/>
-						</div> */}
-						<div className="create-classified-price">
-							<label className="field-input-label">*Price: </label>
+					<Form.Group as={Col}>
+						<Form.Label>Price</Form.Label>
+						<NumberFormat
+							thousandSeparator={true}
+							placeholder={this.props.price}
+							allowNegative={false}
+							prefix={'$'}
+							decimalScale={2}
+							fixedDecimalScale={2}
+							onChange={this.onChangeHandler}
+							name="price"
+							className="numberinput form-control"
+							value={listing.price}
+						/>
+					</Form.Group>
+				</Form.Row>
+
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Weight</Form.Label>
+						<InputGroup>
+							{/* <Form.Control as='div'> */}
 							<NumberFormat
 								thousandSeparator={true}
-								placeholder={this.props.price}
+								className="form-control form-control-md"
+								//defaultValue={this.props.recordOverlay.weight}
 								allowNegative={false}
-								prefix={'$'}
-								decimalScale={2}
 								fixedDecimalScale={2}
 								onChange={this.onChangeHandler}
-								name="price"
+								name="weight"
 							/>
-						</div>
-						<div className="create-classified-weight">
-							<label className="field-input-label">Weight: </label>
-							<input type="number" name="weight" step="0.1" className="numberinput form-control" id="id_weight" onChange={this.onChangeHandler} />
-							{!!this.props.weight ? <this.weightSelect /> : ''}
-						</div>
-						<div data-tip="Your ID for this listing, or leave blank to use the system created ID." className="create-classified-list-id">
-							<label className="field-input-label">ID: </label>
-							<input type="text" name="userListId" onChange={this.onChangeHandler} />
-						</div>
-						<div className="create-classified-gender">
-							<label className="field-input-label">Gender: </label>
-							<select name="gender" onChange={this.onChangeHandler}>
-								<option value="">Choose gender</option>
-								<option value="MALE">Male</option>
-								<option value="FEMALE">Female</option>
-								<option value="UNKNOWN">Unknown</option>
-							</select>
-						</div>
+							{/* </Form.Control> */}
+							<Form.Control as="select" name="weightUnit" onChange={this.onChangeHandler} value={this.state.weightUnit} size="md">
+								{/* <option value=''>Unit</option> */}
+								<option value="gm">Grams</option>
+								<option value="kg">Kilograms</option>
+								<option value="oz">Ounces</option>
+								<option value="lb">Pounds</option>
+							</Form.Control>
+						</InputGroup>
+					</Form.Group>
 
-						<div className="create-classified-category">
-							<label className="field-input-label">Category</label>
-							<select id="category" required name="category" onChange={this.onChangeHandler}>
-								<option value="">Choose a category</option>
-								{this.category_menu()}
-							</select>
-						</div>
+					<Form.Group as={Col}>
+						<Form.Label>Gender</Form.Label>
+						<Form.Control as="select" name="gender" onChange={this.onChangeHandler}>
+							<option value="">Choose gender</option>
+							<option value="MALE">Male</option>
+							<option value="FEMALE">Female</option>
+							<option value="UNKNOWN">Unknown</option>
+						</Form.Control>
+					</Form.Group>
+				</Form.Row>
 
-						{!!this.props.category ? (
-							<div className="create-classified-sub-category">
-								<label className="field-input-label">Sub category</label>
-								<select id="sub-category" required name="sub_category" onChange={this.onChangeHandler}>
-									<option value="">Choose a category</option>
-									{this.sub_category_menu()}
-								</select>
+				<Form.Group as={Col}>
+					<Form.Label>Category</Form.Label>
+					<Form.Control as="select" id="category" required name="category" onChange={this.onChangeHandler}>
+						<option value="">Choose a category</option>
+						{this.category_menu()}
+					</Form.Control>
+				</Form.Group>
+
+				{!!this.props.category ? (
+					<Form.Group as={Col}>
+						<Form.Label>Sub category</Form.Label>
+						<Form.Control as="select" id="sub-category" required name="sub_category" onChange={this.onChangeHandler}>
+							<option value="">Choose a category</option>
+							{this.sub_category_menu()}
+						</Form.Control>
+					</Form.Group>
+				) : (
+					''
+				)}
+				<Form.Group as={Col}>
+					<Form.Label>Sipping Available</Form.Label>
+					<Form.Control as="select" required name="shipping" onChange={this.onChangeHandler}>
+						<option value="false">No shipping</option>
+						<option value="true">Shipping Available</option>
+					</Form.Control>
+					{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
+				</Form.Group>
+
+				<Form.Group>
+					<Form.Label>Classified Description</Form.Label>
+					<ReactQuill
+						style={{ backgroundColor: 'white', color: 'black' }}
+						name="businessFooter"
+						value={this.props.listDescription}
+						onChange={this.handleChange}
+						modules={this.props.mods.modules}
+						formats={this.props.mods.formats}
+						readOnly={false}
+						theme="snow"
+					/>
+				</Form.Group>
+
+				<div className="create-classified-form">
+					<div className="image-drop">
+						<Dropzone accept="image/*" onDrop={this.onPreviewDrop} maxSize={50000000}>
+							{({ getRootProps, getInputProps }) => (
+								<section>
+									<div className="create-classified-dropbox" {...getRootProps()}>
+										<span>Please drag and drop your images into this box, or click the box to and them.</span>
+										<input {...getInputProps()} />
+									</div>
+								</section>
+							)}
+						</Dropzone>
+						{this.props.images.length > 0 && (
+							<div id="image-preview">
+								<h5>Image Preview</h5>
+								<label className="field-input-label">Click on an image to remove it.</label>
+								<br />
+								<div className="img-preview">
+									{this.props.images.map((file) => (
+										<div>
+											<br />
+											<img alt="Preview" key={file.preview} src={file.preview} onClick={() => this.clickHandler(file.path)} />
+										</div>
+									))}
+								</div>
 							</div>
-						) : (
-							''
 						)}
-						<div className="create-classified-shipping">
-							<label className="field-input-label">Do you offer shipping? </label>
-							<select required name="shipping" onChange={this.onChangeHandler}>
-								<option selected value="false">
-									No shipping
-								</option>
-								<option value="true">Shipping Available</option>
-							</select>
-							{!!this.props.newLisingData.shipping ? this.shippingPrice : ''}
-						</div>
-						<div className="create-classified-description">
-							<div className="create-classified-description-label">
-								<label className="field-input-label">*Description.</label>
-							</div>
-							<div className="create-classified-description-editor">
-								<ReactQuill
-									style={{ backgroundColor: 'white', color: 'black' }}
-									name="businessFooter"
-									value={this.props.listDescription}
-									onChange={this.handleChange}
-									modules={this.props.mods.modules}
-									formats={this.props.mods.formats}
-									readOnly={false}
-									theme="snow"
-								/>
-							</div>
-						</div>
-						<div className="create-classified-submit-button">
-							<button type="submit" className="btn btn-success">
-								Create Classified
-							</button>
-						</div>
 					</div>
-				</form>
-				<ReactTooltip />
+
+					<div className="create-classified-submit-button">
+						<Button variant="success" type="submit">
+							Create Classified
+						</Button>
+					</div>
+					<ReactTooltip />
+				</div>
 			</div>
 		);
 	}
@@ -366,7 +383,7 @@ const mapStateToProps = (state) => ({
 	image_array: state.imageHandler.image_array,
 	images: state.imageHandler.images,
 	imgs: state.imageHandler.image_array,
-	listing: state.listing.images,
+	listing: state.listing,
 	listDescription: state.richText.text,
 	picture: state.listing.picture,
 	price: state.listing.price,

@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 1081px) {
   .collections-animal-page {
     padding: 10px;
   }
@@ -9,30 +9,24 @@
     margin-bottom: 1em;
   }
   .collection-animal-img-info {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: 'img info';
-    margin-bottom: 1em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
   .collection-animal-image {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
     grid-area: img;
+    margin-bottom: 1em;
   }
   .collection-animal-common-info {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: 'name gender' 'id dob' 'sire dam';
-    height: 180px;
+    width: 65%;
     margin-bottom: 8px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
     grid-area: info;
   }
   .collection-animal-name {
     width: 200px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
     grid-area: name;
   }
   .collection-animal-name input {
@@ -40,16 +34,12 @@
   }
   .collection-animal-id {
     width: 200px;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
     grid-area: id;
   }
   .collection-animal-id input {
     width: 200px;
   }
   .collection-animal-dob {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
     grid-area: dob;
     width: 200px;
   }
@@ -58,8 +48,6 @@
   }
   .collection-animal-sire {
     width: 200px;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
     grid-area: sire;
   }
   .collection-animal-sire span {
@@ -74,25 +62,7 @@
   }
   .collection-animal-dam {
     width: 200px;
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
     grid-area: dam;
-  }
-  .collection-animal-dam span {
-    width: 2em;
-    text-align: right;
-    font-size: 0.7rem;
-    color: blue;
-    cursor: pointer;
-  }
-  .collection-animal-dam input {
-    width: 200px;
-  }
-  .collection-animal-gender {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: gender;
-    width: 200px;
   }
   .collection-animal-comment {
     width: 200px;
@@ -102,7 +72,7 @@
     width: 98%;
   }
   .collections-animal-quick-records {
-    margin: 4em auto 2em;
+    margin: 0 auto 2em;
   }
   .collections-animal-quick-records-data {
     font-size: 0.8rem;
@@ -119,38 +89,9 @@
   .collections-animal-page img {
     width: 200px;
   }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.7rem;
-  }
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  .collections-animal-more-images {
-    padding: 10px;
-  }
-  .collections-animal-more-images-display {
-    margin-top: 2em;
-    display: -ms-grid;
-    display: grid;
-    grid-gap: 20px;
-    -ms-grid-columns: auto auto auto;
-        grid-template-columns: auto auto auto;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  .collections-animal-more-images img {
-    width: 100px;
-    cursor: pointer;
-  }
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .collections-animal-page {
     padding: 10px;
   }
@@ -159,6 +100,7 @@
     text-align: center;
     width: 90%;
     grid-area: img;
+    margin-bottom: 1em;
   }
   .collection-animal-common-info {
     height: 180px;
@@ -223,11 +165,11 @@
     width: 200px;
   }
   .collection-animal-body {
-    margin-top: 14em;
-    width: 100%;
+    margin: auto;
+    width: 96%;
   }
   .collections-animal-quick-records {
-    margin: 8em auto 3em;
+    margin: 1em auto 3em;
   }
   .collections-animal-quick-records-data {
     font-size: 1rem;
@@ -235,9 +177,6 @@
   }
   .collection-animal-comments-box {
     margin-top: 0.2em;
-  }
-  .collection-animal-comments-box p {
-    font-size: 4em;
   }
   .collection-animal-comments {
     width: 100%;
@@ -257,175 +196,7 @@
     text-align: left;
     padding: 8px;
   }
-  .collections-animal-more-images {
-    padding: 10px;
-  }
-  .collections-animal-more-images-display {
-    margin: 2em auto;
-    width: 80%;
-    grid-gap: 20px;
-    -ms-grid-columns: auto;
-        grid-template-columns: auto;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  .collections-animal-more-images img {
-    cursor: pointer;
-  }
   .collections-my-collections-active-list td:hover {
-    cursor: pointer;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 839px) {
-  .collections-animal-page {
-    padding: 10px;
-  }
-  .collection-animal-img-info {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: 'img' 'info';
-    margin-bottom: 1em;
-  }
-  .collection-animal-image {
-    margin: auto;
-    text-align: center;
-    width: 90%;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: img;
-  }
-  .collection-animal-common-info {
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: 'id ...' 'name ...' 'gender dob' 'sire ...' 'dam ...';
-    height: 180px;
-    margin-bottom: 3em;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: info;
-  }
-  .collection-animal-name {
-    width: 200px;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: name;
-  }
-  .collection-animal-name input {
-    width: 200px;
-  }
-  .collection-animal-id {
-    margin: 1em auto 0.5em;
-    width: 200px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: id;
-  }
-  .collection-animal-id input {
-    margin: 1em auto 0.5em;
-    width: 200px;
-  }
-  .collection-animal-dob {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
-    grid-area: dob;
-    width: 200px;
-  }
-  .collection-animal-dob input {
-    margin: 1em auto 0.5em;
-    width: 100px;
-  }
-  .collection-animal-sire {
-    width: 200px;
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    grid-area: sire;
-  }
-  .collection-animal-sire span {
-    width: 2em;
-    text-align: right;
-    font-size: 0.7rem;
-    color: blue;
-    cursor: pointer;
-  }
-  .collection-animal-sire input {
-    width: 200px;
-  }
-  .collection-animal-dam {
-    margin: 1em auto 0.5em;
-    width: 200px;
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    grid-area: dam;
-  }
-  .collection-animal-dam span {
-    width: 2em;
-    text-align: right;
-    font-size: 0.7rem;
-    color: blue;
-    cursor: pointer;
-  }
-  .collection-animal-dam input {
-    margin: 1em auto 0.5em;
-    width: 200px;
-  }
-  .collection-animal-gender {
-    margin: 0.5em auto 0.5em;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-    grid-area: gender;
-    width: 200px;
-  }
-  .collection-animal-comment {
-    width: 200px;
-  }
-  .collection-animal-body {
-    margin-top: 1px;
-    width: 100%;
-  }
-  .collections-animal-quick-records {
-    margin: 8em auto 3em;
-  }
-  .collections-animal-quick-records-data {
-    font-size: 1rem;
-    margin-top: 0.2em;
-  }
-  .collection-animal-comments-box {
-    margin-top: 0.2em;
-  }
-  .collection-animal-update-button {
-    margin: 1em auto;
-    text-align: right;
-  }
-  .collections-animal-page img {
-    width: 200px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.7rem;
-  }
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  .collections-animal-more-images {
-    padding: 10px;
-  }
-  .collections-animal-more-images-display {
-    margin: 2em auto;
-    width: 80%;
-    grid-gap: 20px;
-    -ms-grid-columns: auto;
-        grid-template-columns: auto;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  .collections-animal-more-images img {
     cursor: pointer;
   }
 }

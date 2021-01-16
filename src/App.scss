@@ -1,56 +1,86 @@
 @import './index';
 
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import '../node_modules/react-quill/dist/quill.bubble.css';
+@import '../node_modules/react-quill/dist/quill.snow.css';
 .application-body {
 	text-align: left;
 }
 
-
-label {
-    color: rgb(0, 0, 0);
-    margin: 1em auto;
+.ql-editor {
+	font-size: 16px;
+	min-height: 100px;
 }
 
-input {
-    font-size: 1em;
-    border: 1px solid $borderColor;
+a :hover {
+	text-decoration: none;
 }
 
-select {
-    font-size: 1em;
-    border: 1px solid $borderColor;
+.web-link {
+	text-decoration: none;
+	color: blue;
 }
 
-.button {
-	border-radius: 7px;
-	width: 80px;
-	background: $buttonColor;
-	text-align: center;
-}
-
-.button:hover {
-	border: solid $buttonBorder 1px;
+.web-link:hover {
+	text-decoration: none;
+	color: $themeColor;
+	cursor: pointer;
 }
 
 
+.left-main-nav a:hover {
+	color: $themeColor;
+}
+// label {
+//     color: rgb(0, 0, 0);
+//     margin: 1em auto;
+// }
 
-@media screen and ($minWidth) {
+// input {
+//     font-size: 1em;
+//     border: 1px solid $borderColor;
+// }
+
+// select {
+//     font-size: 1em;
+//     border: 1px solid $borderColor;
+// }
+
+// .button {
+// 	border-radius: 7px;
+// 	width: 80px;
+// 	background: $buttonColor;
+// 	text-align: center;
+// }
+
+// .button:hover {
+// 	border: solid $buttonBorder 1px;
+// }
+
+
+
+@media screen and (min-width: 1081px) {
 	.mobile-nav-button {
 		display: none;
 	}
 }
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	input {
 		font-size: 1em;
-		margin-top: 0.3em;
-		margin-bottom: 0.8em;
+		// margin-top: 0.3em;
+		// margin-bottom: 0.8em;
 	}
 	.mobile-nav-button {
 		display: block;
-		//   top: 20px;
-		//   left: 20px;
+		  top: 25px;
+		  left: -60px;
 		text-align: right;
-		//position: relative;
-		//   z-index: 50;
-		margin: 1em 2em 0;
+		position: relative;
+		  z-index: 1;
+		//margin: 1em 2em 0;
+	}
+	.mobile-nav-button img {
+		width: 60px;
+		height: 35px;
 	}
 }

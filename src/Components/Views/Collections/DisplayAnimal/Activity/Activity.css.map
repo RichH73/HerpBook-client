@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACAA;;EAEE;ADAF,AAAA,gBAAgB,CAAC;EAChB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,eAAe;CACvB",
+    "mappings": "ACAA;;EAEE",
     "sources": [
         "Activity.scss",
         "../../../../../_index.scss"

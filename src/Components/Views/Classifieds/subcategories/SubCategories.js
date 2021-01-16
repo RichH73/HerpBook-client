@@ -37,7 +37,7 @@ class SubCategory extends React.Component {
 
 	emptyListingsResponse = (
 		<div style={{ width: '90%', margin: 'auto' }}>
-			<h3>No Listings</h3>
+			<h4>No Listings</h4>
 			<p>
 				Sorry, there were no listings in this category. If you have something that you would like to sell please feel free to create a free account.
 				Then create a classified listing here so the next person doens't see this message{' '}
@@ -60,11 +60,16 @@ class SubCategory extends React.Component {
 	render() {
 		const Listings = () => {
 			let page = this.props.listingsData.map((list) => (
-				<React.Fragment>
+				<React.Fragment key={list._id}>
 					<Link to={`/listing/${list._id}`}>
 						<div className="listing-box" key={list._id}>
 							<div className="listing-box-image">
-								<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								{!!list.image ? (
+									<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								) : (
+									<img src="https://users.herpbook.com/default_images/thumb_stork.png" />
+								)}
+								{/* <img src={`${list.URL}/${list.image}`} alt={list.image} /> */}
 							</div>
 							<div className="listing-box-info">
 								<table>
@@ -89,7 +94,9 @@ class SubCategory extends React.Component {
 											<td>
 												<div>
 													{list.username || list.user}{' '}
-													{!!list.online ? <span style={{ color: 'green', fontStyle: 'bold' }}> (Online)</span> : <React.Fragment></React.Fragment>}
+													<Link to={`/user/${list.username}`}>
+														{!!list.online ? <span style={{ color: 'green', fontStyle: 'bold' }}> (Online)</span> : <React.Fragment></React.Fragment>}
+													</Link>
 												</div>
 											</td>
 										</tr>

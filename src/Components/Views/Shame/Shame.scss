@@ -1,8 +1,6 @@
-//@media screen and (min-width: 900px) {
 @import '../../../index';
 .wall-of-shame-header {
 	width: 100%;
-	//background-color: green;
 	color: white;
 }
 
@@ -93,8 +91,6 @@
 .wall-of-shame-disclaimer {
 	color: black;
 	width: 100%;
-	//background-color: #B2D7B9;
-	//padding: 1em;
 }
 
 .wall-of-shame-disclaimer p {
@@ -104,7 +100,6 @@
 }
 
 .wall-of-shame-attribute {
-	// margin-top: 10px;
 	font-size: 1rem;
 }
 
@@ -132,7 +127,6 @@
 	padding: 3px;
 	border-radius: 10px;
 	border: 2px solid limegreen;
-	//background-color: rgba(104, 168, 104, 0.253);
 }
 
 .wall-of-shame-file-report {
@@ -149,4 +143,3 @@
 	text-align: center;
 }
 
-//}

@@ -1,89 +1,16 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 700px) {
-  .collections-create-new-animal-images {
-    margin: 4em auto 1em;
-  }
-  .collections-create-new-animal-form {
-    width: 100%;
-    margin: auto;
-  }
-  .collections-create-new-animal-type-ucid {
-    left: 10em;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 0 auto 1em 15%;
-  }
-  .collections-create-new-animal-type {
-    padding-right: 10em;
-  }
-  .collections-create-name-animal-name-dob {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 1em auto auto 6.5em;
-  }
-  .collections-create-new-animal-gender-category {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 1em auto auto 6.5em;
-  }
-  .collections-create-new-animal-footer {
-    margin: auto 5em 0;
-    grid-area: footer;
-    text-align: right;
-    padding-right: 5em;
-  }
-  .collections-create-new-animal-form input {
-    margin: 5px 0;
-    font-size: 1em;
-    border: 1px solid orange;
-  }
-  .collections-create-new-animal-form select {
-    margin: 5px 0;
-    font-size: 1em;
-    border: 1px solid orange;
-  }
-  .collections-create-new-animal-name {
-    padding-right: 5em;
-    grid-area: create-name;
-  }
-  .collections-create-new-animal-dob {
-    grid-area: create-dob;
-  }
-  .collections-create-new-animal-sire {
-    padding-right: 2em;
-  }
-  .collections-create-new-animal-dam {
-    content: '';
-    height: 3em;
-    grid-area: create-dam;
-  }
-  .collections-create-new-animal-gender {
-    padding-right: 12.5em;
-  }
-  .collections-create-new-animal-button {
-    padding: 8px;
-  }
-  .collections-create-new-animal-button button {
-    width: 80px;
-  }
-  .collections-create-new-animal-img-drop-dropbox {
-    width: 60%;
-    padding: 3px;
-    border-radius: 10px;
-    border: 2px solid orange;
-    background-color: #cce2f8;
-    margin: auto;
+@media screen and (min-width: 1081px) {
+  .collections-create-new-animal {
+    padding: 20px;
   }
   .img-preview {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: auto auto auto auto auto auto;
-        grid-template-columns: auto auto auto auto auto auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .img-preview img {
     width: 100px;
@@ -91,32 +18,36 @@
   .collections-create-new-animal-img-drop-preview {
     text-align: center;
   }
-  .collections-create-new-animal-category {
-    margin-bottom: 8px;
+  .collections-create-new-animal-img-drop-dropbox {
+    width: 60%;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid orange;
+    background-color: #cce2f8;
+    margin: 1em auto;
   }
-  .collections-create-new-animal-sire-dam {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 1em auto auto 6.5em;
-  }
-  .collections-create-new-animal-category select {
-    border: 1px solid red;
-  }
-  .collections-create-new-animal-sub-category {
-    content: '';
-  }
-  .collections-create-new-animal-sub-category select {
-    border: 1px solid red;
-  }
-  .field-input-label {
-    margin-right: 8px;
+  .collections-create-new-animal-button {
+    width: 80px;
+    margin: 2em 2em 1em auto;
   }
 }
 
-@media screen and (max-width: 699px) {
-  .collections-create-new-animal-images {
-    margin: 3em auto;
+@media screen and (max-width: 1080px) {
+  .collections-create-new-animal {
+    padding: 20px;
+  }
+  .collections-create-new-animal-img-drop-preview {
+    margin-top: 1em;
+    text-align: center;
+  }
+  .img-preview {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+  }
+  .img-preview img {
+    width: 100px;
   }
   .collections-create-new-animal-img-drop-dropbox {
     width: 60%;
@@ -126,35 +57,8 @@
     background-color: #cce2f8;
     margin: auto;
   }
-  .collections-create-new-animal-user-id {
-    margin: 0.5em 0.5em;
-  }
-  .collections-create-new-animal-type {
-    margin: 0.5em 0.5em;
-  }
-  .collections-create-new-animal-name {
-    margin: 0.5em 0.5em;
-  }
-  .collections-create-new-animal-dob {
-    margin: 1em 0.5em;
-  }
-  .collections-create-new-animal-gender {
-    margin: 0.5em 0.5em;
-  }
-  .collections-create-new-animal-category {
-    margin: 1.5em 0.5em;
-  }
-  .collections-create-new-animal-sire {
-    margin: 0.5em 0.5em;
-  }
-  .collections-create-new-animal-dam {
-    margin: 1.5em 0.5em;
-  }
-  .img-preview img {
-    width: 100px;
-  }
   .collections-create-new-animal-button {
-    margin: auto;
+    margin: 1em 1em auto auto;
     width: 80px;
   }
 }

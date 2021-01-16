@@ -11,6 +11,7 @@ import allReducers from './reducers';
 import { BrowserRouter } from 'react-router-dom';
 import { store_config } from './reducers/config';
 import { FacebookProvider } from 'react-facebook';
+const SocketService = require('./Components/_services/SocketService');
 
 export const store = createStore(
 	allReducers,

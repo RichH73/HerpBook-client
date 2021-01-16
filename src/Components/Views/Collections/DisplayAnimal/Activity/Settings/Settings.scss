@@ -6,7 +6,7 @@
 	display: none;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1081px) {
 	.react-confirm-alert-body {
 		width: 400px;
 	}
@@ -24,7 +24,7 @@
 	}
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
 	.react-confirm-alert-body {
 		width: 300px;
 	}

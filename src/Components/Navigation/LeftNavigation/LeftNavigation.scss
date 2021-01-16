@@ -1,16 +1,31 @@
 @import '../../../index';
 
-// a {
-// 	color: black;
-// }
 
-h3 {
-	text-align: center;
+
+a:hover {
+	text-decoration: none;
+	color: $themeColor;
 }
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.left-main-navigation-outter-panel {
 		display: none;
+	}
+}
+
+@media screen and (min-width: 1081px) {
+	.left-main-nav a {
+		color: black;
+		text-decoration: none;
+	}
+
+	.left-main-nav a:active {
+		font-weight: bold;
+		color: $themeColor;
+	}
+	.left-main-nav-selected {
+		font-weight: bold;
+		color: $themeColor;
 	}
 }
 
@@ -32,12 +47,13 @@ h3 {
 	// border: 1px solid lightgray;
 	text-align: left;
 	width: 190px;
-	padding: 1em 0 1em 0.5em;
+	//padding: 1em 0 1em 0.5em;
+	padding-left: .5em;
 }
 
-.left-main-nav a {
-	color: black;
-}
+// .left-main-nav a {
+// 	color: black;
+// }
 
 .left-navigation-panel-header {
 	background-color: $navigationHeaderColor;

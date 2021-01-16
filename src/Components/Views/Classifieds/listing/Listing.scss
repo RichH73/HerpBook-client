@@ -1,6 +1,6 @@
 @import '../../../../index';
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
 	.list-info {
 		display: grid;
 		grid-template-areas:
@@ -153,14 +153,6 @@
 		border-radius: 3px;
 	}
 
-	button {
-		border: 1px solid $panelBodyColor;
-		background-color: $borderColor;
-		width: 300px;
-		height: 30px;
-		font-weight: bold;
-	}
-
 	.classified-listing-seller-other {
 		color: black;
 	}
@@ -169,7 +161,7 @@
 		color: blue;
 	}
 }
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
 	.list-box {
 		width: 98%;
 		color: black;
@@ -332,11 +324,11 @@
 		width: 100%;
 	}
 
-	button {
-		border: 1px solid $panelBodyColor;
-		background-color: $borderColor;
-		width: 300px;
-		height: 30px;
-		font-weight: bold;
-	}
+	// button {
+	// 	border: 1px solid $panelBodyColor;
+	// 	background-color: $borderColor;
+	// 	width: 300px;
+	// 	height: 30px;
+	// 	font-weight: bold;
+	// }
 }

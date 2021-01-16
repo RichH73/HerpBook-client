@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/index';
 import QrReader from 'react-qr-reader';
+
 // import query from 'query-string';
 import './ScanBarCode.css';
 
@@ -17,8 +18,10 @@ class ScanQr extends Component {
 		// example https://www.herpbook.com/view_animal?id=5fb2b403aafd835967422be0
 		if (data) {
 			let idCode = data.split('?id=')[1];
+			console.log('some data', idCode);
 			if (!!idCode.length) {
 				this.props.newBarCode(idCode);
+				this.props.history.push(`/search_collections/${idCode}`);
 			}
 		}
 	};
@@ -31,7 +34,7 @@ class ScanQr extends Component {
 				delay={300}
 				onError={this.handleError}
 				onScan={this.handleScan}
-				style={{ width: '100%', margin: 'auto', position: 'absolute', zIndex: '1' }}
+				style={{ width: '50%', margin: '3em', position: 'fixed', zIndex: '1' }}
 			/>
 			// </div>
 		);

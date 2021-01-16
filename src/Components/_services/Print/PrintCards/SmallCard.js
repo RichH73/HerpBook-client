@@ -1,75 +1,134 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../../../actions/index';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-tabs/style/react-tabs.css';
-import 'react-quill/dist/quill.snow.css';
-import 'quill-emoji/dist/quill-emoji.css';
-import './PrintCards.css';
+import React, { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import QRCode from 'qrcode';
+import axios from 'axios';
+import { useReactToPrint } from 'react-to-print';
 
-class SmallCard extends Component {
-	state = {
-		data: 'Not Found',
+const SmallCard = () => {
+	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
+	const firstImageThumb = `${images[0].URL}/${images[0].thumbnail}`;
+
+	let code;
+	let animalImage;
+	const animalName = !!name ? `Name: ${name}` : '';
+	const animalGender = !!gender ? `Gender: ${gender}` : '';
+	const animalDob = !!dob ? `DOB: ${dayjs(dob).format('MMM DD, YYYY')}` : '';
+	const qr = QRCode.toDataURL(`https://www.herpbook.com/view_animal?id=${_id}`).then((url) => (code = url));
+
+	const imgDat = axios({
+		url: `https://herpbook.com:8550/collections/report_image`,
+		method: 'post',
+		data: {
+			collectionID: _id,
+		},
+	}).then((data) => {
+		animalImage = `data:image/jpeg;base64, ${data.data}`;
+	});
+
+	const [image, setImage] = useState(null);
+	const [qrImg, setQr] = useState(null);
+	const canvas = useRef();
+
+	useEffect(() => {
+		const animalImg = new Image();
+		const qrImg = new Image();
+		qrImg.src = code;
+		animalImg.src = firstImageThumb;
+		animalImg.onload = () => setImage(animalImg);
+		qrImg.onload = () => setQr(qrImg);
+	}, []);
+
+	useEffect(() => {
+		if (image && qrImg && canvas) {
+			const ctx = canvas.current.getContext('2d');
+			ctx.drawImage(image, 2, 2);
+		}
+		if (qrImg && canvas) {
+			const ctx = canvas.current.getContext('2d');
+			ctx.drawImage(qrImg, 230, 0, 110, 110);
+
+			ctx.moveTo(0, 0);
+			ctx.lineTo(450, 0);
+			ctx.stroke();
+
+			ctx.moveTo(400, 0);
+			ctx.lineTo(400, 200);
+			ctx.stroke();
+
+			ctx.moveTo(400, 200);
+			ctx.lineTo(0, 200);
+			ctx.stroke();
+
+			ctx.moveTo(0, 200);
+			ctx.lineTo(0, 0);
+			ctx.stroke();
+
+			ctx.font = '12px Arial';
+			ctx.fillStyle = 'black';
+			ctx.fillText(_id, 205, 115);
+
+			ctx.font = '18px Arial';
+			ctx.fillStyle = 'black';
+			ctx.fillText(animalName, 205, 150);
+
+			ctx.font = '18px Arial';
+			ctx.fillStyle = 'black';
+			ctx.fillText(animalGender, 205, 170);
+
+			ctx.font = '18px Arial';
+			ctx.fillStyle = 'black';
+			ctx.fillText(animalDob, 205, 190);
+		}
+	}, [[image, qrImg], canvas]);
+
+	const styles = {
+		outterDiv: {
+			//width: '90%',
+			margin: '1em auto',
+			textAlign: 'center',
+		},
 	};
 
-	componentDidMount() {
-		this.qr();
-		//React.createElement('img', {id: 'image', src: ''} )
-	}
-
-	qr = () => {
-		QRCode.toDataURL(`https://www.herpbook.com/view_animal?id=${this.props.currentAnimal._id}`).then((url) => {
-			this.props.barTest(url);
-		});
-	};
-
-	render() {
-		const fd = dayjs(this.props.currentAnimal.dob);
-		return (
-			<div>
-				<div className="card-body">
-					<div className="bar-code-body">
-						<div className="bar-code-img">
-							<img src={`${this.props.currentAnimal.images[0].URL}/${this.props.currentAnimal.images[0].thumbnail}`} alt="" />
-						</div>
-						<div className="bar-code-name">
-							<div className="bar-code">
-								<img src={this.props.imgSrc} alt="" />
-							</div>
-							<div className="bar-code-inner-name">
-								<h3>{this.props.currentAnimal.name}</h3>
-								<p>Gender: {this.props.currentAnimal.gender}</p>
-								<p>DOB: {`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</p>
-							</div>
-						</div>
-					</div>
-				</div>
+	console.log(canvas.current);
+	//console.log('ref stuff', canvas.current)
+	return <canvas ref={canvas} width={400} height={200} />;
+	// (
+	// <React.Fragment>
+	{
+		/* <div className="id-card-preview">
+				<canvas ref={canvas} width={400} height={200} />
 			</div>
-		);
+			<ReactToPrint
+				//copyStyles={false}
+				trigger={() => {
+					return (
+						//TODO review this a href ref
+						// eslint-disable-next-line
+						<div style={{ textAlign: 'center', width: '50%' }}>
+							<a href="#">
+								<button className="button" style={{ width: '120px', marginLeft: '20px' }}>
+									Print ID Card
+								</button>
+							</a>
+						</div>
+					);
+				}}
+				content={() => this.componentRef}
+			/> */
 	}
-}
-
-const mapStateToProps = (state) => ({
-	API: state.config.server.serverAPI,
-	USERSURL: state.config.server.usersURL,
-	URL: state.config.server.serverURL,
-	userInfo: state.user,
-	React: state.config.analytics,
-	urlImg: state.bar_img.img,
-	currentAnimal: state.viewAnimal,
-	selectedAnimalId: state.selectedAnimal.id,
-	collectionsIds: state.myCollections,
-	recordOverlay: state.editRecord,
-	notesText: state.richText.text,
-	mods: state.richText,
-	imgSrc: state.bar_img.img,
-});
-
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators(actionCreators, dispatch);
+	{
+		/* <div>
+				
+				<button onClick={Printcard}>Print</button>
+			</div> */
+	}
+	{
+		/* </React.Fragment> */
+	}
+	{
+		/* ); */
+	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SmallCard);
+export default SmallCard;

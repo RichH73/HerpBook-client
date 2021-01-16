@@ -1,3 +1,9 @@
+import ReactQuill, { Quill } from 'react-quill';
+//import Quill from 'quill'
+import ImageCompress from 'quill-image-compress';
+
+Quill.register('modules/imageCompress', ImageCompress);
+
 const initial_state = {
 	text: '',
 	modules: {
@@ -9,8 +15,9 @@ const initial_state = {
 			debug: false, // default
 		},
 		toolbar: [
-			[{ header: [1, 2, false] }],
+			[{ header: [1, 2, 3, 4, 5, false] }],
 			['bold', 'italic', 'underline', 'strike', 'blockquote'],
+			[{ align: [] }],
 			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
 			['link', 'image', 'video'],
 			['emoji'], // 'image', 'video'],
@@ -20,7 +27,23 @@ const initial_state = {
 		'emoji-textarea': false,
 		'emoji-shortname': false,
 	},
-	formats: ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'emoji', 'link', 'image', 'video', 'clean'],
+	formats: [
+		'header',
+		'bold',
+		'italic',
+		'underline',
+		'align',
+		'strike',
+		'blockquote',
+		'list',
+		'bullet',
+		'indent',
+		'emoji',
+		'link',
+		'image',
+		'video',
+		'clean',
+	],
 	readOnly: false,
 	type: 'write',
 };

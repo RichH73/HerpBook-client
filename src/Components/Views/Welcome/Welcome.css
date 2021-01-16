@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 1081px) {
   .welcome-page-main {
     padding: 8px;
     color: black;
@@ -15,15 +15,18 @@
   }
   .welcome-page-fb-like {
     display: block;
-    width: 60%;
+    width: 30%;
     margin: 1em auto;
-    text-align: left;
+    text-align: center;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1080px) {
   .welcome-page-main {
     padding: 8px;
+  }
+  .welcome-page-main-text-article {
+    margin: 2em auto;
   }
   .welcome-page-fb-like {
     display: none;

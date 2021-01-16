@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   .list-info {
     display: -ms-grid;
     display: grid;
@@ -152,13 +152,6 @@
     max-height: 600px;
     border-radius: 3px;
   }
-  button {
-    border: 1px solid #cce2f8;
-    background-color: orange;
-    width: 300px;
-    height: 30px;
-    font-weight: bold;
-  }
   .classified-listing-seller-other {
     color: black;
   }
@@ -167,7 +160,7 @@
   }
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .list-box {
     width: 98%;
     color: black;
@@ -317,13 +310,6 @@
     margin-top: 30%;
     text-align: center;
     width: 100%;
-  }
-  button {
-    border: 1px solid #cce2f8;
-    background-color: orange;
-    width: 300px;
-    height: 30px;
-    font-weight: bold;
   }
 }
 /*# sourceMappingURL=Listing.css.map */

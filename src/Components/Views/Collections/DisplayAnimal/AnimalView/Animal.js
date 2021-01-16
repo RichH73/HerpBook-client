@@ -12,6 +12,13 @@ import dayjs from 'dayjs';
 import AlertModal from '../../../../_services/Modal/Modal';
 import './Animal.css';
 import ReactTooltip from 'react-tooltip';
+import { Link } from 'react-router-dom';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 class Animal extends Component {
 	state = {
@@ -50,7 +57,7 @@ class Animal extends Component {
 				<div className="collections-animal-quick-records">
 					Quick Records
 					<div className="collections-animal-quick-records-data">
-						<table>
+						<Table bordered size={window.innerWidth < 600 ? 'sm' : 'md'}>
 							<tbody>
 								{!_.isEmpty(_.get(records, 'feeding')) ? (
 									<tr>
@@ -120,7 +127,7 @@ class Animal extends Component {
 									''
 								)}
 							</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			);
@@ -203,58 +210,34 @@ class Animal extends Component {
 	};
 
 	sireDisplay = () => {
-		const { category, sub_category } = this.props.createAnimal;
+		const { category, sub_category, _id } = this.props.currentAnimal;
 		let collections = this.props.collections;
 		if (!sub_category) {
 			collections = [];
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'MALE') {
+				if (sub.sub_category === _.toNumber(sub_category) && sub.gender === 'MALE' && sub._id !== _id) {
 					return sub;
 				}
 			});
+			return collections.map((collection) => <option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>);
 		}
-		return (
-			<React.Fragment>
-				<label className="field-input-label">Sire:</label>
-				<div>
-					<select name="sire" onChange={this.formChangeHandler}>
-						<option>Add Sire</option>
-						{collections.map((collection) => (
-							<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-						))}
-					</select>
-				</div>
-			</React.Fragment>
-		);
 	};
 
 	damDisplay = () => {
-		const { category, sub_category } = this.props.currentAnimal;
+		const { category, sub_category, _id } = this.props.currentAnimal;
 		let collections = this.props.collections;
 		if (!sub_category) {
 			collections = [];
 		}
 		if (!!sub_category) {
 			collections = collections.filter((sub) => {
-				if (sub.sub_category === sub_category && sub.gender === 'FEMALE') {
+				if (sub.sub_category === _.toNumber(sub_category) && sub.gender === 'FEMALE' && sub._id !== _id) {
 					return sub;
 				}
 			});
-			return (
-				<React.Fragment>
-					<label className="field-input-label">Sire:</label>
-					<div>
-						<select name="dam" onChange={this.formChangeHandler}>
-							<option>Add Dam</option>
-							{collections.map((collection) => (
-								<option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>
-							))}
-						</select>
-					</div>
-				</React.Fragment>
-			);
+			return collections.map((collection) => <option value={collection._id}>{`${collection._id} / ${collection.name}`}</option>);
 		}
 	};
 
@@ -267,95 +250,98 @@ class Animal extends Component {
 					<div className="collection-animal-img-info">
 						<div className="collection-animal-image">{this.showImage(animal.images)}</div>
 						<div className="collection-animal-common-info">
-							<div className="collection-animal-name">
-								<label className="field-input-label">Name</label>
-								<div>
-									<input type="text" name="name" defaultValue={animal.name} onChange={this.onChangeHandler} readOnly={this.state.readOnly} />
-								</div>
-							</div>
-							<div className="collection-animal-id">
-								<label className="field-input-label">ID #</label>
-								<div>
-									<input type="text" name="animalID" value={animal._id} />
-								</div>
-							</div>
+							<Form>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label size="md">ID #</Form.Label>
+										<Link to={`/view_animal/${animal._id}`}>
+											<Form.Control type="text" name="animalID" value={animal._id} size="md" readOnly={true} size="md" />
+										</Link>
+									</Form.Group>
 
-							<div className="collection-animal-user-aniaml-id">
-								<label className="field-input-label">Animal ID#</label>
-								<div>
-									<input type="text" name="userCreatedID" value={animal.userCreatedID} onChange={this.onChangeHandler} />
-								</div>
-							</div>
+									<Form.Group as={Col}>
+										<Form.Label size="md">Animal ID#</Form.Label>
+										<Form.Control type="text" name="userCreatedID" value={animal.userCreatedID} onChange={this.onChangeHandler} size="md" />
+									</Form.Group>
+								</Form.Row>
 
-							<div className="collection-animal-collection-type">
-								<label className="field-input-label">Collection Type</label>
-								<div>
-									<select name="collectionType" onChange={this.onChangeHandler} defaultValue={animal.collectionType}>
-										<option></option>
-										<option value="SALE">Sale</option>
-										<option value="PET">Pet</option>
-										<option value="HOLDBACK">Holdback</option>
-										<option value="BREEDER">Breeder</option>
-									</select>
-								</div>
-							</div>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Name</Form.Label>
+										<Form.Control
+											type="text"
+											name="name"
+											defaultValue={animal.name}
+											onChange={this.onChangeHandler}
+											readOnly={this.state.readOnly}
+											size="md"
+										/>
+									</Form.Group>
 
-							<div className="collection-animal-dob">
-								<label className="field-input-label">DOB</label>
-								<div>
-									<DatePicker
-										showPopperArrow={false}
-										selected={!!this.props.currentAnimal.dob ? new Date(this.props.currentAnimal.dob) : ''}
-										onChange={this.dateHandler}
-										readOnly={this.state.readOnly}
-									/>
-								</div>
-							</div>
+									<Form.Group as={Col}>
+										<Form.Label size="md">Gender</Form.Label>
+										<Form.Control
+											size="md"
+											as="select"
+											name="gender"
+											onChange={this.onChangeHandler}
+											disabled={this.state.readOnly}
+											value={this.props.currentAnimal.gender}>
+											<option value="MALE">Male</option>
+											<option value="FEMALE">Female</option>
+											<option value="UNKNOWN">Unknown</option>
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
 
-							<div className="collection-animal-sire">
-								<label>Sire</label>
-								{!!animal.sire.length ? (
-									<span name="viewLink" onClick={() => this.searchId(animal.sire)}>
-										view
-									</span>
-								) : (
-									''
-								)}
-								<div>
-									<input type="text" name="sire" value={animal.sire} onChange={this.onChangeHandler} readOnly={true} />
-								</div>
-							</div>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label size="md">Collection Type</Form.Label>
+										<Form.Control as="select" name="collectionType" onChange={this.onChangeHandler} value={animal.collectionType} size="md">
+											<option></option>
+											{animal.typeCollections.map((type) => (
+												<option value={type}>{type}</option>
+											))}
+										</Form.Control>
+									</Form.Group>
 
-							<div className="collection-animal-dam">
-								<label className="field-input-label">Dam</label>
-								{animal.dam.length ? (
-									<span name="viewLink" onClick={() => this.searchId(animal.dam)}>
-										view
-									</span>
-								) : (
-									''
-								)}
-								<div>
-									<input type="text" name="dam" defaultValue={animal.dam} onChange={this.onChangeHandler} readOnly={true} />
-								</div>
-							</div>
-							<div className="collection-animal-gender">
-								<label className="field-input-label">Gender</label>
-								<div>
-									<select name="gender" onChange={this.onChangeHandler} disabled={this.state.readOnly} defaultValue={this.props.currentAnimal.gender}>
-										<option selected value="MALE">
-											Male
-										</option>
-										<option value="FEMALE">Female</option>
-										<option value="UNKNOWN">Unknown</option>
-									</select>
-								</div>
-							</div>
+									<Form.Group as={Col}>
+										<Form.Label size="md">DOH</Form.Label>
+										<Form.Control
+											type="date"
+											name="dob"
+											value={dayjs(this.props.currentAnimal.dob).format('YYYY-MM-DD')}
+											onChange={this.onChangeHandler}
+											readOnly={this.state.readOnly}
+											size="md"
+										/>
+									</Form.Group>
+								</Form.Row>
+
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label size="md">Sire</Form.Label>
+										<Form.Control as="select" name="sire" onChange={this.onChangeHandler} value={animal.sire} size="md">
+											<option value="">Unknown</option>
+											{this.sireDisplay()}
+										</Form.Control>
+									</Form.Group>
+
+									<Form.Group as={Col}>
+										<Form.Label>Dam</Form.Label>
+										<Form.Control as="select" name="dam" onChange={this.onChangeHandler} value={animal.dam} size="md">
+											<option value="">Unknown</option>
+											{this.damDisplay()}
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
+							</Form>
 						</div>
 					</div>
 					<AlertModal />
 				</div>
 				<div className="collection-animal-body">
+					<hr />
 					{this.quickRecords(animal.quickRecords)}
 					<div className="collection-animal-comments">
 						<label className="field-input-label">Notes</label>
@@ -374,14 +360,16 @@ class Animal extends Component {
 							''
 						) : (
 							<div className="collection-animal-update-button">
-								<button className="button" onClick={this.onSubmitHandler}>
+								<Button variant="success" size="md" onClick={this.onSubmitHandler}>
 									Update
-								</button>
+								</Button>
 							</div>
 						)}
 					</div>
 				</div>
-				<ReactTooltip />
+				<div style={{ zIndex: '-1', width: '0' }}>
+					<ReactTooltip />
+				</div>
 			</React.Fragment>
 		);
 	}

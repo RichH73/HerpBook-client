@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .vendor-list-about {
     width: 100%;
   }
@@ -10,13 +10,12 @@
     white-space: pre-line;
     padding-left: 0.5em;
   }
-  .breeder {
+  .vendor-list-breeder {
     border: 1px solid orange;
     border-radius: 7px;
     margin: 1em auto 2em;
   }
   .vendor-list-header {
-    height: 22px;
     background-color: orange;
     top: 0;
     margin-top: 0px;
@@ -49,14 +48,13 @@
   }
 }
 
-@media screen and (min-width: 700px) {
-  .breeder {
+@media screen and (min-width: 1081px) {
+  .vendor-list-breeder {
     border: 1px solid orange;
     border-radius: 7px;
     margin: 1em auto 2em;
   }
   .vendor-list-header {
-    height: 22px;
     background-color: orange;
     top: 0;
     margin-top: 0px;

@@ -1,7 +1,7 @@
 @import '../../../index';
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
 	.main-navigation-header {
 		display: none;
 	}
@@ -9,6 +9,7 @@
 
 .main-navigation-header {
 	width: 1000px;
+	height: 175px;
 	position: relative;
 	margin: 100px auto 50px;
 	border: 2px solid $headerBorderColor;
@@ -34,7 +35,7 @@
 	text-align: left;
 	margin-left: 1em;
 	font-size: 3rem;
-	color: orange;
+	color: $themeColor;
 	-webkit-text-stroke-width: 0.5px;
 	-webkit-text-stroke-color: black;
 }

@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import MDatePicker from 'react-mobile-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import './Sheddings.css';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class Sheddings extends Component {
 	state = {
 		date: new Date(),
@@ -71,14 +76,15 @@ class Sheddings extends Component {
 
 	handleDate = (date) => {
 		this.setState({
-			date: date,
+			date: dayjs(date.target.value).toString(),
 		});
 	};
 
 	editingRecord = (shedRecord) => {
 		this.props.loadrecordsEditor({
 			recordType: 'sheddings',
-			display: 'block',
+			editModal: true,
+			//display: 'block',
 			...shedRecord,
 		});
 	};
@@ -95,39 +101,6 @@ class Sheddings extends Component {
 	};
 
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
-
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
-		const fd = dayjs(_.get(this, 'state.time'));
 		return (
 			<div className="collections-sheddings-list" style={{ padding: '10px' }}>
 				<div className="collections-sheddings-new-shedding-form">
@@ -138,57 +111,43 @@ class Sheddings extends Component {
 						</p>
 					</div>
 					<div className="collections-sheddings-new-shedding">
-						<div>
-							<label className="field-input-label">Date:</label>
-							<div className="collections-sheddings-new-shedding-date-desktop-selector">
-								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
-							</div>
-							<div className="collections-sheddings-new-shedding-date-mobile-selector">
-								<input type="text" readOnly={true} value={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} onClick={this.mobileHandleClick} />
-								<MDatePicker
-									dateConfig={dateConfig}
-									value={this.state.time}
-									isOpen={this.state.isOpen}
-									confirmText="Select"
-									cancelText="Cancel"
-									onSelect={this.mobileHandleSelect}
-									onCancel={this.mobileHandleCancel}
-									theme="ios"
-								/>
-							</div>
-						</div>
-						<div>
-							<label className="field-input-label">Complete Shed:</label>
-							<div className="collections-sheddings-new-shedding-full-shed-selector">
-								<select name="fullShed" onChange={this.onChangeHandler}>
-									<option></option>
-									<option value={true}>Yes</option>
-									<option value={false}>No</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div className="collections-sheddings-list-button">
-						<button
-							className="button"
-							disabled={this.state.readOnly}
-							onClick={this.onSubmitHandler}
-							// eslint-disable-next-line
-							disabled={!this.state.fullShed.length}
-							label="Save">
-							Save
-						</button>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Date</Form.Label>
+									<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Complete Shed</Form.Label>
+									<Form.Control as="select" name="fullShed" onChange={this.onChangeHandler} size="md">
+										<option></option>
+										<option value={true}>Yes</option>
+										<option value={false}>No</option>
+									</Form.Control>
+								</Form.Group>
+							</Form.Row>
+							<Button
+								disabled={this.state.readOnly}
+								onClick={this.onSubmitHandler}
+								disabled={!this.state.fullShed.length}
+								variant="success"
+								size="md"
+								block>
+								Save
+							</Button>
+						</Form>
 					</div>
 				</div>
 				<div className="collections-animal-sheddings-records">
 					<div className="collections-shedding-table">
-						<table>
+						<Table striped bordered hover size="md">
 							<thead>
 								<th>Date</th>
 								<th>Complete Shed</th>
 							</thead>
 							<tbody>{this.shedMappings()}</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			</div>

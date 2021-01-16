@@ -1,16 +1,9 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (min-width: 840px) {
-  .collections-pairing-table-tr:hover {
-    cursor: pointer;
-    background-color: #cce2f8;
-  }
-  .collections-pairing-table th {
-    font-size: 1.2em;
-  }
-  .collections-pairing-table td {
-    font-size: 1.3em;
+@media screen and (min-width: 1081px) {
+  .collections-parings-new-paring-form {
+    margin: 1em auto;
   }
   .collections-pairings-list-button {
     margin: 0.5em auto;
@@ -36,32 +29,7 @@
   }
 }
 
-@media screen and (min-width: 700px) and (max-width: 839px) {
-  .collections-pairing-table-tr:hover {
-    cursor: pointer;
-    background-color: #cce2f8;
-  }
-  .collections-pairing-table th {
-    font-size: 1.2em;
-  }
-  .collections-pairing-table td {
-    font-size: 1.3em;
-  }
-  .collections-pairings-list-button {
-    margin: 1em auto 2em;
-    padding-right: 40px;
-    text-align: center;
-  }
-  .collections-pairings-new-pairing {
-    width: 50%;
-    margin: auto;
-  }
-  .collections-pairings-new-pairing input {
-    margin: 3px auto;
-  }
-}
-
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 1080px) {
   .collections-pairing-table-tr:hover {
     cursor: pointer;
     background-color: #cce2f8;

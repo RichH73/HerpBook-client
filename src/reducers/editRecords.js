@@ -1,6 +1,7 @@
 const initialState = {
 	recordType: '',
 	display: 'none',
+	editModal: false,
 	_id: '',
 	date: '',
 	notes: '',

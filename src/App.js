@@ -6,33 +6,81 @@ import * as actionCreators from './actions/index';
 import Header from './Components/Modules/Header/Header';
 import Body from './Components/Modules/Body/Body';
 import Spinner from 'react-spinner-material';
-import SideDrawer from './Components/Navigation/mobileMenu/sideDrawer';
-import Backdrop from './Components/Navigation/mobileMenu/Backdrop/Backdrop';
 import { Base64 } from 'js-base64';
 import Footer from './Components/Modules/Footer/Footer';
 import ReactGA from 'react-ga';
 import socket from './Components/_services/SocketService';
+import { SocketService } from './Components/_services/SocketService';
 
 ReactGA.initialize('UA-136119302-1');
 class App extends Component {
 	state = {
 		sideDrawerOpen: false,
 		user: this.props.userInfo,
+		userSocket: false,
 	};
 	componentDidMount() {
+		let sock = socket.id;
 		if (localStorage.token) {
+			// console.log('Sending token to be checked')
+			socket.emit('checkLogin', localStorage.token);
+		}
+
+		socket.on('tokenResponse', (newToken) => {
+			localStorage.setItem('token', newToken);
+			// console.log('Got a token response, ', newToken)
 			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			// console.log('made it here', user)
+
 			this.props.user_login(user);
+
 			socket.on('connect', () => {
 				socket.emit('newUser', {
 					uid: this.props.userInfo.uid,
 				});
-				this.props.setSocketID(socket.id);
+
+				// socket.emit('mail', {
+				// 	eventType: 'checkMail',
+				// 	uid: user.uid,
+				// 	authToken: localStorage.token,
+				// 	socketId: sock,
+				// }, console.log('checking some mail', sock));
+			});
+
+			// socket.on('newMail', (mail) => {
+			// 	this.props.newUserMail({
+			// 		mailCount: mail.inbox.filter((count) => !count.seen).length,
+			// 		inbox: mail.inbox,
+			// 		sentItmes: mail.sentItems,
+			// 	});
+			// });
+		});
+
+		//g
+
+		/*
+		if (localStorage.token) {
+			let user = JSON.parse(Base64.decode(localStorage.token.split('.')[1]));
+			this.props.user_login(user);
+			console.log('new user', user);
+			socket.on('connect', () => {
+				socket.emit('newUser', {
+					uid: this.props.userInfo.uid,
+				});
+				socket.emit('setsocketId', {
+					uid: user.uid,
+					socketId: socket.id,
+				});
+				socket.on('socketSet', (socket) => {
+					console.log('socketSet recieved');
+					this.props.userInfoUpdate('userSocket', true);
+				});
+				this.props.setsocketId(socket.id);
 				socket.emit('mail', {
 					eventType: 'checkMail',
 					uid: this.props.userInfo.uid,
 					authToken: localStorage.token,
-					socketID: this.props.userInfo.socketId,
+					socketId: this.props.userInfo.socketId,
 				});
 			});
 		}
@@ -41,8 +89,15 @@ class App extends Component {
 		});
 		socket.emit('alertRecieved', 'OK');
 		socket.onAny((event, ...args) => {});
+		
+		
+	});
+	
+	*/
 		this.props.getVendors();
+	}
 
+	componentDidUpdate(prevProps) {
 		socket.on('newMail', (mail) => {
 			this.props.newUserMail({
 				mailCount: mail.inbox.filter((count) => !count.seen).length,
@@ -50,45 +105,91 @@ class App extends Component {
 				sentItmes: mail.sentItems,
 			});
 		});
-	}
+		if (prevProps.userInfo.uid !== this.props.userInfo.uid) {
+			if (!!this.props.userInfo.uid) {
+				this.props.getMyProfile(this.props.userInfo.uid);
+				socket.emit('setsocketId', {
+					uid: this.props.userInfo.uid,
+					socketId: socket.id,
+				});
+				socket.on('socketSet', (socket) => {
+					this.props.userInfoUpdate('userSocket', true);
+					this.props.userInfoUpdate('socketId', socket);
+				});
+				socket.emit('mail', {
+					eventType: 'checkMail',
+					uid: this.props.userInfo.uid,
+					authToken: localStorage.token,
+					socketId: socket.id,
+				});
+			}
+		}
 
-	componentDidUpdate() {
-		let socketID = this.props.userInfo.socketId;
+		// 	socket.on('connect', () => {
+		// 		socket.emit('newUser', {
+		// 			uid: this.props.userInfo.uid,
+		// 		});
+		// 		socket.emit('setsocketId', {
+		// 			uid: this.props.userInfo.uid,
+		// 			socketId: socket.id,
+		// 		});
+		// 		socket.on('socketSet', (socket) => {
+		// 			console.log('socketSet recieved');
+		// 			this.props.userInfoUpdate('userSocket', true);
+		// 		});
+		// 		socket.emit('mail', {
+		// 			eventType: 'checkMail',
+		// 			uid: this.props.userInfo.uid,
+		// 			authToken: localStorage.token,
+		// 			socketId: this.props.userInfo.socketId,
+		// 		});
+		// 	});
+		// }
+
+		/*
+
+
+
+
+
+			
+			this.props.setsocketId(socket.id);
+
+
+
+
+*/
+
+		let socketId = this.props.userInfo.socketId;
 		let newSocket = socket.id;
 		let userID = this.props.userInfo.uid;
+		let sockState = this.props.userInfo.userSocket;
 		if (!!userID) {
-			socket.emit('setSocketID', {
-				uid: userID,
-				socketID: newSocket,
-			});
-			const mySocketID = socket.id;
+			// console.log('Found uid');
+			if (!sockState) {
+				// console.log('No userSocket in app state');
+				// console.log('No socket?', socketId);
+				// console.log('this state socket', !!this.state.userSocket);
+				// socket.emit('setsocketId', {
+				// 	uid: userID,
+				// 	socketId: newSocket,
+				// });
+			}
 		}
-		if (socketID) {
-			socket.emit('mail', {
-				eventType: 'checkMail',
-				uid: this.props.userInfo.uid,
-				authToken: localStorage.token,
-				socketID: this.props.userInfo.socketID,
-			});
-		}
+		// if (socketId) {
+		// 	socket.emit('mail', {
+		// 		eventType: 'checkMail',
+		// 		uid: this.props.userInfo.uid,
+		// 		authToken: localStorage.token,
+		// 		socketId: this.props.userInfo.socketId,
+		// 	});
+		// }
 		socket.on('disconnect', () => {
-			socket.emit('removeSocketID', {
+			socket.emit('removesocketId', {
 				uid: this.props.userInfo.uid,
 			});
 		});
 	}
-
-	drawerToggleClickHandler = () => {
-		this.props.openSideDrawer();
-		this.setState((prevState) => {
-			return { sideDrawerOpen: !prevState.sideDrawerOpen };
-		});
-	};
-
-	backdropClickHandler = () => {
-		this.setState({ sideDrawerOpen: false });
-		this.props.closeSideDrawer();
-	};
 
 	spinner = () => {
 		const { spinnerState } = this.props;
@@ -130,26 +231,15 @@ class App extends Component {
 	};
 
 	render() {
-		let backdrop;
-		let sideDrawer;
-		if (!!this.props.sideDrawerOpen) {
-			backdrop = <Backdrop click={this.backdropClickHandler} />;
-			sideDrawer = <SideDrawer history={this.props.history} />;
-		}
-
 		return (
 			<React.Fragment>
 				<div className="application-body">
-					{sideDrawer}
-					{backdrop}
-					<div className="mobile-nav-button" onClick={this.drawerToggleClickHandler}>
-						<img src="/images/hamburger_button.png" alt="nav" />
-					</div>
 					<this.spinner />
 					<Header />
 					<Body />
 					<Footer />
 				</div>
+				{/* <SocketService /> */}
 			</React.Fragment>
 		);
 	}

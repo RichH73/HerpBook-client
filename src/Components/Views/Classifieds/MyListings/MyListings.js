@@ -8,6 +8,11 @@ import * as actionCreators from '../../../../actions/index';
 import dayjs from 'dayjs';
 import ReactGA from 'react-ga';
 import { Base64 } from 'js-base64';
+
+// Bootstrap imports
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class MyListings extends Component {
 	state = {
 		listings: [],
@@ -58,21 +63,28 @@ class MyListings extends Component {
 	render() {
 		const SellerListings = () => {
 			return this.props.myClassifieds.map((list) => (
-				<React.Fragment>
-					<div className="my-listings-box" key={list._id}>
+				<React.Fragment key={list._id}>
+					<div className="my-listings-box">
 						<div className="my-listings-box-image">
 							<Link to={`/listing/${list._id}`}>
-								<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								{!list.image ? (
+									<img src="https://users.herpbook.com/default_images/thumb_stork.png" alt="no image" />
+								) : (
+									<img src={`${list.URL}/${list.image}`} alt={list.image} />
+								)}
 							</Link>
 						</div>
 						<div className="my-listings-delete">
-							<button onClick={() => this.delete_listing(list)} className="button">
+							{/* <button onClick={() => this.delete_listing(list)} className="button">
 								Delete
-							</button>
+							</button> */}
+							<Button variant="danger" size="md" onClick={() => this.delete_listing(list)}>
+								Delete
+							</Button>
 						</div>
 						<div className="my-listings-box-info">
 							<Link to={`/listing/${list._id}`}>
-								<table>
+								<Table bordered size="md">
 									<thead>
 										<tr>
 											<th>Price</th>
@@ -95,7 +107,7 @@ class MyListings extends Component {
 											</td>
 										</tr>
 									</tbody>
-								</table>
+								</Table>
 							</Link>
 						</div>
 					</div>

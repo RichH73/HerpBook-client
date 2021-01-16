@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../../../../actions/index';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import MDatePicker from 'react-mobile-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import './Feeding.css';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 class Feedings extends Component {
 	state = {
 		date: new Date(),
@@ -76,65 +81,31 @@ class Feedings extends Component {
 
 	handleDate = (date) => {
 		this.setState({
-			date: date,
+			date: dayjs(date.target.value).toString(),
 		});
 	};
 
 	editingRecord = (feedRecord) => {
 		this.props.loadrecordsEditor({
 			recordType: 'feedings',
-			display: 'block',
+			editModal: true,
+			//display: 'block',
 			...feedRecord,
 		});
 	};
 
 	feedMappings = () => {
 		return this.props.currentAnimal.feedings.map((feed) => {
-			let fd = dayjs(_.get(feed, 'date'));
 			return (
 				<tr className="collections-feeding-table-tr" onClick={() => this.editingRecord(feed)}>
-					<td>{`${fd.$M + 1}/${fd.$D}/${fd.$y}`}</td>
+					<td>{dayjs(_.get(feed, 'date')).format('MM/DD/YYYY')}</td>
 					<td>{feed.feederType}</td>
 					<td>{feed.feederWeight}</td>
 				</tr>
 			);
 		});
 	};
-
 	render() {
-		const monthMap = {
-			'1': 'Jan',
-			'2': 'Feb',
-			'3': 'Mar',
-			'4': 'Apr',
-			'5': 'May',
-			'6': 'Jun',
-			'7': 'Jul',
-			'8': 'Aug',
-			'9': 'Sep',
-			'10': 'Oct',
-			'11': 'Nov',
-			'12': 'Dec',
-		};
-
-		const dateConfig = {
-			month: {
-				format: (value) => monthMap[value.getMonth() + 1],
-				caption: 'Mon',
-				step: 1,
-			},
-			date: {
-				format: 'DD',
-				caption: 'Day',
-				step: 1,
-			},
-			year: {
-				format: 'YYYY',
-				caption: 'Year',
-				step: 1,
-			},
-		};
-		const fd = dayjs(_.get(this, 'state.time'));
 		return (
 			<div className="collections-feedings-list" style={{ padding: '10px' }}>
 				<div className="collections-feedings-new-feeding-form">
@@ -145,60 +116,45 @@ class Feedings extends Component {
 						</p>
 					</div>
 					<div className="collections-feedings-new-feeding">
-						<div>
-							<label className="field-input-label">Date:</label>
-							<div className="collections-feedings-new-feeding-date-desktop-selector">
-								<DatePicker showPopperArrow={false} selected={this.state.date} onChange={(date) => this.handleDate(date)} />
-							</div>
-							<div className="collections-feedings-new-feeding-date-mobile-selector">
-								<input type="text" readOnly={true} value={`${fd.$M + 1}/${fd.$D}/${fd.$y}`} onClick={this.mobileHandleClick} />
-								<MDatePicker
-									dateConfig={dateConfig}
-									value={this.state.time}
-									isOpen={this.state.isOpen}
-									confirmText="Select"
-									cancelText="Cancel"
-									onSelect={this.mobileHandleSelect}
-									onCancel={this.mobileHandleCancel}
-									theme="ios"
-								/>
-							</div>
-						</div>
-						<div>
-							<label className="field-input-label">Feeder Type:</label>
-							<div>
-								<input type="text" name="feederType" onChange={this.onChangeHandler} />
-							</div>
-						</div>
-						<div>
-							<label className="field-input-label">Amout or weight:</label>
-							<div>
-								<input type="text" name="feederWeight" onChange={this.onChangeHandler} />
-							</div>
-						</div>
-					</div>
-					<div className="collections-feedings-list-button">
-						<button
-							className="button"
-							disabled={this.state.readOnly}
-							onClick={this.onSubmitHandler}
-							// eslint-disable-next-line
-							disabled={!this.state.feederType.length || !this.state.feederWeight.length}
-							label="Save">
-							Save
-						</button>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Date</Form.Label>
+									<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Type of feeder</Form.Label>
+									<Form.Control type="text" name="feederType" onChange={this.onChangeHandler} size="md" />
+								</Form.Group>
+
+								<Form.Group as={Col}>
+									<Form.Label>Amount/wt.</Form.Label>
+									<Form.Control type="text" name="feederWeight" onChange={this.onChangeHandler} size="md" />
+								</Form.Group>
+							</Form.Row>
+							<Button
+								disabled={this.state.readOnly}
+								onClick={this.onSubmitHandler}
+								variant="success"
+								disabled={!this.state.feederType.length || !this.state.feederWeight.length}
+								size="md"
+								block>
+								Save
+							</Button>
+						</Form>
 					</div>
 				</div>
 				<div className="collections-animal-feedings-records">
 					<div className="collections-feeding-table">
-						<table>
+						<Table bordered striped hover size="md">
 							<thead>
 								<th>Date</th>
 								<th>Feeder Type</th>
 								<th>Amount or weight</th>
 							</thead>
 							<tbody>{this.feedMappings()}</tbody>
-						</table>
+						</Table>
 					</div>
 				</div>
 			</div>

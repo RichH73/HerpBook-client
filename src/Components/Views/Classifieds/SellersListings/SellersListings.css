@@ -1,7 +1,7 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -25,13 +25,13 @@
   }
   .other-listing-gender {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
     grid-area: gender;
   }
   .other-listing-price {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
     grid-area: price;
   }
@@ -95,7 +95,7 @@
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -114,11 +114,11 @@
   }
   .other-listing-gender {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
   }
   .other-listing-price {
     font-weight: bold;
-    font-size: 0.7em;
+    font-size: 1em;
     text-align: left;
   }
   .other-listing-img {

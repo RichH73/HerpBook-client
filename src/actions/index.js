@@ -1,9 +1,31 @@
 import axios from 'axios';
 import config from '../reducers/config';
 import { Base64 } from 'js-base64';
+import { Decrypt } from '../Components/_services/encryptionService';
+export * from './clutches';
+export * from './collections';
 
 //import { Base64 } from 'js-base64';
-const API = config().server.serverAPI;
+export const API = config().server.serverAPI;
+
+export const viewMailMessage = (data) => {
+	return {
+		type: 'View_Mail_Message',
+		data,
+	};
+};
+
+export const editMailMessage = (key, value) => {
+	return {
+		type: 'Editing_Mail_Message',
+		key,
+		value,
+	};
+};
+
+export const testError = () => {
+	console.log('some shit went down');
+};
 
 export const closeSideDrawer = () => {
 	return {
@@ -24,14 +46,8 @@ export const my_classifieds_data = (data) => {
 	};
 };
 
-export const new_clutch_data = (data) => {
-	return {
-		type: 'create_new_clutch',
-		data,
-	};
-};
-
 export const current_clutch_data = (data) => {
+	console.log('some data from actions', data);
 	return {
 		type: 'view_clutch',
 		data,
@@ -157,7 +173,7 @@ export const clearAnimalData = (data) => {
 	};
 };
 
-const loadMyCollections = (data) => {
+export const loadMyCollections = (data) => {
 	return {
 		type: 'my_collections_data',
 		data,
@@ -249,6 +265,13 @@ export const userLogOut = () => {
 	};
 };
 
+export const viewUserProfileData = (data) => {
+	return {
+		type: 'New_Profile',
+		data,
+	};
+};
+
 export const token_login = () => {
 	return function (dispatch) {
 		axios({
@@ -266,7 +289,7 @@ export const token_login = () => {
 	};
 };
 
-export const setSocketID = (data) => {
+export const setsocketId = (data) => {
 	return {
 		type: 'updatingsocket',
 		data,
@@ -484,38 +507,6 @@ export const reloadProfile = () => {
 	};
 };
 
-// const newUserData = (user) => {
-// 	return {
-// 		type: 'NEW_USER_DATA',
-// 		user,
-// 	};
-// };
-
-// export const liveProfileUpdate = (user, history) => {
-// 	return function (dispatch) {
-// 		axios({
-// 			method: 'post',
-// 			url: `${API}/users/update_profile`,
-// 			headers: {
-// 				Authorization: `Bearer ${localStorage.token}`,
-// 				//uid: localStorage.uid,
-// 				//username: this.props.username,
-// 				//enctype: "mylipart/form-data"
-// 			},
-// 			data: user,
-// 		}).then((userResponse) => {
-// 			// dispatch(vendorList(userResponse.data));
-// 			dispatch(imagesUploaded());
-// 			const user = JSON.parse(Base64.decode(userResponse.data.token.split('.')[1]));
-// 			localStorage.setItem('token', _.get(userResponse, 'data.token'));
-// 			dispatch(reloadProfile());
-// 			dispatch(newUserData(userResponse.data.user));
-// 			dispatch(user_login(userResponse.data.user));
-// 			return history.push('/success/profileUpdate');
-// 		});
-// 	};
-// };
-
 export const newProfilePic = (imageName) => {
 	return {
 		type: 'newProfileImage',
@@ -549,7 +540,7 @@ export const getMyProfile = (data) => {
 		}).then((response) => {
 			if (response.status === 200) {
 				dispatch(pageLoading(false));
-				dispatch(user_login(response.data));
+				dispatch(user_login(Decrypt(response.data)));
 			}
 		});
 	};

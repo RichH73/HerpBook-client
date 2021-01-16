@@ -1,3 +1,5 @@
+export const typeCollections = ['SALE', 'PET', 'HOLDBACK', 'BREEDER', 'HATCHLING', 'SURRENDER', 'PURCHASE'];
+
 const initialState = {
 	name: '',
 	_id: '',
@@ -33,6 +35,7 @@ const initialState = {
 	},
 	comments: '',
 	readOnly: true,
+	typeCollections: typeCollections,
 };
 
 const myCollectionsInitialData = {

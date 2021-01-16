@@ -1,9 +1,16 @@
 /*
     Color section to define the colors used in the entire app.
 */
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 1080px) {
+  .mobile-nav-button-menu {
+    margin: 1em 1em 1em auto;
+    width: 80px;
+  }
+  .mobile-nav-button-menu img {
+    width: 40px;
+  }
   .body-main-panel {
-    width: 98%;
+    width: 100%;
     margin: auto;
     border-radius: 10px;
   }
@@ -22,11 +29,13 @@
     background-color: orange;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin-bottom: 10px;
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1081px) {
+  .mobile-nav-button-menu {
+    display: none;
+  }
   .main-body-view {
     width: 1000px;
     margin: 0 auto 3em;
@@ -52,7 +61,6 @@
     background-color: orange;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin-bottom: 10px;
   }
   .body-main-header h3 {
     margin: 0 auto;

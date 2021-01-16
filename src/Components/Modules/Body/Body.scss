@@ -1,8 +1,24 @@
 @import '../../../index';
 
-@media screen and ($maxWidth) {
+@media screen and (max-width: 1080px) {
+
+	.mobile-nav-button-menu {
+		margin: 1em 1em 1em auto;
+    	width: 80px;
+		// vertical-align: middle;
+		// border-style: none;
+		// z-index: 300;
+		// position: fixed;
+		// top: 40px;
+		// left: 80%;
+	}
+
+	.mobile-nav-button-menu img {
+		width: 40px;
+	}
+
 	.body-main-panel {
-		width: 98%;
+		width: 100%;
 		// border: 1px solid orange;
 		margin: auto;
 		border-radius: 10px;
@@ -23,11 +39,14 @@
 		background-color: $bodyPanelHeaderColor;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
-		margin-bottom: 10px;
+		//margin-bottom: 10px;
 	}
 }
 
-@media screen and ($minWidth) {
+@media screen and (min-width: 1081px) {
+	.mobile-nav-button-menu {
+		display: none;
+	}
 	.main-body-view {
 		width: 1000px;
 		margin: 0 auto 3em;
@@ -45,7 +64,7 @@
 
 	.body-main-panel {
 		width: 720px;
-		border: 1px solid orange;
+		border: 1px solid $themeColor;
 		margin: 20px 0;
 		border-radius: 10px;
 		//padding-top: .2em .2em .2em 0;
@@ -55,7 +74,7 @@
 		background-color: $bodyPanelHeaderColor;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
-		margin-bottom: 10px;
+		//margin-bottom: 10px;
 	}
 
 	.body-main-header h3 {

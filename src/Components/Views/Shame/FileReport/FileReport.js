@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { flatten, get } from 'lodash';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import 'react-quill/dist/quill.snow.css';
+//import 'react-quill/dist/quill.snow.css';
 import 'quill-emoji/dist/quill-emoji.css';
 import ReactQuill from 'react-quill';
 import NumberFormat from 'react-number-format';
@@ -15,6 +15,13 @@ import QuillEmoji from 'quill-emoji';
 //import Dropzone from "react-dropzone";
 //import Editor from '../../functions/Editor'
 // import floatingImage from '../../functions/imageFloatingDiv';
+
+// Bootstrap imports
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 //Google analytics
 import ReactGA from 'react-ga';
@@ -59,14 +66,7 @@ class Shame extends Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		//let imageNames = []
-		//let images = [];
 		let fileData = new FormData();
-		// const files = this.props.saveImages
-		// files.forEach(file => {
-		//   fileData.append("files", file);
-		//   //imageNames.push(file.name)
-		// });
 		let reportData = {
 			business_name: this.props.business_name,
 			business_email: this.props.business_email,
@@ -135,75 +135,119 @@ class Shame extends Component {
 		this.props.deleteImages(path);
 	};
 
+	reportFooter = () => {
+		return (
+			<React.Fragment>
+				<Form.Group>
+					<Form.Label>FaceBook Profile (https://www.facebook.com/): </Form.Label>
+					<Form.Control type="text" name="faceBook" onChange={this.onChangeHandler} />
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>Incident Description</Form.Label>
+					<ReactQuill
+						style={{ backgroundColor: 'white', color: 'black' }}
+						name="description"
+						value={this.props.reportData.incident_description}
+						onChange={this.descriptionChange}
+						modules={this.modules}
+						// modules={this.props.mods.modules}
+						formats={this.formats}
+						readOnly={false}
+						theme="snow"
+						required={true}
+					/>
+				</Form.Group>
+				<div className="wall-of-shame-file-submit">
+					<Button
+						variant="success"
+						onClick={this.submitHandler}
+						disabled={this.props.fileReportData.incident_description.length >= 20 ? false : true}>
+						Submit
+					</Button>
+				</div>
+			</React.Fragment>
+		);
+	};
+
 	returnForm = () => {
 		switch (this.props.reportData.reportType) {
 			case 'BUSINESS':
 				return (
-					<React.Fragment>
-						<div className="shame-file-report-business-name shame-report-form-input">
-							<label className="shame-file-report-label">Business Name: </label>
-							<input className="shame-file-report-input" type="text" name="business_name" required onChange={this.onChangeHandler} />
-						</div>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Business Name</Form.Label>
+								<Form.Control type="text" name="business_name" required onChange={this.onChangeHandler} required />
+							</Form.Group>
 
-						<div className="shame-file-report-business-owner shame-report-form-input">
-							<label className="shame-file-report-label">Owner Name: </label>
-							<input className="shame-file-report-input" type="text" name="business_owner" onChange={this.onChangeHandler} />
-						</div>
+							<Form.Group as={Col}>
+								<Form.Label>Owner Name</Form.Label>
+								<Form.Control type="text" name="business_owner" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Phone</Form.Label>
+								<NumberFormat
+									format="+1 (###) ###-####"
+									allowEmptyFormatting
+									mask="_"
+									onChange={this.onChangeHandler}
+									name="business_phone"
+									className="textInput form-control"
+								/>
+							</Form.Group>
 
-						<div className="shame-file-report-business-website shame-report-form-input">
-							<label className="shame-file-report-label">Website Address: </label>
-							<input className="shame-file-report-input" type="url" name="business_website" required onChange={this.onChangeHandler} />
-						</div>
-
-						<div className="shame-file-report-business-email shame-report-form-input">
-							<label className="shame-file-report-label">Business Email: </label>
-							<input className="shame-file-report-input" type="email" name="business_email" required onChange={this.onChangeHandler} />
-						</div>
-
-						<div className="shame-file-report-business-phone shame-report-form-input">
-							<label className="shame-file-report-label">Business Phone: </label>
-							<NumberFormat
-								format="+1 (###) ###-####"
-								allowEmptyFormatting
-								mask="_"
-								onChange={this.onChangeHandler}
-								name="business_phone"
-								className="shame-file-report-input"
-							/>
-						</div>
-					</React.Fragment>
+							<Form.Group as={Col}>
+								<Form.Label>Email</Form.Label>
+								<Form.Control type="email" name="business_email" required onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Website</Form.Label>
+								<Form.Control type="url" name="business_website" required onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						{this.reportFooter()}
+					</Form>
 				);
 			case 'INDIVIDUAL':
 				return (
-					<React.Fragment>
-						<div className="shame-file-report-business-name shame-report-form-input">
-							<label className="shame-file-report-label">Name: </label>
-							<input className="shame-file-report-input" type="text" name="individual_name" required onChange={this.onChangeHandler} />
-						</div>
+					<Form>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Name</Form.Label>
+								<Form.Control type="text" name="individual_name" required onChange={this.onChangeHandler} />
+							</Form.Group>
 
-						<div className="shame-file-report-business-website shame-report-form-input">
-							<label className="shame-file-report-label">Website Address: </label>
-							<input className="shame-file-report-input" type="url" name="individual_website" onChange={this.onChangeHandler} />
-						</div>
-
-						<div className="shame-file-report-business-email shame-report-form-input">
-							<label className="shame-file-report-label">Email: </label>
-							<input className="shame-file-report-input" type="email" name="individual_email" required onChange={this.onChangeHandler} />
-						</div>
-
-						<div className="shame-file-report-business-phone shame-report-form-input">
-							<label className="shame-file-report-label">Phone: </label>
-							<NumberFormat
-								format="+1 (###) ###-####"
-								allowEmptyFormatting
-								mask="_"
-								onChange={this.onChangeHandler}
-								name="individual_phone"
-								className="shame-file-report-input"
-							/>
-						</div>
-					</React.Fragment>
+							<Form.Group as={Col}>
+								<Form.Label>Website</Form.Label>
+								<Form.Control type="url" name="individual_website" onChange={this.onChangeHandler} />
+							</Form.Group>
+						</Form.Row>
+						<Form.Row>
+							<Form.Group as={Col}>
+								<Form.Label>Email: </Form.Label>
+								<Form.Control type="email" name="individual_email" required onChange={this.onChangeHandler} />
+							</Form.Group>
+							<Form.Group as={Col}>
+								<Form.Label>Phone</Form.Label>
+								<NumberFormat
+									format="+1 (###) ###-####"
+									allowEmptyFormatting
+									mask="_"
+									onChange={this.onChangeHandler}
+									name="individual_phone"
+									className="textInput form-control"
+								/>
+							</Form.Group>
+						</Form.Row>
+						{this.reportFooter()}
+					</Form>
 				);
+			default:
+				return <React.Fragment></React.Fragment>;
 		}
 	};
 
@@ -220,41 +264,19 @@ class Shame extends Component {
 							If you have had a report filed against you and feel this is incorrect please <Link to={'contact'}>contact us</Link>.
 						</p>
 					</div>
-					<div className="shame-file-report-type shame-report-form-input">
-						<label className="shame-file-report-label">Report Type: </label>
-						<select name="reportType" onChange={this.onChangeHandler} defaultValue={this.props.reportData.reportType}>
+					<Form.Group>
+						<Form.Label>
+							<b>Report Type</b>
+						</Form.Label>
+						<Form.Control as="select" name="reportType" onChange={this.onChangeHandler}>
+							<option selected value="">
+								Choose type
+							</option>
 							<option value="BUSINESS">Business</option>
 							<option value="INDIVIDUAL">Individual</option>
-						</select>
-					</div>
+						</Form.Control>
+					</Form.Group>
 					{this.returnForm(this.props.reportData.reportType)}
-
-					<div className="shame-file-report-fb-profile shame-report-form-input">
-						<label className="shame-file-report-label">FaceBook Profile (https://www.facebook.com/): </label>
-						<input className="shame-file-report-input" type="text" name="faceBook" onChange={this.onChangeHandler} />
-					</div>
-					<div className="shame-file-report-textarea">
-						<label className="shame-file-report-label">Incident Description: </label>
-						<ReactQuill
-							style={{ backgroundColor: 'white', color: 'black' }}
-							name="description"
-							value={this.props.reportData.incident_description}
-							onChange={this.descriptionChange}
-							modules={this.modules}
-							// modules={this.props.mods.modules}
-							formats={this.formats}
-							readOnly={false}
-							theme="snow"
-							required={true}
-						/>
-					</div>
-					<div></div>
-					<div className="wall-of-shame-file-submit">
-						{console.log(this.props.fileReportData.incident_description.length >= 20)}
-						<button className="button" type="submit" disabled={this.props.fileReportData.incident_description.length >= 20 ? false : true}>
-							Submit
-						</button>
-					</div>
 				</div>
 			</form>
 		) : (

@@ -37,7 +37,7 @@ class Categories extends React.Component {
 		var combined = (num) => {
 			var subs = this.props.subCategories.filter((e) => e.category_id === num);
 			var newSubs = subs.map((sb) => (
-				<div className="list-sub-category-link">
+				<div key={sb.id} className="list-sub-category-link">
 					<Link to={`sub_category/${sb.id}/`} key={sb.id}>
 						{sb.name}
 						<br />

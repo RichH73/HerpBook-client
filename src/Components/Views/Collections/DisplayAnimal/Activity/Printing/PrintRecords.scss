@@ -5,7 +5,7 @@
 }
 
 .collections-create-report-form {
-	display: grid;
+	// display: grid;
 	grid-template-areas:
 		'startDate endDate'
 		'method generate';
@@ -24,8 +24,10 @@
 }
 
 .collections-create-report-form-method {
-	margin: 1em auto;
-	grid-area: method;
+	// display: flex;
+    // margin: 1em auto;
+    // width: 209px;
+    // justify-content: space-between;
 }
 
 .collections-create-report-date-range {

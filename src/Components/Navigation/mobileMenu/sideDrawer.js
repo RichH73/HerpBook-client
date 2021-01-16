@@ -16,7 +16,7 @@ class SideDrawer extends React.Component {
 			<React.Fragment>
 				<div className="sideDrawer-left-main-navigation-outter-panel">
 					<div className="sideDrawer-left-navigation-panel-header">
-						<h3>User Navigation</h3>
+						<h4>User Navigation</h4>
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
@@ -39,7 +39,7 @@ class SideDrawer extends React.Component {
 				</div>
 				<div className="sideDrawer-left-main-navigation-outter-panel">
 					<div className="sideDrawer-left-navigation-panel-header">
-						<h3>My Classifieds</h3>
+						<h4>My Classifieds</h4>
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
@@ -58,7 +58,7 @@ class SideDrawer extends React.Component {
 				</div>
 				<div className="sideDrawer-left-main-navigation-outter-panel">
 					<div className="sideDrawer-left-navigation-panel-header">
-						<h3>My Collections</h3>
+						<h4>My Collections</h4>
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
@@ -69,6 +69,11 @@ class SideDrawer extends React.Component {
 						<div className="sideDrawer-nav-link">
 							<Link to="/new_collection" onClick={this.closeDrawerHandler}>
 								Add new animal
+							</Link>
+						</div>
+						<div className="sideDrawer-nav-link">
+							<Link to="/clutches" onClick={this.closeDrawerHandler}>
+								My Clutches
 							</Link>
 						</div>
 					</div>
@@ -88,13 +93,19 @@ class SideDrawer extends React.Component {
 			<React.Fragment>
 				<div className="sideDrawer-left-main-navigation-outter-panel">
 					<div className="sideDrawer-left-navigation-panel-header">
-						<h3>Site Navigation</h3>
+						<h4>Site Navigation</h4>
 					</div>
 					<div className="sideDrawer-left-main-nav">
 						<div className="sideDrawer-nav-link">
-							<Link to="/" onClick={this.closeDrawerHandler}>
-								Home
-							</Link>
+							{!!localStorage.token ? (
+								<Link to="/home" onClick={this.closeDrawerHandler}>
+									Home
+								</Link>
+							) : (
+								<Link to="/" onClick={this.closeDrawerHandler}>
+									Home
+								</Link>
+							)}
 						</div>
 						<div className="sideDrawer-nav-link">
 							<Link to="/vendors" onClick={this.closeDrawerHandler}>
