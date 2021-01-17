@@ -1,6 +1,12 @@
 import { pageLoading, all_clutch_data, loadMyCollections, API } from './index';
 import axios from 'axios';
 
+export const closeEditClutch = () => {
+	return {
+		type: 'Close_Clutch_Editor',
+	};
+};
+
 export const newCollectionsFilter = (filter) => {
 	return {
 		type: 'New_Collection_Filter',

@@ -17,6 +17,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Modal from 'react-bootstrap/Modal';
 
 class EditClutch extends Component {
 	state = {
@@ -206,6 +207,56 @@ class EditClutch extends Component {
 		}
 	};
 
+	deleteClutchRecord = () => {
+		axios({
+			method: 'post',
+			url: `${this.props.API}/clutches/delete_clutch`,
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				clutchId: this.props.clutch._id,
+			},
+		}).then((response) => {
+			if (response.status === 201) {
+				this.hideDeleteModal();
+				this.props.history.push('/clutches');
+			}
+		});
+	};
+
+	showDeleteModal = () => {
+		this.props.clutchRecordEdit({
+			deleteClutchModal: true,
+		});
+	};
+
+	hideDeleteModal = () => {
+		this.props.clutchRecordEdit({
+			deleteClutchModal: false,
+		});
+	};
+
+	deleteClutchModal = () => {
+		const clutch = this.props.clutch;
+		return (
+			<Modal show={clutch.deleteClutchModal} onHide={() => this.hideDeleteModal} backdrop="static" keyboard={false} centered={true}>
+				<Modal.Header closeButton>
+					<Modal.Title>Delete Clutch Record!</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>Do you want to delete this clutch record? One deleted this information will be gone forever.</Modal.Body>
+				<Modal.Footer>
+					<Button variant="danger" onClick={this.deleteClutchRecord}>
+						Delete
+					</Button>
+					<Button variant="success" onClick={this.hideDeleteModal}>
+						Cancel
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+	};
+
 	notesHandler = (text) => {
 		this.props.clutchRecordEdit({ notes: text });
 	};
@@ -251,6 +302,7 @@ class EditClutch extends Component {
 									value={clutch.recordId}
 									onClick={() => this.collectionRecords(clutch)}
 									data-tip="Click to view/edit pairing record."
+									style={{ cursor: 'pointer' }}
 									readOnly
 								/>
 							</Form.Group>
@@ -310,9 +362,16 @@ class EditClutch extends Component {
 							</Form.Group>
 						</Form.Row>
 					</Form>
-					<Button onClick={this.goBack}>Back</Button> <Button onClick={this.onSubmitHandler}>Update</Button>
+					<Button onClick={this.goBack}>Back</Button>{' '}
+					<Button variant="success" onClick={this.onSubmitHandler}>
+						Update
+					</Button>{' '}
+					<Button variant="danger" onClick={this.showDeleteModal}>
+						Delete
+					</Button>
 				</div>
 				<PairingModal />
+				<this.deleteClutchModal />
 			</React.Fragment>
 		);
 	}
