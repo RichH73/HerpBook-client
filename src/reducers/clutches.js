@@ -10,6 +10,7 @@ const initialAllClutches = {
 	clutchData: [],
 	editClutch: {
 		hatchlings: [],
+		deleteClutchModal: true,
 	},
 	pairingRecord: {},
 	pairingModal: false,
@@ -55,6 +56,13 @@ export const my_clutches = (state = initialAllClutches, data) => {
 			return {
 				...state,
 				editClutch: data.data,
+			};
+		case 'Close_Clutch_Editor':
+			return {
+				...state,
+				editClutch: {
+					deleteClutchModal: false,
+				},
 			};
 		case 'View_Pairing_Record':
 			return {
