@@ -10835,6 +10835,13 @@ a :hover {
   color: orange;
 }
 
+td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 60px;
+}
+
 @media screen and (min-width: 1081px) {
   .mobile-nav-button {
     display: none;

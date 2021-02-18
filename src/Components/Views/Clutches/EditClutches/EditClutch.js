@@ -225,6 +225,13 @@ class EditClutch extends Component {
 		});
 	};
 
+	handleDate = (date) => {
+		console.log(date);
+		this.props.clutchRecordEdit({
+			layDate: dayjs(date.target.value).toString(),
+		});
+	};
+
 	showDeleteModal = () => {
 		this.props.clutchRecordEdit({
 			deleteClutchModal: true,
@@ -292,7 +299,7 @@ class EditClutch extends Component {
 						<Form.Row>
 							<Form.Group as={Col}>
 								<Form.Label>Lay Date</Form.Label>
-								<Form.Control type="date" value={dayjs(clutch.layDate).format('YYYY-MM-DD')} />
+								<Form.Control type="date" name="layDate" onChange={this.handleDate} value={dayjs(clutch.layDate).format('YYYY-MM-DD')} />
 							</Form.Group>
 
 							<Form.Group as={Col}>
