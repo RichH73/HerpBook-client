@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import QRCode from 'qrcode';
 import axios from 'axios';
 import { useReactToPrint } from 'react-to-print';
+import { printSmallCard } from '../../../../actions';
 
 const SmallCard = () => {
 	const { _id, images, name, dob, gender } = useSelector((state) => state.viewAnimal);
@@ -89,9 +90,8 @@ const SmallCard = () => {
 			textAlign: 'center',
 		},
 	};
+	const data = <canvas ref={canvas} width={400} height={200} />;
 
-	console.log(canvas.current);
-	//console.log('ref stuff', canvas.current)
 	return <canvas ref={canvas} width={400} height={200} />;
 	// (
 	// <React.Fragment>

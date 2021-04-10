@@ -10,7 +10,7 @@ const show_redux = true;
 const origins = ['http://localhost:3000', 'http://localhost:4000'];
 
 export const server_status = () => {
-	if (server_state === true) {
+	if (server_state === false) {
 		return {
 			// serverSocket: 'http://192.168.0.2:8551',
 			// serverAPI: 'http://192.168.0.2:8550',

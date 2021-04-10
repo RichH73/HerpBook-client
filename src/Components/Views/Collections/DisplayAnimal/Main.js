@@ -22,17 +22,36 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import ToPrint from '../../../_services/Print/PrintCards/ToPrint';
 import Settings from './Activity/Settings/Settings';
 import SmallCard from '../../../_services/Print/PrintCards/SmallCard';
+import print from 'print-js';
 
 import Button from 'react-bootstrap/Button';
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import { NavItem } from 'react-bootstrap';
+import { isThisHour } from 'date-fns';
 
 class Main extends Component {
 	state = {
 		viewing: 'ANIMAL',
+		img: '',
 	};
 
 	componentDidMount() {
+		console.log(this.props);
+		axios({
+			url: 'https://herpbook.com:8550/draw',
+			method: 'post',
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			data: {
+				animalId: this.props.match.params.id,
+				width: 400,
+				height: 200,
+			},
+		}).then((dat) => {
+			this.setState({ img: dat.data });
+		});
+
 		if (this.props.match.params.id) {
 			axios({
 				method: 'post',
@@ -136,6 +155,7 @@ class Main extends Component {
 	printIdCard = () => {
 		return (
 			<React.Fragment>
+				{/* hello there
 				<div>
 					<ReactToPrint
 						trigger={() => {
@@ -146,8 +166,12 @@ class Main extends Component {
 						content={() => this.componentRef}
 					/>
 					<ToPrint ref={(canvas) => (this.componentRef = canvas)} />
-					{console.log(this)}
 				</div>
+				goodbye */}
+
+				<img src={this.state.img} />
+				<br />
+				<Button onClick={() => print({ printable: this.state.img, type: 'image' })}>Print</Button>
 			</React.Fragment>
 		);
 	};
@@ -195,6 +219,7 @@ class Main extends Component {
 			return <div style={{ margin: 'auto', textAlign: 'center' }}>No collection record selected</div>;
 		}
 		const navStyles = { color: 'black', fontWeight: 'bold', cursor: 'pointer' };
+
 		return (
 			<React.Fragment>
 				<Navbar
