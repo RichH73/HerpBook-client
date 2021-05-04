@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA;;EAEE;ADAF,AAAA,oBAAoB,CAAC;EACpB,OAAO,EAAE,IAAI;CACb",
+    "sources": [
+        "Activity.scss",
+        "../../../../../../_index.scss"
+    ],
+    "names": [],
+    "file": "Activity.css"
+}

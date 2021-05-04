@@ -79,6 +79,9 @@ const initialState = {
 		{ _id: '5dcb73a1abc03e4a0960f2b5', id: 18, name: 'Water Monitors', category_id: 7 },
 		{ _id: '5dcb73a1abc03e4a0960f2e0', id: 63, name: 'Wax worms', category_id: 5 },
 		{ _id: '5dcb73a1abc03e4a0960f2cf', id: 46, name: 'Yellow Anaconda', category_id: 2 },
+
+		{ _id: '60896337e20ae1371bdbc786', id: 66, name: 'Yellow Ackie', category_id: 7 },
+		{ _id: '608ff34e3fb7a8b6ef457fe2', id: 67, name: 'Red Ackie', category_id: 7 },
 	],
 };
 

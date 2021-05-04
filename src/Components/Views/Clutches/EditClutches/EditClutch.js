@@ -292,7 +292,7 @@ class EditClutch extends Component {
 						<Form.Row>
 							<Form.Group as={Col}>
 								<Form.Label>Lay Date</Form.Label>
-								<Form.Control type="date" value={dayjs(clutch.layDate).format('YYYY-MM-DD')} />
+								<Form.Control type="date" name="dob" value={dayjs(clutch.layDate).format('YYYY-MM-DD')} onChange={this.handleDate} />
 							</Form.Group>
 
 							<Form.Group as={Col}>

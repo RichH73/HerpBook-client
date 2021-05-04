@@ -219,6 +219,7 @@ class PublicProfile extends Component {
 						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : <Link to={`/login`}>Friends</Link>}</Nav.Link>
 						{/* <Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/friends`}>Friends</Link> : ''}</Nav.Link> */}
 						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/activity`}>Activity</Link> : ''}</Nav.Link>
+						<Nav.Link>{!!this.props.userInfo.uid ? <Link to={`/user/${id}/activity`}>Activity</Link> : ''}</Nav.Link>
 					</Nav>
 					{/* </Navbar> */}
 				</div>
