@@ -13,11 +13,13 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 class Pairings extends Component {
 	state = {
 		date: Date(),
 		isOpen: false,
+		modal: true,
 	};
 
 	componentDidMount() {}
@@ -115,58 +117,81 @@ class Pairings extends Component {
 		}
 	};
 
+	handleClose = () => {
+		this.setState({
+			modal: false,
+		});
+	};
+
 	render() {
 		return (
-			<div className="collections-pairings-list" style={{ padding: '10px' }}>
-				<div className="collections-parings-new-paring-form-para">
-					<p>
-						Add a new pairing record by filling in the boxes below then click the "Save" button. Or you can see more information or edit records shown
-						below by clicking on the record you want to edit.
-					</p>
-				</div>
-				<div className="collections-parings-new-paring-form">
-					<Form>
-						<Form.Row>
-							<Form.Group as={Col}>
-								<Form.Label>Date</Form.Label>
-								<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
-							</Form.Group>
+			<React.Fragment>
+				<Modal show={this.state.modal} onHide={this.handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>New Pairing</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<Form>
+							<Form.Row>
+								<Form.Group as={Col}>
+									<Form.Label>Date</Form.Label>
+									<Form.Control type="date" name="date" onChange={this.handleDate} size="md" />
+								</Form.Group>
 
-							<Form.Group as={Col}>
-								<Form.Label>Mate</Form.Label>
-								<Form.Control as="select" name="mate" onChange={this.onChangeHandler} size="md">
-									<option>Select Mate</option>
-									{this.displayMate()}
-								</Form.Control>
-							</Form.Group>
+								<Form.Group as={Col}>
+									<Form.Label>Mate</Form.Label>
+									<Form.Control as="select" name="mate" onChange={this.onChangeHandler} size="md">
+										<option>Select Mate</option>
+										{this.displayMate()}
+									</Form.Control>
+								</Form.Group>
 
-							<Form.Group as={Col}>
-								<Form.Label>Whitnessed</Form.Label>
-								<Form.Control as="select" name="whitnessed" onChange={this.onChangeHandler} size="md">
-									<option></option>
-									<option value={true}>Yes</option>
-									<option value={false}>No</option>
-								</Form.Control>
-							</Form.Group>
-						</Form.Row>
-						<Button disabled={!this.state.mate} onClick={this.onSubmitHandler} variant="success" size="md" block>
-							Save
+								<Form.Group as={Col}>
+									<Form.Label>Whitnessed</Form.Label>
+									<Form.Control as="select" name="whitnessed" onChange={this.onChangeHandler} size="md">
+										<option></option>
+										<option value={true}>Yes</option>
+										<option value={false}>No</option>
+									</Form.Control>
+								</Form.Group>
+							</Form.Row>
+							<Button disabled={!this.state.mate} onClick={this.onSubmitHandler} variant="success" size="md" block>
+								Save
+							</Button>
+						</Form>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={this.handleClose}>
+							Close
 						</Button>
-					</Form>
-				</div>
-				<div className="collections-animal-records-pairings">
-					<div className="collections-pairing-table">
-						<Table bordered striped hover size="md">
-							<thead>
-								<th>Date</th>
-								<th>Mate</th>
-								<th>Whitnessed</th>
-							</thead>
-							<tbody>{this.pairMappings()}</tbody>
-						</Table>
+						<Button variant="primary" onClick={this.handleClose}>
+							Save Changes
+						</Button>
+					</Modal.Footer>
+				</Modal>
+
+				<div className="collections-pairings-list" style={{ padding: '10px' }}>
+					<div className="collections-parings-new-paring-form-para">
+						<p>Click on a pairing record below for edits and additional information.</p>
+					</div>
+					<div>
+						<Button size="sm">New Pairing</Button>
+					</div>
+					<div className="collections-parings-new-paring-form"></div>
+					<div className="collections-animal-records-pairings">
+						<div className="collections-pairing-table">
+							<Table bordered striped hover size="md">
+								<thead>
+									<th>Date</th>
+									<th>Mate</th>
+									<th>Whitnessed</th>
+								</thead>
+								<tbody>{this.pairMappings()}</tbody>
+							</Table>
+						</div>
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
