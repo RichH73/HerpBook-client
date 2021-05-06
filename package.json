@@ -48,7 +48,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "PORT=4000 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "git add . && git commit -m \"Saving Changes\" && git push",
     "test": "react-scripts test",
